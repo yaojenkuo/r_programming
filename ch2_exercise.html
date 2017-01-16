@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Yao-Jen Kuo" />
+
+<meta name="date" content="2016-11-29" />
+
+<title>單一變數與函數 - 隨堂練習</title>
+
+<script src="ch2_exercise_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="ch2_exercise_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="ch2_exercise_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="ch2_exercise_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="ch2_exercise_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="ch2_exercise_files/highlight/default.css"
+      type="text/css" />
+<script src="ch2_exercise_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="ch2_exercise_files/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">單一變數與函數 - 隨堂練習</h1>
+<h4 class="author"><em>Yao-Jen Kuo</em></h4>
+<h4 class="date"><em>2016-11-29</em></h4>
+
+</div>
+
+
+<script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+<div class="section level2">
+<h2>換算公里與英里</h2>
+<p>Tony 不知道全程馬拉松 42.195 公里換算成英里是多少？請用 R 語言的命令列當作計算機來幫助他。</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjIDEga20gZXF1YWxzIHRvIDAuNjIxMzcxMTkyIG1pbGVzXG5rbV90b19taWxlIDwtIF9fX1xuXG4jIFByaW50IGttX3RvX21pbGUgaW4gdGhlIGNvbnNvbGVcblxuXG4jIFRoZSBkaXN0YW5jZSBvZiBmdWxsIG1hcmF0aG9uIG1lYXN1cmVkIGluIGttXG5mdWxsX21hcmF0aG9uX2ttIDwtIDQyLjE5NVxuXG4jIFRoZSBkaXN0YW5jZSBvZiBmdWxsIG1hcmF0aG9uIG1lYXN1cmVkIGluIG1pbGVcbmZ1bGxfbWFyYXRob25fbWlsZSA8LSBfX19cbiAgXG4jIFByaW50IGZ1bGxfbWFyYXRob25fbWlsZSBpbiB0aGUgY29uc29sZSIsInNvbHV0aW9uIjoiIyAxIGttIGVxdWFscyB0byAwLjYyMTM3MTE5MiBtaWxlc1xua21fdG9fbWlsZSA8LSAwLjYyMTM3MTE5MlxuXG4jIFByaW50IGttX3RvX21pbGUgaW4gdGhlIGNvbnNvbGVcbmttX3RvX21pbGVcblxuIyBUaGUgZGlzdGFuY2Ugb2YgZnVsbCBtYXJhdGhvbiBtZWFzdXJlZCBpbiBrbVxuZnVsbF9tYXJhdGhvbl9rbSA8LSA0Mi4xOTVcblxuIyBUaGUgZGlzdGFuY2Ugb2YgZnVsbCBtYXJhdGhvbiBtZWFzdXJlZCBpbiBtaWxlXG5mdWxsX21hcmF0aG9uX21pbGUgPC0gZnVsbF9tYXJhdGhvbl9rbSAqIGttX3RvX21pbGVcbiAgXG4jIFByaW50IGZ1bGxfbWFyYXRob25fbWlsZSBpbiB0aGUgY29uc29sZVxuZnVsbF9tYXJhdGhvbl9taWxlIiwic2N0IjoidGVzdF9vYmplY3QoXCJrbV90b19taWxlXCIsIGluY29ycmVjdF9tc2cgPSBcIkFzc2lnbiAwLjYyMTM3MTE5MiB0byBga21fdG9fbWlsZWAuXCIpXG50ZXN0X29iamVjdChcImZ1bGxfbWFyYXRob25fbWlsZVwiLCBpbmNvcnJlY3RfbXNnID0gXCJDYWxjdWxhdGUgYGZ1bGxfbWFyYXRob25fbWlsZWAgYnkgbXVsdGlwbHlpbmcgYGZ1bGxfbWFyYXRob25fa21gIHdpdGggYGttX3RvX21pbGVgLlwiKVxudGVzdF9vdXRwdXRfY29udGFpbnMoXCJrbV90b19taWxlXCIsIGluY29ycmVjdF9tc2cgPSBcIk1ha2Ugc3VyZSB0byBwcmludCBga21fdG9fbWlsZWAuXCIpXG50ZXN0X291dHB1dF9jb250YWlucyhcImZ1bGxfbWFyYXRob25fbWlsZVwiLCBpbmNvcnJlY3RfbXNnID0gXCJNYWtlIHN1cmUgdG8gcHJpbnQgYGZ1bGxfbWFyYXRob25fbWlsZWAuXCIpXG5zdWNjZXNzX21zZyhcIlRoYW5rIHlvdSBzbyBtdWNoLCBub3cgVG9ueSBrbm93cyB0aGF0IHRoZSBkaXN0YW5jZSBvZiBhIGZ1bGwgbWFyYXRob24gY291cnNlIGlzIDI2LjIgbWlsZXMhXCIpIn0=
+</div>
+</div>
+<div class="section level2">
+<h2>建立不同類型的變數</h2>
+<p>在這個練習中熟練建立基本類型的變數：</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjIENyZWF0ZSBhIG51bWVyaWMgdmFyaWFibGUgbXlfbnVtIGVxdWFscyB0byA4XG5teV9udW0gPC0gX19fXG5cbiMgQ3JlYXRlIGEgaW50ZWdlciB2YXJpYWJsZSBteV9pbnQgZXF1YWxzIHRvIDdMXG5teV9pbnQgPC0gX19fXG5cbiMgQ3JlYXRlIGEgbG9naWNhbCB2YXJpYWJsZSBteV9sb2dpIGVxdWFscyB0byBUUlVFXG5teV9sb2dpIDwtIF9fX1xuXG4jIENyZWF0ZSBhIGNoYXJhY3RlciB2YXJpYWJsZSBteV9jaGFyIGVxdWFscyB0byBcIkxlYXJuIFIgdGhlIGVhc3kgd2F5IVwiXG5teV9jaGFyIDwtIF9fX1xuICBcbiMgVXNlIGZ1bmN0aW9uOiBscygpIHRvIGxpc3QgYWxsIHRoZSB2YXJpYWJsZXMgd2UganVzdCBjcmVhdGVkXG5cblxuIyBVc2UgZnVuY3Rpb246IGNsYXNzKCkgdG8gY2hlY2sgdGhlIHZhcmlhYmxlIHR5cGVzIHJlc3BlY3RpdmVseVxuY2xhc3MoX19fKVxuY2xhc3MoX19fKVxuY2xhc3MoX19fKVxuY2xhc3MoX19fKSIsInNvbHV0aW9uIjoiIyBDcmVhdGUgYSBudW1lcmljIHZhcmlhYmxlIG15X251bSBlcXVhbHMgdG8gOFxubXlfbnVtIDwtIDhcblxuIyBDcmVhdGUgYSBpbnRlZ2VyIHZhcmlhYmxlIG15X2ludCBlcXVhbHMgdG8gN0xcbm15X2ludCA8LSA3TFxuXG4jIENyZWF0ZSBhIGxvZ2ljYWwgdmFyaWFibGUgbXlfbG9naSBlcXVhbHMgdG8gVFJVRVxubXlfbG9naSA8LSBUUlVFXG5cbiMgQ3JlYXRlIGEgY2hhcmFjdGVyIHZhcmlhYmxlIG15X2NoYXIgZXF1YWxzIHRvIFwiTGVhcm4gUiB0aGUgZWFzeSB3YXkhXCJcbm15X2NoYXIgPC0gXCJMZWFybiBSIHRoZSBlYXN5IHdheSFcIlxuXG4jIFVzZSBmdW5jdGlvbjogbHMoKSB0byBsaXN0IGFsbCB0aGUgdmFyaWFibGVzIHdlIGp1c3QgY3JlYXRlZFxubHMoKVxuXG4jIFVzZSBmdW5jdGlvbjogY2xhc3MoKSB0byBjaGVjayB0aGUgdmFyaWFibGUgdHlwZXMgcmVzcGVjdGl2ZWx5XG5jbGFzcyhteV9udW0pXG5jbGFzcyhteV9pbnQpXG5jbGFzcyhteV9sb2dpKVxuY2xhc3MobXlfY2hhcikiLCJzY3QiOiJ0ZXN0X29iamVjdChcIm15X251bVwiLCBpbmNvcnJlY3RfbXNnID0gXCJBc3NpZ24gOCB0byBgbXlfbnVtYC5cIilcbnRlc3Rfb2JqZWN0KFwibXlfaW50XCIsIGluY29ycmVjdF9tc2cgPSBcIkFzc2lnbiA3TCB0byBgbXlfaW50YC5cIilcbnRlc3Rfb2JqZWN0KFwibXlfbG9naVwiLCBpbmNvcnJlY3RfbXNnID0gXCJBc3NpZ24gVFJVRSB0byBgbXlfbG9naWAuXCIpXG50ZXN0X29iamVjdChcIm15X2NoYXJcIiwgaW5jb3JyZWN0X21zZyA9IFwiQXNzaWduIFxcXCJMZWFybiBSIHRoZSBlYXN5IHdheSFcXFwiIHRvIGBteV9sb2dpYC5cIilcbnRlc3RfZnVuY3Rpb24oXCJsc1wiLCBpbmNvcnJlY3RfbXNnID0gXCJDYWxsIGxzKCkgdG8gbGlzdCBhbGwgdGhlIHZhcmlhYmxlcy5cIilcbm1zZyA8LSBcIkhhdmUgeW91IGNhbGxlZCBjbGFzcygpIG9uIGFsbCB0aGUgdmFyaWFibGVzIHlvdSBqdXN0IGNyZWF0ZWQ/XCJcbnRlc3Rfb3V0cHV0X2NvbnRhaW5zKFwiY2xhc3MobXlfbnVtKVwiLCBpbmNvcnJlY3RfbXNnID0gbXNnKVxudGVzdF9vdXRwdXRfY29udGFpbnMoXCJjbGFzcyhteV9pbnQpXCIsIGluY29ycmVjdF9tc2cgPSBtc2cpXG50ZXN0X291dHB1dF9jb250YWlucyhcImNsYXNzKG15X2xvZ2kpXCIsIGluY29ycmVjdF9tc2cgPSBtc2cpXG50ZXN0X291dHB1dF9jb250YWlucyhcImNsYXNzKG15X2NoYXIpXCIsIGluY29ycmVjdF9tc2cgPSBtc2cpIn0=
+</div>
+</div>
+<div class="section level2">
+<h2>運算並觀察類型</h2>
+<p>把上一個練習所建立的變數拿來運用：</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJwcmVfZXhlcmNpc2VfY29kZSI6IiMgQ3JlYXRlIHZhcmlhYmxlcyBmcm9tIHRoZSBsYXN0IGV4ZXJjaXNlXG5teV9udW0gPC0gOFxubXlfaW50IDwtIDdMXG5teV9sb2dpIDwtIFRSVUVcbm15X2NoYXIgPC0gXCJMZWFybiBSIHRoZSBlYXN5IHdheSFcIiIsInNhbXBsZSI6IiMgQWRkIG15X251bSBhbmQgbXlfaW50XG5cblxuIyBVc2UgY2xhc3MoKSB0byBjaGVjayB0aGUgcmVzdWx0IGFib3ZlXG5cblxuIyBBZGQgbXlfaW50IGFuZCBteV9sb2dpXG5cblxuIyBVc2UgY2xhc3MoKSB0byBjaGVjayB0aGUgcmVzdWx0IGFib3ZlXG5cblxuIyBSZS1hc3NpZ24gbXlfbG9naSB3aXRoIEZBTFNFXG5cblxuIyBBZGQgbXlfbnVtIGFuZCBteV9sb2dpXG5cblxuIyBVc2UgY2xhc3MoKSB0byBjaGVjayB0aGUgcmVzdWx0IGFib3ZlIiwic29sdXRpb24iOiIjIEFkZCBteV9udW0gYW5kIG15X2ludFxubXlfbnVtICsgbXlfaW50XG5cbiMgVXNlIGNsYXNzKCkgdG8gY2hlY2sgdGhlIHJlc3VsdCBhYm92ZVxuY2xhc3MobXlfbnVtICsgbXlfaW50KVxuXG4jIEFkZCBteV9pbnQgYW5kIG15X2xvZ2lcbm15X2ludCArIG15X2xvZ2lcblxuIyBVc2UgY2xhc3MoKSB0byBjaGVjayB0aGUgcmVzdWx0IGFib3ZlXG5jbGFzcyhteV9pbnQgKyBteV9sb2dpKVxuXG4jIFJlLWFzc2lnbiBteV9sb2dpIHdpdGggRkFMU0Vcbm15X2xvZ2kgPC0gRkFMU0VcblxuIyBBZGQgbXlfbnVtIGFuZCBteV9sb2dpXG5teV9udW0gKyBteV9sb2dpXG5cbiMgVXNlIGNsYXNzKCkgdG8gY2hlY2sgdGhlIHJlc3VsdCBhYm92ZVxuY2xhc3MobXlfbnVtICsgbXlfbG9naSkiLCJzY3QiOiJ0ZXN0X291dHB1dF9jb250YWlucyhcIjE1XCIsIGluY29ycmVjdF9tc2cgPSBcIkRpZCB5b3UgYWRkIGBteV9udW1gIHdpdGggYG15X2ludGA/XCIpXG50ZXN0X291dHB1dF9jb250YWlucyhcIjhMXCIsIGluY29ycmVjdF9tc2cgPSBcIkRpZCB5b3UgYWRkIGBteV9pbnRgIHdpdGggYG15X2xvZ2lgP1wiKVxudGVzdF9zdHVkZW50X3R5cGVkKFwibXlfbG9naSA8LSBGQUxTRVwiLCBub3RfdHlwZWRfbXNnID0gXCJEaWQgeW91IHJlLWFzc2lnbiBGQUxTRSB0byBgbXlfbG9naWA/XCIpXG50ZXN0X291dHB1dF9jb250YWlucyhcIjhcIiwgaW5jb3JyZWN0X21zZyA9IFwiRGlkIHlvdSBhZGQgYG15X251bWAgd2l0aCBgbXlfbG9naWA/XCIpXG5tc2cgPC0gXCJEaWQgeW91IGNhbGwgY2xhc3MoKSB0byBjaGVjayB0aGUgcmVzdWx0P1wiXG50ZXN0X291dHB1dF9jb250YWlucyhcImNsYXNzKG15X251bSArIG15X2ludClcIiwgaW5jb3JyZWN0X21zZyA9IG1zZylcbnRlc3Rfb3V0cHV0X2NvbnRhaW5zKFwiY2xhc3MobXlfaW50ICsgbXlfbG9naSlcIiwgaW5jb3JyZWN0X21zZyA9IG1zZylcbnRlc3Rfb3V0cHV0X2NvbnRhaW5zKFwiY2xhc3MobXlfbnVtICsgbXlfbG9naSlcIiwgaW5jb3JyZWN0X21zZyA9IG1zZylcbnN1Y2Nlc3NfbXNnKFwiV2VsbCBkb25lIVwiKSJ9
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

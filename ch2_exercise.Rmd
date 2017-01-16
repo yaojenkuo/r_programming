@@ -1,0 +1,191 @@
+---
+title: "單一變數與函數 - 隨堂練習"
+author: "Yao-Jen Kuo"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    self_contained: false
+---
+
+```{r, include=FALSE}
+tutorial::go_interactive()
+```
+
+## 換算公里與英里
+
+Tony 不知道全程馬拉松 42.195 公里換算成英里是多少？請用 R 語言的命令列當作計算機來幫助他。
+
+```{r ex="km_mile_converter", type="sample-code"}
+# 1 km equals to 0.621371192 miles
+km_to_mile <- ___
+
+# Print km_to_mile in the console
+
+
+# The distance of full marathon measured in km
+full_marathon_km <- 42.195
+
+# The distance of full marathon measured in mile
+full_marathon_mile <- ___
+  
+# Print full_marathon_mile in the console
+
+```
+
+```{r ex="km_mile_converter", type="solution"}
+# 1 km equals to 0.621371192 miles
+km_to_mile <- 0.621371192
+
+# Print km_to_mile in the console
+km_to_mile
+
+# The distance of full marathon measured in km
+full_marathon_km <- 42.195
+
+# The distance of full marathon measured in mile
+full_marathon_mile <- full_marathon_km * km_to_mile
+  
+# Print full_marathon_mile in the console
+full_marathon_mile
+```
+
+```{r ex="km_mile_converter", type="sct"}
+test_object("km_to_mile", incorrect_msg = "Assign 0.621371192 to `km_to_mile`.")
+test_object("full_marathon_mile", incorrect_msg = "Calculate `full_marathon_mile` by multiplying `full_marathon_km` with `km_to_mile`.")
+test_output_contains("km_to_mile", incorrect_msg = "Make sure to print `km_to_mile`.")
+test_output_contains("full_marathon_mile", incorrect_msg = "Make sure to print `full_marathon_mile`.")
+success_msg("Thank you so much, now Tony knows that the distance of a full marathon course is 26.2 miles!")
+```
+
+## 建立不同類型的變數
+
+在這個練習中熟練建立基本類型的變數：
+
+```{r ex="create_variables", type="sample-code"}
+# Create a numeric variable my_num equals to 8
+my_num <- ___
+
+# Create a integer variable my_int equals to 7L
+my_int <- ___
+
+# Create a logical variable my_logi equals to TRUE
+my_logi <- ___
+
+# Create a character variable my_char equals to "Learn R the easy way!"
+my_char <- ___
+  
+# Use function: ls() to list all the variables we just created
+
+
+# Use function: class() to check the variable types respectively
+class(___)
+class(___)
+class(___)
+class(___)
+```
+
+```{r ex="create_variables", type="solution"}
+# Create a numeric variable my_num equals to 8
+my_num <- 8
+
+# Create a integer variable my_int equals to 7L
+my_int <- 7L
+
+# Create a logical variable my_logi equals to TRUE
+my_logi <- TRUE
+
+# Create a character variable my_char equals to "Learn R the easy way!"
+my_char <- "Learn R the easy way!"
+
+# Use function: ls() to list all the variables we just created
+ls()
+
+# Use function: class() to check the variable types respectively
+class(my_num)
+class(my_int)
+class(my_logi)
+class(my_char)
+```
+
+```{r ex="create_variables", type="sct"}
+test_object("my_num", incorrect_msg = "Assign 8 to `my_num`.")
+test_object("my_int", incorrect_msg = "Assign 7L to `my_int`.")
+test_object("my_logi", incorrect_msg = "Assign TRUE to `my_logi`.")
+test_object("my_char", incorrect_msg = "Assign \"Learn R the easy way!\" to `my_logi`.")
+test_function("ls", incorrect_msg = "Call ls() to list all the variables.")
+msg <- "Have you called class() on all the variables you just created?"
+test_output_contains("class(my_num)", incorrect_msg = msg)
+test_output_contains("class(my_int)", incorrect_msg = msg)
+test_output_contains("class(my_logi)", incorrect_msg = msg)
+test_output_contains("class(my_char)", incorrect_msg = msg)
+```
+
+## 運算並觀察類型
+
+把上一個練習所建立的變數拿來運用：
+
+```{r ex="calculate_variables", type="pre-exercise-code"}
+# Create variables from the last exercise
+my_num <- 8
+my_int <- 7L
+my_logi <- TRUE
+my_char <- "Learn R the easy way!"
+```
+
+```{r ex="calculate_variables", type="sample-code"}
+# Add my_num and my_int
+
+
+# Use class() to check the result above
+
+
+# Add my_int and my_logi
+
+
+# Use class() to check the result above
+
+
+# Re-assign my_logi with FALSE
+
+
+# Add my_num and my_logi
+
+
+# Use class() to check the result above
+
+```
+
+```{r ex="calculate_variables", type="solution"}
+# Add my_num and my_int
+my_num + my_int
+
+# Use class() to check the result above
+class(my_num + my_int)
+
+# Add my_int and my_logi
+my_int + my_logi
+
+# Use class() to check the result above
+class(my_int + my_logi)
+
+# Re-assign my_logi with FALSE
+my_logi <- FALSE
+
+# Add my_num and my_logi
+my_num + my_logi
+
+# Use class() to check the result above
+class(my_num + my_logi)
+```
+
+```{r ex="calculate_variables", type="sct"}
+test_output_contains("15", incorrect_msg = "Did you add `my_num` with `my_int`?")
+test_output_contains("8L", incorrect_msg = "Did you add `my_int` with `my_logi`?")
+test_student_typed("my_logi <- FALSE", not_typed_msg = "Did you re-assign FALSE to `my_logi`?")
+test_output_contains("8", incorrect_msg = "Did you add `my_num` with `my_logi`?")
+msg <- "Did you call class() to check the result?"
+test_output_contains("class(my_num + my_int)", incorrect_msg = msg)
+test_output_contains("class(my_int + my_logi)", incorrect_msg = msg)
+test_output_contains("class(my_num + my_logi)", incorrect_msg = msg)
+success_msg("Well done!")
+```

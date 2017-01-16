@@ -1,0 +1,130 @@
+---
+title: "單一變數與函數"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+## 計算機
+
+- 計算機是 R 語言的命令列（Console）最基本的應用！
+- R 語言使用單行註解 `#` （pound）
+- 在命令列試著進行加減乘除運算：
+
+```{r}
+# 在命令列依序輸入後觀察產出
+2 + 1
+2 - 1
+2 * 2
+4 / 2
+2 ^ 2 # 次方
+3 %% 2 # 餘數
+```
+
+## 建立變數
+
+- R 語言的使用者習慣使用 `<-` 來建立變數
+- 在 RStudio 中可以按 `Alt 與 -` 來產生 `<-` 符號
+- R 語言是**動態型別語言**，這表示你可以很有彈性地改變變數
+
+```{r}
+# 在命令列依序輸入後觀察回傳
+a <- 2
+b <- 3
+a
+b
+a * b
+a <- 5 # 將 a 改變為 5
+a
+a * b
+```
+
+## 建立變數（2）
+
+- 你也可以用與其他程式語言相同的 `=` 來建立變數
+- 但是我推薦使用 `<-`
+
+```{r}
+a = 2
+a
+```
+
+## 單一變數類型
+
+- R 語言的基本變數類型
+  - 數字（numeric）
+  - 整數（integer）
+  - 複數（complex）
+  - 文字（character）
+  - 邏輯值（logical）
+
+```{r}
+# 在命令列依序輸入
+num <- 2
+int <- 2L
+compl <- 2 + 3i
+char <- "Hello" # 用引號告訴 R 語言這是一組字串
+logi_t <- TRUE
+logi_f <- FALSE
+# 把這些變數輸出在命令列
+num
+int
+compl
+char
+logi_t
+logi_f
+```
+
+## 單一變數類型（2）
+
+- R 語言的數值型變數運算時很有彈性
+
+```{r}
+# 在命令列依序輸入
+num <- 2
+int <- 2L
+compl <- 2 + 3i
+char <- "Hello" # 用引號告訴 R 語言這是一組字串
+logi_t <- TRUE
+logi_f <- FALSE
+# 運算
+num + int
+num + compl
+int + logi_t
+logi_t * 5
+```
+
+- 但是字串的運算則不如 Python 或 Ruby 這麼彈性
+
+```
+char * 5 # Error
+char + " World!" # Error
+```
+
+## 函數
+
+- R 語言是一種**函數型編程**（functional programming）的程式語言
+
+> Everything that happens is a function call.
+> By [John Chambers](https://en.wikipedia.org/wiki/John_Chambers_(statistician))
+
+- 習慣使用 `()` 來避免混淆變數與函數
+
+```
+class() # 回傳變數的類型
+ls() # 目前環境中有哪些變數
+rm() # 移除環境中的變數
+getwd() # 目前的檔案路徑在哪裡
+setwd() # 設定檔案路徑
+Sys.Date() # 回傳系統日期
+Sys.time() # 回傳系統日期與時間
+q() # 離開 RStudio
+```
+
+## 隨堂練習
+
+[單一變數與函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch2_exercise)
