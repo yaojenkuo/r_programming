@@ -118,6 +118,8 @@ barplot(table(factor(mtcars$gear)), main = "Vehicle counts by gear types", xlab 
 
 ## 長條圖（2）
 
+- 不只能呈現 count
+
 ```{r}
 vehicle_names <- row.names(mtcars)
 barplot(mtcars$hp, names = vehicle_names, main = "Horse power for each vehicles", xlab = "Horse power", ylab = "Vehicles", horiz = TRUE)
