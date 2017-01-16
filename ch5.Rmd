@@ -1,0 +1,191 @@
+---
+title: "簡單的繪圖（ggplot2）"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE, message = FALSE)
+```
+
+## 安裝與載入 `ggplot2`
+
+- 套件的安裝與載入有什麼不同？
+
+```
+install.packages("ggplot2")
+```
+
+```{r}
+library(ggplot2)
+```
+
+## 玩具資料（Toy datasets）
+
+- 載入 `ggplot2` 之後會有多的玩具資料
+
+```{r}
+data()
+```
+
+## 散佈圖
+
+- `ggplot() + geom_point()` 繪製散佈圖
+
+```{r}
+ggplot(cars, aes(x = speed, y = dist)) + 
+  geom_point()
+```
+
+## 散佈圖（2）
+
+- `+ ggtitle() + xlab() + ylab()` 編輯標題，X 軸名稱與 Y 軸名稱
+
+```{r}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  ggtitle("Car speed vs. braking distance") +
+  xlab("Speed") + 
+  ylab("Dist")
+```
+
+## 散佈圖（3）
+
+- `+ geom_smooth(method = )` 加上 fit line
+
+```{r}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  ggtitle("Car speed vs. braking distance") +
+  xlab("Speed") +
+  ylab("Dist") +
+  geom_smooth(method = "lm")
+```
+
+## 散佈圖（4）
+
+- `aes()` 中加入 `color = `
+
+```{r}
+str(iris)
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  ggtitle("Sepal.Length vs. Sepal.Width") +
+  xlab("Sepal length") +
+  ylab("Sepal width")
+```
+
+## 線圖
+
+- `ggplot() + geom_line()` 繪製線圖
+
+```{r}
+ggplot(cars, aes(x = speed, y = dist)) + 
+  geom_point() +
+  geom_line()
+```
+
+## 線圖（2）
+
+- 線圖通常用來視覺化時間序列
+
+```{r}
+head(economics)
+ggplot(economics, aes(x = date, y = unemploy)) + 
+  geom_line()
+```
+
+## 直方圖
+
+- `ggplot() + geom_histogram()` 繪製直方圖
+
+```{r}
+ggplot(cars, aes(x = speed)) +
+  geom_histogram()
+```
+
+## 直方圖（2）
+
+- 透過 `facet_wrap()` 納入類別變數的展開
+
+```{r}
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_histogram() +
+  facet_wrap(~ Species) # Species ~ 可以調整為垂直展開
+```
+
+## 盒鬚圖
+
+- `ggplot() + geom_boxplot()` 繪製盒鬚圖
+
+```{r}
+ggplot(iris, aes(x = 1, y = Sepal.Length)) +
+  geom_boxplot()
+```
+
+## 盒鬚圖（2）
+
+- `aes()` 指定 `x = ` 納入類別變數的展開
+
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot()
+```
+
+## 長條圖
+
+- `ggplot() + geom_bar()` 繪製長條圖
+
+```{r}
+ggplot(mtcars, aes(gear)) + 
+  geom_bar()
+```
+
+## 長條圖（2）
+
+- `geom_bar(stat = "identity")` 可以呈現數值
+
+```{r}
+ggplot(mtcars, aes(x = row.names(mtcars), y = hp)) +
+  geom_bar(stat = "identity") + coord_flip()
+```
+
+## 長條圖（3）
+
+- `geom_bar(aes(fill = drv))` 納入類別變數的顏色
+
+```{r}
+str(mpg)
+ggplot(mpg, aes(x = class)) +
+  geom_bar(aes(fill = drv))
+```
+
+## 長條圖（4）
+
+- 加入 `position = "dodge"` 參數
+
+```{r}
+ggplot(mpg, aes(x = class)) +
+  geom_bar(aes(fill = drv), position = "dodge")
+```
+
+## 長條圖（5）
+
+- 加入 `position = "fill"` 參數
+
+```{r}
+ggplot(mpg, aes(x = class)) +
+  geom_bar(aes(fill = drv), position = "fill") +
+  ylab("Percentage")
+```
+
+## 文件
+
+- 沒事多看文件，多看文件沒事
+- <http://docs.ggplot2.org/current/index.html>
+
+## 期中作業
+
+- 使用 `ggplot2` 與任意資料繪製散佈圖，線圖，直方圖，盒鬚圖與長條圖
+- 將程式上傳至 GitHub
