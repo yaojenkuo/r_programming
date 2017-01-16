@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Yao-Jen Kuo" />
+
+<meta name="date" content="2016-11-29" />
+
+<title>基本資料結構 - 隨堂練習</title>
+
+<script src="ch3_exercise_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="ch3_exercise_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="ch3_exercise_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="ch3_exercise_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="ch3_exercise_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="ch3_exercise_files/highlight/default.css"
+      type="text/css" />
+<script src="ch3_exercise_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="ch3_exercise_files/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">基本資料結構 - 隨堂練習</h1>
+<h4 class="author"><em>Yao-Jen Kuo</em></h4>
+<h4 class="date"><em>2016-11-29</em></h4>
+
+</div>
+
+
+<script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+<div class="section level2">
+<h2>草帽海賊團的年紀向量</h2>
+<p>我們已經預先幫你建好一個向量 <code>age</code> 紀錄草帽海賊團成員的年紀，利用邏輯值向量找出海賊團成員中未滿 25 歲的人數總和。</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJwcmVfZXhlcmNpc2VfY29kZSI6IiMgQ3JlYXRlIHRoZSBhZ2UgZmFjdG9yXG5hZ2UgPC0gYygxOSwgMjEsIDIwLCAxOSwgMjEsIDE3LCAzMCwgMzYsIDkwKSIsInNhbXBsZSI6IiMgUHJpbnQgdGhlIHZlY3RvcjogYWdlXG5cblxuIyBHZW5lcmF0ZSBhIGxvZ2ljYWwgdmVjdG9yIGluZGljYXRpbmcgd2hpY2ggc2NhbGFyIGlzIGxlc3MgdGhhbiAyNVxuaXNfdW5kZXJfMjUgPC0gX19fIDwgX19fXG5cbiMgUHJpbnQgaXNfdW5kZXJfMjVcblxuXG4jIFVzZSB0aGUgbG9naWNhbCB2ZWN0b3IgYWJvdmUgdG8gY3JlYXRlIGEgbmV3IHZlY3RvciB1bmRlcl8yNVxudW5kZXJfMjUgPC0gYWdlW19fX11cblxuIyBDYWxjdWxhdGUgdGhlIGxlbmd0aCBvZiB1bmRlcl8yNVxubGVuZ3RoKF9fXykiLCJzb2x1dGlvbiI6IiMgUHJpbnQgdGhlIHZlY3RvcjogYWdlXG5hZ2VcblxuIyBHZW5lcmF0ZSBhIGxvZ2ljYWwgdmVjdG9yIGluZGljYXRpbmcgd2hpY2ggc2NhbGFyIGlzIGxlc3MgdGhhbiAyNVxuaXNfdW5kZXJfMjUgPC0gYWdlIDwgMjVcblxuIyBQcmludCBpc191bmRlcl8yNVxuaXNfdW5kZXJfMjVcblxuIyBVc2UgdGhlIGxvZ2ljYWwgdmVjdG9yIGFib3ZlIHRvIGNyZWF0ZSBhIG5ldyB2ZWN0b3IgdW5kZXJfMjVcbnVuZGVyXzI1IDwtIGFnZVtpc191bmRlcl8yNV1cblxuIyBDYWxjdWxhdGUgdGhlIGxlbmd0aCBvZiB1bmRlcl8yNVxubGVuZ3RoKHVuZGVyXzI1KSIsInNjdCI6InRlc3Rfb3V0cHV0X2NvbnRhaW5zKFwiYWdlXCIsIGluY29ycmVjdF9tc2cgPSBcIkRpZCB5b3UgcHJpbnQgdGhlIHZlY3RvciBgYWdlYD9cIilcbnRlc3Rfb2JqZWN0KFwiaXNfdW5kZXJfMjVcIiwgaW5jb3JyZWN0X21zZyA9IFwiRGlkIHlvdSBnZW5lcmF0ZSB0aGUgdmVjdG9yIGBpc191bmRlcl8yNWAgY29ycmVjdGx5P1wiKVxudGVzdF9vdXRwdXRfY29udGFpbnMoXCJpc191bmRlcl8yNVwiLCBpbmNvcnJlY3RfbXNnID0gXCJEaWQgeW91IHByaW50IHRoZSB2ZWN0b3IgYGlzX3VuZGVyXzI1YD9cIilcbnRlc3Rfb2JqZWN0KFwidW5kZXJfMjVcIiwgaW5jb3JyZWN0X21zZyA9IFwiRGlkIHlvdSBnZW5lcmF0ZSB0aGUgdmVjdG9yIGB1bmRlcl8yNWAgY29ycmVjdGx5P1wiKVxudGVzdF9vdXRwdXRfY29udGFpbnMoXCJsZW5ndGgodW5kZXJfMjUpXCIsIGluY29ycmVjdF9tc2cgPSBcIkRpZCB5b3UgcHJpbnQgdGhlIGxlbmd0aCBvZiB2ZWN0b3IgYHVuZGVyXzI1YCB1c2luZyBgbGVuZ3RoKClgP1wiKSJ9
+</div>
+</div>
+<div class="section level2">
+<h2>草帽海賊團的資料框</h2>
+<p>我們已經預先幫你建好一個資料框 <code>one_piece_df</code> 紀錄草帽海賊團成員的姓名，年紀與性別。</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJwcmVfZXhlcmNpc2VfY29kZSI6Im5hbWUgPC0gYyhcIk1vbmtleSBELiBMdWZmeVwiLCBcIlJvcm9ub2EgWm9yb1wiLCBcIk5hbWlcIiwgXCJVc29wcFwiLCBcIlZpbnNtb2tlIFNhbmppXCIsIFwiVG9ueSBUb255IENob3BwZXJcIiwgXCJOaWNvIFJvYmluXCIsIFwiRnJhbmt5XCIsIFwiQnJvb2tcIilcbmFnZSA8LSBjKDE5LCAyMSwgMjAsIDE5LCAyMSwgMTcsIDMwLCAzNiwgOTApXG5pc19mZW1hbGUgPC0gYyhGQUxTRSwgRkFMU0UsIFRSVUUsIEZBTFNFLCBGQUxTRSwgRkFMU0UsIFRSVUUsIEZBTFNFLCBGQUxTRSlcbm9uZV9waWVjZV9kZiA8LSBkYXRhLmZyYW1lKG5hbWUsIGFnZSwgaXNfZmVtYWxlKSIsInNhbXBsZSI6IiMgVXNlIGBzdHIoKWAgZnVuY3Rpb24gdG8gZXhhbWluZSB0aGUgc3RydWN0dXJlIG9mIGBvbmVfcGllY2VfZGZgXG5cblxuIyBVc2UgYHN1bW1hcnkoKWAgZnVuY3Rpb24gdG8gZXhhbWluZSB0aGUgc3VtbWFyeSBvZiBgb25lX3BpZWNlX2RmYFxuXG5cbiMgU2VsZWN0IHRoZSBgbmFtZWAgdmFyaWFibGUgdXNpbmcgJCBvciBpbmRleGluZ1xuXG5cbiMgU2VsZWN0IHRoZSByb3dzIHdoZXJlIG5hbWUgZXF1YWxzIHRvIFwiVXNvcHBcIiBhbmQgXCJGcmFua3lcIlxub25lX3BpZWNlX2RmW29uZV9waWVjZV9kZiRuYW1lID09IFwiX19fXCIgfCBvbmVfcGllY2VfZGYkbmFtZSA9PSBcIl9fX1wiLCBdIiwic29sdXRpb24iOiIjIFVzZSBgc3RyKClgIGZ1bmN0aW9uIHRvIGV4YW1pbmUgdGhlIHN0cnVjdHVyZSBvZiBgb25lX3BpZWNlX2RmYFxuc3RyKG9uZV9waWVjZV9kZilcblxuIyBVc2UgYHN1bW1hcnkoKWAgZnVuY3Rpb24gdG8gZXhhbWluZSB0aGUgc3VtbWFyeSBvZiBgb25lX3BpZWNlX2RmYFxuc3VtbWFyeShvbmVfcGllY2VfZGYpXG5cbiMgU2VsZWN0IHRoZSBgbmFtZWAgdmFyaWFibGUgdXNpbmcgJCBvciBpbmRleGluZ1xub25lX3BpZWNlX2RmJG5hbWVcblxuIyBTZWxlY3QgdGhlIHJvd3Mgd2hlcmUgbmFtZSBlcXVhbHMgdG8gXCJVc29wcFwiIGFuZCBcIkZyYW5reVwiXG5vbmVfcGllY2VfZGZbb25lX3BpZWNlX2RmJG5hbWUgPT0gXCJVc29wcFwiIHwgb25lX3BpZWNlX2RmJG5hbWUgPT0gXCJGcmFua3lcIiwgXSIsInNjdCI6InRlc3Rfb3V0cHV0X2NvbnRhaW5zKFwic3RyKG9uZV9waWVjZV9kZilcIiwgaW5jb3JyZWN0X21zZyA9IFwiRGlkIHlvdSB1c2UgYHN0cigpYCB0byBleGFtaW5lIHRoZSBzdHJ1Y3R1cmUgb2YgYG9uZV9waWVjZV9kZmA/XCIpXG50ZXN0X291dHB1dF9jb250YWlucyhcInN1bW1hcnkob25lX3BpZWNlX2RmKVwiLCBpbmNvcnJlY3RfbXNnID0gXCJEaWQgeW91IHVzZSBgc3VtbWFyeSgpYCB0byBleGFtaW5lIHRoZSBzdW1tYXJ5IG9mIGBvbmVfcGllY2VfZGZgP1wiKVxudGVzdF9vdXRwdXRfY29udGFpbnMoXCJvbmVfcGllY2VfZGYkbmFtZVwiLCBpbmNvcnJlY3RfbXNnID0gXCJEaWQgeW91IHNlbGVjdCB0aGUgYG5hbWVgIHZhcmlhYmxlIGZyb20gYG9uZV9waWVjZV9kZmAgdXNpbmcgJCBvciBpbmRleGluZz9cIilcbnRlc3Rfb3V0cHV0X2NvbnRhaW5zKFwib25lX3BpZWNlX2RmW29uZV9waWVjZV9kZiRuYW1lID09IFxcXCJVc29wcFxcXCIgfCBvbmVfcGllY2VfZGYkbmFtZSA9PSBcXFwiRnJhbmt5XFxcIiwgXVwiLCBpbmNvcnJlY3RfbXNnID0gXCJEaWQgeW91IHNlbGVjdCB0aGUgcm93cyBmb3IgVXNvcHAgYW5kIEZyYW5reT9cIikifQ==
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

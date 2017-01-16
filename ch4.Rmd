@@ -1,0 +1,241 @@
+---
+title: "基本資料結構"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+## 資料結構
+
+- R 語言有一些基本的資料結構來儲存我們上一章說明的資料類型:
+    - Vector（向量）
+    - Factor（因素向量）
+    - Matrix（矩陣）
+    - Data Frame（資料框）
+    - List（清單）
+  
+## Vector（向量）
+
+- Vector 可以包含數字、文字或邏輯
+- 但是 Vector 只能有一種類型
+- 我們先使用 `c()` 這個函數來建造 Vector，顧名思義是合併 (Combine)
+- 學習使用 `?c` 或者 `help(c)` 來查閱函數的用法
+
+```{r}
+num_vector <- c(8, 7, 78, 87) # 數字向量
+char_vector <- c("I", "Love", "R") # 文字向量
+logi_vector <- c(TRUE, FALSE) # 邏輯值向量
+mixed_vector <- c(1, "two", TRUE) # 包含不同類型的資料就會被存成文字
+logi_and_num_vector <- c(7, 8, TRUE, FALSE) # 邏輯值背後是儲存為 1 與 0
+```
+
+## Vector（向量）（2）
+
+- 向量中的元素稱為 Scalar
+- 在 R 語言中我們使用中括號 `[]` 將指定元素選擇出來
+- 中括號 `[]` 裡頭要放所謂的索引值 (index)
+- 索引值由 **1** 開始，這一點不同於一些其他程式語言（Python, Ruby, JavaScript...etc.）是從 0 開始
+- 實務中因為向量的長度可能是不固定的，所以我們很常使用 `length()` 函數來取得向量中最後一個元素的索引值
+
+```{r}
+num_vector <- c(8, 7, 78, 87) # 數字向量
+# 用`[]`把指定元素選擇出來
+num_vector[1]
+num_vector[c(1, 3, 4)]
+num_vector[2:4]
+num_vector[-1]
+# 練習使用 `length()` 函數
+length_of_num_vector <- length(num_vector)
+length_of_num_vector
+num_vector[2:length_of_num_vector]
+```
+
+## Vector（向量）（3）
+
+- 運用邏輯值向量來選擇元素
+- 當邏輯值向量為 TRUE 的時候該元素會被選出來
+
+```{r}
+num_vector <- c(8, 7, 78, 87) # 數字向量
+logi_selector <- num_vector > 10 # 產生邏輯值向量
+logi_selector
+num_vector[logi_selector]
+num_vector[num_vector > 10] # 熟了就這樣用
+```
+
+## Vector（向量）（4）
+
+- 除了用 `c()`，R 語言還有一些比較進階的函數例如 `seq()` 與 `rep()` 可以幫你輕鬆產出向量
+- `seq()` 是產出等差的向量，`rep()` 是產出包含相同元素的向量
+
+```{r}
+# 練習使用`seq()`
+?seq
+seq(from=12, to=90, by=3) # 產生一個從 12 開始到 90，等差為 3 的向量
+seq(from=100, to=1000, length=10) # 產生一個從 100 開始到 1000，元素個數為 10 的向量
+
+# 練習使用`rep()`
+?rep
+rep(7, times = 8) # 產生一個有 8 個 7 的向量
+```
+
+## Factor（因素向量）
+
+- 可以把因素向量視作多了一些資訊的向量
+- R 語言預設讀入資料會將非連續型變數以因素向量的格式儲存
+- 可以把它想成是字串向量，但是多了 `levels` 的資訊
+- 有兩種類型的因素向量，分別是名目型（Nominal）與順序型（Ordinal）
+- 名目型的因素向量是沒有順序之分
+
+```{r}
+# 普通的字串向量
+gender_vector <- c("Female", "Male", "Male", "Female", "Female") # 建立一個 3 女 2 男的向量
+gender_vector
+class(gender_vector)
+
+# 轉換成名目型的Factor
+gender_factor <- factor(gender_vector) # 用 `factor()` 函數進行轉換
+gender_factor
+class(gender_factor)
+
+# 檢查是否有順序之分
+gender_factor[1] # 這是女性 Female
+gender_factor[2]# 這是男性 Male
+gender_factor[1] > gender_factor[2]
+```
+
+## Factor（因素向量）（2）
+
+- 順序型的因素向量有順序之分
+- 但是必須要在 `factor` 函數中多指派 2 個參數，一個是 `ordered = TRUE`，另一個是 `levels = `
+- 速度有快慢之分
+
+```{r}
+speed_vector <- c("Slow", "Fast", "Slow", "Moderate")
+speed_factor <- factor(speed_vector, ordered = TRUE, levels=c("Slow", "Moderate", "Fast"))
+speed_factor
+class(speed_factor)
+speed_factor[1] < speed_factor[2]
+```
+
+- 溫度有高低之別
+
+```{r}
+temperature_vector <- c("Cold", "Warm", "Hot", "Cold", "Hot")
+temperature_factor <- factor(temperature_vector, ordered = TRUE, levels=c("Cold", "Warm", "Hot"))
+temperature_factor
+class(temperature_factor)
+temperature_factor[1] > temperature_factor[2]
+```
+
+## Matrix（矩陣）
+
+- 一個 m * n 的矩陣指的是有 m 列、n 欄
+- 使用 `matrix()` 函數可以將向量轉換為矩陣
+- 指定兩個參數 `nrow = ` 與 `ncol = `
+- 預設是以**欄的方向**將元素填入矩陣
+
+```{r}
+my_vector <- 1:8
+my_matrix <- matrix(my_vector, nrow = 4, ncol = 2)
+my_matrix <- matrix(my_vector, nrow = 2, ncol = 4)
+my_matrix <- matrix(my_vector, nrow = 2, ncol = 4, byrow = TRUE) # byrow 預設為 FALSE
+```
+
+## Matrix（矩陣）（2）
+
+- 同樣使用中括號 `[ , ]` 與邏輯值向量將指定元素選擇出來
+
+```{r}
+my_vector <- 1:8
+my_matrix <- matrix(my_vector, nrow = 2, ncol = 4)
+my_matrix[, 3]
+my_matrix[2, ]
+my_matrix[2, 3]
+my_matrix[2, 2:4]
+larger_than_4 <- my_matrix > 4
+my_matrix[larger_than_4]
+```
+
+## Dataframe（資料框）
+
+- 資料框是非常重要的資料結構，如果你是 SAS/SPSS/Stata 的使用者，你可以想成是資料集（dataset）。
+- 一個資料框中可以包含不同資料類別的變數
+- 使用 `data.frame()` 函數可以建立資料框（向量長度要相同）
+
+```{r}
+name <- c("蒙其D魯夫", "羅羅亞索隆", "娜美", "賓什莫克香吉士")
+is_female <- c(FALSE, FALSE, TRUE, FALSE)
+age <- c(19, 21, 20, 21)
+one_piece_df <- data.frame(name, is_female, age)
+one_piece_df
+View(one_piece_df)
+```
+
+## Dataframe（資料框）（2）
+
+- 使用中括號 `[ , ]` 與 `$` 可以很靈活地取出資料框中的元素
+- 利用邏輯值向量可以很靈活地取出列數
+
+```{r}
+name <- c("蒙其D魯夫", "羅羅亞索隆", "娜美", "賓什莫克香吉士")
+is_female <- c(FALSE, FALSE, TRUE, FALSE)
+age <- c(19, 21, 20, 21)
+one_piece_df <- data.frame(name, is_female, age)
+one_piece_df[, 3]
+one_piece_df[, "age"]
+one_piece_df$age
+one_piece_df[1, ]
+
+# 練習用邏輯值向量
+is_luffy <- one_piece_df$name == "蒙其D魯夫"
+is_luffy
+one_piece_df[is_luffy, ]
+one_piece_df[one_piece_df$age == 21, ] # 熟了就寫快一點
+```
+
+## Dataframe（資料框）（3）
+
+- 一些常用的 Dataframe 函數，這些函數可以幫助你很快掌握一個資料框
+- R 語言有一些內建的資料集，像是 `cars` ， `mtcars` 還有 `iris` ... 等
+
+```{r}
+dim(iris)
+nrow(iris)
+ncol(iris)
+str(iris)
+head(iris)
+tail(iris, n = 8)
+names(iris)
+```
+
+## List（清單）
+
+- 清單可以包含我們前面介紹的資料結構
+- 利用中括號 `[]` 與雙重中括號 `[[]]` 來選擇元素
+
+```{r}
+# 建立一個清單 my_list
+char_vector <- c("I", "Love", "R")
+my_vector <- 1:8
+my_matrix <- matrix(my_vector, nrow = 2, ncol = 4)
+name <- c("蒙其D魯夫", "羅羅亞索隆", "娜美", "賓什莫克香吉士")
+is_female <- c(FALSE, FALSE, TRUE, FALSE)
+age <- c(19, 21, 20, 21)
+one_piece_df <- data.frame(name, is_female, age)
+my_list <- list(char_vector, my_matrix, one_piece_df)
+my_list # 看看長什麼樣子
+my_list[1]
+my_list[[1]]
+my_list[[2]][2, 2]
+my_list[[3]]$name
+```
+
+## 隨堂練習
+
+- [基本資料結構 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch4_exercise)
+- [R 語言導論](https://www.datacamp.com/community/open-courses/r-%E8%AA%9E%E8%A8%80%E5%B0%8E%E8%AB%96#gs.SRpeD9E)

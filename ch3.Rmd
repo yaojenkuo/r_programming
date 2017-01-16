@@ -1,0 +1,129 @@
+---
+title: "簡單的繪圖"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+## 視覺化的力量
+
+- [Hans Rosling](https://www.youtube.com/watch?v=jbkSRLYSojo)
+
+> He rose to international celebrity status after producing a [Ted Talk](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=zh-tw) in which he promoted the use of data to explore development issues.
+> [Hans Rosling - Wikipedia](https://en.wikipedia.org/wiki/Hans_Rosling)
+
+## 玩具資料（Toy datasets）
+
+- 在 RStudio 命令列輸入 `data()` 可以看有哪些玩具資料可以直接使用
+
+```{r}
+cars
+iris
+mtcars
+
+?cars #help(cars)
+?iris #help(iris)
+?mtcars #help(mtcars)
+```
+
+## 觀察玩具資料
+
+- 使用函數觀察玩具資料
+
+```{r}
+head(cars)
+tail(cars)
+dim(cars)
+nrow(cars)
+ncol(cars)
+summary(cars)
+str(cars)
+```
+
+## 散佈圖
+
+- `plot()` 繪製散佈圖
+
+```{r}
+plot(cars$speed, cars$dist, main = "Car speed vs. braking distance", xlab = "Speed", ylab = "Dist")
+```
+
+## 線圖
+
+- `plot(..., type = "l")` 繪製線圖
+
+```{r}
+plot(cars$speed, cars$dist, type = "l", main = "Car speed vs. braking distance", xlab = "Speed", ylab = "Dist")
+```
+
+## 直方圖
+
+- `hist()` 繪製直方圖
+
+```{r}
+par(mfrow = c(1, 2)) # 建立一個 1x2 的網格畫布
+hist(cars$speed, main = "Distribution of speed variable", xlab = "Speed")
+hist(cars$dist, main = "Distribution of dist variable", xlab = "Dist")
+```
+
+## 直方圖（2）
+
+- 繪製標準常態分佈與均勻分布
+- `runif()` 函數可以幫你產生 0 到 1之間**均勻分配**的隨機數
+- `rnorm()` 函數可以幫你產生**標準常態分配**的隨機數
+
+```{r}
+n = 100
+par(mfrow = c(2, 1)) # 建立一個 1x2 的網格畫布
+hist(runif(n), main = paste("Distribution of", n, "uniformly distributed variables")) # 試著增加隨機數的個數 n
+hist(rnorm(n), main = paste("Distribution of", n, "normally distributed variables")) # 試著增加隨機數的個數 n
+```
+
+## 盒鬚圖
+
+- `boxplot()` 繪製盒鬚圖
+
+```{r}
+par(mfrow = c(1, 2))
+boxplot(cars$speed, main = "Distribution of speed variable")
+boxplot(cars$dist, main = "Distribution of dist variable")
+```
+
+## 盒鬚圖（2）
+
+- 使用 `~` 運算子將類別變數納入
+
+```{r}
+str(iris)
+par(mfrow = c(2, 2))
+boxplot(iris$Sepal.Length ~ iris$Species, main = "Sepal length by species")
+boxplot(iris$Sepal.Width ~ iris$Species, main = "Sepal width by species")
+boxplot(iris$Petal.Length ~ iris$Species, main = "Petal length by species")
+boxplot(iris$Petal.Width ~ iris$Species, main = "Petal width by species")
+```
+
+## 長條圖
+
+- `barplot()` 繪製長條圖
+
+```{r}
+str(mtcars)
+table(factor(mtcars$gear))
+barplot(table(factor(mtcars$gear)), main = "Vehicle counts by gear types", xlab = "Gear", ylab = "Vehicle counts")
+```
+
+## 長條圖（2）
+
+```{r}
+vehicle_names <- row.names(mtcars)
+barplot(mtcars$hp, names = vehicle_names, main = "Horse power for each vehicles", xlab = "Horse power", ylab = "Vehicles", horiz = TRUE)
+```
+
+## 期中作業
+
+- 使用 Base plotting system 與任意資料繪製散佈圖，線圖，直方圖，盒鬚圖與長條圖
+- 將程式上傳至 GitHub

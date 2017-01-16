@@ -1,0 +1,111 @@
+---
+title: "基本資料結構 - 隨堂練習"
+author: "Yao-Jen Kuo"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    self_contained: false
+---
+
+```{r, include=FALSE}
+tutorial::go_interactive()
+```
+
+## 草帽海賊團的年紀向量
+
+我們已經預先幫你建好一個向量 `age` 紀錄草帽海賊團成員的年紀，利用邏輯值向量找出海賊團成員中未滿 25 歲的人數總和。
+
+```{r ex="vector_exercise", type="pre-exercise-code"}
+# Create the age factor
+age <- c(19, 21, 20, 19, 21, 17, 30, 36, 90)
+```
+
+```{r ex="vector_exercise", type="sample-code"}
+# Print the vector: age
+
+
+# Generate a logical vector indicating which scalar is less than 25
+is_under_25 <- ___ < ___
+
+# Print is_under_25
+
+
+# Use the logical vector above to create a new vector under_25
+under_25 <- age[___]
+
+# Calculate the length of under_25
+length(___)
+
+```
+
+```{r ex="vector_exercise", type="solution"}
+# Print the vector: age
+age
+
+# Generate a logical vector indicating which scalar is less than 25
+is_under_25 <- age < 25
+
+# Print is_under_25
+is_under_25
+
+# Use the logical vector above to create a new vector under_25
+under_25 <- age[is_under_25]
+
+# Calculate the length of under_25
+length(under_25)
+
+```
+
+```{r ex="vector_exercise", type="sct"}
+test_output_contains("age", incorrect_msg = "Did you print the vector `age`?")
+test_object("is_under_25", incorrect_msg = "Did you generate the vector `is_under_25` correctly?")
+test_output_contains("is_under_25", incorrect_msg = "Did you print the vector `is_under_25`?")
+test_object("under_25", incorrect_msg = "Did you generate the vector `under_25` correctly?")
+test_output_contains("length(under_25)", incorrect_msg = "Did you print the length of vector `under_25` using `length()`?")
+```
+
+## 草帽海賊團的資料框
+
+我們已經預先幫你建好一個資料框 `one_piece_df` 紀錄草帽海賊團成員的姓名，年紀與性別。
+
+```{r ex="dataframe_exercise", type="pre-exercise-code"}
+name <- c("Monkey D. Luffy", "Roronoa Zoro", "Nami", "Usopp", "Vinsmoke Sanji", "Tony Tony Chopper", "Nico Robin", "Franky", "Brook")
+age <- c(19, 21, 20, 19, 21, 17, 30, 36, 90)
+is_female <- c(FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE)
+one_piece_df <- data.frame(name, age, is_female)
+```
+
+```{r ex="dataframe_exercise", type="sample-code"}
+# Use `str()` function to examine the structure of `one_piece_df`
+
+
+# Use `summary()` function to examine the summary of `one_piece_df`
+
+
+# Select the `name` variable using $ or indexing
+
+
+# Select the rows where name equals to "Usopp" and "Franky"
+one_piece_df[one_piece_df$name == "___" | one_piece_df$name == "___", ]
+```
+
+```{r ex="dataframe_exercise", type="solution"}
+# Use `str()` function to examine the structure of `one_piece_df`
+str(one_piece_df)
+
+# Use `summary()` function to examine the summary of `one_piece_df`
+summary(one_piece_df)
+
+# Select the `name` variable using $ or indexing
+one_piece_df$name
+
+# Select the rows where name equals to "Usopp" and "Franky"
+one_piece_df[one_piece_df$name == "Usopp" | one_piece_df$name == "Franky", ]
+```
+
+```{r ex="dataframe_exercise", type="sct"}
+test_output_contains("str(one_piece_df)", incorrect_msg = "Did you use `str()` to examine the structure of `one_piece_df`?")
+test_output_contains("summary(one_piece_df)", incorrect_msg = "Did you use `summary()` to examine the summary of `one_piece_df`?")
+test_output_contains("one_piece_df$name", incorrect_msg = "Did you select the `name` variable from `one_piece_df` using $ or indexing?")
+test_output_contains("one_piece_df[one_piece_df$name == \"Usopp\" | one_piece_df$name == \"Franky\", ]", incorrect_msg = "Did you select the rows for Usopp and Franky?")
+```
