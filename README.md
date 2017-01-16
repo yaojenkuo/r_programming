@@ -12,7 +12,12 @@
 
 ### 課程大綱
 
-- 建立你的 R 語言開發環境
-- 單一變數與函數
-- 簡單的繪圖（Base plotting system）
-- 基本資料結構
+- [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/ch1)
+- [單一變數與函數](https://yaojenkuo.github.io/r_programming/ch2)
+- [簡單的繪圖（Base plotting system）](https://yaojenkuo.github.io/r_programming/ch3)
+- [基本資料結構](https://yaojenkuo.github.io/r_programming/ch4)
+
+### 隨堂練習
+
+- [單一變數與函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch2_exercise)
+- [基本資料結構 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch4_exercise)
