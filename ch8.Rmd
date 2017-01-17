@@ -1,0 +1,183 @@
+---
+title: "迴圈與流程控制"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+## 迴圈
+
+- 善用迴圈讓你能夠寫出簡短的程式碼
+    - for 迴圈
+    - while 迴圈
+    
+## 迴圈（2）
+
+- R 語言有一個內建的資料框 `mtcars`
+- 我想要把它所有的變數名稱一一輸出在命令列
+- 其實土法煉鋼沒什麼不好：
+
+```{r}
+head(mtcars)
+mtcars_col_names <- names(mtcars) # 查詢一下 names() 函數
+mtcars_col_names[1]
+mtcars_col_names[2]
+mtcars_col_names[3]
+mtcars_col_names[4]
+mtcars_col_names[5]
+mtcars_col_names[6]
+mtcars_col_names[7]
+mtcars_col_names[8]
+mtcars_col_names[9]
+mtcars_col_names[10]
+mtcars_col_names[11]
+```
+
+## 迴圈（3）
+
+- 今天運氣好，`mtcars` 只有 11 個變數
+- 如果今天你要對一個擁有 1,111 個變數的資料框做這件事呢？
+
+```{r}
+mtcars_col_names <- names(mtcars)
+# for 迴圈
+for (i in mtcars_col_names) {
+  print(i)
+}
+i # 看看 i 
+
+# for 迴圈
+for (i in 1:length(mtcars_col_names)) {
+  print(mtcars_col_names[i])
+}
+i # 看看 i
+```
+
+## 迴圈（4）
+
+- 巢狀迴圈（nested loop）是指迴圈包含另一個迴圈
+- 我們利用填滿一個矩陣來展示
+
+```{r}
+my_mat <- matrix(nrow = 2, ncol = 3)
+my_vector <- 1:6
+for (j in 1:ncol(my_mat)) {
+  for (i in 1:nrow(my_mat)) {
+    my_mat[i, j] <- my_vector[1]
+    my_vector <- my_vector[-1] # 每跑完一次迴圈要丟掉第一個元素
+  }
+}
+```
+
+## 迴圈（5）
+
+- 矩陣是 3 * 3，但是向量只有 4 個
+- 沒有填滿的就是 NA
+
+```{r}
+my_vector <- 1:4
+my_mat <- matrix(nrow = 3, ncol = 4)
+for (j in 1:ncol(my_mat)){
+  for (i in 1:nrow(my_mat)){
+    my_mat[i, j] <- my_vector[1]
+    my_vector <- my_vector[-1] # 每跑完一次迴圈要丟掉第一個元素
+  }
+}
+```
+
+- 這是 `byrow = FALSE`，還記得嗎？你知道怎麼改成 `byrow = TRUE` 嗎？
+
+## 迴圈（6）
+
+- `while` 迴圈會先檢查條件才執行程式碼
+
+```{r}
+mtcars_col_names <- names(mtcars)
+i <- 1
+while (i <= length(mtcars_col_names)) {
+  print(mtcars_col_names[i])
+  i <- i + 1
+}
+i # 看看 i
+```
+
+## 流程控制
+
+- 一如其他的程式語言，R 語言也習慣使用 `if-else` 的語法來進行流程控制：
+
+```{r}
+x <- 2 # 修改 x 看看結果有何不同？
+# 兩個分支的流程控制
+if (x %% 2 == 0) {
+  print("x 是一個偶數！")
+} else {
+  print("x 是一個奇數！")
+}
+```
+
+## 流程控制（2）
+
+- 多個分支要採用 `if-else if-else` 的語法來進行流程控制：
+
+```{r}
+x <- 5 # 修改 x 看看結果有何不同？
+# 三個分支的流程控制
+if (x %% 3 == 0) {
+  print("x 除以 3 的餘數為 0！")
+} else if (x %% 3 == 1) {
+  print("x 除以 3 的餘數為 1！")
+} else {
+  print("x 除以 3 的餘數為 2！")
+}
+```
+
+## 流程控制（3）
+
+- 太多分支會降低程式碼的可讀性（readability），這時可以考慮使用 `switch()` 函數
+- 但是 `switch()` 函數處理整數時只接受從 1 開始的回傳數值，所以要處理成字元
+
+```{r}
+x <- 6
+answer <- x %% 3
+switch(as.character(answer),
+  "0" = {
+    print("x 除以 3 的餘數為 0！")
+  },
+  "1" = {
+    print("x 除以 3 的餘數為 1！")
+  },
+  "2" = {print("x 除以 3 的餘數為 2！")
+  }
+)
+```
+
+## 迴圈（5）
+
+- 在迴圈中加入 `break` 或 `next` 讓你的程式更有彈性
+
+```{r}
+mtcars_col_names <- names(mtcars)
+for (i in mtcars_col_names) {
+  if (i == "wt") {
+    break
+  }
+  print(i)
+}
+i # 看看 i
+
+for (i in mtcars_col_names) {
+  if (i == "wt") {
+    next
+  }
+  print(i)
+}
+i # 看看 i
+```
+
+## 隨堂練習
+
+[迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)

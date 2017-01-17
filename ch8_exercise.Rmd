@@ -1,0 +1,92 @@
+---
+title: "迴圈與流程控制 - 隨堂練習"
+author: "Yao-Jen Kuo"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    self_contained: false
+---
+
+```{r, include=FALSE}
+tutorial::go_interactive()
+```
+
+## 迴圈練習
+
+以 for 迴圈印出 1:100 的每個數字一一印出，但是跳過 6 的倍數。使用 `%%` 運算子與 `next` 來幫助你。
+
+```{r ex="for_loop", type="sample-code"}
+# Create the vector of 1:100
+my_vector <- 
+  
+# Write your for loop here
+for (i in my_vector) {
+  if (i ___ 6 == 0) {
+    ___
+  }
+  print(i)
+}
+```
+
+```{r ex="for_loop", type="solution"}
+# Create the vector of 1:100
+my_vector <- 1:100
+  
+# Write your for loop here
+for (i in my_vector) {
+  if (i %% 6 == 0) {
+    next
+  }
+  print(i)
+}
+```
+
+```{r ex="for_loop", type="sct"}
+test_object("my_vector", incorrect_msg = "Did you assign `my_vector` correctly?")
+test_output_contains("for (i in my_vector) {
+  if (i %% 6 == 0) {
+    next
+  }
+  print(i)
+}", incorrect_msg = "Did you write the loop statement correctly?")
+```
+
+## 迴圈練習（2）
+
+練習使用 `break` 把一到九月印出來。
+
+```{r ex="break_exercise", type="sample-code"}
+# Print built-in vector month.name
+
+
+# Write a for loop with break statement to print out the first 9 months
+for (i in ___) {
+  if (i == "___") {
+    break
+  }
+  print(i)
+}
+```
+
+```{r ex="break_exercise", type="solution"}
+# Print built-in vector month.name
+month.name
+
+# Write a for loop with break statement to print out the first 9 months
+for (i in month.name) {
+  if (i == "October") {
+    break
+  }
+  print(i)
+}
+```
+
+```{r ex="break_exercise", type="sct"}
+test_output_contains("month.name", incorrect_msg = "Did you correctly print out `month.name`?")
+test_output_contains("for (i in month.name) {
+  if (i == \"October\") {
+    break
+  }
+  print(i)
+}", incorrect_msg = "Did you write the loop with break statement correctly?")
+```

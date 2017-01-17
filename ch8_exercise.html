@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Yao-Jen Kuo" />
+
+<meta name="date" content="2017-01-17" />
+
+<title>迴圈與流程控制 - 隨堂練習</title>
+
+<script src="ch8_exercise_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="ch8_exercise_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="ch8_exercise_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="ch8_exercise_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="ch8_exercise_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="ch8_exercise_files/navigation-1.1/tabsets.js"></script>
+<link href="ch8_exercise_files/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="ch8_exercise_files/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">迴圈與流程控制 - 隨堂練習</h1>
+<h4 class="author"><em>Yao-Jen Kuo</em></h4>
+<h4 class="date"><em>2017-01-17</em></h4>
+
+</div>
+
+
+<script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+<div class="section level2">
+<h2>迴圈練習</h2>
+<p>以 for 迴圈印出 1:100 的每個數字一一印出，但是跳過 6 的倍數。使用 <code>%%</code> 運算子與 <code>next</code> 來幫助你。</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjIENyZWF0ZSB0aGUgdmVjdG9yIG9mIDE6MTAwXG5teV92ZWN0b3IgPC0gXG4gIFxuIyBXcml0ZSB5b3VyIGZvciBsb29wIGhlcmVcbmZvciAoaSBpbiBteV92ZWN0b3IpIHtcbiAgaWYgKGkgX19fIDYgPT0gMCkge1xuICAgIF9fX1xuICB9XG4gIHByaW50KGkpXG59Iiwic29sdXRpb24iOiIjIENyZWF0ZSB0aGUgdmVjdG9yIG9mIDE6MTAwXG5teV92ZWN0b3IgPC0gMToxMDBcbiAgXG4jIFdyaXRlIHlvdXIgZm9yIGxvb3AgaGVyZVxuZm9yIChpIGluIG15X3ZlY3Rvcikge1xuICBpZiAoaSAlJSA2ID09IDApIHtcbiAgICBuZXh0XG4gIH1cbiAgcHJpbnQoaSlcbn0iLCJzY3QiOiJ0ZXN0X29iamVjdChcIm15X3ZlY3RvclwiLCBpbmNvcnJlY3RfbXNnID0gXCJEaWQgeW91IGFzc2lnbiBgbXlfdmVjdG9yYCBjb3JyZWN0bHk/XCIpXG50ZXN0X291dHB1dF9jb250YWlucyhcImZvciAoaSBpbiBteV92ZWN0b3IpIHtcbiAgaWYgKGkgJSUgNiA9PSAwKSB7XG4gICAgbmV4dFxuICB9XG4gIHByaW50KGkpXG59XCIsIGluY29ycmVjdF9tc2cgPSBcIkRpZCB5b3Ugd3JpdGUgdGhlIGxvb3Agc3RhdGVtZW50IGNvcnJlY3RseT9cIikifQ==
+</div>
+</div>
+<div id="2" class="section level2">
+<h2>迴圈練習（2）</h2>
+<p>練習使用 <code>break</code> 把一到九月印出來。</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjIFByaW50IGJ1aWx0LWluIHZlY3RvciBtb250aC5uYW1lXG5cblxuIyBXcml0ZSBhIGZvciBsb29wIHdpdGggYnJlYWsgc3RhdGVtZW50IHRvIHByaW50IG91dCB0aGUgZmlyc3QgOSBtb250aHNcbmZvciAoaSBpbiBfX18pIHtcbiAgaWYgKGkgPT0gXCJfX19cIikge1xuICAgIGJyZWFrXG4gIH1cbiAgcHJpbnQoaSlcbn0iLCJzb2x1dGlvbiI6IiMgUHJpbnQgYnVpbHQtaW4gdmVjdG9yIG1vbnRoLm5hbWVcbm1vbnRoLm5hbWVcblxuIyBXcml0ZSBhIGZvciBsb29wIHdpdGggYnJlYWsgc3RhdGVtZW50IHRvIHByaW50IG91dCB0aGUgZmlyc3QgOSBtb250aHNcbmZvciAoaSBpbiBtb250aC5uYW1lKSB7XG4gIGlmIChpID09IFwiT2N0b2JlclwiKSB7XG4gICAgYnJlYWtcbiAgfVxuICBwcmludChpKVxufSIsInNjdCI6InRlc3Rfb3V0cHV0X2NvbnRhaW5zKFwibW9udGgubmFtZVwiLCBpbmNvcnJlY3RfbXNnID0gXCJEaWQgeW91IGNvcnJlY3RseSBwcmludCBvdXQgYG1vbnRoLm5hbWVgP1wiKVxudGVzdF9vdXRwdXRfY29udGFpbnMoXCJmb3IgKGkgaW4gbW9udGgubmFtZSkge1xuICBpZiAoaSA9PSBcXFwiT2N0b2JlclxcXCIpIHtcbiAgICBicmVha1xuICB9XG4gIHByaW50KGkpXG59XCIsIGluY29ycmVjdF9tc2cgPSBcIkRpZCB5b3Ugd3JpdGUgdGhlIGxvb3Agd2l0aCBicmVhayBzdGF0ZW1lbnQgY29ycmVjdGx5P1wiKSJ9
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

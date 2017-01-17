@@ -19,11 +19,11 @@
 - [簡單的繪圖（ggplot2）](https://yaojenkuo.github.io/r_programming/ch5)
 - [讀取不同的資料格式](https://yaojenkuo.github.io/r_programming/ch6)
 - [活用資料框](https://yaojenkuo.github.io/r_programming/ch7)
--[迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
+- [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
 
 ### 隨堂練習
 
 - [單一變數與函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch2_exercise)
 - [基本資料結構 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch4_exercise)
 - [活用資料框 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch7_exercise)
-- [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch7_exercise)
+- [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)

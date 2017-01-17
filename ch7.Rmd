@@ -1,0 +1,213 @@
+---
+title: "活用資料框"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE, fig.show = 'hide')
+```
+
+## 建立一個 Data Frame 來練習
+
+- 先建立向量，再以 `data.frame()` 函數將這些向量集合成為一個資料框
+
+```{r}
+# 角色設定的向量
+name <- c("Monkey D. Luffy", "Roronoa Zoro", "Nami", "Usopp", "Vinsmoke Sanji", "Tony Tony Chopper", "Nico Robin", "Franky", "Brook")
+gender <- c("Male", "Male", "Female", "Male", "Male", "Male", "Female", "Male", "Male")
+occupation <- c("Captain", "Swordsman", "Navigator", "Sniper", "Cook", "Doctor", "Archaeologist", "Shipwright", "Musician")
+bounty <- c(500000000, 320000000, 66000000, 200000000, 177000000, 100, 130000000, 94000000, 83000000)
+age <- c(19, 21, 20, 19, 21, 17, 30, 36, 90)
+birthday <- c("05-05", "11-11", "07-03", "04-01", "03-02", "12-24", "02-06", "03-09", "04-03")
+height <- c(174, 181, 170, 176, 180, 90, 188, 240, 277)
+
+# 建立草帽海賊團角色設定的資料框
+straw_hat_df <- data.frame(name, gender, occupation, bounty, age, birthday, height)
+```
+
+## 建立一個 Data Frame 來練習（2）
+
+- 使用我們提過的函數觀察這個資料框
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+dim(straw_hat_df)
+str(straw_hat_df)
+summary(straw_hat_df)
+View(straw_hat_df)
+```
+
+## 建立新的變數
+
+- 用系統日期去推算出生年份
+- 新增出生年份（birth_year）這個變數到原本的資料框
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+this_year <- as.numeric(format(Sys.Date(), '%Y'))
+birth_year <- this_year - straw_hat_df$age
+straw_hat_df$birth_year <- birth_year
+View(straw_hat_df)
+```
+
+## 建立新的變數（2）
+
+- 使用 `cbind()` 函數新增一個 `favorite_food` 的欄位
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+favorite_food <- c("Meat", "Food matches wine", "Orange", "Fish", "Food matches black tea", "Sweets", "Food matches coffee", "Food matches coke", "Milk")
+straw_hat_df <- cbind(straw_hat_df, favorite_food)
+View(straw_hat_df)
+```
+
+## 刪除變數
+
+- 將變數指定為 `NULL` 來進行刪除
+- 刪除 `occupation`
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_df$occupation <- NULL
+View(straw_hat_df)
+```
+
+## 新增觀測值
+
+- 使用 `rbind()` 函數新增一筆 `princess_vivi` 的觀測值
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+princess_vivi <- c("Nefeltari Vivi", "Female", "Princess of Alabasta", NA, 18, "02-02", NA)
+straw_hat_df <- rbind(straw_hat_df, princess_vivi)
+```
+
+## 刪除觀測值
+
+- 使用中括號 `[]` 搭配索引值
+- 或使用邏輯值
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_df <- straw_hat_df[-9, ] 
+straw_hat_df <- straw_hat_df[straw_hat_df$name != "Franky", ]
+```
+
+## 使用 `subset()` 函數
+
+- `subset()` 函數可以一次對欄位與觀測值進行篩選
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+male_bounty <- subset(straw_hat_df, gender == "Male", select = c(name, gender, bounty))
+View(male_bounty)
+```
+
+## 轉換格式
+
+- 新增一個變數為生日的年月日，格式為 Date
+- 先算生日的年份，跟原本的月日結合，然後轉換格式
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+this_year <- as.numeric(format(Sys.Date(), '%Y'))
+birth_year <- this_year - straw_hat_df$age
+birth_date_chr <- paste(birth_year, straw_hat_df$birthday, sep = "-")
+straw_hat_df$birth_date <- as.Date(birth_date_chr)
+str(straw_hat_df)
+```
+
+## 資料轉置：寬表格變長表格
+
+- 透過 `tidyr` 套件中的 `gather()` 函數
+- 建立一個寬表格 `straw_hat_wide_df` 僅包含姓名、年齡與身高這三個欄位。
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_wide_df <- straw_hat_df[, c("name", "age", "height")]
+View(straw_hat_wide_df)
+```
+
+- 使用 `tidyr::gather()` 函數把 `straw_hat_wide_df` 轉置為 `straw_hat_long_df`
+
+```{r}
+# install.packages("tidyr")
+library(tidyr)
+straw_hat_long_df <- gather(straw_hat_wide_df, key = category, value = values, age, height)
+View(straw_hat_long_df)
+```
+
+## 資料轉置：長表格變寬表格
+
+- 使用 `tidyr::spread()` 函數把 `straw_hat_long_df` 轉置為 `straw_hat_wide_df`
+
+```{r}
+straw_hat_wide_df <- spread(straw_hat_long_df, key = category, value = values)
+```
+
+## 為什麼要學資料轉置
+
+- 先看我們的原始寬表格
+- 如果我們想要快速地畫在一個長條圖上畫兩組數據呢？
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_wide_df <- straw_hat_df[, c("name", "age", "height")]
+View(straw_hat_wide_df)
+library(ggplot2)
+ggplot(straw_hat_wide_df, aes(x = factor(name), y = age)) + geom_bar(stat = "identity")
+ggplot(straw_hat_wide_df, aes(x = factor(name), y = height)) + geom_bar(stat = "identity")
+```
+
+- 最快的方法就是轉換成長表格
+
+```{r}
+straw_hat_long_df <- gather(straw_hat_wide_df, key = category, value = values, age, height)
+ggplot(straw_hat_long_df, aes(x = factor(name), y = values, fill = category)) + geom_bar(stat = "identity", position = "dodge")
+```
+
+## 聯結資料框
+
+- 先看看我們待會要聯結的資料框
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_devil_fruit.RData"))
+View(straw_hat_devil_fruit)
+```
+
+## 聯結資料框（2）
+
+- 內部聯結
+
+```{r}
+straw_hat_df_devil_fruit <- merge(straw_hat_df, straw_hat_devil_fruit)
+View(straw_hat_df_devil_fruit)
+```
+
+- 左外部連結（all.x = TRUE）
+
+```{r}
+straw_hat_df_devil_fruit <- merge(straw_hat_df, straw_hat_devil_fruit, all.x = TRUE)
+View(straw_hat_df_devil_fruit)
+```
+
+- 右外部連結（all.y = TRUE）
+
+```{r}
+straw_hat_df_devil_fruit <- merge(straw_hat_df, straw_hat_devil_fruit, all.y = TRUE)
+View(straw_hat_df_devil_fruit)
+```
+
+- 全外部連結（all.x = TRUE, all.y = TRUE）
+
+```{r}
+straw_hat_df_devil_fruit <- merge(straw_hat_df, straw_hat_devil_fruit, all.x = TRUE, all.y = TRUE)
+View(straw_hat_df_devil_fruit)
+```
+
+## 隨堂練習
+
+- [活用資料框 - 隨堂練習](https://yaojenkuo.github.io/r_rookies/ch7_exercise)
+- [資料框整理技巧](https://www.datacamp.com/community/open-courses/%E8%B3%87%E6%96%99%E6%A1%86%E6%95%B4%E7%90%86%E6%8A%80%E5%B7%A7#gs.lmgdhpc)

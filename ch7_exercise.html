@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Yao-Jen Kuo" />
+
+<meta name="date" content="2016-12-07" />
+
+<title>活用資料框 - 隨堂練習</title>
+
+<script src="ch7_exercise_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="ch7_exercise_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="ch7_exercise_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="ch7_exercise_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="ch7_exercise_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="ch7_exercise_files/highlight/default.css"
+      type="text/css" />
+<script src="ch7_exercise_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="ch7_exercise_files/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">活用資料框 - 隨堂練習</h1>
+<h4 class="author"><em>Yao-Jen Kuo</em></h4>
+<h4 class="date"><em>2016-12-07</em></h4>
+
+</div>
+
+
+<script src="https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+<div class="section level2">
+<h2>轉換變數類型</h2>
+<p>練習把一個文字（character）轉換成 Date 格式。</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJzYW1wbGUiOiIjIENyZWF0ZSB0aGUgY2hhcmFjdGVyXG5ib3N0b25fbWFyYXRob25fMjAxNiA8LSBcIjIwMTYtMDQtMThcIlxuXG4jIENoZWNrIHRoZSB2YXJpYWJsZSB0eXBlIHVzaW5nIGBjbGFzcygpYFxuXG5cbiMgVXNpbmcgYXMuRGF0ZSgpIHRvIHRyYW5zZm9ybSB0aGUgY2hhcmFjdGVyIGFuZCByZS1hc3NpZ24gaXQgdG8gYW5vdGhlciB2YXJpYWJsZSBgYm1fMjAxNl9kYXRlYFxuYm1fMjAxNl9kYXRlIDwtIFxuXG4jIENoZWNrIHRoZSBuZXdseSBjcmVhdGVkIHZhcmlhYmxlIHR5cGUgdXNpbmcgYGNsYXNzKClgIiwic29sdXRpb24iOiIjIENyZWF0ZSB0aGUgY2hhcmFjdGVyXG5ib3N0b25fbWFyYXRob25fMjAxNiA8LSBcIjIwMTYtMDQtMThcIlxuXG4jIENoZWNrIHRoZSB2YXJpYWJsZSB0eXBlIHVzaW5nIGBjbGFzcygpYFxuY2xhc3MoYm9zdG9uX21hcmF0aG9uXzIwMTYpXG5cbiMgVXNpbmcgYXMuRGF0ZSgpIHRvIHRyYW5zZm9ybSB0aGUgY2hhcmFjdGVyIGFuZCByZS1hc3NpZ24gaXQgdG8gYW5vdGhlciB2YXJpYWJsZSBgYm1fMjAxNl9kYXRlYFxuYm1fMjAxNl9kYXRlIDwtIGFzLkRhdGUoYm9zdG9uX21hcmF0aG9uXzIwMTYpXG5cbiMgQ2hlY2sgdGhlIG5ld2x5IGNyZWF0ZWQgdmFyaWFibGUgdHlwZSB1c2luZyBgY2xhc3MoKWBcbmNsYXNzKGJtXzIwMTZfZGF0ZSkiLCJzY3QiOiJ0ZXN0X291dHB1dF9jb250YWlucyhcImNsYXNzKGJvc3Rvbl9tYXJhdGhvbl8yMDE2KVwiLCBpbmNvcnJlY3RfbXNnID0gXCJEaWQgeW91IHVzZSBgY2xhc3MoKWAgb24gYm9zdG9uX21hcmF0aG9uXzIwMTY/XCIpXG50ZXN0X29iamVjdChcImJtXzIwMTZfZGF0ZVwiLCBpbmNvcnJlY3RfbXNnID0gXCJEaWQgeW91IHRyYW5zZm9ybSB0aGUgY2hhcmFjdGVyIHZhcmlhYmxlIHRvIGRhdGUgY29ycmVjdGx5P1wiKVxudGVzdF9vdXRwdXRfY29udGFpbnMoXCJjbGFzcyhibV8yMDE2X2RhdGUpXCIsIGluY29ycmVjdF9tc2cgPSBcIkRpZCB5b3UgdXNlIGBjbGFzcygpYCBvbiBibV8yMDE2X2RhdGU/XCIpIn0=
+</div>
+</div>
+<div class="section level2">
+<h2>聯結資料框</h2>
+<p>練習將兩個資料框 <code>order_data</code> 與 <code>customer_data</code> 進行內部合併。</p>
+<div data-datacamp-exercise="" data-height="300" data-encoded="true">
+eyJsYW5ndWFnZSI6InIiLCJwcmVfZXhlcmNpc2VfY29kZSI6Im9yZGVyX2RhdGEgPC0gcmVhZC5jc3YoXCJodHRwOi8vc3RvcmFnZS5nb29nbGVhcGlzLmNvbS9yX3Jvb2tpZXMvbWVyZ2VfMS5jc3ZcIilcbmN1c3RvbWVyX2RhdGEgPC0gcmVhZC5jc3YoXCJodHRwOi8vc3RvcmFnZS5nb29nbGVhcGlzLmNvbS9yX3Jvb2tpZXMvbWVyZ2VfMi5jc3ZcIikiLCJzYW1wbGUiOiIjIFByaW50IG9yZGVyX2RhdGEgd2hpY2ggd2FzIGxvYWRlZCBwcmV2aW91c2x5XG5cblxuIyBQcmludCBjdXN0b21lcl9kYXRhIHdoaWNoIHdhcyBsb2FkZWQgcHJldmlvdXNseVxuXG5cbiMgTWVyZ2UgdGhlc2UgMiBkYXRhIGZyYW1lcyB1c2luZyB0aGVpciBjb21tb24gdmFyaWFibGU6IEN1c3RvbWVySUQgYW5kIGFzc2lnbiB0byBhIG5ldyBkYXRhIGZyYW1lOiBtZXJnZWRfZGF0YVxubWVyZ2VkX2RhdGEgPC0gbWVyZ2UoX19fLCBfX18pXG5cbiMgUHJpbnQgbWVyZ2VkX2RhdGEgdG8gdGhlIGNvbnNvbGUiLCJzb2x1dGlvbiI6IiMgUHJpbnQgb3JkZXJfZGF0YSB3aGljaCB3YXMgbG9hZGVkIHByZXZpb3VzbHlcbm9yZGVyX2RhdGFcblxuIyBQcmludCBjdXN0b21lcl9kYXRhIHdoaWNoIHdhcyBsb2FkZWQgcHJldmlvdXNseVxuY3VzdG9tZXJfZGF0YVxuXG4jIE1lcmdlIHRoZXNlIDIgZGF0YSBmcmFtZXMgdXNpbmcgdGhlaXIgY29tbW9uIHZhcmlhYmxlOiBDdXN0b21lcklEIGFuZCBhc3NpZ24gdG8gYSBuZXcgZGF0YSBmcmFtZTogbWVyZ2VkX2RhdGFcbm1lcmdlZF9kYXRhIDwtIG1lcmdlKG9yZGVyX2RhdGEsIGN1c3RvbWVyX2RhdGEpXG5cbiMgUHJpbnQgbWVyZ2VkX2RhdGEgdG8gdGhlIGNvbnNvbGVcbm1lcmdlZF9kYXRhIiwic2N0IjoidGVzdF9vdXRwdXRfY29udGFpbnMoXCJvcmRlcl9kYXRhXCIsIGluY29ycmVjdF9tc2c9XCJEaWQgeW91IHByaW50IG91dCBgb3JkZXJfZGF0YWAgdG8gdGhlIGNvbnNvbGU/XCIpXG50ZXN0X291dHB1dF9jb250YWlucyhcImN1c3RvbWVyX2RhdGFcIiwgaW5jb3JyZWN0X21zZz1cIkRpZCB5b3UgcHJpbnQgb3V0IGBjdXN0b21lcl9kYXRhYCB0byB0aGUgY29uc29sZT9cIilcbnRlc3Rfb2JqZWN0KFwibWVyZ2VkX2RhdGFcIiwgaW5jb3JyZWN0X21zZz1cIkRpZCB5b3UgbWVyZ2UgdGhlIGRhdGEgY29ycmVjdGx5P1wiKVxudGVzdF9vdXRwdXRfY29udGFpbnMoXCJtZXJnZWRfZGF0YVwiLCBpbmNvcnJlY3RfbXNnPVwiRGlkIHlvdSBwcmludCBvdXQgYG1lcmdlZF9kYXRhYCB0byB0aGUgY29uc29sZT9cIikifQ==
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

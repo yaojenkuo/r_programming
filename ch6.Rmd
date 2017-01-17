@@ -1,0 +1,85 @@
+---
+title: "讀取不同的資料格式"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+## 讀取 csv
+
+- 這是實務中最常運用的方法，csv 是 comma-separated values 的縮寫
+- 利用 `read.csv()` 函數
+- `header = TRUE` 告訴 R 語言這個資料的第一列（The first row）是變數名稱
+
+```{r}
+url <- "https://storage.googleapis.com/r_rookies/iris.csv" # 在雲端上儲存了一份 csv 檔案
+iris_csv_df <- read.csv(url)
+head(iris_csv_df)
+```
+
+## 讀取 csv (2)
+
+- 欄位屬性可以在讀取資料時設定，指定 `colClasses = ` 這個參數，輸入一個字串向量。
+
+```{r}
+url <- "https://storage.googleapis.com/r_rookies/iris.csv" # 在雲端上儲存了一份 csv 檔案
+iris_csv_df <- read.csv(url, header = TRUE, colClasses = c("numeric", "numeric", "numeric", "numeric", "character"))
+str(iris_csv_df)
+```
+
+## 讀取 tsv
+
+- tsv 是 tab-separated values 的縮寫
+- 這時我們改用一個應用更為廣泛的函數 `read.table()`
+- `sep = ` 這個參數告訴 R 語言變數之間的分隔符號為何
+
+```{r}
+url <- "https://storage.googleapis.com/r_rookies/iris.tsv" # 在雲端上儲存了一份 tsv 檔案
+iris_tsv_df <- read.table(url, sep = "\t", header = TRUE)
+head(iris_tsv_df)
+```
+
+## 讀取 txt
+
+- 使用一個應用更為廣泛的函數 `read.table()`
+- `sep = ` 這個參數告訴 R 語言變數之間的分隔符號為何
+
+```{r}
+url <- "https://storage.googleapis.com/r_rookies/iris.txt" # 在雲端上儲存了一份 txt 檔案
+iris_colon_sep_df <- read.table(url, sep = ":", header = TRUE)
+head(iris_colon_sep_df)
+```
+
+## 讀取文字
+
+- 利用 `readLines()` 函數
+- 利用 `n = ` 的參數選項來限制讀入行數
+
+```{r}
+char_vector <- readLines("https://tw.stock.yahoo.com/d/i/rank.php?t=pri&e=tse&n=100", n = 10)
+```
+
+## 載入 Excel 試算表
+
+- 使用 `readxl` 套件中的 `read_excel` 函數
+- 先將 <https://storage.googleapis.com/r_rookies/kaggle_titanic_train.xlsx> 下載到 `~/Downloads` 目錄下
+
+```{r, results='hide'}
+#install.packages("readxl")
+library(readxl)
+titanic_xlsx <- read_excel("~/Downloads/kaggle_titanic_train.xlsx")
+```
+
+## 載入 SAS 資料集
+
+- 使用 `haven()` 套件中的 `read_sas()` 函數可以載入 SAS 資料集
+
+```{r}
+#install.packages("haven")
+library(haven)
+smoking_sas_data <- read_sas("http://storage.googleapis.com/r_rookies/smoking.sas7bdat")
+```
