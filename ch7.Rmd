@@ -209,5 +209,5 @@ View(straw_hat_df_devil_fruit)
 
 ## 隨堂練習
 
-- [活用資料框 - 隨堂練習](https://yaojenkuo.github.io/r_rookies/ch7_exercise)
+- [活用資料框 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch7_exercise)
 - [資料框整理技巧](https://www.datacamp.com/community/open-courses/%E8%B3%87%E6%96%99%E6%A1%86%E6%95%B4%E7%90%86%E6%8A%80%E5%B7%A7#gs.lmgdhpc)
