@@ -1,0 +1,35 @@
+---
+title: "用 RMarkdown 撰寫報告"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+## RMarkdown 文件的元素
+
+- 粗體與斜體
+- 標題
+- 清單
+- 程式碼
+    - echo: (TRUE; logical)
+    - results: ('markup'; character)
+        - markup
+        - asis
+        - hold
+        - hide
+    - warning: (TRUE; logical)
+    - error: (TRUE; logical)
+    - message: (TRUE; logical)
+- 連結
+- 圖片
+- 引用
+- 水平分隔線
+- 表格
+
+## 官網資源
+
+<http://rmarkdown.rstudio.com/index.html>
