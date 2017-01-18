@@ -180,6 +180,21 @@ ggplot(mpg, aes(x = class)) +
   ylab("Percentage")
 ```
 
+## `ggplotly()` 加入互動性
+
+- 使用 `plotly` 套件的 `ggplotly()` 函數
+
+```
+install.packages("plotly")
+```
+
+```{r}
+library(plotly)
+static_gg <- ggplot(mpg, aes(x = class)) +
+  geom_bar(aes(fill = drv))
+ggplotly(static_gg)
+```
+
 ## 文件
 
 - 沒事多看文件，多看文件沒事
