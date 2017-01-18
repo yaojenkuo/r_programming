@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-16" />
+  <meta name="date" content="2017-01-18" />
   <title>單一變數與函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-16</p>
+  <p class="date">2017-01-18</p>
 </div>
 <div class="slide section level2">
 <h1>計算機</h1>
@@ -145,6 +145,20 @@ logi_t *<span class="st"> </span><span class="dv">5</span></code></pre></div>
 </ul>
 <pre><code>char * 5 # Error
 char + &quot; World!&quot; # Error</code></pre>
+</div>
+<div id="3" class="slide section level2">
+<h1>單一變數類型（3）</h1>
+<ul>
+<li>透過 <code>is.___()</code> 函數可以判斷變數類型</li>
+<li>透過 <code>as.___()</code> 函數可以轉換變數類型</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logi_t &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+<span class="kw">is.integer</span>(logi_t)
+<span class="kw">is.logical</span>(logi_t)
+<span class="kw">as.numeric</span>(logi_t)
+<span class="kw">as.integer</span>(logi_t)
+<span class="kw">as.complex</span>(logi_t)
+<span class="kw">as.character</span>(logi_t)</code></pre></div>
 </div>
 <div class="slide section level2">
 <h1>函數</h1>

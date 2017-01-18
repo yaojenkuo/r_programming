@@ -105,6 +105,21 @@ char * 5 # Error
 char + " World!" # Error
 ```
 
+## 單一變數類型（3）
+
+- 透過 `is.___()` 函數可以判斷變數類型
+- 透過 `as.___()` 函數可以轉換變數類型
+
+```{r}
+logi_t <- TRUE
+is.integer(logi_t)
+is.logical(logi_t)
+as.numeric(logi_t)
+as.integer(logi_t)
+as.complex(logi_t)
+as.character(logi_t)
+```
+
 ## 函數
 
 - R 語言是一種**函數型編程**（functional programming）的程式語言
