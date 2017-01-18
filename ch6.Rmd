@@ -83,3 +83,19 @@ titanic_xlsx <- read_excel("~/Downloads/kaggle_titanic_train.xlsx")
 library(haven)
 smoking_sas_data <- read_sas("http://storage.googleapis.com/r_rookies/smoking.sas7bdat")
 ```
+
+## 載入 JSON
+
+- 使用 `jsonlite` 套件的 `fromJSON()` 函數來載入
+
+```
+install.packages("jsonlite")
+```
+
+```{r}
+library(jsonlite)
+
+url <- "https://storage.googleapis.com/r_rookies/iris.json" # 在雲端上儲存了一份 JSON 檔
+iris_json_df <- fromJSON(url)
+head(iris_json_df)
+```

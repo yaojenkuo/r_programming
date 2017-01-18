@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-17" />
+  <meta name="date" content="2017-01-18" />
   <title>讀取不同的資料格式</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-17</p>
+  <p class="date">2017-01-18</p>
 </div>
 <div id="-csv" class="slide section level2">
 <h1>讀取 csv</h1>
@@ -124,6 +124,18 @@ titanic_xlsx &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;haven&quot;)</span>
 <span class="kw">library</span>(haven)
 smoking_sas_data &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;http://storage.googleapis.com/r_rookies/smoking.sas7bdat&quot;</span>)</code></pre></div>
+</div>
+<div id="-json" class="slide section level2">
+<h1>載入 JSON</h1>
+<ul>
+<li>使用 <code>jsonlite</code> 套件的 <code>fromJSON()</code> 函數來載入</li>
+</ul>
+<pre><code>install.packages(&quot;jsonlite&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
+
+url &lt;-<span class="st"> &quot;https://storage.googleapis.com/r_rookies/iris.json&quot;</span> <span class="co"># 在雲端上儲存了一份 JSON 檔</span>
+iris_json_df &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(url)
+<span class="kw">head</span>(iris_json_df)</code></pre></div>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
