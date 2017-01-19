@@ -130,6 +130,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(iris$Sepal.Length, <span class="dt">INDEX =</span> iris$Species, <span class="dt">FUN =</span> mean)</code></pre></div>
 </div>
+<div id="-system.time-" class="slide section level2">
+<h1>使用 <code>system.time()</code> 檢視</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 建立 data frame</span>
+col1 &lt;-<span class="st"> </span><span class="kw">runif</span> (<span class="dv">12</span>^<span class="dv">4</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">2</span>)
+col2 &lt;-<span class="st"> </span><span class="kw">rnorm</span> (<span class="dv">12</span>^<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">2</span>)
+col3 &lt;-<span class="st"> </span><span class="kw">rpois</span> (<span class="dv">12</span>^<span class="dv">4</span>, <span class="dt">lambda =</span> <span class="dv">3</span>)
+col4 &lt;-<span class="st"> </span><span class="kw">rchisq</span> (<span class="dv">12</span>^<span class="dv">4</span>, <span class="dt">df =</span> <span class="dv">2</span>)
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span> (col1, col2, col3, col4)
+
+<span class="co"># 使用 apply() 計算每列的總和</span>
+<span class="kw">system.time</span>(<span class="kw">apply</span>(df, <span class="dt">FUN =</span> sum, <span class="dt">MARGIN =</span> <span class="dv">1</span>))
+
+<span class="co"># 使用 for-loop 計算每列的總和</span>
+result &lt;-<span class="st"> </span><span class="kw">c</span>()
+<span class="kw">system.time</span>(
+  for (i in <span class="dv">1</span>:<span class="kw">nrow</span>(df)) {
+    result[i] &lt;-<span class="st"> </span><span class="kw">sum</span>(df[i, ])
+  }
+)</code></pre></div>
+</div>
 <div id="-apply-" class="slide section level2">
 <h1>其他的 apply() 函數</h1>
 <ul>

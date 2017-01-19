@@ -84,6 +84,28 @@ sapply(mtcars, FUN = mean)
 tapply(iris$Sepal.Length, INDEX = iris$Species, FUN = mean)
 ```
 
+## 使用 `system.time()` 檢視
+
+```{r}
+# 建立 data frame
+col1 <- runif (12^4, min = 0, max = 2)
+col2 <- rnorm (12^4, mean = 0, sd = 2)
+col3 <- rpois (12^4, lambda = 3)
+col4 <- rchisq (12^4, df = 2)
+df <- data.frame (col1, col2, col3, col4)
+
+# 使用 apply() 計算每列的總和
+system.time(apply(df, FUN = sum, MARGIN = 1))
+
+# 使用 for-loop 計算每列的總和
+result <- c()
+system.time(
+  for (i in 1:nrow(df)) {
+    result[i] <- sum(df[i, ])
+  }
+)
+```
+
 ## 其他的 apply() 函數
 
 - vapply()
