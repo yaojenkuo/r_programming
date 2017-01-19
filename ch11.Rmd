@@ -1,0 +1,93 @@
+---
+title: "使用 apply 函數家族"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+## apply 函數家族是什麼
+
+- 根基於 C 語言函數
+- 效率高於迴圈
+
+## apply 函數家族的成員
+
+- `apply()`
+- `lapply()`
+- `sapply()`
+- `tapply()`
+
+## `apply()`
+
+- 輸入：matrix，dataframe 或 list
+- MARGIN：1 表示為列，2 表示為欄
+- FUN：所使用的函數
+
+```{r}
+apply(cars, FUN = mean, MARGIN = 2)
+
+#result <- rep(NA, times = 2)
+#for (i in 1:length(cars)) {
+#  result[i] <- mean(cars[, i])
+#}
+#result
+```
+
+## `lapply()`
+
+- `l` as in list，輸出 list 的意思
+- 輸入：dataframe 或 list
+- FUN：所使用的函數
+
+```{r}
+my_list <- list(1:10, 1:100)
+lapply(my_list, FUN = mean)
+unlist(lapply(my_list, FUN = mean))
+
+#result <- rep(NA, times = 2)
+#for (i in 1:length(my_list)) {
+#  result[i] <- mean(my_list[[i]])
+#}
+#result
+```
+
+## `lapply()`（2）
+
+```{r}
+lapply(mtcars, FUN = mean)
+unlist(lapply(mtcars, FUN = mean))
+```
+
+## `sapply()`
+
+- `s` as in simple，輸出向量的意思
+- 輸入：dataframe 或 list
+- FUN：所使用的函數
+
+```{r}
+my_list <- list(1:10, 1:100)
+sapply(my_list, FUN = mean)
+sapply(mtcars, FUN = mean)
+```
+
+## `tapply()`
+
+- 輸入：vector
+- INDEX：分組的類別變數
+- FUN：所使用的函數
+
+```{r}
+tapply(iris$Sepal.Length, INDEX = iris$Species, FUN = mean)
+```
+
+## 其他的 apply() 函數
+
+- vapply()
+- mapply()
+- rapply()
+- eapply()
+- [資料來源](http://blog.fens.me/r-apply/)
