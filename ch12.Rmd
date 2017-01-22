@@ -1,0 +1,91 @@
+---
+title: "使用 %>% 簡化程式"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+## magrittr 套件
+
+- 安裝並且載入 `magrittr` 套件
+
+```
+install.packages("magrittr")
+```
+
+```{r}
+library(magrittr)
+```
+
+## 將 `Sys.Date()` 的年份轉換成數字
+
+```{r}
+# 第一種寫法
+sys_date_chr <- Sys.Date()
+sys_date_yr_chr <- format(Sys.Date(), format = "%Y")
+# sys_date_yr_chr <- substr(sys_date_chr, start = 1, stop = 4)
+sys_date_yr_num <- as.numeric(sys_date_yr_chr)
+```
+
+## 將 `Sys.Date()` 的年份轉換成數字（2）
+
+```{r}
+# 第二種寫法
+sys_date_yr_num <- as.numeric(format(Sys.Date(), format = "%Y"))
+# sys_date_yr_num <- as.numeric(substr(Sys.Date(), start = 1, stop = 4))
+```
+
+## 將 `Sys.Date()` 的年份轉換成數字（3）
+
+- 第一種寫法很清晰，但是創造出太多最後用不到的變數（佔用記憶體）
+- 第二種寫法很有效率，但是不夠清晰
+- 第三種寫法使用 %>%（pipe operator）可以保有上述兩種的優點
+
+```{r}
+# 第三種寫法
+sys_date_yr_num <- Sys.Date() %>%
+  format(format = "%Y") %>%
+  as.numeric()
+```
+
+## 加入普通的運算符號
+
+- 使用 \`\` 將運算符號包起來
+- 使用 `()` 將運算數字包起來
+
+```{r}
+# Beyond 創立於 1983 年
+beyond_age <- Sys.Date() %>%
+  format(format = "%Y") %>%
+  as.numeric() %>%
+  `-` (1983)
+beyond_age
+```
+
+## 使用句點 `.` 指定資料安插的位置
+
+- 預設的狀況下，`%>%` 會將資料傳遞至右側函數的第一個位置
+- 使用句點 `.` 可以改變參數的位置
+
+```{r}
+# cars_lm <- cars %>%
+  #lm(formula = dist ~ speed)
+cars_lm <- cars %>%
+  lm(formula = dist ~ speed, data = .)
+```
+
+## 期中作業
+
+- 使用 `%>%` 簡化這段程式然後上傳至 GitHub
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+this_year <- as.numeric(format(Sys.Date(), '%Y'))
+birth_year <- this_year - straw_hat_df$age
+birth_date_chr <- paste(birth_year, straw_hat_df$birthday, sep = "-")
+straw_hat_df$birth_date <- as.Date(birth_date_chr)
+```
