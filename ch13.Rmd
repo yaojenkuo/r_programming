@@ -87,7 +87,7 @@ combined_map <- leaflet() %>%
 combined_map
 ```
 
-## addMarkers()
+## `addMarkers()`
 
 - 新增地點的標記與點擊後出現的訊息
 
@@ -96,4 +96,36 @@ marker_NTU <- leaflet() %>%
   addTiles() %>%
   addMarkers(lng = 121.539366, lat = 25.017326, popup = "National Taiwan University")
 marker_NTU
+```
+
+## `addMarkers()`（2）
+
+```{r}
+stores <- read.csv("https://storage.googleapis.com/r_rookies/stores711inTP.csv")
+markers_711 <- leaflet(data = stores) %>%
+  addTiles() %>%
+  addMarkers(~lng, ~lat, popup = ~as.character(popups1))
+markers_711
+```
+
+## `addMarkers()`（3）
+
+- 加入 `icon` 與 `iconSize` 參數客製化標記的圖示
+
+```{r}
+markers_711 <- leaflet(data = stores) %>%
+  addTiles() %>%
+  addMarkers(~lng, ~lat, popup = ~as.character(popups1), icon = list(iconUrl = "https://storage.googleapis.com/r_rookies/711_logo.gif", iconSize = c(20, 20)))
+markers_711
+```
+
+## `addMarkers()`（4）
+
+- 加入 `clusterOptions` 參數
+
+```{r}
+markers_711 <- leaflet(data = stores) %>%
+  addTiles() %>%
+  addMarkers(~lng, ~lat, popup = ~as.character(popups1), icon = list(iconUrl = "https://storage.googleapis.com/r_rookies/711_logo.gif", iconSize = c(20, 20)), clusterOptions = markerClusterOptions())
+markers_711
 ```
