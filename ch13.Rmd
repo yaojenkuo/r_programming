@@ -1,0 +1,99 @@
+---
+title: "地理資訊的繪圖（Leaflet）"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+## leaflet 套件
+
+```
+install.packages("leaflet")
+```
+
+```{r}
+library(leaflet)
+```
+
+## leaflet.js
+
+- leaflet.js 是 JavaScript 的一個框架
+- 可以繪製互動式地圖
+- R 語言使用者能夠使用 `leaflet` 套件來跳過撰寫 JavaScript 使用 leaflet.js
+
+## 快速實作
+
+```{r}
+#hello_map <- leaflet()
+#hello_map <- addTiles(hello_map)
+#hello_map <- addMarkers(hello_map, lng = 121.539366, lat = 25.017326, popup = "臺灣大學")
+#hello_map
+
+hello_map <- leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = 121.539366, lat = 25.017326, popup = "臺灣大學")
+hello_map
+```
+
+## 基本地圖
+
+- `setView()` 用來設定地圖中心與縮放比例
+
+```{r}
+base_map <- leaflet() %>% 
+  setView(lng = 121.539366, lat = 25.017326, zoom = 14) %>% 
+  addTiles()
+base_map
+```
+
+## `addProviderTiles()`
+
+- `addTiles()` 使用預設的 [OpenStreetMap](https://www.openstreetmap.org/#map=5/51.500/-0.100)
+
+- `addProviderTiles()` 可以使用其他的 [leaflet-provider](http://leaflet-extras.github.io/leaflet-providers/preview/index.html) plugin，其中有些地圖可能要在該專案註冊才能呼叫。
+
+```{r}
+#Stamen
+provider_map <- leaflet() %>%
+  setView(lng = 121.539366, lat = 25.017326, zoom = 10) %>%
+  addProviderTiles("Stamen.TonerLite")
+provider_map
+```
+
+## `addProviderTiles()`（2）
+
+- Thunderforest
+
+```{r}
+#Thunderforest
+provider_map <- leaflet() %>%
+  setView(lng = 121.539366, lat = 25.017326, zoom = 10) %>%
+  addProviderTiles("Thunderforest.OpenCycleMap")
+provider_map
+```
+
+## `addProviderTiles()`（3）
+
+```{r}
+combined_map <- leaflet() %>%
+  setView(lng = 121.539366, lat = 25.017326, zoom = 10) %>%
+  addProviderTiles("Stamen.TonerLite") %>%
+  addProviderTiles("Thunderforest.OpenCycleMap",
+    options = providerTileOptions(opacity = 0.3))
+combined_map
+```
+
+## addMarkers()
+
+- 新增地點的標記與點擊後出現的訊息
+
+```{r}
+marker_NTU <- leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = 121.539366, lat = 25.017326, popup = "National Taiwan University")
+marker_NTU
+```
