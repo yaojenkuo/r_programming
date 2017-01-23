@@ -1,0 +1,97 @@
+---
+title: "使用 dplyr 套件整理資料"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = FALSE)
+```
+
+## 安裝與載入
+
+```
+install.packages("dplyr")
+```
+
+```{r}
+library(dplyr)
+```
+
+## 不同的函數
+
+|函數|用途|
+|:----|:----|
+|`filter()`|觀測值（列）選擇|
+|`select()`|變數（欄）選擇|
+|`mutate()`|新增變數（欄）|
+|`arrange()`|排序|
+|`summarise()`|聚合|
+|`group_by()`|分組|
+
+## `filter()`
+
+```{r}
+filter(iris, Sepal.Length > 5.8)
+filter(iris, Sepal.Length > 5.8 & Species == "versicolor")
+```
+
+## `select()`
+
+```{r}
+select(iris, Sepal.Length, Species)
+select(iris, -Species)
+```
+
+## 使用 `%>%` 運算子
+
+```{r}
+iris %>%
+  filter(Sepal.Length > 5.8) %>%
+  select(Sepal.Length, Species) %>%
+  View()
+```
+
+## `mutate()`
+
+```{r}
+heights <- c(173, 168, 171, 189, 179)
+weights <- c(65.4, 59.2, 63.6, 88.4, 68.7)
+heights_and_weights <- data.frame(heights, weights)
+
+heights_and_weights %>%
+  mutate(heights_in_meter = heights / 100,
+         bmi = weights / ((heights / 100)^2)
+         ) %>%
+  View()
+```
+
+## `arrange()`
+
+```{r}
+heights_and_weights %>%
+  mutate(heights_in_meter = heights / 100,
+         bmi = weights / ((heights / 100)^2)
+         ) %>%
+  arrange(bmi) %>%
+  View()
+```
+
+## `summarise()`
+
+```{r}
+summarise(iris, mean_sepal_len = mean(Sepal.Length),
+          sd_sepal_len = sd(Sepal.Length))
+```
+
+## `group_by()`
+
+```{r}
+iris %>%
+  group_by(Species) %>%
+  summarise(mean_sepal_len = mean(Sepal.Length),
+          sd_sepal_len = sd(Sepal.Length)
+          ) %>%
+  View()
+```
