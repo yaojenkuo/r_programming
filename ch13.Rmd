@@ -9,7 +9,7 @@ output: slidy_presentation
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 ```
 
-## leaflet 套件
+## 安裝與載入
 
 ```
 install.packages("leaflet")
