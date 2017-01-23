@@ -24,8 +24,8 @@
 - [使用 apply 函數家族](https://yaojenkuo.github.io/r_programming/ch11)
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
 - [使用 %>% 簡化程式](https://yaojenkuo.github.io/r_programming/ch12)
-- [地理資訊的繪圖（Leaflet）]()
-- [使用 dplyr 套件整理資料]()
+- [地理資訊的繪圖（Leaflet）](https://yaojenkuo.github.io/r_programming/ch13)
+- [使用 dplyr 套件整理資料](https://yaojenkuo.github.io/r_programming/ch14)
 - [建立迴歸/分類/分群模型]()
 - [參加 Kaggle 競賽]()
 
