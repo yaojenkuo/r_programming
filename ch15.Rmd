@@ -1,0 +1,118 @@
+---
+title: "迴歸模型（Regression）"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = FALSE)
+```
+
+## 常見的機器學習問題
+
+- 監督式學習
+    - 迴歸模型（*）
+    - 分類模型
+- 分監督式學習
+    - 分群模型
+
+## 氣溫與冰紅茶銷量
+
+- 平均氣溫與手搖飲料店冰紅茶銷量的關係為何?
+- 通常會先畫一個散佈圖
+
+```{r}
+library(ggplot2)
+
+temperature <- c(29, 28, 34, 31, 25, 29, 32, 31, 24, 33, 25, 31, 26, 30)
+iced_tea_sales <- c(77, 62, 93, 84, 59, 64, 80, 75, 58, 91, 51, 73, 65, 84)
+iced_tea_df <- data.frame(temperature, iced_tea_sales)
+ggplot(iced_tea_df, aes(x = temperature, y = iced_tea_sales)) +
+  geom_point()
+```
+
+## 氣溫與冰紅茶銷量（2）
+
+- 這個關係看起來可以用一條直線來描述
+- 選一條最 **fit** 的線出來：
+
+$$Y = \beta_o + \beta_1X + \epsilon$$
+
+$$res_i = y_i - (\beta_0 + \beta_1x_i)$$
+
+$$Min. SS_{res} = \sum_{i = 1}^N(res_i) ^ 2$$
+
+## 氣溫與冰紅茶銷量（3）
+
+- 使用 `lm()` 函數
+
+```{r}
+temperature <- c(29, 28, 34, 31, 25, 29, 32, 31, 24, 33, 25, 31, 26, 30)
+iced_tea_sales <- c(77, 62, 93, 84, 59, 64, 80, 75, 58, 91, 51, 73, 65, 84)
+iced_tea_df <- data.frame(temperature, iced_tea_sales)
+
+# Modeling
+lm_fit <- lm(formula = iced_tea_sales ~ temperature, data = iced_tea_df)
+summary(lm_fit)
+
+# Predict
+to_be_predicted <- data.frame(temperature = 30)
+predicted <- predict(lm_fit, newdata = to_be_predicted)
+to_be_predicted <- cbind(to_be_predicted, iced_tea_sales = predicted)
+
+# Plotting
+ggplot(iced_tea_df, aes(x = temperature, y = iced_tea_sales)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) + 
+  geom_point(data = to_be_predicted, colour = "red", shape = 17, size = 3)
+```
+
+## 氣溫與冰紅茶銷量（4）
+
+- 評估迴歸模型的指標：
+
+1. RMSE（愈低愈好）
+
+$$RMSE = \sqrt{\frac{1}{N}\sum_{i=1}^N(y_i - \hat{y}_i) ^ 2}$$
+
+2. R-squared（愈接近 1 愈好）
+
+```{r}
+y_hat <- predict(lm_fit, newdata = data.frame(temperature))
+
+# 計算 RMSE
+res <- iced_tea_df$iced_tea_sales - y_hat
+rmse <- sqrt(sum(res^2) / nrow(iced_tea_df))
+rmse
+
+# R-squared
+summary_lm_fit <- summary(lm_fit)
+summary_lm_fit$r.squared
+```
+
+## 店面面積，車站距離與單月銷售量
+
+- 複迴歸改為使用 `adj.r.squared`
+
+```{r}
+store_area <- c(10, 8, 8, 5, 7, 8, 7, 9, 6, 9)
+dist_to_station <- c(80, 0, 200, 200, 300, 230, 40, 0, 330, 180)
+monthly_sales <- c(469, 366, 371, 208, 246, 297, 363, 436, 198, 364)
+bakery_df <- data.frame(store_area, dist_to_station, monthly_sales)
+
+# Modeling
+lm_fit <- lm(monthly_sales ~ ., data = bakery_df)
+
+# Performance
+y_hat <- predict(lm_fit, newdata = bakery_df[ , c("store_area", "dist_to_station")])
+
+# 計算 RMSE
+res <- bakery_df$monthly_sales - y_hat
+rmse <- sqrt(sum(res^2) / nrow(bakery_df))
+rmse
+
+# Adjusted R-squared
+summary_lm_fit <- summary(lm_fit)
+summary_lm_fit$adj.r.squared
+```
