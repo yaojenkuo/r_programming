@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = 
 - 監督式學習
     - 迴歸模型
     - 分類模型
-- 分監督式學習
+- 非監督式學習
     - 分群模型（*）
 
 ## 分群模型的特性
