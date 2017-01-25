@@ -1,0 +1,86 @@
+---
+title: "分群模型（Clustering）"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = FALSE)
+```
+
+## 常見的機器學習問題
+
+- 監督式學習
+    - 迴歸模型
+    - 分類模型
+- 分監督式學習
+    - 分群模型（*）
+
+## 分群模型的特性
+
+- 訓練資料集是沒有答案的, 所以沒有對與錯
+- 組內差異小
+- 組間差異大
+- 差異是以觀測值之間的**距離**作為度量
+
+## K-Means
+
+- 隨便放 k 個中心點
+- 依照各點與 k 個中心點的距離標記分群
+- 然後將中心點移到各群的中心
+- 重複上兩個步驟一直到中心點的移動已經收斂
+- 如下圖（k = 2）：
+
+![Stanford.edu：K-Means 視覺化](http://stanford.edu/~cpiech/cs221/img/kmeansViz.png)
+
+## `kmeans()` 函數
+
+- 查詢 `kmeans()` 函數
+- `centers` 就是 k 值
+- `nstart` 是指重新隨意放 k 個中心點的次數, 一般建議 `nstart >= 10`
+
+## `kmeans()` 函數（2）
+
+```{r}
+iris_km <- iris[, -5]
+set.seed(87)
+km_fit <- kmeans(iris_km, nstart = 10, centers = 3)
+
+# Plotting
+par(mfrow = c(1, 2))
+plot(x = iris$Sepal.Length, y = iris$Sepal.Width, col = iris$Species, main = "Labeled")
+plot(x = iris$Sepal.Length, y = iris$Sepal.Width, col = km_fit$cluster, main = "K-Means", ylab = "")
+```
+
+## 評估分群模型
+
+- 組內差異（WSS）愈小愈好
+- 組間差異（BSS）愈大愈好
+- 比例 `WSS/BSS`，這個數值愈低表示績效愈好
+
+```{r}
+ratio <- km_fit$tot.withinss / km_fit$betweenss
+ratio
+```
+
+## 選擇 k 值
+
+- 隨著 k 增加, WSS/BSS 一定會持續下降
+- 如果我們讓 k = 觀測值數目, 一定可以得到一個 WSS 最高, BSS 最低的結果
+- 但這個不會是我們想要的分群方法
+- 我們要找的是讓 WSS/BSS 下降效率開始變小的 k
+- 實務上常使用**陡坡圖**來找**手肘點**
+
+## 選擇 k 值（2）
+
+```{r}
+ratio_ss <- rep(NA, times = 20)
+for (k in 1:length(ratio_ss)) {
+  iris_km <- iris[, -5]
+  set.seed(87)
+  km_fit <- kmeans(iris_km, centers = k, nstart = 10)
+  ratio_ss[k] <- km_fit$tot.withinss/km_fit$totss
+}
+plot(ratio_ss, type = "b", xlab = "k", main = "screeplot")
+```

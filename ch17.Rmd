@@ -1,0 +1,96 @@
+---
+title: "分類模型（Classification）"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = FALSE)
+```
+
+## 常見的機器學習問題
+
+- 監督式學習
+    - 迴歸模型
+    - 分類模型（*）
+- 分監督式學習
+    - 分群模型
+    
+## 分類模型
+
+- 也許是目前最廣泛的機器學習應用
+- 有為數極多的分類演算法
+
+## 切分訓練與測試樣本
+
+- 檢視資料 <https://www.kaggle.com/c/titanic/data>
+- 使用 70/30 比例分割為訓練/測試樣本
+
+```{r}
+url = "https://storage.googleapis.com/2017_ithome_ironman/data/kaggle_titanic_train.csv"
+titanic <- read.csv(url)
+titanic <- titanic[complete.cases(titanic), ]
+titanic$Survived <- factor(titanic$Survived)
+
+# Split
+n <- nrow(titanic)
+set.seed(87)
+shuffled_titanic <- titanic[sample(n), ]
+train_indices <- 1:round(0.7 * n)
+train <- shuffled_titanic[train_indices, ]
+test_indices <- (round(0.7 * n) + 1):n
+test <- shuffled_titanic[test_indices, ]
+```
+
+## 建立分類模型
+
+- 我們使用決策樹分類器
+
+```
+install.packages("rpart")
+```
+
+```{r}
+library(rpart)
+```
+
+## 建立分類模型（2）
+
+```{r}
+tree_fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train, method = "class")
+
+# Predict
+prediction <- predict(tree_fit, test[, c("Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked")], type = "class")
+
+# 計算 accuracy
+confusion_matrix <- table(test$Survived, prediction)
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+accuracy
+```
+
+## 建立分類模型（3）
+
+- 隨機森林模型是決策樹的加強版
+- 指定 `n-tree = ` 顆決策樹進行投票
+
+```
+install.packages("randomForest")
+```
+
+```{r}
+library(randomForest)
+```
+
+## 建立分類模型（4）
+
+```{r}
+set.seed(87)
+forest_fit <- randomForest(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train, ntree = 100)
+
+# 計算 accuracy
+prediction <- predict(forest_fit, newdata = test[, c("Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked")])
+confusion_matrix <- table(test$Survived, prediction)
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+accuracy
+```
