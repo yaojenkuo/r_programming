@@ -119,18 +119,18 @@ km_fit &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris_km, <sp
 <ul>
 <li>組內差異（WSS）愈小愈好</li>
 <li>組間差異（BSS）愈大愈好</li>
-<li>比例 <code>WSS/BSS</code>，這個數值愈低表示績效愈好</li>
+<li>比例 <code>Total WSS/Total SS</code>，這個數值愈低表示績效愈好</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ratio &lt;-<span class="st"> </span>km_fit$tot.withinss /<span class="st"> </span>km_fit$betweenss
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ratio &lt;-<span class="st"> </span>km_fit$tot.withinss /<span class="st"> </span>km_fit$totss
 ratio</code></pre></div>
 </div>
 <div id="-k-" class="slide section level2">
 <h1>選擇 k 值</h1>
 <ul>
-<li>隨著 k 增加, WSS/BSS 一定會持續下降</li>
-<li>如果我們讓 k = 觀測值數目, 一定可以得到一個 WSS 最高, BSS 最低的結果</li>
+<li>隨著 k 增加, <code>Total WSS/Total SS</code> 一定會持續下降</li>
+<li>如果我們讓 k = 觀測值數目, 一定可以得到一個 <code>Total WSS/Total SS</code> 最低的結果</li>
 <li>但這個不會是我們想要的分群方法</li>
-<li>我們要找的是讓 WSS/BSS 下降效率開始變小的 k</li>
+<li>我們要找的是下降效率開始變小的 k</li>
 <li>實務上常使用<strong>陡坡圖</strong>來找<strong>手肘點</strong></li>
 </ul>
 </div>

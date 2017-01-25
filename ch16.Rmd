@@ -57,19 +57,19 @@ plot(x = iris$Sepal.Length, y = iris$Sepal.Width, col = km_fit$cluster, main = "
 
 - 組內差異（WSS）愈小愈好
 - 組間差異（BSS）愈大愈好
-- 比例 `WSS/BSS`，這個數值愈低表示績效愈好
+- 比例 `Total WSS/Total SS`，這個數值愈低表示績效愈好
 
 ```{r}
-ratio <- km_fit$tot.withinss / km_fit$betweenss
+ratio <- km_fit$tot.withinss / km_fit$totss
 ratio
 ```
 
 ## 選擇 k 值
 
-- 隨著 k 增加, WSS/BSS 一定會持續下降
-- 如果我們讓 k = 觀測值數目, 一定可以得到一個 WSS 最高, BSS 最低的結果
+- 隨著 k 增加, `Total WSS/Total SS` 一定會持續下降
+- 如果我們讓 k = 觀測值數目, 一定可以得到一個 `Total WSS/Total SS` 最低的結果
 - 但這個不會是我們想要的分群方法
-- 我們要找的是讓 WSS/BSS 下降效率開始變小的 k
+- 我們要找的是下降效率開始變小的 k
 - 實務上常使用**陡坡圖**來找**手肘點**
 
 ## 選擇 k 值（2）
