@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-18" />
+  <meta name="date" content="2017-02-06" />
   <title>單一變數與函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-18</p>
+  <p class="date">2017-02-06</p>
 </div>
 <div class="slide section level2">
 <h1>計算機</h1>
@@ -159,6 +159,22 @@ char + &quot; World!&quot; # Error</code></pre>
 <span class="kw">as.integer</span>(logi_t)
 <span class="kw">as.complex</span>(logi_t)
 <span class="kw">as.character</span>(logi_t)</code></pre></div>
+</div>
+<div class="slide section level2">
+<h1>邏輯判斷</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">8</span> ==<span class="st"> </span><span class="dv">8</span>
+<span class="dv">8</span> ==<span class="st"> </span><span class="dv">7</span>
+<span class="dv">8</span> !=<span class="st"> </span><span class="dv">7</span>
+<span class="dv">8</span> ==<span class="st"> &quot;8&quot;</span> <span class="co"># TRUE</span>
+<span class="ot">FALSE</span> ==<span class="st"> &quot;FALSE&quot;</span> <span class="co"># TRUE</span>
+<span class="dv">1</span> ==<span class="st"> </span><span class="ot">TRUE</span>
+<span class="dv">0</span> ==<span class="st"> </span><span class="ot">FALSE</span>
+<span class="dv">2</span> ==<span class="st"> </span><span class="ot">TRUE</span>
+<span class="dv">2</span> &gt;=<span class="st"> </span><span class="ot">TRUE</span>
+!<span class="ot">TRUE</span>
+!<span class="ot">FALSE</span>
+<span class="ot">TRUE</span> &amp;&amp;<span class="st"> </span><span class="ot">FALSE</span>
+<span class="ot">TRUE</span> ||<span class="st"> </span><span class="ot">FALSE</span></code></pre></div>
 </div>
 <div class="slide section level2">
 <h1>函數</h1>

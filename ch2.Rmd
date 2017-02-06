@@ -120,6 +120,24 @@ as.complex(logi_t)
 as.character(logi_t)
 ```
 
+## 邏輯判斷
+
+```{r}
+8 == 8
+8 == 7
+8 != 7
+8 == "8" # TRUE
+FALSE == "FALSE" # TRUE
+1 == TRUE
+0 == FALSE
+2 == TRUE
+2 >= TRUE
+!TRUE
+!FALSE
+TRUE && FALSE
+TRUE || FALSE
+```
+
 ## 函數
 
 - R 語言是一種**函數型編程**（functional programming）的程式語言
