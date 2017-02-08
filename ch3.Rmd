@@ -122,7 +122,7 @@ barplot(table(factor(mtcars$gear)), main = "Vehicle counts by gear types", xlab 
 
 ```{r}
 vehicle_names <- row.names(mtcars)
-barplot(mtcars$hp, names = vehicle_names, main = "Horse power for each vehicles", xlab = "Horse power", ylab = "Vehicles", horiz = TRUE)
+barplot(mtcars$hp, names = vehicle_names, main = "Horse power for each vehicles", xlab = "Horse power", horiz = TRUE, las = 2, cex.names = 0.5)
 ```
 
 ## 期中作業
