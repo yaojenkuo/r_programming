@@ -122,7 +122,24 @@ barplot(table(factor(mtcars$gear)), main = "Vehicle counts by gear types", xlab 
 
 ```{r}
 vehicle_names <- row.names(mtcars)
-barplot(mtcars$hp, names = vehicle_names, main = "Horse power for each vehicles", xlab = "Horse power", horiz = TRUE, las = 2, cex.names = 0.5)
+barplot(mtcars$hp, names = vehicle_names, main = "Horse power of each vehicle", xlab = "Horse power", horiz = TRUE, las = 1, cex.names = 0.5)
+```
+
+## 長條圖（3）
+
+- 在 bar 上方顯示數值
+
+```{r}
+y_lim <- c(0, 1.2 * max(table(mtcars$gear)))
+bar_plt <- barplot(table(mtcars$gear), main = "Vehicle counts by gear types", xlab = "Gear", ylab = "Vehicle counts", ylim = y_lim)
+text(x = bar_plt, y = table(mtcars$gear), label = table(mtcars$gear), pos = 3)
+```
+
+```{r}
+vehicle_names <- row.names(mtcars)
+x_lim <- c(0, 1.1 * max(mtcars$hp))
+bar_plt <- barplot(mtcars$hp, names = vehicle_names, main = "Horse power of each vehicle", xlab = "Horse power", horiz = TRUE, las = 1, cex.names = 0.5, xlim = x_lim)
+text(x = mtcars$hp, y = bar_plt, label = mtcars$hp, pos = 4, cex = 0.5)
 ```
 
 ## 期中作業
