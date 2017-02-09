@@ -142,6 +142,15 @@ bar_plt <- barplot(mtcars$hp, names = vehicle_names, main = "Horse power of each
 text(x = mtcars$hp, y = bar_plt, label = mtcars$hp, pos = 4, cex = 0.5)
 ```
 
+## 將 `ylab` 轉換成水平
+
+```{r}
+?mtext
+plot(cars, ylab = "")
+mtext("Dist", side = 2, las = 1, line = 2)
+#mtext("Dist", side = 2, las = 1, at = max(cars$dist) * 1.2)
+```
+
 ## 期中作業
 
 - 使用 Base plotting system 與任意資料繪製散佈圖，線圖，直方圖，盒鬚圖與長條圖
