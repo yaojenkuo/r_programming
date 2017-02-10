@@ -112,7 +112,7 @@ ggplot(cars, aes(x = speed)) +
 ```{r}
 ggplot(iris, aes(x = Sepal.Length)) +
   geom_histogram() +
-  facet_wrap(~ Species) # Species ~ 可以調整為垂直展開
+  facet_wrap(~ Species) # 加入 ncol = 1 垂直展開
 ```
 
 ## 盒鬚圖
