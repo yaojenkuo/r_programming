@@ -66,12 +66,12 @@ char_vector <- readLines("https://tw.stock.yahoo.com/d/i/rank.php?t=pri&e=tse&n=
 ## 載入 Excel 試算表
 
 - 使用 `readxl` 套件中的 `read_excel` 函數
-- 先將 <https://storage.googleapis.com/r_rookies/kaggle_titanic_train.xlsx> 下載到 `~/Downloads` 目錄下
+- 先將 <https://storage.googleapis.com/r_rookies/iris.xlsx> 下載到 `~/Downloads` 目錄下
 
 ```{r, results='hide'}
 #install.packages("readxl")
 library(readxl)
-titanic_xlsx <- read_excel("~/Downloads/kaggle_titanic_train.xlsx")
+titanic_xlsx <- read_excel("~/Downloads/iris.xlsx")
 ```
 
 ## 載入 SAS 資料集

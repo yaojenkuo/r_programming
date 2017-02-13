@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-18" />
+  <meta name="date" content="2017-02-13" />
   <title>讀取不同的資料格式</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-18</p>
+  <p class="date">2017-02-13</p>
 </div>
 <div id="-csv" class="slide section level2">
 <h1>讀取 csv</h1>
@@ -110,11 +110,11 @@ iris_colon_sep_df &lt;-<span class="st"> </span><span class="kw">read.table</spa
 <h1>載入 Excel 試算表</h1>
 <ul>
 <li>使用 <code>readxl</code> 套件中的 <code>read_excel</code> 函數</li>
-<li>先將 <a href="https://storage.googleapis.com/r_rookies/kaggle_titanic_train.xlsx" class="uri">https://storage.googleapis.com/r_rookies/kaggle_titanic_train.xlsx</a> 下載到 <code>~/Downloads</code> 目錄下</li>
+<li>先將 <a href="https://storage.googleapis.com/r_rookies/iris.xlsx" class="uri">https://storage.googleapis.com/r_rookies/iris.xlsx</a> 下載到 <code>~/Downloads</code> 目錄下</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;readxl&quot;)</span>
 <span class="kw">library</span>(readxl)
-titanic_xlsx &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;~/Downloads/kaggle_titanic_train.xlsx&quot;</span>)</code></pre></div>
+titanic_xlsx &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;~/Downloads/iris.xlsx&quot;</span>)</code></pre></div>
 </div>
 <div id="-sas-" class="slide section level2">
 <h1>載入 SAS 資料集</h1>

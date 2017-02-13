@@ -203,4 +203,4 @@ ggplotly(static_gg)
 ## 期中作業
 
 - 使用 `ggplot2` 與任意資料繪製散佈圖，線圖，直方圖，盒鬚圖與長條圖
-- 將程式上傳至 GitHub
+- 將圖形繪製在一份 RMarkdown 文件中並輸出成網頁上傳至 GitHub
