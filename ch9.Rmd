@@ -155,13 +155,6 @@ exchange.sort.asc(unsorted_vector)
 
 ## 期中作業
 
-- 將三份程式上傳至 GitHub
+- 將程式上傳至 GitHub
 - 將課堂中的自訂排序函數加入 `decreasing = ` 的參數（預設為 `FALSE`）讓使用者可以指定遞增或遞減排序
 - 自訂計算[樣本標準差](https://zh.wikipedia.org/wiki/%E6%A8%99%E6%BA%96%E5%B7%AE)的函數
-- 自訂計算 [BMI](https://zh.wikipedia.org/wiki/%E8%BA%AB%E9%AB%98%E9%AB%94%E9%87%8D%E6%8C%87%E6%95%B8) 的函數並且使用 mapply 函數將 bmi 變數加入 data frame：
-
-```{r}
-heights <- c(173, 168, 171, 189, 179)
-weights <- c(65.4, 59.2, 63.6, 88.4, 68.7)
-heights_and_weights <- data.frame(heights, weights)
-```

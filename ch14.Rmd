@@ -95,3 +95,23 @@ iris %>%
           ) %>%
   View()
 ```
+
+## 期中作業
+
+- 使用 `%>%` 簡化這段程式
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+this_year <- as.numeric(format(Sys.Date(), '%Y'))
+birth_year <- this_year - straw_hat_df$age
+birth_date_chr <- paste(birth_year, straw_hat_df$birthday, sep = "-")
+straw_hat_df$birth_date <- as.Date(birth_date_chr)
+```
+
+- 計算 [BMI](https://zh.wikipedia.org/wiki/%E8%BA%AB%E9%AB%98%E9%AB%94%E9%87%8D%E6%8C%87%E6%95%B8) 將 bmi 變數加入 data frame：
+
+```{r}
+heights <- c(173, 168, 171, 189, 179)
+weights <- c(65.4, 59.2, 63.6, 88.4, 68.7)
+heights_and_weights <- data.frame(heights, weights)
+```

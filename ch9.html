@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-24" />
+  <meta name="date" content="2017-02-15" />
   <title>自訂函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-24</p>
+  <p class="date">2017-02-15</p>
 </div>
 <div class="slide section level2">
 <h1>為何要自訂函數</h1>
@@ -198,14 +198,10 @@ unsorted_vector &lt;-<span class="st"> </span><span class="kw">round</span>(<spa
 <div class="slide section level2">
 <h1>期中作業</h1>
 <ul>
-<li>將三份程式上傳至 GitHub</li>
+<li>將程式上傳至 GitHub</li>
 <li>將課堂中的自訂排序函數加入 <code>decreasing =</code> 的參數（預設為 <code>FALSE</code>）讓使用者可以指定遞增或遞減排序</li>
 <li>自訂計算<a href="https://zh.wikipedia.org/wiki/%E6%A8%99%E6%BA%96%E5%B7%AE">樣本標準差</a>的函數</li>
-<li>自訂計算 <a href="https://zh.wikipedia.org/wiki/%E8%BA%AB%E9%AB%98%E9%AB%94%E9%87%8D%E6%8C%87%E6%95%B8">BMI</a> 的函數並且使用 mapply 函數將 bmi 變數加入 data frame：</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">173</span>, <span class="dv">168</span>, <span class="dv">171</span>, <span class="dv">189</span>, <span class="dv">179</span>)
-weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">65.4</span>, <span class="fl">59.2</span>, <span class="fl">63.6</span>, <span class="fl">88.4</span>, <span class="fl">68.7</span>)
-heights_and_weights &lt;-<span class="st"> </span><span class="kw">data.frame</span>(heights, weights)</code></pre></div>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->

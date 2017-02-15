@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-22" />
+  <meta name="date" content="2017-02-15" />
   <title>使用 %&gt;% 簡化程式</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-22</p>
+  <p class="date">2017-02-15</p>
 </div>
 <div id="magrittr-" class="slide section level2">
 <h1>magrittr 套件</h1>
@@ -114,17 +114,6 @@ beyond_age</code></pre></div>
   <span class="co">#lm(formula = dist ~ speed)</span>
 cars_lm &lt;-<span class="st"> </span>cars %&gt;%
 <span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> dist ~<span class="st"> </span>speed, <span class="dt">data =</span> .)</code></pre></div>
-</div>
-<div class="slide section level2">
-<h1>期中作業</h1>
-<ul>
-<li>使用 <code>%&gt;%</code> 簡化這段程式然後上傳至 GitHub</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
-this_year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">'%Y'</span>))
-birth_year &lt;-<span class="st"> </span>this_year -<span class="st"> </span>straw_hat_df$age
-birth_date_chr &lt;-<span class="st"> </span><span class="kw">paste</span>(birth_year, straw_hat_df$birthday, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)
-straw_hat_df$birth_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(birth_date_chr)</code></pre></div>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
