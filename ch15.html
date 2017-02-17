@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-25" />
+  <meta name="date" content="2017-02-17" />
   <title>迴歸模型（Regression）</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-25</p>
+  <p class="date">2017-02-17</p>
 </div>
 <div class="slide section level2">
 <h1>常見的機器學習問題</h1>
@@ -168,6 +168,35 @@ rmse
 <span class="co"># Adjusted R-squared</span>
 summary_lm_fit &lt;-<span class="st"> </span><span class="kw">summary</span>(lm_fit)
 summary_lm_fit$adj.r.squared</code></pre></div>
+</div>
+<div class="slide section level2">
+<h1>變數選擇</h1>
+<ul>
+<li>使用 <code>step()</code> 函數</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS) <span class="co"># to get Boston df</span>
+<span class="kw">head</span>(Boston)
+
+lm_fit_full &lt;-<span class="st"> </span><span class="kw">lm</span>(medv ~<span class="st"> </span>., <span class="dt">data =</span> Boston)
+backwards &lt;-<span class="st"> </span><span class="kw">step</span>(lm_fit_full, <span class="dt">trace =</span> <span class="dv">0</span>)
+<span class="kw">formula</span>(backwards)
+<span class="kw">summary</span>(backwards)</code></pre></div>
+</div>
+<div id="2" class="slide section level2">
+<h1>變數選擇（2）</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_fit_full &lt;-<span class="st"> </span><span class="kw">lm</span>(medv ~<span class="st"> </span>., <span class="dt">data =</span> Boston)
+lm_fit_null &lt;-<span class="st"> </span><span class="kw">lm</span>(medv ~<span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Boston)
+forwards &lt;-<span class="st"> </span><span class="kw">step</span>(lm_fit_null,
+<span class="dt">scope =</span> <span class="kw">list</span>(<span class="dt">lower =</span> <span class="kw">formula</span>(lm_fit_null), <span class="dt">upper =</span> <span class="kw">formula</span>(lm_fit_full)), <span class="dt">direction =</span> <span class="st">&quot;forward&quot;</span>, <span class="dt">trace =</span> <span class="dv">0</span>)
+<span class="kw">formula</span>(forwards)</code></pre></div>
+</div>
+<div id="3" class="slide section level2">
+<h1>變數選擇（3）</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_fit_full &lt;-<span class="st"> </span><span class="kw">lm</span>(medv ~<span class="st"> </span>., <span class="dt">data =</span> Boston)
+lm_fit_null &lt;-<span class="st"> </span><span class="kw">lm</span>(medv ~<span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Boston)
+bothways &lt;-<span class="st"> </span><span class="kw">step</span>(lm_fit_null,
+<span class="dt">scope =</span> <span class="kw">list</span>(<span class="dt">lower =</span> <span class="kw">formula</span>(lm_fit_null), <span class="dt">upper =</span> <span class="kw">formula</span>(lm_fit_full)), <span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>, <span class="dt">trace =</span> <span class="dv">0</span>)
+<span class="kw">formula</span>(bothways)</code></pre></div>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->

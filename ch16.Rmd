@@ -84,3 +84,40 @@ for (k in 1:length(ratio_ss)) {
 }
 plot(ratio_ss, type = "b", xlab = "k", main = "screeplot")
 ```
+
+## 標準化
+
+- Standard Scaler
+- 使用 `scale()` 函數
+
+```{r}
+scaled_iris_mat <- scale(iris[, -5])
+scaled_iris_df <- data.frame(scaled_iris_mat)
+View(scaled_iris_df)
+```
+
+## 標準化（2）
+
+- Min Max Scaler
+- 自訂
+
+```{r}
+# Self-defined function: min_max_scaler
+min_max_scaler <- function(df) {
+  col_n <- ncol(df)
+  empty_matrix <- matrix(nrow = nrow(df), ncol = ncol(df))
+  normalized_df <- data.frame(empty_matrix)
+  for (i in 1:col_n) {
+    minimum <- min(df[, i])
+    maximum <- max(df[, i])
+    normalized <- (df[, i] - minimum) / (maximum - minimum)
+    normalized_df[, i] <- normalized
+  }
+  names(normalized_df) <- names(df)
+  return(normalized_df)
+}
+
+# Function calls
+scaled_iris <- min_max_scaler(iris[, -5])
+View(scaled_iris)
+```

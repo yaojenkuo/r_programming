@@ -116,3 +116,37 @@ rmse
 summary_lm_fit <- summary(lm_fit)
 summary_lm_fit$adj.r.squared
 ```
+
+## 變數選擇
+
+- 使用 `step()` 函數
+
+```{r}
+library(MASS) # to get Boston df
+head(Boston)
+
+lm_fit_full <- lm(medv ~ ., data = Boston)
+backwards <- step(lm_fit_full, trace = 0)
+formula(backwards)
+summary(backwards)
+```
+
+## 變數選擇（2）
+
+```{r}
+lm_fit_full <- lm(medv ~ ., data = Boston)
+lm_fit_null <- lm(medv ~ 1, data = Boston)
+forwards <- step(lm_fit_null,
+scope = list(lower = formula(lm_fit_null), upper = formula(lm_fit_full)), direction = "forward", trace = 0)
+formula(forwards)
+```
+
+## 變數選擇（3）
+
+```{r}
+lm_fit_full <- lm(medv ~ ., data = Boston)
+lm_fit_null <- lm(medv ~ 1, data = Boston)
+bothways <- step(lm_fit_null,
+scope = list(lower = formula(lm_fit_null), upper = formula(lm_fit_full)), direction = "both", trace = 0)
+formula(bothways)
+```
