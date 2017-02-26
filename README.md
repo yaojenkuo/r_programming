@@ -45,6 +45,7 @@
 - [Quick-R](http://www.statmethods.net/)
 - [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
 - [The Art of R Programming](https://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843)
-- [Advanced R](https://www.amazon.com/Advanced-Chapman-Hall-Hadley-Wickham/dp/1466586966)
+- [Advanced R（Book）](https://www.amazon.com/Advanced-Chapman-Hall-Hadley-Wickham/dp/1466586966)
+- [Advanced R（Website）](http://adv-r.had.co.nz/)
 - [R Graphics Cookbook](http://shop.oreilly.com/product/0636920023135.do)
 - [R for Data Science](http://r4ds.had.co.nz/)
