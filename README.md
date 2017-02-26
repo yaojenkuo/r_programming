@@ -38,3 +38,13 @@
 - [活用資料框 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch7_exercise)
 - [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)
 - [自訂函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch9_exercise)
+
+### 推薦學習資源/書籍
+
+- [R in Action](https://www.manning.com/books/r-in-action-second-edition)
+- [Quick-R](http://www.statmethods.net/)
+- [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
+- [The Art of R Programming](https://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843)
+- [Advanced R](https://www.amazon.com/Advanced-Chapman-Hall-Hadley-Wickham/dp/1466586966)
+- [R Graphics Cookbook](http://shop.oreilly.com/product/0636920023135.do)
+- [R for Data Science](http://r4ds.had.co.nz/)
