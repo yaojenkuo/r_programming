@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
 2 - 1
 2 * 2
 4 / 2
-2 ^ 2 # 次方
+2 ^ 2 # 次方，亦可以寫作 2**2
 3 %% 2 # 餘數
 ```
 
@@ -111,16 +111,61 @@ char + " World!" # Error
 - 透過 `as.___()` 函數可以轉換變數類型
 
 ```{r}
-logi_t <- TRUE
-is.integer(logi_t)
-is.logical(logi_t)
-as.numeric(logi_t)
-as.integer(logi_t)
-as.complex(logi_t)
-as.character(logi_t)
+is.integer(TRUE)
+is.logical(TRUE)
+as.numeric(TRUE)
+as.integer(TRUE)
+as.complex(TRUE)
+as.character(TRUE)
+```
+
+## 單一變數類型（4）
+
+- 日期
+- 預設以西元 1970 年 1 月 1 日為 `0`，在這一天以後的每天都 `+1` 來記錄，而這一天以前的每天都 `-1` 來記錄
+
+```{r}
+sys_date <- Sys.Date()
+sys_date # 看起來跟文字一樣
+class(sys_date) # 是日期的格式
+
+sys_date_char <- as.character(sys_date) # 創造一個文字類型
+as.integer(sys_date)
+as.integer(sys_date_char) # warning
+
+date_of_origin <- as.Date("1970-01-01")
+as.integer(date_of_origin)
+date_of_origin + 1
+date_of_origin - 1
+```
+
+## 單一變數類型（5）
+
+- 時間
+- 預設以西元 1970 年 1 月 1 日格林威治標準時間（Greenwich Mean Time，GMT）00 時 00 分 00 秒作為 0，在這個時間點以後的每秒都 `+1` 來記錄，這個時間點以前的每秒都 `-1` 來記錄
+
+```{r}
+time_of_origin <- as.POSIXct("1970-01-01 00:00:00", tz = "GMT")
+as.integer(time_of_origin)
+time_of_origin
+time_of_origin + 1
+time_of_origin - 1
+
+time_of_origin_cst <- as.POSIXct("1970-01-01 08:00:00") # tz = CST
+as.integer(time_of_origin_cst)
 ```
 
 ## 邏輯判斷
+
+|判斷運算子|作用|
+|---------|---|
+|`==`|等於|
+|`>`|大於|
+|`<`|小於|
+|`>=`|大於等於|
+|`<=`|小於等於|
+|`!=`|不等於|
+|`%in%`|包含於|
 
 ```{r}
 8 == 8
@@ -134,8 +179,8 @@ FALSE == "FALSE" # TRUE
 2 >= TRUE
 !TRUE
 !FALSE
-TRUE && FALSE
-TRUE || FALSE
+7 %in% c(7, 8)
+6 %in% c(7, 8)
 ```
 
 ## 函數
@@ -159,5 +204,13 @@ q() # 離開 RStudio
 ```
 
 ## 隨堂練習
+
+1. 香港搖滾樂隊 Beyond 於 1983 年成立，我們假設成立日期是 1983-12-31，請將成立日期指派給 `beyond_start`
+2. 請以系統日期計算今年是 Beyond 成立幾週年
+3. 1999 年 9 月 21 日 1 時 47 分 16 秒發生震央位於南投縣集集鎮，芮氏規模 7.3 的地震，請以文字記錄這個時間，並將它指派給 `major_quake_time`
+4. 1999 年 9 月 21 日 1 時 57 分 15 秒發生第一個芮氏規模超過 6 的餘震，請以文字記錄這個時間，並將它指派給 `first_aftershock_time`
+5. 請將前兩題的生成的變數轉換為時間類型，計算間隔多久發生第一個芮氏規模超過 6 的餘震
+
+## 隨堂練習（2）
 
 [單一變數與函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch2_exercise)

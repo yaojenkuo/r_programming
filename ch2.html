@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-02-07" />
+  <meta name="date" content="2017-03-19" />
   <title>單一變數與函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,25 +55,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-02-07</p>
+  <p class="date">2017-03-19</p>
 </div>
 <div class="slide section level2">
-<h1>計算機</h1>
+<h2>計算機</h2>
 <ul>
 <li>計算機是 R 語言的命令列（Console）最基本的應用！</li>
 <li>R 語言使用單行註解 <code>#</code> （pound）</li>
 <li>在命令列試著進行加減乘除運算：</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在命令列依序輸入後觀察產出</span>
-<span class="dv">2</span> +<span class="st"> </span><span class="dv">1</span>
-<span class="dv">2</span> -<span class="st"> </span><span class="dv">1</span>
-<span class="dv">2</span> *<span class="st"> </span><span class="dv">2</span>
-<span class="dv">4</span> /<span class="st"> </span><span class="dv">2</span>
-<span class="dv">2</span> ^<span class="st"> </span><span class="dv">2</span> <span class="co"># 次方</span>
-<span class="dv">3</span> %%<span class="st"> </span><span class="dv">2</span> <span class="co"># 餘數</span></code></pre></div>
+<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+<span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>
+<span class="dv">4</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>
+<span class="dv">2</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="co"># 次方，亦可以寫作 2**2</span>
+<span class="dv">3</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="co"># 餘數</span></code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>建立變數</h1>
+<h2>建立變數</h2>
 <ul>
 <li>R 語言的使用者習慣使用 <code>&lt;-</code> 來建立變數</li>
 <li>在 RStudio 中可以按 <code>Alt 與 -</code> 來產生 <code>&lt;-</code> 符號</li>
@@ -84,13 +84,13 @@ a &lt;-<span class="st"> </span><span class="dv">2</span>
 b &lt;-<span class="st"> </span><span class="dv">3</span>
 a
 b
-a *<span class="st"> </span>b
+a <span class="op">*</span><span class="st"> </span>b
 a &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># 將 a 改變為 5</span>
 a
-a *<span class="st"> </span>b</code></pre></div>
+a <span class="op">*</span><span class="st"> </span>b</code></pre></div>
 </div>
 <div id="2" class="slide section level2">
-<h1>建立變數（2）</h1>
+<h2>建立變數（2）</h2>
 <ul>
 <li>你也可以用與其他程式語言相同的 <code>=</code> 來建立變數</li>
 <li>但是我推薦使用 <code>&lt;-</code></li>
@@ -99,7 +99,7 @@ a *<span class="st"> </span>b</code></pre></div>
 a</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>單一變數類型</h1>
+<h2>單一變數類型</h2>
 <ul>
 <li>R 語言的基本變數類型</li>
 <li>數字（numeric）</li>
@@ -111,7 +111,7 @@ a</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在命令列依序輸入</span>
 num &lt;-<span class="st"> </span><span class="dv">2</span>
 int &lt;-<span class="st"> </span>2L
-compl &lt;-<span class="st"> </span><span class="dv">2</span> +<span class="st"> </span>3i
+compl &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>3i
 char &lt;-<span class="st"> &quot;Hello&quot;</span> <span class="co"># 用引號告訴 R 語言這是一組字串</span>
 logi_t &lt;-<span class="st"> </span><span class="ot">TRUE</span>
 logi_f &lt;-<span class="st"> </span><span class="ot">FALSE</span>
@@ -124,22 +124,22 @@ logi_t
 logi_f</code></pre></div>
 </div>
 <div id="2" class="slide section level2">
-<h1>單一變數類型（2）</h1>
+<h2>單一變數類型（2）</h2>
 <ul>
 <li>R 語言的數值型變數運算時很有彈性</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在命令列依序輸入</span>
 num &lt;-<span class="st"> </span><span class="dv">2</span>
 int &lt;-<span class="st"> </span>2L
-compl &lt;-<span class="st"> </span><span class="dv">2</span> +<span class="st"> </span>3i
+compl &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>3i
 char &lt;-<span class="st"> &quot;Hello&quot;</span> <span class="co"># 用引號告訴 R 語言這是一組字串</span>
 logi_t &lt;-<span class="st"> </span><span class="ot">TRUE</span>
 logi_f &lt;-<span class="st"> </span><span class="ot">FALSE</span>
 <span class="co"># 運算</span>
-num +<span class="st"> </span>int
-num +<span class="st"> </span>compl
-int +<span class="st"> </span>logi_t
-logi_t *<span class="st"> </span><span class="dv">5</span></code></pre></div>
+num <span class="op">+</span><span class="st"> </span>int
+num <span class="op">+</span><span class="st"> </span>compl
+int <span class="op">+</span><span class="st"> </span>logi_t
+logi_t <span class="op">*</span><span class="st"> </span><span class="dv">5</span></code></pre></div>
 <ul>
 <li>但是字串的運算則不如 Python 或 Ruby 這麼彈性</li>
 </ul>
@@ -147,37 +147,108 @@ logi_t *<span class="st"> </span><span class="dv">5</span></code></pre></div>
 char + &quot; World!&quot; # Error</code></pre>
 </div>
 <div id="3" class="slide section level2">
-<h1>單一變數類型（3）</h1>
+<h2>單一變數類型（3）</h2>
 <ul>
 <li>透過 <code>is.___()</code> 函數可以判斷變數類型</li>
 <li>透過 <code>as.___()</code> 函數可以轉換變數類型</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logi_t &lt;-<span class="st"> </span><span class="ot">TRUE</span>
-<span class="kw">is.integer</span>(logi_t)
-<span class="kw">is.logical</span>(logi_t)
-<span class="kw">as.numeric</span>(logi_t)
-<span class="kw">as.integer</span>(logi_t)
-<span class="kw">as.complex</span>(logi_t)
-<span class="kw">as.character</span>(logi_t)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.integer</span>(<span class="ot">TRUE</span>)
+<span class="kw">is.logical</span>(<span class="ot">TRUE</span>)
+<span class="kw">as.numeric</span>(<span class="ot">TRUE</span>)
+<span class="kw">as.integer</span>(<span class="ot">TRUE</span>)
+<span class="kw">as.complex</span>(<span class="ot">TRUE</span>)
+<span class="kw">as.character</span>(<span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="4" class="slide section level2">
+<h2>單一變數類型（4）</h2>
+<ul>
+<li>日期</li>
+<li>預設以西元 1970 年 1 月 1 日為 <code>0</code>，在這一天以後的每天都 <code>+1</code> 來記錄，而這一天以前的每天都 <code>-1</code> 來記錄</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sys_date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
+sys_date <span class="co"># 看起來跟文字一樣</span>
+<span class="kw">class</span>(sys_date) <span class="co"># 是日期的格式</span>
+
+sys_date_char &lt;-<span class="st"> </span><span class="kw">as.character</span>(sys_date) <span class="co"># 創造一個文字類型</span>
+<span class="kw">as.integer</span>(sys_date)
+<span class="kw">as.integer</span>(sys_date_char) <span class="co"># warning</span>
+
+date_of_origin &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>)
+<span class="kw">as.integer</span>(date_of_origin)
+date_of_origin <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+date_of_origin <span class="op">-</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+</div>
+<div id="5" class="slide section level2">
+<h2>單一變數類型（5）</h2>
+<ul>
+<li>時間</li>
+<li>預設以西元 1970 年 1 月 1 日格林威治標準時間（Greenwich Mean Time，GMT）00 時 00 分 00 秒作為 0，在這個時間點以後的每秒都 <code>+1</code> 來記錄，這個時間點以前的每秒都 <code>-1</code> 來記錄</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time_of_origin &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;1970-01-01 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;GMT&quot;</span>)
+<span class="kw">as.integer</span>(time_of_origin)
+time_of_origin
+time_of_origin <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+time_of_origin <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+
+time_of_origin_cst &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;1970-01-01 08:00:00&quot;</span>) <span class="co"># tz = CST</span>
+<span class="kw">as.integer</span>(time_of_origin_cst)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>邏輯判斷</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">8</span> ==<span class="st"> </span><span class="dv">8</span>
-<span class="dv">8</span> ==<span class="st"> </span><span class="dv">7</span>
-<span class="dv">8</span> !=<span class="st"> </span><span class="dv">7</span>
-<span class="dv">8</span> ==<span class="st"> &quot;8&quot;</span> <span class="co"># TRUE</span>
-<span class="ot">FALSE</span> ==<span class="st"> &quot;FALSE&quot;</span> <span class="co"># TRUE</span>
-<span class="dv">1</span> ==<span class="st"> </span><span class="ot">TRUE</span>
-<span class="dv">0</span> ==<span class="st"> </span><span class="ot">FALSE</span>
-<span class="dv">2</span> ==<span class="st"> </span><span class="ot">TRUE</span>
-<span class="dv">2</span> &gt;=<span class="st"> </span><span class="ot">TRUE</span>
-!<span class="ot">TRUE</span>
-!<span class="ot">FALSE</span>
-<span class="ot">TRUE</span> &amp;&amp;<span class="st"> </span><span class="ot">FALSE</span>
-<span class="ot">TRUE</span> ||<span class="st"> </span><span class="ot">FALSE</span></code></pre></div>
+<h2>邏輯判斷</h2>
+<table>
+<thead>
+<tr class="header">
+<th>判斷運算子</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>等於</td>
+</tr>
+<tr class="even">
+<td><code>&gt;</code></td>
+<td>大於</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;</code></td>
+<td>小於</td>
+</tr>
+<tr class="even">
+<td><code>&gt;=</code></td>
+<td>大於等於</td>
+</tr>
+<tr class="odd">
+<td><code>&lt;=</code></td>
+<td>小於等於</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>不等於</td>
+</tr>
+<tr class="odd">
+<td><code>%in%</code></td>
+<td>包含於</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">8</span> <span class="op">==</span><span class="st"> </span><span class="dv">8</span>
+<span class="dv">8</span> <span class="op">==</span><span class="st"> </span><span class="dv">7</span>
+<span class="dv">8</span> <span class="op">!=</span><span class="st"> </span><span class="dv">7</span>
+<span class="dv">8</span> <span class="op">==</span><span class="st"> &quot;8&quot;</span> <span class="co"># TRUE</span>
+<span class="ot">FALSE</span> <span class="op">==</span><span class="st"> &quot;FALSE&quot;</span> <span class="co"># TRUE</span>
+<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>
+<span class="dv">0</span> <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>
+<span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>
+<span class="dv">2</span> <span class="op">&gt;=</span><span class="st"> </span><span class="ot">TRUE</span>
+<span class="op">!</span><span class="ot">TRUE</span>
+<span class="op">!</span><span class="ot">FALSE</span>
+<span class="dv">7</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">8</span>)
+<span class="dv">6</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">8</span>)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>函數</h1>
+<h2>函數</h2>
 <ul>
 <li>R 語言是一種<strong>函數型編程</strong>（functional programming）的程式語言</li>
 </ul>
@@ -197,7 +268,17 @@ Sys.time() # 回傳系統日期與時間
 q() # 離開 RStudio</code></pre>
 </div>
 <div class="slide section level2">
-<h1>隨堂練習</h1>
+<h2>隨堂練習</h2>
+<ol style="list-style-type: decimal">
+<li>香港搖滾樂隊 Beyond 於 1983 年成立，我們假設成立日期是 1983-12-31，請將成立日期指派給 <code>beyond_start</code></li>
+<li>請以系統日期計算今年是 Beyond 成立幾週年</li>
+<li>1999 年 9 月 21 日 1 時 47 分 16 秒發生震央位於南投縣集集鎮，芮氏規模 7.3 的地震，請以文字記錄這個時間，並將它指派給 <code>major_quake_time</code></li>
+<li>1999 年 9 月 21 日 1 時 57 分 15 秒發生第一個芮氏規模超過 6 的餘震，請以文字記錄這個時間，並將它指派給 <code>first_aftershock_time</code></li>
+<li>請將前兩題的生成的變數轉換為時間類型，計算間隔多久發生第一個芮氏規模超過 6 的餘震</li>
+</ol>
+</div>
+<div id="2" class="slide section level2">
+<h2>隨堂練習（2）</h2>
 <p><a href="https://yaojenkuo.github.io/r_programming/ch2_exercise">單一變數與函數 - 隨堂練習</a></p>
 </div>
 
