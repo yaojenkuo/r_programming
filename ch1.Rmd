@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## 安裝 Git(OS X)
 
-- OS X 內建 Git，不需要進行安裝。
+- OS X 內建 Git，不需要進行安裝
 - 或者至 [git](https://git-scm.com/download/mac) 下載 .dmg 檔來進行安裝
 
 ## 安裝 Git(Windows)
@@ -95,7 +95,7 @@ git push
 
 - `git commit -m` 後面的訊息可以自訂
 
-## 期中作業
+## 練習
 
 - 上傳兩個檔案至 GitHub
     - RStudio 螢幕截圖
