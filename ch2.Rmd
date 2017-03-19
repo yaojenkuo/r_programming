@@ -205,12 +205,12 @@ q() # 離開 RStudio
 
 ## 隨堂練習
 
+[單一變數與函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch2_exercise)
+
+## 期中作業
+
 1. 香港搖滾樂隊 Beyond 於 1983 年成立，我們假設成立日期是 1983-12-31，請將成立日期指派給 `beyond_start`
 2. 請以系統日期計算今年是 Beyond 成立幾週年
 3. 1999 年 9 月 21 日 1 時 47 分 16 秒發生震央位於南投縣集集鎮，芮氏規模 7.3 的地震，請以文字記錄這個時間，並將它指派給 `major_quake_time`
 4. 1999 年 9 月 21 日 1 時 57 分 15 秒發生第一個芮氏規模超過 6 的餘震，請以文字記錄這個時間，並將它指派給 `first_aftershock_time`
 5. 請將前兩題的生成的變數轉換為時間類型，計算間隔多久發生第一個芮氏規模超過 6 的餘震
-
-## 隨堂練習（2）
-
-[單一變數與函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch2_exercise)

@@ -154,4 +154,3 @@ mtext("Dist", side = 2, las = 1, line = 2)
 ## 期中作業
 
 - 使用 Base plotting system 與任意資料繪製散佈圖，線圖，直方圖，盒鬚圖與長條圖
-- 將程式上傳至 GitHub
