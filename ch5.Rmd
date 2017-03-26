@@ -180,6 +180,23 @@ ggplot(mpg, aes(x = class)) +
   ylab("Percentage")
 ```
 
+## 在一個畫布上畫多個圖形
+
+- 使用 `gridExtra` 套件來幫忙
+- `grid.arrange()` 函數
+
+```
+install.packages("gridExtra")
+```
+
+```{r}
+library(gridExtra)
+
+gg1 <- ggplot(cars, aes(x = speed, y = dist)) + geom_point()
+gg2 <- ggplot(iris, aes(x = Petal.Length, y = Petal.Width, colour = Species)) + geom_point()
+grid.arrange(gg1, gg2, nrow = 2)
+```
+
 ## `ggplotly()` 加入互動性
 
 - 使用 `plotly` 套件的 `ggplotly()` 函數
