@@ -17,44 +17,35 @@ knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
     
 ## 迴圈（2）
 
-- R 語言有一個內建的資料框 `mtcars`
-- 我想要把它所有的變數名稱一一輸出在命令列
+- R 語言有一個內建的向量 `month.name`
+- 我想要把它所有的內容一一輸出在命令列
 - 其實土法煉鋼沒什麼不好：
 
 ```{r}
-head(mtcars)
-mtcars_col_names <- names(mtcars) # 查詢一下 names() 函數
-mtcars_col_names[1]
-mtcars_col_names[2]
-mtcars_col_names[3]
-mtcars_col_names[4]
-mtcars_col_names[5]
-mtcars_col_names[6]
-mtcars_col_names[7]
-mtcars_col_names[8]
-mtcars_col_names[9]
-mtcars_col_names[10]
-mtcars_col_names[11]
+month.name[1]
+month.name[2]
+month.name[3]
+month.name[4]
+month.name[5]
+month.name[6]
+month.name[7]
+month.name[8]
+month.name[9]
+month.name[10]
+month.name[11]
+month.name[12]
 ```
 
 ## 迴圈（3）
 
-- 今天運氣好，`mtcars` 只有 11 個變數
-- 如果今天你要對一個擁有 1,111 個變數的資料框做這件事呢？
+- 今天運氣好，`month.name` 只有 12 個元素
+- `for` 迴圈長這個樣子：
 
 ```{r}
-mtcars_col_names <- names(mtcars)
 # for 迴圈
-for (i in mtcars_col_names) {
+for (i in month.name) {
   print(i)
 }
-i # 看看 i 
-
-# for 迴圈
-for (i in 1:length(mtcars_col_names)) {
-  print(mtcars_col_names[i])
-}
-i # 看看 i
 ```
 
 ## 迴圈（4）
@@ -89,20 +80,16 @@ for (j in 1:ncol(my_mat)){
 }
 ```
 
-- 這是 `byrow = FALSE`，還記得嗎？你知道怎麼改成 `byrow = TRUE` 嗎？
-
 ## 迴圈（6）
 
 - `while` 迴圈會先檢查條件才執行程式碼
 
 ```{r}
-mtcars_col_names <- names(mtcars)
 i <- 1
-while (i <= length(mtcars_col_names)) {
-  print(mtcars_col_names[i])
+while (i <= length(month.name)) {
+  print(month.name[i])
   i <- i + 1
 }
-i # 看看 i
 ```
 
 ## 流程控制
@@ -160,24 +147,54 @@ switch(as.character(answer),
 - 在迴圈中加入 `break` 或 `next` 讓你的程式更有彈性
 
 ```{r}
-mtcars_col_names <- names(mtcars)
-for (i in mtcars_col_names) {
-  if (i == "wt") {
+for (i in month.name) {
+  if (i == "September") {
     break
   }
   print(i)
 }
-i # 看看 i
 
-for (i in mtcars_col_names) {
-  if (i == "wt") {
+for (i in month.name) {
+  if (i == "September") {
     next
   }
   print(i)
 }
-i # 看看 i
+```
+
+## `for` 與 `while` 的使用時機
+
+- 所有的 `for` 都可以用 `while` 改寫
+- 但是反過來並非如此
+- 不知道迭代次數的時候用 `while`
+
+## `for` 與 `while` 的使用時機（2）
+
+- 投擲一個公正的銅板，必須出現三次正面才可以停止
+- 請問總共要投幾次？
+
+```{r}
+coin_flips <- c()
+coin <- c(TRUE, FALSE) # TRUE 代表正面，FALSE 代表反面
+i <- 1
+
+while (sum(coin_flips) < 3){
+  coin_flips[i] <- sample(coin, size = 1)
+  i <- i + 1
+}
+coin_flips # 投擲紀錄
+length(coin_flips) # 總共投了幾次
 ```
 
 ## 隨堂練習
 
 [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)
+
+## 期中作業
+
+我們把這個公正的**銅板**改成公正的**骰子**，必須出現三次六點才可以停止，請問總共要投幾次？
+
+```{r}
+dice <- 1:6
+sample(dice, size = 1)
+```

@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-17" />
+  <meta name="date" content="2017-04-07" />
   <title>迴圈與流程控制</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,10 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-17</p>
+  <p class="date">2017-04-07</p>
 </div>
 <div class="slide section level2">
-<h1>迴圈</h1>
+<h2>迴圈</h2>
 <ul>
 <li>善用迴圈讓你能夠寫出簡短的程式碼
 <ul>
@@ -68,163 +68,177 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 <div id="2" class="slide section level2">
-<h1>迴圈（2）</h1>
+<h2>迴圈（2）</h2>
 <ul>
-<li>R 語言有一個內建的資料框 <code>mtcars</code></li>
-<li>我想要把它所有的變數名稱一一輸出在命令列</li>
+<li>R 語言有一個內建的向量 <code>month.name</code></li>
+<li>我想要把它所有的內容一一輸出在命令列</li>
 <li>其實土法煉鋼沒什麼不好：</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(mtcars)
-mtcars_col_names &lt;-<span class="st"> </span><span class="kw">names</span>(mtcars) <span class="co"># 查詢一下 names() 函數</span>
-mtcars_col_names[<span class="dv">1</span>]
-mtcars_col_names[<span class="dv">2</span>]
-mtcars_col_names[<span class="dv">3</span>]
-mtcars_col_names[<span class="dv">4</span>]
-mtcars_col_names[<span class="dv">5</span>]
-mtcars_col_names[<span class="dv">6</span>]
-mtcars_col_names[<span class="dv">7</span>]
-mtcars_col_names[<span class="dv">8</span>]
-mtcars_col_names[<span class="dv">9</span>]
-mtcars_col_names[<span class="dv">10</span>]
-mtcars_col_names[<span class="dv">11</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">month.name[<span class="dv">1</span>]
+month.name[<span class="dv">2</span>]
+month.name[<span class="dv">3</span>]
+month.name[<span class="dv">4</span>]
+month.name[<span class="dv">5</span>]
+month.name[<span class="dv">6</span>]
+month.name[<span class="dv">7</span>]
+month.name[<span class="dv">8</span>]
+month.name[<span class="dv">9</span>]
+month.name[<span class="dv">10</span>]
+month.name[<span class="dv">11</span>]
+month.name[<span class="dv">12</span>]</code></pre></div>
 </div>
 <div id="3" class="slide section level2">
-<h1>迴圈（3）</h1>
+<h2>迴圈（3）</h2>
 <ul>
-<li>今天運氣好，<code>mtcars</code> 只有 11 個變數</li>
-<li>如果今天你要對一個擁有 1,111 個變數的資料框做這件事呢？</li>
+<li>今天運氣好，<code>month.name</code> 只有 12 個元素</li>
+<li><code>for</code> 迴圈長這個樣子：</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars_col_names &lt;-<span class="st"> </span><span class="kw">names</span>(mtcars)
-<span class="co"># for 迴圈</span>
-for (i in mtcars_col_names) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># for 迴圈</span>
+<span class="cf">for</span> (i <span class="cf">in</span> month.name) {
   <span class="kw">print</span>(i)
-}
-i <span class="co"># 看看 i </span>
-
-<span class="co"># for 迴圈</span>
-for (i in <span class="dv">1</span>:<span class="kw">length</span>(mtcars_col_names)) {
-  <span class="kw">print</span>(mtcars_col_names[i])
-}
-i <span class="co"># 看看 i</span></code></pre></div>
+}</code></pre></div>
 </div>
 <div id="4" class="slide section level2">
-<h1>迴圈（4）</h1>
+<h2>迴圈（4）</h2>
 <ul>
 <li>巢狀迴圈（nested loop）是指迴圈包含另一個迴圈</li>
 <li>我們利用填滿一個矩陣來展示</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)
-my_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">6</span>
-for (j in <span class="dv">1</span>:<span class="kw">ncol</span>(my_mat)) {
-  for (i in <span class="dv">1</span>:<span class="kw">nrow</span>(my_mat)) {
+my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
+<span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(my_mat)) {
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(my_mat)) {
     my_mat[i, j] &lt;-<span class="st"> </span>my_vector[<span class="dv">1</span>]
-    my_vector &lt;-<span class="st"> </span>my_vector[-<span class="dv">1</span>] <span class="co"># 每跑完一次迴圈要丟掉第一個元素</span>
+    my_vector &lt;-<span class="st"> </span>my_vector[<span class="op">-</span><span class="dv">1</span>] <span class="co"># 每跑完一次迴圈要丟掉第一個元素</span>
   }
 }</code></pre></div>
 </div>
 <div id="5" class="slide section level2">
-<h1>迴圈（5）</h1>
+<h2>迴圈（5）</h2>
 <ul>
 <li>矩陣是 3 * 3，但是向量只有 4 個</li>
 <li>沒有填滿的就是 NA</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">4</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
 my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
-for (j in <span class="dv">1</span>:<span class="kw">ncol</span>(my_mat)){
-  for (i in <span class="dv">1</span>:<span class="kw">nrow</span>(my_mat)){
+<span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(my_mat)){
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(my_mat)){
     my_mat[i, j] &lt;-<span class="st"> </span>my_vector[<span class="dv">1</span>]
-    my_vector &lt;-<span class="st"> </span>my_vector[-<span class="dv">1</span>] <span class="co"># 每跑完一次迴圈要丟掉第一個元素</span>
+    my_vector &lt;-<span class="st"> </span>my_vector[<span class="op">-</span><span class="dv">1</span>] <span class="co"># 每跑完一次迴圈要丟掉第一個元素</span>
   }
 }</code></pre></div>
-<ul>
-<li>這是 <code>byrow = FALSE</code>，還記得嗎？你知道怎麼改成 <code>byrow = TRUE</code> 嗎？</li>
-</ul>
 </div>
 <div id="6" class="slide section level2">
-<h1>迴圈（6）</h1>
+<h2>迴圈（6）</h2>
 <ul>
 <li><code>while</code> 迴圈會先檢查條件才執行程式碼</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars_col_names &lt;-<span class="st"> </span><span class="kw">names</span>(mtcars)
-i &lt;-<span class="st"> </span><span class="dv">1</span>
-while (i &lt;=<span class="st"> </span><span class="kw">length</span>(mtcars_col_names)) {
-  <span class="kw">print</span>(mtcars_col_names[i])
-  i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
-}
-i <span class="co"># 看看 i</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="kw">length</span>(month.name)) {
+  <span class="kw">print</span>(month.name[i])
+  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+}</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>流程控制</h1>
+<h2>流程控制</h2>
 <ul>
 <li>一如其他的程式語言，R 語言也習慣使用 <code>if-else</code> 的語法來進行流程控制：</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># 修改 x 看看結果有何不同？</span>
 <span class="co"># 兩個分支的流程控制</span>
-if (x %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">0</span>) {
+<span class="cf">if</span> (x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
   <span class="kw">print</span>(<span class="st">&quot;x 是一個偶數！&quot;</span>)
-} else {
+} <span class="cf">else</span> {
   <span class="kw">print</span>(<span class="st">&quot;x 是一個奇數！&quot;</span>)
 }</code></pre></div>
 </div>
 <div id="2" class="slide section level2">
-<h1>流程控制（2）</h1>
+<h2>流程控制（2）</h2>
 <ul>
 <li>多個分支要採用 <code>if-else if-else</code> 的語法來進行流程控制：</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># 修改 x 看看結果有何不同？</span>
 <span class="co"># 三個分支的流程控制</span>
-if (x %%<span class="st"> </span><span class="dv">3</span> ==<span class="st"> </span><span class="dv">0</span>) {
-  <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 0！&quot;</span>)
-} else if (x %%<span class="st"> </span><span class="dv">3</span> ==<span class="st"> </span><span class="dv">1</span>) {
-  <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 1！&quot;</span>)
-} else {
-  <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 2！&quot;</span>)
-}</code></pre></div>
+<span class="cf">if</span> (x <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
+  <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 0！&quot;)</span>
+<span class="st">} else if (x %% 3 == 1) {</span>
+<span class="st">  print(&quot;</span>x 除以 <span class="dv">3</span> 的餘數為 <span class="dv">1</span>！<span class="st">&quot;)</span>
+<span class="st">} else {</span>
+<span class="st">  print(&quot;</span>x 除以 <span class="dv">3</span> 的餘數為 <span class="dv">2</span>！<span class="st">&quot;)</span>
+<span class="st">}</span></code></pre></div>
 </div>
 <div id="3" class="slide section level2">
-<h1>流程控制（3）</h1>
+<h2>流程控制（3）</h2>
 <ul>
 <li>太多分支會降低程式碼的可讀性（readability），這時可以考慮使用 <code>switch()</code> 函數</li>
 <li>但是 <code>switch()</code> 函數處理整數時只接受從 1 開始的回傳數值，所以要處理成字元</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">6</span>
-answer &lt;-<span class="st"> </span>x %%<span class="st"> </span><span class="dv">3</span>
-switch(<span class="kw">as.character</span>(answer),
+answer &lt;-<span class="st"> </span>x <span class="op">%%</span><span class="st"> </span><span class="dv">3</span>
+<span class="cf">switch</span>(<span class="kw">as.character</span>(answer),
   <span class="st">&quot;0&quot;</span> =<span class="st"> </span>{
-    <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 0！&quot;</span>)
-  },
-  <span class="st">&quot;1&quot;</span> =<span class="st"> </span>{
-    <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 1！&quot;</span>)
-  },
-  <span class="st">&quot;2&quot;</span> =<span class="st"> </span>{<span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 2！&quot;</span>)
-  }
-)</code></pre></div>
+    <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 0！&quot;)</span>
+<span class="st">  },</span>
+<span class="st">  &quot;</span><span class="dv">1</span><span class="st">&quot; = {</span>
+<span class="st">    print(&quot;</span>x 除以 <span class="dv">3</span> 的餘數為 <span class="dv">1</span>！<span class="st">&quot;)</span>
+<span class="st">  },</span>
+<span class="st">  &quot;</span><span class="dv">2</span><span class="st">&quot; = {print(&quot;</span>x 除以 <span class="dv">3</span> 的餘數為 <span class="dv">2</span>！<span class="st">&quot;)</span>
+<span class="st">  }</span>
+<span class="st">)</span></code></pre></div>
 </div>
 <div id="5-1" class="slide section level2">
-<h1>迴圈（5）</h1>
+<h2>迴圈（5）</h2>
 <ul>
 <li>在迴圈中加入 <code>break</code> 或 <code>next</code> 讓你的程式更有彈性</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars_col_names &lt;-<span class="st"> </span><span class="kw">names</span>(mtcars)
-for (i in mtcars_col_names) {
-  if (i ==<span class="st"> &quot;wt&quot;</span>) {
-    break
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> month.name) {
+  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> &quot;September&quot;</span>) {
+    <span class="cf">break</span>
   }
   <span class="kw">print</span>(i)
 }
-i <span class="co"># 看看 i</span>
 
-for (i in mtcars_col_names) {
-  if (i ==<span class="st"> &quot;wt&quot;</span>) {
-    next
+<span class="cf">for</span> (i <span class="cf">in</span> month.name) {
+  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> &quot;September&quot;</span>) {
+    <span class="cf">next</span>
   }
   <span class="kw">print</span>(i)
+}</code></pre></div>
+</div>
+<div id="for--while-" class="slide section level2">
+<h2><code>for</code> 與 <code>while</code> 的使用時機</h2>
+<ul>
+<li>所有的 <code>for</code> 都可以用 <code>while</code> 改寫</li>
+<li>但是反過來並非如此</li>
+<li>不知道迭代次數的時候用 <code>while</code></li>
+</ul>
+</div>
+<div id="for--while-2" class="slide section level2">
+<h2><code>for</code> 與 <code>while</code> 的使用時機（2）</h2>
+<ul>
+<li>投擲一個公正的銅板，必須出現三次正面才可以停止</li>
+<li>請問總共要投幾次？</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coin_flips &lt;-<span class="st"> </span><span class="kw">c</span>()
+coin &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>) <span class="co"># TRUE 代表正面，FALSE 代表反面</span>
+i &lt;-<span class="st"> </span><span class="dv">1</span>
+
+<span class="cf">while</span> (<span class="kw">sum</span>(coin_flips) <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>){
+  coin_flips[i] &lt;-<span class="st"> </span><span class="kw">sample</span>(coin, <span class="dt">size =</span> <span class="dv">1</span>)
+  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 }
-i <span class="co"># 看看 i</span></code></pre></div>
+coin_flips <span class="co"># 投擲紀錄</span>
+<span class="kw">length</span>(coin_flips) <span class="co"># 總共投了幾次</span></code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>隨堂練習</h1>
+<h2>隨堂練習</h2>
 <p><a href="https://yaojenkuo.github.io/r_programming/ch8_exercise">迴圈與流程控制 - 隨堂練習</a></p>
+</div>
+<div class="slide section level2">
+<h2>期中作業</h2>
+<p>我們把這個公正的<strong>銅板</strong>改成公正的<strong>骰子</strong>，必須出現三次六點才可以停止，請問總共要投幾次？</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dice &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
+<span class="kw">sample</span>(dice, <span class="dt">size =</span> <span class="dv">1</span>)</code></pre></div>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
