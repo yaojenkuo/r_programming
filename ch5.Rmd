@@ -133,6 +133,36 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   geom_boxplot()
 ```
 
+## 函數圖
+
+- `ggplot() + stat_function(fun = , geom = "line")`
+
+```{r}
+sin_df <- data.frame(x = c(-pi, pi))
+sin_df
+
+ggplot(sin_df, aes(x = x)) +
+  stat_function(fun = sin, geom = "line")
+```
+
+## 函數圖（2）
+
+- 繪製自訂函數
+
+```{r}
+sigmoid_func <- function(x){
+  return(1 / (1 + exp(-x)))
+}
+
+sigmoid_df <- data.frame(x = c(-10, 10))
+sigmoid_df
+
+ggplot(sigmoid_df, aes(x = x)) +
+  stat_function(fun = sigmoid_func, geom = "line") +
+  geom_hline(yintercept = 0.5, lty = 2) +
+  geom_vline(xintercept = 0, lty = 2)
+```
+
 ## 長條圖
 
 - `ggplot() + geom_bar()` 繪製長條圖
