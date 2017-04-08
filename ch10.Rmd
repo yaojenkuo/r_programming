@@ -15,20 +15,154 @@ knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
 - 標題
 - 清單
 - 程式碼
-    - echo: (TRUE; logical)
-    - results: ('markup'; character)
-        - markup
-        - asis
-        - hold
-        - hide
-    - warning: (TRUE; logical)
-    - error: (TRUE; logical)
-    - message: (TRUE; logical)
 - 連結
 - 圖片
 - 引用
-- 水平分隔線
 - 表格
+
+## 粗體與斜體
+
+```
+這是一個**粗體**
+這是一個*斜體*
+```
+
+這是一個**粗體**
+這是一個*斜體*
+
+## 標題
+
+```
+# 標題一
+## 標題二
+### 標題三
+#### 標題四
+##### 標題五
+###### 標題六
+```
+
+## 清單
+
+```
+資料科學的團隊組成：
+
+- 資料科學家
+- 資料分析師
+- 資料工程師
+```
+
+資料科學的團隊組成：
+
+- 資料科學家
+- 資料分析師
+- 資料工程師
+
+## 清單（2）
+
+```
+資料科學團隊的團隊組成：
+
+- 資料科學家
+    - 喜歡數學、統計與演算法
+- 資料分析師
+    - 喜歡商業智慧、視覺化與報表
+- 資料工程師
+    - 喜歡系統架構、資料倉儲與自動化
+```
+
+資料科學團隊的團隊組成：
+
+- 資料科學家
+    - 喜歡數學、統計與演算法
+- 資料分析師
+    - 喜歡商業智慧、視覺化與報表
+- 資料工程師
+    - 喜歡系統架構、資料倉儲與自動化
+
+## 程式碼
+
+- echo: (TRUE; logical)
+- 是否要將程式顯示在文件中
+
+## 程式碼（2）
+
+- results: ('markup'; character)
+    - markup
+    - asis
+    - hold
+    - hide
+- 調整 `results` 參數為 `"hide"`，只會輸出程式碼在文件中但不會顯示執行後的結果
+
+## 程式碼（3）
+
+- warning: (TRUE; logical)
+- 是否要將程式執行的警告訊息顯示在文件中
+
+```{r}
+as.integer("Hello world")
+```
+
+## 程式碼（4）
+
+- error: (FALSE; logical)
+- 是否允許輸出程式執行錯誤的文件
+
+```
+1 + "Hello world"
+```
+
+## 程式碼（5）
+
+- message: (TRUE; logical)
+- 是否要將程式執行的回傳訊息顯示在文件中
+
+```{r}
+library(plotly)
+```
+
+## 連結
+
+```
+[RMarkdown](http://rmarkdown.rstudio.com/index.html)
+
+<http://rmarkdown.rstudio.com/index.html>
+```
+
+[RMarkdown](http://rmarkdown.rstudio.com/index.html)
+
+<http://rmarkdown.rstudio.com/index.html>
+
+## 圖片
+
+```
+![Superman R Logo](http://www.clipartbest.com/cliparts/Kij/Lx5/KijLx5kyT.jpg)
+```
+
+![Superman R Logo](http://www.clipartbest.com/cliparts/Kij/Lx5/KijLx5kyT.jpg)
+
+## 引用
+
+```
+> My mom always said life was like a box of chocolates. You never know what you're gonna get.
+> [Forrest Gump](https://en.wikipedia.org/wiki/Forrest_Gump)
+```
+
+> My mom always said life was like a box of chocolates. You never know what you're gonna get.
+> [Forrest Gump](https://en.wikipedia.org/wiki/Forrest_Gump)
+
+## 表格
+
+```
+|喜歡的樂團|Lead Vocal|起源|
+|----------|----------|----|
+|Beyond|黃家駒|香港|
+|The Beatles|John Lennon|英國|
+```
+
+|喜歡的樂團|Lead Vocal|起源|
+|----------|----------|----|
+|Beyond|黃家駒|香港|
+|The Beatles|John Lennon|英國|
 
 ## 官網資源
 

@@ -106,6 +106,30 @@ boxplot(iris$Petal.Length ~ iris$Species, main = "Petal length by species")
 boxplot(iris$Petal.Width ~ iris$Species, main = "Petal width by species")
 ```
 
+## 函數圖
+
+- `curve()` 繪製函數圖
+
+```{r}
+curve(sin, from = -pi, to = pi)
+grid()
+```
+
+## 函數圖（2）
+
+- 繪製自訂函數也不是問題
+- 我們會教同學如何自訂函數
+
+```{r}
+sigmoid_func <- function(x){
+  return(1 / (1 + exp(-x)))
+}
+curve(sigmoid_func, from = -10, to = 10)
+abline(h = 0.5, lty = 2)
+abline(v = 0, lty = 2)
+grid()
+```
+
 ## 長條圖
 
 - `barplot()` 繪製長條圖
@@ -153,4 +177,4 @@ mtext("Dist", side = 2, las = 1, line = 2)
 
 ## 期中作業
 
-- 使用 Base plotting system 與任意資料繪製散佈圖，線圖，直方圖，盒鬚圖與長條圖
+- 用一個 2x2 的畫布練習使用 Base plotting system 繪製任意四個圖形
