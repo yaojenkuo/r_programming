@@ -12,7 +12,6 @@ knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
 ## 為何要自訂函數
 
 - R 語言本質上是一個函數型語言
-- 一如我們在第二章就引用的名言佳句：
     
 > Everything that happens is a function call
 > By [John Chambers](https://en.wikipedia.org/wiki/John_Chambers_(statistician))
@@ -95,33 +94,6 @@ my.sum(another_vector)
 
 ## 自訂函數（4）
 
-- 練習把 `mean()` 函數實作出來
-
-```{r}
-# 宣告 my.mean() 函數
-my.mean <- function(input_vector) {
-  my_sum <- 0
-  count <- 0
-  for (i in input_vector) {
-    my_sum <- my_sum + i
-  }
-  for (i in input_vector) {
-    count <- count + 1
-  }
-  return(my_sum / count)
-}
-
-# 產出 inputs
-my_vector <- 1:10
-another_vector <- 1:100
-
-# 計算平均數
-my.mean(my_vector)
-my.mean(another_vector)
-```
-
-## 自訂函數（5）
-
 - 練習把 `sort()` 函數實作出來（Ascending Exchange Sort）
 
 ```{r}
@@ -148,13 +120,12 @@ unsorted_vector <- round(runif(10) * 100)
 exchange.sort.asc(unsorted_vector)
 ```
 
-
 ## 隨堂練習
 
 [自訂函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch9_exercise)
 
 ## 期中作業
 
-- 將程式上傳至 GitHub
-- 將課堂中的自訂排序函數加入 `decreasing = ` 的參數（預設為 `FALSE`）讓使用者可以指定遞增或遞減排序
-- 自訂計算[樣本標準差](https://zh.wikipedia.org/wiki/%E6%A8%99%E6%BA%96%E5%B7%AE)的函數
+- 整合課堂教的 `my.sum()` 與 `my.length` 把 `mean()` 函數實作出來
+
+$$平均數 = \frac{總和}{個數}$$

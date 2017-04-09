@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-02-15" />
+  <meta name="date" content="2017-04-09" />
   <title>自訂函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,13 +55,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-02-15</p>
+  <p class="date">2017-04-09</p>
 </div>
 <div class="slide section level2">
-<h1>為何要自訂函數</h1>
+<h2>為何要自訂函數</h2>
 <ul>
 <li>R 語言本質上是一個函數型語言</li>
-<li>一如我們在第二章就引用的名言佳句：</li>
 </ul>
 <blockquote>
 <p>Everything that happens is a function call By <a href="https://en.wikipedia.org/wiki/John_Chambers_(statistician)">John Chambers</a></p>
@@ -69,24 +68,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>自訂函數的外觀：</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">function.name &lt;-<span class="st"> </span>function(input_1, input_2, params_1, params_2, ...) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">function.name &lt;-<span class="st"> </span><span class="cf">function</span>(input_<span class="dv">1</span>, input_<span class="dv">2</span>, params_<span class="dv">1</span>, params_<span class="dv">2</span>, ...) {
   <span class="co"># 一些描述</span>
   <span class="kw">return</span>() <span class="co">#把輸出回傳</span>
 }</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>自訂函數</h1>
+<h2>自訂函數</h2>
 <ul>
 <li>練習建立一個 <code>circle.calculate()</code> 函數</li>
 <li>這個函數可以依照參數決定要計算圓面積或者圓周長</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 宣告 circle.calculate() 函數</span>
-circle.calculate &lt;-<span class="st"> </span>function(radius, <span class="dt">area_cal=</span><span class="ot">TRUE</span>) {
-  circle_area &lt;-<span class="st"> </span>pi *<span class="st"> </span>radius^<span class="dv">2</span>
-  circle_circum &lt;-<span class="st"> </span><span class="dv">2</span> *<span class="st"> </span>pi *<span class="st"> </span>radius
-  if (area_cal ==<span class="st"> </span><span class="ot">TRUE</span>) {
+circle.calculate &lt;-<span class="st"> </span><span class="cf">function</span>(radius, <span class="dt">area_cal=</span><span class="ot">TRUE</span>) {
+  circle_area &lt;-<span class="st"> </span>pi <span class="op">*</span><span class="st"> </span>radius<span class="op">^</span><span class="dv">2</span>
+  circle_circum &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">*</span><span class="st"> </span>radius
+  <span class="cf">if</span> (area_cal <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) {
     <span class="kw">return</span>(circle_area)
-  } else {
+  } <span class="cf">else</span> {
     <span class="kw">return</span>(circle_circum)
   }
 }
@@ -95,87 +94,61 @@ circle.calculate &lt;-<span class="st"> </span>function(radius, <span class="dt"
 <span class="kw">circle.calculate</span>(<span class="dt">area_cal =</span> <span class="ot">FALSE</span>, <span class="dt">radius =</span> <span class="dv">3</span>) <span class="co"># 計算圓周</span></code></pre></div>
 </div>
 <div id="2" class="slide section level2">
-<h1>自訂函數（2）</h1>
+<h2>自訂函數（2）</h2>
 <ul>
 <li>練習把 <code>length()</code> 函數實作出來</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 宣告 my.length() 函數</span>
-my.length &lt;-<span class="st"> </span>function(input_vector) {
+my.length &lt;-<span class="st"> </span><span class="cf">function</span>(input_vector) {
   count &lt;-<span class="st"> </span><span class="dv">0</span>
-  for (i in input_vector) {
-    count &lt;-<span class="st"> </span>count +<span class="st"> </span><span class="dv">1</span>
+  <span class="cf">for</span> (i <span class="cf">in</span> input_vector) {
+    count &lt;-<span class="st"> </span>count <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
   }
   <span class="kw">return</span>(count)
 }
 
 <span class="co"># 產出 inputs</span>
-my_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
-another_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100</span>
+my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+another_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span>
 
 <span class="co"># 呼叫函數</span>
 <span class="kw">my.length</span>(my_vector)
 <span class="kw">my.length</span>(another_vector)</code></pre></div>
 </div>
 <div id="3" class="slide section level2">
-<h1>自訂函數（3）</h1>
+<h2>自訂函數（3）</h2>
 <ul>
 <li>練習把 <code>sum()</code> 函數實作出來</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 宣告 my.sum() 函數</span>
-my.sum &lt;-<span class="st"> </span>function(input_vector) {
+my.sum &lt;-<span class="st"> </span><span class="cf">function</span>(input_vector) {
   my_sum &lt;-<span class="st"> </span><span class="dv">0</span>
-  for (i in input_vector) {
-    my_sum &lt;-<span class="st"> </span>my_sum +<span class="st"> </span>i
+  <span class="cf">for</span> (i <span class="cf">in</span> input_vector) {
+    my_sum &lt;-<span class="st"> </span>my_sum <span class="op">+</span><span class="st"> </span>i
   }
   <span class="kw">return</span>(my_sum)
 }
 
 <span class="co"># 產出 inputs</span>
-my_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
-another_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100</span>
+my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+another_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span>
 
 <span class="co"># 呼叫函數</span>
 <span class="kw">my.sum</span>(my_vector)
 <span class="kw">my.sum</span>(another_vector)</code></pre></div>
 </div>
 <div id="4" class="slide section level2">
-<h1>自訂函數（4）</h1>
-<ul>
-<li>練習把 <code>mean()</code> 函數實作出來</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 宣告 my.mean() 函數</span>
-my.mean &lt;-<span class="st"> </span>function(input_vector) {
-  my_sum &lt;-<span class="st"> </span><span class="dv">0</span>
-  count &lt;-<span class="st"> </span><span class="dv">0</span>
-  for (i in input_vector) {
-    my_sum &lt;-<span class="st"> </span>my_sum +<span class="st"> </span>i
-  }
-  for (i in input_vector) {
-    count &lt;-<span class="st"> </span>count +<span class="st"> </span><span class="dv">1</span>
-  }
-  <span class="kw">return</span>(my_sum /<span class="st"> </span>count)
-}
-
-<span class="co"># 產出 inputs</span>
-my_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
-another_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">100</span>
-
-<span class="co"># 計算平均數</span>
-<span class="kw">my.mean</span>(my_vector)
-<span class="kw">my.mean</span>(another_vector)</code></pre></div>
-</div>
-<div id="5" class="slide section level2">
-<h1>自訂函數（5）</h1>
+<h2>自訂函數（4）</h2>
 <ul>
 <li>練習把 <code>sort()</code> 函數實作出來（Ascending Exchange Sort）</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 宣告 exchange.sort.asc() 函數</span>
-exchange.sort.asc &lt;-<span class="st"> </span>function(input_vector) {
+exchange.sort.asc &lt;-<span class="st"> </span><span class="cf">function</span>(input_vector) {
   input_vector_clone &lt;-<span class="st"> </span>input_vector
   vector_length &lt;-<span class="st"> </span><span class="kw">length</span>(input_vector)
-  for (i in <span class="dv">1</span>:(vector_length -<span class="st"> </span><span class="dv">1</span>)) {
-    for (j in (i +<span class="st"> </span><span class="dv">1</span>):vector_length) {
-      if (input_vector[i] &gt;<span class="st"> </span>input_vector[j]) {
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(vector_length <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {
+    <span class="cf">for</span> (j <span class="cf">in</span> (i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">:</span>vector_length) {
+      <span class="cf">if</span> (input_vector[i] <span class="op">&gt;</span><span class="st"> </span>input_vector[j]) {
         temp &lt;-<span class="st"> </span>input_vector[i]
         input_vector[i] &lt;-<span class="st"> </span>input_vector[j]
         input_vector[j] &lt;-<span class="st"> </span>temp
@@ -186,22 +159,21 @@ exchange.sort.asc &lt;-<span class="st"> </span>function(input_vector) {
 }
 
 <span class="co"># 產出一組隨機向量</span>
-unsorted_vector &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">10</span>) *<span class="st"> </span><span class="dv">100</span>)
+unsorted_vector &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)
 
 <span class="co"># 對該隨機向量做遞增排序</span>
 <span class="kw">exchange.sort.asc</span>(unsorted_vector)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>隨堂練習</h1>
+<h2>隨堂練習</h2>
 <p><a href="https://yaojenkuo.github.io/r_programming/ch9_exercise">自訂函數 - 隨堂練習</a></p>
 </div>
 <div class="slide section level2">
-<h1>期中作業</h1>
+<h2>期中作業</h2>
 <ul>
-<li>將程式上傳至 GitHub</li>
-<li>將課堂中的自訂排序函數加入 <code>decreasing =</code> 的參數（預設為 <code>FALSE</code>）讓使用者可以指定遞增或遞減排序</li>
-<li>自訂計算<a href="https://zh.wikipedia.org/wiki/%E6%A8%99%E6%BA%96%E5%B7%AE">樣本標準差</a>的函數</li>
+<li>整合課堂教的 <code>my.sum()</code> 與 <code>my.length</code> 把 <code>mean()</code> 函數實作出來</li>
 </ul>
+<p><span class="math display">\[平均數 = \frac{總和}{個數}\]</span></p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->

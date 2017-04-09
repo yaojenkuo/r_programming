@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-04-07" />
+  <meta name="date" content="2017-04-09" />
   <title>迴圈與流程控制</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-04-07</p>
+  <p class="date">2017-04-09</p>
 </div>
 <div class="slide section level2">
 <h2>迴圈</h2>
@@ -229,6 +229,57 @@ i &lt;-<span class="st"> </span><span class="dv">1</span>
 }
 coin_flips <span class="co"># 投擲紀錄</span>
 <span class="kw">length</span>(coin_flips) <span class="co"># 總共投了幾次</span></code></pre></div>
+</div>
+<div class="slide section level2">
+<h2>迭代觀念</h2>
+<ul>
+<li>進階的 R 語言使用者應該具備這樣的概念：
+<ul>
+<li>向量計算 &gt; <code>apply()</code> 函數家族 &gt; <code>for</code> <code>while</code> 迴圈</li>
+</ul></li>
+<li>舉例：計算 50 萬個人的 <a href="https://zh.wikipedia.org/wiki/%E8%BA%AB%E9%AB%98%E9%AB%94%E9%87%8D%E6%8C%87%E6%95%B8">BMI</a></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">500000</span>) <span class="op">*</span><span class="st"> </span><span class="dv">50</span> <span class="op">+</span><span class="st"> </span><span class="dv">140</span>
+weights &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">500000</span>) <span class="op">*</span><span class="st"> </span><span class="dv">50</span> <span class="op">+</span><span class="st"> </span><span class="dv">40</span>
+h_w_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(heights, weights)</code></pre></div>
+</div>
+<div id="2" class="slide section level2">
+<h2>迭代觀念（2）</h2>
+<ul>
+<li><code>system.time()</code> 函數可以觀察程式執行時間</li>
+<li>首先登場的是向量計算：</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">500000</span>) <span class="op">*</span><span class="st"> </span><span class="dv">50</span> <span class="op">+</span><span class="st"> </span><span class="dv">140</span>
+weights &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">500000</span>) <span class="op">*</span><span class="st"> </span><span class="dv">50</span> <span class="op">+</span><span class="st"> </span><span class="dv">40</span>
+h_w_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(heights, weights)
+<span class="kw">system.time</span>(
+  h_w_df<span class="op">$</span>bmi &lt;-<span class="st"> </span>h_w_df<span class="op">$</span>weights <span class="op">/</span><span class="st"> </span>(h_w_df<span class="op">$</span>heights <span class="op">/</span><span class="st"> </span><span class="dv">100</span>)<span class="op">^</span><span class="dv">2</span>
+)</code></pre></div>
+</div>
+<div id="3" class="slide section level2">
+<h2>迭代觀念（3）</h2>
+<ul>
+<li>接著登場的是 <code>apply()</code> 函數家族的 <code>mapply()</code> 函數：</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bmi_calculator &lt;-<span class="st"> </span><span class="cf">function</span>(height, weight){
+    <span class="kw">return</span>(weight <span class="op">/</span><span class="st"> </span>(height <span class="op">/</span><span class="st"> </span><span class="dv">100</span>)<span class="op">^</span><span class="dv">2</span>)
+}
+
+<span class="kw">system.time</span>(
+  h_w_df<span class="op">$</span>bmi &lt;-<span class="st"> </span><span class="kw">mapply</span>(<span class="dt">FUN =</span> bmi_calculator, h_w_df<span class="op">$</span>heights, h_w_df<span class="op">$</span>weights)
+)</code></pre></div>
+</div>
+<div id="3-1" class="slide section level2">
+<h2>迭代觀念（3）</h2>
+<ul>
+<li>最後登場的是 <code>for</code> 迴圈：</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bmi &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dt">times =</span> <span class="kw">nrow</span>(h_w_df))
+<span class="kw">system.time</span>(
+    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(h_w_df)){
+        bmi[i] &lt;-<span class="st"> </span><span class="kw">bmi_calculator</span>(h_w_df[i, <span class="st">&quot;heights&quot;</span>], h_w_df[i, <span class="st">&quot;weights&quot;</span>])
+    }
+)</code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>隨堂練習</h2>

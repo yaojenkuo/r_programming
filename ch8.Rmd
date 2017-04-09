@@ -186,6 +186,59 @@ coin_flips # 投擲紀錄
 length(coin_flips) # 總共投了幾次
 ```
 
+## 迭代觀念
+
+- 進階的 R 語言使用者應該具備這樣的概念：
+    - 向量計算 > `apply()` 函數家族 > `for` `while` 迴圈
+- 舉例：計算 50 萬個人的 [BMI](https://zh.wikipedia.org/wiki/%E8%BA%AB%E9%AB%98%E9%AB%94%E9%87%8D%E6%8C%87%E6%95%B8)
+
+```{r}
+heights <- runif(500000) * 50 + 140
+weights <- runif(500000) * 50 + 40
+h_w_df <- data.frame(heights, weights)
+```
+
+## 迭代觀念（2）
+
+- `system.time()` 函數可以觀察程式執行時間
+- 首先登場的是向量計算：
+
+```{r}
+heights <- runif(500000) * 50 + 140
+weights <- runif(500000) * 50 + 40
+h_w_df <- data.frame(heights, weights)
+system.time(
+  h_w_df$bmi <- h_w_df$weights / (h_w_df$heights / 100)^2
+)
+```
+
+## 迭代觀念（3）
+
+- 接著登場的是 `apply()` 函數家族的 `mapply()` 函數：
+
+```{r}
+bmi_calculator <- function(height, weight){
+    return(weight / (height / 100)^2)
+}
+
+system.time(
+  h_w_df$bmi <- mapply(FUN = bmi_calculator, h_w_df$heights, h_w_df$weights)
+)
+```
+
+## 迭代觀念（3）
+
+- 最後登場的是 `for` 迴圈：
+
+```{r}
+bmi <- rep(NA, times = nrow(h_w_df))
+system.time(
+    for (i in 1:nrow(h_w_df)){
+        bmi[i] <- bmi_calculator(h_w_df[i, "heights"], h_w_df[i, "weights"])
+    }
+)
+```
+
 ## 隨堂練習
 
 [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)
