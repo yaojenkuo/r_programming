@@ -31,6 +31,33 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - 從 [RStudio](https://www.rstudio.com/products/rstudio/download3/) 下載 .exe 檔來進行安裝
 
+## 第一次執行 RSudio
+
+```{r, out.width = "680px"}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch106.png")
+```
+
+## 新增一個 R 程式
+
+```{r, out.width = "680px"}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch107.png")
+```
+
+## 完整的四個區塊
+
+- 來源（Source）：位於左上角，編寫程式的區塊
+- 命令列（Console）：位於左下角，執行程式的區塊
+- 環境與歷史：位於右上角
+- 檔案、圖形、套件、查詢與預覽器：位於右下角
+
+```{r, out.width = "680px"}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch108.png")
+```
+
+## 第一個函數 `q()`
+
+- 在命令列（Console）輸入 `q()` 可以離開 RStudio
+
 ## 安裝 Git(OS X)
 
 - OS X 內建 Git，不需要進行安裝
