@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-01-17" />
+  <meta name="date" content="2017-05-05" />
   <title>活用資料框</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,10 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-01-17</p>
+  <p class="date">2017-05-05</p>
 </div>
 <div id="-data-frame-" class="slide section level2">
-<h1>建立一個 Data Frame 來練習</h1>
+<h2>建立一個 Data Frame 來練習</h2>
 <ul>
 <li>先建立向量，再以 <code>data.frame()</code> 函數將這些向量集合成為一個資料框</li>
 </ul>
@@ -75,7 +75,7 @@ height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 straw_hat_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, gender, occupation, bounty, age, birthday, height)</code></pre></div>
 </div>
 <div id="-data-frame-2" class="slide section level2">
-<h1>建立一個 Data Frame 來練習（2）</h1>
+<h2>建立一個 Data Frame 來練習（2）</h2>
 <ul>
 <li>使用我們提過的函數觀察這個資料框</li>
 </ul>
@@ -86,19 +86,19 @@ straw_hat_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(na
 <span class="kw">View</span>(straw_hat_df)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>建立新的變數</h1>
+<h2>建立新的變數</h2>
 <ul>
 <li>用系統日期去推算出生年份</li>
 <li>新增出生年份（birth_year）這個變數到原本的資料框</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
 this_year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">'%Y'</span>))
-birth_year &lt;-<span class="st"> </span>this_year -<span class="st"> </span>straw_hat_df$age
-straw_hat_df$birth_year &lt;-<span class="st"> </span>birth_year
+birth_year &lt;-<span class="st"> </span>this_year <span class="op">-</span><span class="st"> </span>straw_hat_df<span class="op">$</span>age
+straw_hat_df<span class="op">$</span>birth_year &lt;-<span class="st"> </span>birth_year
 <span class="kw">View</span>(straw_hat_df)</code></pre></div>
 </div>
 <div id="2" class="slide section level2">
-<h1>建立新的變數（2）</h1>
+<h2>建立新的變數（2）</h2>
 <ul>
 <li>使用 <code>cbind()</code> 函數新增一個 <code>favorite_food</code> 的欄位</li>
 </ul>
@@ -108,17 +108,17 @@ straw_hat_df &lt;-<span class="st"> </span><span class="kw">cbind</span>(straw_h
 <span class="kw">View</span>(straw_hat_df)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>刪除變數</h1>
+<h2>刪除變數</h2>
 <ul>
 <li>將變數指定為 <code>NULL</code> 來進行刪除</li>
 <li>刪除 <code>occupation</code></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
-straw_hat_df$occupation &lt;-<span class="st"> </span><span class="ot">NULL</span>
+straw_hat_df<span class="op">$</span>occupation &lt;-<span class="st"> </span><span class="ot">NULL</span>
 <span class="kw">View</span>(straw_hat_df)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>新增觀測值</h1>
+<h2>新增觀測值</h2>
 <ul>
 <li>使用 <code>rbind()</code> 函數新增一筆 <code>princess_vivi</code> 的觀測值</li>
 </ul>
@@ -127,39 +127,39 @@ princess_vivi &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 straw_hat_df &lt;-<span class="st"> </span><span class="kw">rbind</span>(straw_hat_df, princess_vivi)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>刪除觀測值</h1>
+<h2>刪除觀測值</h2>
 <ul>
 <li>使用中括號 <code>[]</code> 搭配索引值</li>
 <li>或使用邏輯值</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
-straw_hat_df &lt;-<span class="st"> </span>straw_hat_df[-<span class="dv">9</span>, ] 
-straw_hat_df &lt;-<span class="st"> </span>straw_hat_df[straw_hat_df$name !=<span class="st"> &quot;Franky&quot;</span>, ]</code></pre></div>
+straw_hat_df &lt;-<span class="st"> </span>straw_hat_df[<span class="op">-</span><span class="dv">9</span>, ] 
+straw_hat_df &lt;-<span class="st"> </span>straw_hat_df[straw_hat_df<span class="op">$</span>name <span class="op">!=</span><span class="st"> &quot;Franky&quot;</span>, ]</code></pre></div>
 </div>
 <div id="-subset-" class="slide section level2">
-<h1>使用 <code>subset()</code> 函數</h1>
+<h2>使用 <code>subset()</code> 函數</h2>
 <ul>
 <li><code>subset()</code> 函數可以一次對欄位與觀測值進行篩選</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
-male_bounty &lt;-<span class="st"> </span><span class="kw">subset</span>(straw_hat_df, gender ==<span class="st"> &quot;Male&quot;</span>, <span class="dt">select =</span> <span class="kw">c</span>(name, gender, bounty))
+male_bounty &lt;-<span class="st"> </span><span class="kw">subset</span>(straw_hat_df, gender <span class="op">==</span><span class="st"> &quot;Male&quot;</span>, <span class="dt">select =</span> <span class="kw">c</span>(name, gender, bounty))
 <span class="kw">View</span>(male_bounty)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>轉換格式</h1>
+<h2>轉換格式</h2>
 <ul>
 <li>新增一個變數為生日的年月日，格式為 Date</li>
 <li>先算生日的年份，跟原本的月日結合，然後轉換格式</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
 this_year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">'%Y'</span>))
-birth_year &lt;-<span class="st"> </span>this_year -<span class="st"> </span>straw_hat_df$age
-birth_date_chr &lt;-<span class="st"> </span><span class="kw">paste</span>(birth_year, straw_hat_df$birthday, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)
-straw_hat_df$birth_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(birth_date_chr)
+birth_year &lt;-<span class="st"> </span>this_year <span class="op">-</span><span class="st"> </span>straw_hat_df<span class="op">$</span>age
+birth_date_chr &lt;-<span class="st"> </span><span class="kw">paste</span>(birth_year, straw_hat_df<span class="op">$</span>birthday, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)
+straw_hat_df<span class="op">$</span>birth_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(birth_date_chr)
 <span class="kw">str</span>(straw_hat_df)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>資料轉置：寬表格變長表格</h1>
+<h2>資料轉置：寬表格變長表格</h2>
 <ul>
 <li>透過 <code>tidyr</code> 套件中的 <code>gather()</code> 函數</li>
 <li>建立一個寬表格 <code>straw_hat_wide_df</code> 僅包含姓名、年齡與身高這三個欄位。</li>
@@ -176,14 +176,14 @@ straw_hat_long_df &lt;-<span class="st"> </span><span class="kw">gather</span>(s
 <span class="kw">View</span>(straw_hat_long_df)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>資料轉置：長表格變寬表格</h1>
+<h2>資料轉置：長表格變寬表格</h2>
 <ul>
 <li>使用 <code>tidyr::spread()</code> 函數把 <code>straw_hat_long_df</code> 轉置為 <code>straw_hat_wide_df</code></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">straw_hat_wide_df &lt;-<span class="st"> </span><span class="kw">spread</span>(straw_hat_long_df, <span class="dt">key =</span> category, <span class="dt">value =</span> values)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>為什麼要學資料轉置</h1>
+<h2>為什麼要學資料轉置</h2>
 <ul>
 <li>先看我們的原始寬表格</li>
 <li>如果我們想要快速地畫在一個長條圖上畫兩組數據呢？</li>
@@ -192,16 +192,16 @@ straw_hat_long_df &lt;-<span class="st"> </span><span class="kw">gather</span>(s
 straw_hat_wide_df &lt;-<span class="st"> </span>straw_hat_df[, <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;height&quot;</span>)]
 <span class="kw">View</span>(straw_hat_wide_df)
 <span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(straw_hat_wide_df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(name), <span class="dt">y =</span> age)) +<span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(straw_hat_wide_df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(name), <span class="dt">y =</span> height)) +<span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<span class="kw">ggplot</span>(straw_hat_wide_df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(name), <span class="dt">y =</span> age)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(straw_hat_wide_df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(name), <span class="dt">y =</span> height)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
 <ul>
 <li>最快的方法就是轉換成長表格</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">straw_hat_long_df &lt;-<span class="st"> </span><span class="kw">gather</span>(straw_hat_wide_df, <span class="dt">key =</span> category, <span class="dt">value =</span> values, age, height)
-<span class="kw">ggplot</span>(straw_hat_long_df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(name), <span class="dt">y =</span> values, <span class="dt">fill =</span> category)) +<span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre></div>
+<span class="kw">ggplot</span>(straw_hat_long_df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(name), <span class="dt">y =</span> values, <span class="dt">fill =</span> category)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>聯結資料框</h1>
+<h2>聯結資料框</h2>
 <ul>
 <li>先看看我們待會要聯結的資料框</li>
 </ul>
@@ -209,30 +209,30 @@ straw_hat_wide_df &lt;-<span class="st"> </span>straw_hat_df[, <span class="kw">
 <span class="kw">View</span>(straw_hat_devil_fruit)</code></pre></div>
 </div>
 <div id="2" class="slide section level2">
-<h1>聯結資料框（2）</h1>
+<h2>聯結資料框（2）</h2>
 <ul>
 <li>內部聯結</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">straw_hat_df_devil_fruit &lt;-<span class="st"> </span><span class="kw">merge</span>(straw_hat_df, straw_hat_devil_fruit)
 <span class="kw">View</span>(straw_hat_df_devil_fruit)</code></pre></div>
 <ul>
-<li>左外部連結（all.x = TRUE）</li>
+<li>左外部聯結（all.x = TRUE）</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">straw_hat_df_devil_fruit &lt;-<span class="st"> </span><span class="kw">merge</span>(straw_hat_df, straw_hat_devil_fruit, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)
 <span class="kw">View</span>(straw_hat_df_devil_fruit)</code></pre></div>
 <ul>
-<li>右外部連結（all.y = TRUE）</li>
+<li>右外部聯結（all.y = TRUE）</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">straw_hat_df_devil_fruit &lt;-<span class="st"> </span><span class="kw">merge</span>(straw_hat_df, straw_hat_devil_fruit, <span class="dt">all.y =</span> <span class="ot">TRUE</span>)
 <span class="kw">View</span>(straw_hat_df_devil_fruit)</code></pre></div>
 <ul>
-<li>全外部連結（all.x = TRUE, all.y = TRUE）</li>
+<li>全外部聯結（all.x = TRUE, all.y = TRUE）</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">straw_hat_df_devil_fruit &lt;-<span class="st"> </span><span class="kw">merge</span>(straw_hat_df, straw_hat_devil_fruit, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">all.y =</span> <span class="ot">TRUE</span>)
 <span class="kw">View</span>(straw_hat_df_devil_fruit)</code></pre></div>
 </div>
 <div class="slide section level2">
-<h1>隨堂練習</h1>
+<h2>隨堂練習</h2>
 <ul>
 <li><a href="https://yaojenkuo.github.io/r_programming/ch7_exercise">活用資料框 - 隨堂練習</a></li>
 <li><a href="https://www.datacamp.com/community/open-courses/%E8%B3%87%E6%96%99%E6%A1%86%E6%95%B4%E7%90%86%E6%8A%80%E5%B7%A7#gs.lmgdhpc">資料框整理技巧</a></li>
@@ -244,7 +244,7 @@ straw_hat_wide_df &lt;-<span class="st"> </span>straw_hat_df[, <span class="kw">
     (function () {
       var script = document.createElement("script");
       script.type = "text/javascript";
-      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>

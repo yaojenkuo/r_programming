@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-02-13" />
+  <meta name="date" content="2017-05-05" />
   <title>讀取不同的資料格式</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,87 +55,126 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-02-13</p>
+  <p class="date">2017-05-05</p>
 </div>
 <div id="-csv" class="slide section level2">
-<h1>讀取 csv</h1>
+<h2>讀取 csv</h2>
 <ul>
 <li>這是實務中最常運用的方法，csv 是 comma-separated values 的縮寫</li>
-<li>利用 <code>read.csv()</code> 函數</li>
+<li>利用 <code>read.table()</code> 函數</li>
+<li><code>sep = &quot;,&quot;</code> 告訴R 語言這個資料是以逗號（comma）區隔變數</li>
 <li><code>header = TRUE</code> 告訴 R 語言這個資料的第一列（The first row）是變數名稱</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;https://storage.googleapis.com/r_rookies/iris.csv&quot;</span> <span class="co"># 在雲端上儲存了一份 csv 檔案</span>
-iris_csv_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url)
+iris_csv_df &lt;-<span class="st"> </span><span class="kw">read.table</span>(url, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
 <span class="kw">head</span>(iris_csv_df)</code></pre></div>
 </div>
 <div id="-csv-2" class="slide section level2">
-<h1>讀取 csv (2)</h1>
+<h2>讀取 csv (2)</h2>
 <ul>
 <li>欄位屬性可以在讀取資料時設定，指定 <code>colClasses =</code> 這個參數，輸入一個字串向量。</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;https://storage.googleapis.com/r_rookies/iris.csv&quot;</span> <span class="co"># 在雲端上儲存了一份 csv 檔案</span>
-iris_csv_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;character&quot;</span>))
+iris_csv_df &lt;-<span class="st"> </span><span class="kw">read.table</span>(url, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;character&quot;</span>))
 <span class="kw">str</span>(iris_csv_df)</code></pre></div>
 </div>
 <div id="-tsv" class="slide section level2">
-<h1>讀取 tsv</h1>
+<h2>讀取 tsv</h2>
 <ul>
 <li>tsv 是 tab-separated values 的縮寫</li>
-<li>這時我們改用一個應用更為廣泛的函數 <code>read.table()</code></li>
-<li><code>sep =</code> 這個參數告訴 R 語言變數之間的分隔符號為何</li>
+<li><code>sep = &quot;\t&quot;</code> 告訴 R 語言變數之間的分隔符號是 tab 鍵</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;https://storage.googleapis.com/r_rookies/iris.tsv&quot;</span> <span class="co"># 在雲端上儲存了一份 tsv 檔案</span>
 iris_tsv_df &lt;-<span class="st"> </span><span class="kw">read.table</span>(url, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
 <span class="kw">head</span>(iris_tsv_df)</code></pre></div>
 </div>
 <div id="-txt" class="slide section level2">
-<h1>讀取 txt</h1>
+<h2>讀取 txt</h2>
 <ul>
-<li>使用一個應用更為廣泛的函數 <code>read.table()</code></li>
-<li><code>sep =</code> 這個參數告訴 R 語言變數之間的分隔符號為何</li>
+<li><code>sep = &quot;:&quot;</code> 這個參數告訴 R 語言變數之間的分隔符號為冒號</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;https://storage.googleapis.com/r_rookies/iris.txt&quot;</span> <span class="co"># 在雲端上儲存了一份 txt 檔案</span>
 iris_colon_sep_df &lt;-<span class="st"> </span><span class="kw">read.table</span>(url, <span class="dt">sep =</span> <span class="st">&quot;:&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
 <span class="kw">head</span>(iris_colon_sep_df)</code></pre></div>
 </div>
-<div class="slide section level2">
-<h1>讀取文字</h1>
-<ul>
-<li>利用 <code>readLines()</code> 函數</li>
-<li>利用 <code>n =</code> 的參數選項來限制讀入行數</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">char_vector &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100&quot;</span>, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
-</div>
 <div id="-excel-" class="slide section level2">
-<h1>載入 Excel 試算表</h1>
+<h2>載入 Excel 試算表</h2>
 <ul>
 <li>使用 <code>readxl</code> 套件中的 <code>read_excel</code> 函數</li>
 <li>先將 <a href="https://storage.googleapis.com/r_rookies/iris.xlsx" class="uri">https://storage.googleapis.com/r_rookies/iris.xlsx</a> 下載到 <code>~/Downloads</code> 目錄下</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;readxl&quot;)</span>
-<span class="kw">library</span>(readxl)
-titanic_xlsx &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;~/Downloads/iris.xlsx&quot;</span>)</code></pre></div>
+<pre><code>install.packages(&quot;readxl&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
+
+url &lt;-<span class="st"> &quot;https://storage.googleapis.com/r_rookies/iris.xlsx&quot;</span>
+download_path &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="st">&quot;~/Downloads&quot;</span>, <span class="st">&quot;iris.xlsx&quot;</span>)
+<span class="kw">download.file</span>(url, download_path)
+iris_xlsx_df &lt;-<span class="st"> </span><span class="kw">read_excel</span>(download_path)
+<span class="kw">head</span>(iris_xlsx_df)</code></pre></div>
 </div>
 <div id="-sas-" class="slide section level2">
-<h1>載入 SAS 資料集</h1>
+<h2>載入 SAS 資料集</h2>
 <ul>
 <li>使用 <code>haven()</code> 套件中的 <code>read_sas()</code> 函數可以載入 SAS 資料集</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;haven&quot;)</span>
-<span class="kw">library</span>(haven)
+<pre><code>install.packages(&quot;haven&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)
+
 smoking_sas_data &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;http://storage.googleapis.com/r_rookies/smoking.sas7bdat&quot;</span>)</code></pre></div>
 </div>
 <div id="-json" class="slide section level2">
-<h1>載入 JSON</h1>
+<h2>載入 JSON</h2>
+<ul>
+<li>什麼是 JSON(JavaScript Object Notation)？</li>
+<li>這是一個 JSON Object：</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">friends_json &lt;-<span class="st"> '{</span>
+<span class="st">  &quot;genre&quot;: &quot;Sitcom&quot;,</span>
+<span class="st">  &quot;seasons&quot;: 10,</span>
+<span class="st">  &quot;episodes&quot;: 236,</span>
+<span class="st">  &quot;stars&quot;: [&quot;Jennifer Aniston&quot;, &quot;Courteney Cox&quot;, &quot;Lisa Kudrow&quot;, &quot;Matt LeBlanc&quot;, &quot;Matthew Perry&quot;, &quot;David Schwimmer&quot;]</span>
+<span class="st">}'</span></code></pre></div>
+</div>
+<div id="-json2" class="slide section level2">
+<h2>載入 JSON（2）</h2>
 <ul>
 <li>使用 <code>jsonlite</code> 套件的 <code>fromJSON()</code> 函數來載入</li>
+<li>結果是一個 <strong>List（清單）</strong></li>
 </ul>
 <pre><code>install.packages(&quot;jsonlite&quot;)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
 
-url &lt;-<span class="st"> &quot;https://storage.googleapis.com/r_rookies/iris.json&quot;</span> <span class="co"># 在雲端上儲存了一份 JSON 檔</span>
-iris_json_df &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(url)
-<span class="kw">head</span>(iris_json_df)</code></pre></div>
+friends_json &lt;-<span class="st"> '{</span>
+<span class="st">  &quot;genre&quot;: &quot;Sitcom&quot;,</span>
+<span class="st">  &quot;seasons&quot;: 10,</span>
+<span class="st">  &quot;episodes&quot;: 236,</span>
+<span class="st">  &quot;stars&quot;: [&quot;Jennifer Aniston&quot;, &quot;Courteney Cox&quot;, &quot;Lisa Kudrow&quot;, &quot;Matt LeBlanc&quot;, &quot;Matthew Perry&quot;, &quot;David Schwimmer&quot;]</span>
+<span class="st">}'</span>
+
+friends_list &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(friends_json)
+<span class="kw">paste</span>(<span class="st">&quot;六人行有幾季：&quot;</span>, friends_list<span class="op">$</span>seasons)
+<span class="kw">paste</span>(<span class="st">&quot;Who stars Rachel Green：&quot;, friends_list$stars[1])</span></code></pre></div>
+</div>
+<div id="-json3" class="slide section level2">
+<h2>載入 JSON（3）</h2>
+<ul>
+<li>這是一個 array of JSON object</li>
+<li>使用 <code>jsonlite</code> 套件的 <code>fromJSON()</code> 函數來載入</li>
+<li>結果是一個 <strong>Dataframe（資料框）</strong></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
+
+starring_json &lt;-<span class="st"> '[</span>
+<span class="st">  {&quot;character&quot;: &quot;Rachel Green&quot;, &quot;star&quot;: &quot;Jennifer Aniston&quot;},</span>
+<span class="st">  {&quot;character&quot;: &quot;Monica Geller&quot;, &quot;star&quot;: &quot;Courteney Cox&quot;},</span>
+<span class="st">  {&quot;character&quot;: &quot;Phoebe Buffay&quot;, &quot;star&quot;: &quot;Lisa Kudrow&quot;},</span>
+<span class="st">  {&quot;character&quot;: &quot;Joey Tribbiani&quot;, &quot;star&quot;: &quot;Matt LeBlanc&quot;},</span>
+<span class="st">  {&quot;character&quot;: &quot;Chandler Bing&quot;, &quot;star&quot;: &quot;Matthew Perry&quot;},</span>
+<span class="st">  {&quot;character&quot;: &quot;Ross Geller&quot;, &quot;star&quot;: &quot;David Schwimmer&quot;}</span>
+<span class="st">]'</span>
+
+starring_df &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(starring_json)
+<span class="kw">View</span>(starring_df)</code></pre></div>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
@@ -143,7 +182,7 @@ iris_json_df &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(url)
     (function () {
       var script = document.createElement("script");
       script.type = "text/javascript";
-      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>

@@ -186,21 +186,21 @@ straw_hat_df_devil_fruit <- merge(straw_hat_df, straw_hat_devil_fruit)
 View(straw_hat_df_devil_fruit)
 ```
 
-- 左外部連結（all.x = TRUE）
+- 左外部聯結（all.x = TRUE）
 
 ```{r}
 straw_hat_df_devil_fruit <- merge(straw_hat_df, straw_hat_devil_fruit, all.x = TRUE)
 View(straw_hat_df_devil_fruit)
 ```
 
-- 右外部連結（all.y = TRUE）
+- 右外部聯結（all.y = TRUE）
 
 ```{r}
 straw_hat_df_devil_fruit <- merge(straw_hat_df, straw_hat_devil_fruit, all.y = TRUE)
 View(straw_hat_df_devil_fruit)
 ```
 
-- 全外部連結（all.x = TRUE, all.y = TRUE）
+- 全外部聯結（all.x = TRUE, all.y = TRUE）
 
 ```{r}
 straw_hat_df_devil_fruit <- merge(straw_hat_df, straw_hat_devil_fruit, all.x = TRUE, all.y = TRUE)

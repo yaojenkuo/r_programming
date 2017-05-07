@@ -12,12 +12,13 @@ knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
 ## 讀取 csv
 
 - 這是實務中最常運用的方法，csv 是 comma-separated values 的縮寫
-- 利用 `read.csv()` 函數
+- 利用 `read.table()` 函數
+- `sep = ","` 告訴R 語言這個資料是以逗號（comma）區隔變數
 - `header = TRUE` 告訴 R 語言這個資料的第一列（The first row）是變數名稱
 
 ```{r}
 url <- "https://storage.googleapis.com/r_rookies/iris.csv" # 在雲端上儲存了一份 csv 檔案
-iris_csv_df <- read.csv(url)
+iris_csv_df <- read.table(url, sep = ",", header = TRUE)
 head(iris_csv_df)
 ```
 
@@ -27,15 +28,14 @@ head(iris_csv_df)
 
 ```{r}
 url <- "https://storage.googleapis.com/r_rookies/iris.csv" # 在雲端上儲存了一份 csv 檔案
-iris_csv_df <- read.csv(url, header = TRUE, colClasses = c("numeric", "numeric", "numeric", "numeric", "character"))
+iris_csv_df <- read.table(url, sep = ",", header = TRUE, colClasses = c("numeric", "numeric", "numeric", "numeric", "character"))
 str(iris_csv_df)
 ```
 
 ## 讀取 tsv
 
 - tsv 是 tab-separated values 的縮寫
-- 這時我們改用一個應用更為廣泛的函數 `read.table()`
-- `sep = ` 這個參數告訴 R 語言變數之間的分隔符號為何
+- `sep = "\t"` 告訴 R 語言變數之間的分隔符號是 tab 鍵
 
 ```{r}
 url <- "https://storage.googleapis.com/r_rookies/iris.tsv" # 在雲端上儲存了一份 tsv 檔案
@@ -45,8 +45,7 @@ head(iris_tsv_df)
 
 ## 讀取 txt
 
-- 使用一個應用更為廣泛的函數 `read.table()`
-- `sep = ` 這個參數告訴 R 語言變數之間的分隔符號為何
+- `sep = ":"` 這個參數告訴 R 語言變數之間的分隔符號為冒號
 
 ```{r}
 url <- "https://storage.googleapis.com/r_rookies/iris.txt" # 在雲端上儲存了一份 txt 檔案
@@ -54,48 +53,95 @@ iris_colon_sep_df <- read.table(url, sep = ":", header = TRUE)
 head(iris_colon_sep_df)
 ```
 
-## 讀取文字
-
-- 利用 `readLines()` 函數
-- 利用 `n = ` 的參數選項來限制讀入行數
-
-```{r}
-char_vector <- readLines("https://tw.stock.yahoo.com/d/i/rank.php?t=pri&e=tse&n=100", n = 10)
-```
-
 ## 載入 Excel 試算表
 
 - 使用 `readxl` 套件中的 `read_excel` 函數
 - 先將 <https://storage.googleapis.com/r_rookies/iris.xlsx> 下載到 `~/Downloads` 目錄下
 
+```
+install.packages("readxl")
+```
+
 ```{r, results='hide'}
-#install.packages("readxl")
 library(readxl)
-titanic_xlsx <- read_excel("~/Downloads/iris.xlsx")
+
+url <- "https://storage.googleapis.com/r_rookies/iris.xlsx"
+download_path <- file.path("~/Downloads", "iris.xlsx")
+download.file(url, download_path)
+iris_xlsx_df <- read_excel(download_path)
+head(iris_xlsx_df)
 ```
 
 ## 載入 SAS 資料集
 
 - 使用 `haven()` 套件中的 `read_sas()` 函數可以載入 SAS 資料集
 
+```
+install.packages("haven")
+```
+
 ```{r}
-#install.packages("haven")
 library(haven)
+
 smoking_sas_data <- read_sas("http://storage.googleapis.com/r_rookies/smoking.sas7bdat")
 ```
 
 ## 載入 JSON
 
+- 什麼是 JSON(JavaScript Object Notation)？
+- 這是一個 JSON Object：
+
+```{r}
+friends_json <- '{
+  "genre": "Sitcom",
+  "seasons": 10,
+  "episodes": 236,
+  "stars": ["Jennifer Aniston", "Courteney Cox", "Lisa Kudrow", "Matt LeBlanc", "Matthew Perry", "David Schwimmer"]
+}'
+```
+
+## 載入 JSON（2）
+
 - 使用 `jsonlite` 套件的 `fromJSON()` 函數來載入
+- 結果是一個 **List（清單）**
 
 ```
 install.packages("jsonlite")
 ```
 
-```{r}
+```r
 library(jsonlite)
 
-url <- "https://storage.googleapis.com/r_rookies/iris.json" # 在雲端上儲存了一份 JSON 檔
-iris_json_df <- fromJSON(url)
-head(iris_json_df)
+friends_json <- '{
+  "genre": "Sitcom",
+  "seasons": 10,
+  "episodes": 236,
+  "stars": ["Jennifer Aniston", "Courteney Cox", "Lisa Kudrow", "Matt LeBlanc", "Matthew Perry", "David Schwimmer"]
+}'
+
+friends_list <- fromJSON(friends_json)
+paste("六人行有幾季：", friends_list$seasons)
+paste("Who stars Rachel Green：", friends_list$stars[1])
+```
+
+## 載入 JSON（3）
+
+- 這是一個 array of JSON object
+- 使用 `jsonlite` 套件的 `fromJSON()` 函數來載入
+- 結果是一個 **Dataframe（資料框）**
+
+```r
+library(jsonlite)
+
+starring_json <- '[
+  {"character": "Rachel Green", "star": "Jennifer Aniston"},
+  {"character": "Monica Geller", "star": "Courteney Cox"},
+  {"character": "Phoebe Buffay", "star": "Lisa Kudrow"},
+  {"character": "Joey Tribbiani", "star": "Matt LeBlanc"},
+  {"character": "Chandler Bing", "star": "Matthew Perry"},
+  {"character": "Ross Geller", "star": "David Schwimmer"}
+]'
+
+starring_df <- fromJSON(starring_json)
+View(starring_df)
 ```
