@@ -78,7 +78,7 @@ hist(cars$dist, main = "Distribution of dist variable", xlab = "Dist")
 
 ```{r}
 n = 100
-par(mfrow = c(2, 1)) # 建立一個 1x2 的網格畫布
+par(mfrow = c(2, 1)) # 建立一個 2x1 的網格畫布
 hist(runif(n), main = paste("Distribution of", n, "uniformly distributed variables")) # 試著增加隨機數的個數 n
 hist(rnorm(n), main = paste("Distribution of", n, "normally distributed variables")) # 試著增加隨機數的個數 n
 ```
@@ -135,9 +135,8 @@ grid()
 - `barplot()` 繪製長條圖
 
 ```{r}
-str(mtcars)
-table(factor(mtcars$gear))
-barplot(table(factor(mtcars$gear)), main = "Vehicle counts by gear types", xlab = "Gear", ylab = "Vehicle counts")
+tbl_gear <- table(mtcars$gear)
+barplot(tbl_gear, main = "Vehicle counts by gear types", xlab = "Gear", ylab = "Vehicle counts")
 ```
 
 ## 長條圖（2）
