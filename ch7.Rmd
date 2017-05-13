@@ -63,6 +63,30 @@ straw_hat_df <- cbind(straw_hat_df, favorite_food)
 View(straw_hat_df)
 ```
 
+## 建立新的變數（3）
+
+- 善用 `ifelse()` 函數
+- 針對 `age` 變數新增一個 `age_category`
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_df$age_category <- ifelse(straw_hat_df$age < 20, "Below 20", 
+                                    ifelse(straw_hat_df$age > 30, "Above 30", "Between 20 and 30")
+                                    )
+View(straw_hat_df)
+```
+
+## 建立新的變數（4）
+
+- 使用 `cut()` 函數
+- 針對轉換連續型為類別型變數
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_df$age_category <- cut(straw_hat_df$age, breaks = c(0, 19, 29, Inf), labels = c("Below 20", "Between 20 and 30", "Above 30"))
+View(straw_hat_df)
+```
+
 ## 刪除變數
 
 - 將變數指定為 `NULL` 來進行刪除
