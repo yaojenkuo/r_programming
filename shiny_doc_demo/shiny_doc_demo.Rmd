@@ -1,0 +1,79 @@
+---
+title: "Shiny Document Demo"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 整合 Shiny
+
+- 下拉式選單（selectorInput）
+- 數字輸入（numericInput）
+
+```{r, echo = FALSE}
+inputPanel(
+  selectInput("species", "Which species?", choices = unique(iris$Species), selected = unique(iris$Species)[1]),
+  numericInput("how_many_rows", "How many rows?", value = 6) 
+)
+
+selectedData_iris <- reactive({
+  head(iris[iris$Species == input$species, ], n = input$how_many_rows)
+})
+
+renderTable({
+  selectedData_iris()
+})
+```
+
+## 整合 Shiny（2）
+
+- 下拉式選單
+- 文字輸入（textInput）
+
+```{r, echo = FALSE}
+inputPanel(
+  selectInput("x_var", "X 軸變數：", choices = names(mtcars), selected = names(mtcars)[1]),
+  selectInput("y_var", "Y 軸變數", choices = names(mtcars), selected = names(mtcars)[2]),
+  textInput("main", "標題", value = "")
+)
+
+selectedData_mtcars <- reactive({
+  mtcars[, c(input$x_var, input$y_var)]
+})
+
+renderPlot({
+  plot(selectedData_mtcars(), main = input$main)
+})
+```
+
+## 整合 Shiny（3）
+
+- 滑桿輸入（sliderInput）
+
+```{r eruptions, echo=FALSE}
+inputPanel(
+  sliderInput("n_breaks", label = "Number of bins:",
+              min = 10, max = 50, value = 20, step = 1),
+  radioButtons("dist", "Distribution type:",
+               c("Normal" = "norm",
+                 "Uniform" = "unif"))
+)
+
+renderPlot({
+  dist <- switch(input$dist,
+                   norm = rnorm,
+                   unif = runif,
+                   rnorm)
+  
+  hist(dist(10000), probability = TRUE, breaks = as.numeric(input$n_breaks),
+       main = "Different Distribution", ylim = c(0, 0.45))
+  
+  dens <- density(dist(10000))
+  lines(dens, col = "red", lwd = 2)
+})
+```
