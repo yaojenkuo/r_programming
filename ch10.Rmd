@@ -164,6 +164,25 @@ library(plotly)
 |Beyond|黃家駒|香港|
 |The Beatles|John Lennon|英國|
 
+## 整合 Shiny
+
+- 為分析報告添加互動性與彈性
+- 新增 **Shiny Document**
+
+![](images/ch1001.png)
+
+## 整合 Shiny（2）
+
+- YAML 設定：
+
+![](images/ch1002.png)
+
+## 整合 Shiny（3）
+
+- [整合 Shiny 簡單範例](https://yaojenkuo.shinyapps.io/shiny_doc_demo/)
+
 ## 官網資源
 
-<http://rmarkdown.rstudio.com/index.html>
+- <http://rmarkdown.rstudio.com/index.html>
+- <https://shiny.rstudio.com/>
+- <http://rmarkdown.rstudio.com/flexdashboard/>
