@@ -77,7 +77,7 @@ hist(cars$dist, main = "Distribution of dist variable", xlab = "Dist")
 - `rnorm()` 函數可以幫你產生**標準常態分配**的隨機數
 
 ```{r}
-n = 100
+n <- 100
 par(mfrow = c(2, 1)) # 建立一個 2x1 的網格畫布
 hist(runif(n), main = paste("Distribution of", n, "uniformly distributed variables")) # 試著增加隨機數的個數 n
 hist(rnorm(n), main = paste("Distribution of", n, "normally distributed variables")) # 試著增加隨機數的個數 n

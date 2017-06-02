@@ -71,7 +71,7 @@ renderPlot({
                    rnorm)
   
   hist(dist(10000), probability = TRUE, breaks = as.numeric(input$n_breaks),
-       main = "Different Distribution", ylim = c(0, 0.45))
+       main = "Different Distribution")
   
   dens <- density(dist(10000))
   lines(dens, col = "red", lwd = 2)
