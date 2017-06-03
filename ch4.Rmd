@@ -239,3 +239,4 @@ my_list[[3]]$name
 
 - [基本資料結構 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch4_exercise)
 - [R 語言導論](https://www.datacamp.com/community/open-courses/r-%E8%AA%9E%E8%A8%80%E5%B0%8E%E8%AB%96#gs.SRpeD9E)
+- [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
