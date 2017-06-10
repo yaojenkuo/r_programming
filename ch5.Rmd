@@ -76,6 +76,18 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
   ylab("Sepal width")
 ```
 
+## 散佈圖（5）
+
+- 練習使用 `ggplot2` 套件附的 `diamonds` 資料
+- 畫出 `carat` 與 `price` 的散佈圖
+
+```
+library(ggplot2)
+
+ggplot(___, aes(x = ___, y = ___)) +
+  geom_point()
+```
+
 ## 線圖
 
 - `ggplot() + geom_line()` 繪製線圖
@@ -93,6 +105,18 @@ ggplot(cars, aes(x = speed, y = dist)) +
 ```{r}
 head(economics)
 ggplot(economics, aes(x = date, y = unemploy)) + 
+  geom_line()
+```
+
+## 線圖（3）
+
+- 練習使用 `ggplot2` 套件附的 `economics` 資料
+- 畫出 `pop` 的線圖
+
+```
+library(ggplot2)
+
+ggplot(___, aes(x = ___, y = ___)) +
   geom_line()
 ```
 
@@ -115,6 +139,19 @@ ggplot(iris, aes(x = Sepal.Length)) +
   facet_wrap(~ Species) # 加入 ncol = 1 垂直展開
 ```
 
+## 直方圖（3）
+
+- 練習使用 `ggplot2` 套件附的 `diamonds` 資料
+- 畫出 `carat` 的直方圖
+- 選擇一個適當的 `binwidth`
+
+```
+library(ggplot2)
+
+ggplot(___, aes(x = ___)) +
+  geom_histogram(binwidth = ___)
+```
+
 ## 盒鬚圖
 
 - `ggplot() + geom_boxplot()` 繪製盒鬚圖
@@ -130,6 +167,18 @@ ggplot(iris, aes(x = 1, y = Sepal.Length)) +
 
 ```{r}
 ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot()
+```
+
+## 盒鬚圖（3）
+
+- 練習使用 `ggplot2` 套件附的 `diamonds` 資料
+- 畫出不同 `cut` 的 `price` 的盒鬚圖
+
+```
+library(ggplot2)
+
+ggplot(___, aes(x = ___, y = ___)) +
   geom_boxplot()
 ```
 
@@ -208,6 +257,16 @@ ggplot(mpg, aes(x = class)) +
 ggplot(mpg, aes(x = class)) +
   geom_bar(aes(fill = drv), position = "fill") +
   ylab("Percentage")
+```
+
+## 長條圖（6）
+
+- 練習使用 `ggplot2` 套件附的 `diamonds` 資料
+- 看不同 `cut` 類型的數量
+
+```
+ggplot(___, aes(x = ___)) +
+  geom_bar()
 ```
 
 ## 在一個畫布上畫多個圖形
