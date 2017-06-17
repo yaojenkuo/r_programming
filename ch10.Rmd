@@ -17,6 +17,9 @@ knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
 - 程式碼
 - 連結
 - 圖片
+- 調整繪圖函數的輸出
+- 更改字型樣式
+- 主題
 - 引用
 - 表格
 
@@ -139,6 +142,77 @@ library(plotly)
 ```
 
 ![Superman R Logo](http://www.clipartbest.com/cliparts/Kij/Lx5/KijLx5kyT.jpg)
+
+## 圖片（2）
+
+- 調整圖片的大小
+- 使用 `knitr` 套件的 `include_graphics()` 函數 `{r out.height = "__px", out.width="__px", echo = FALSE}`
+
+```
+library(knitr)
+include_graphics("http://www.clipartbest.com/cliparts/Kij/Lx5/KijLx5kyT.jpg")
+```
+
+## 調整繪圖函數的輸出
+
+- 沒有調整：
+
+```{r}
+plot(cars)
+```
+
+## 調整繪圖函數的輸出（2）
+
+- 利用 fig.height、fig.width 與 fig.align 等參數調整
+
+```{r fig.width = 5, fig.height = 3, fig.align = 'center'}
+plot(cars)
+```
+
+## 更改字型樣式
+
+- 新增一個 style.css
+- 在 YAML 新增 `css: style.css`
+
+```
+#id .class {
+  font-family: 指定字型
+}
+```
+
+## 更改字型樣式（2）
+
+- [Google Fonts](https://fonts.google.com/)
+- 在 .Rmd 的目錄中建立一個 `style.css`
+- 以 `Noto Sans` 字型為例貼入：
+
+```
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+```
+
+## 更改字型樣式（3）
+
+- 更改 YAML 的設定：
+
+```
+output:
+  html_document:
+    css: style.css
+```
+
+## 主題
+
+- 不想自己設定，可以用預設的主題（theme）
+- [Appearance and Style](http://rmarkdown.rstudio.com/html_document_format.html#appearance_and_style)
+
+```
+output:
+  html_document:
+    theme: united
+    highlight: tango
+```
 
 ## 引用
 
