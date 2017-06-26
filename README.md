@@ -6,12 +6,12 @@
 
 ### 評分標準
 
-- 45% 出席率
-- 25% 期中作業
-- 30% 期末作業
+- 50% 出席率
+- 50% 期中作業與期末作業
 
 ### 課程大綱
 
+- [關於這門課](https://yaojenkuo.github.io/r_programming/ch0)
 - [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/ch1)
 - [單一變數與函數](https://yaojenkuo.github.io/r_programming/ch2)
 - [簡單的繪圖（Base plotting system）](https://yaojenkuo.github.io/r_programming/ch3)
