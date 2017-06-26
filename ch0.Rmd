@@ -1,0 +1,53 @@
+---
+title: "關於這門課"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output:
+  revealjs::revealjs_presentation:
+    center: true
+---
+
+## 課程名稱說明
+
+- 關於 **R 語言與資料科學應用**以及 **R 程式設計**
+
+## 為什麼要開這門課
+
+- R 語言與 Python 是資料科學的入門利器
+- R 語言是函數型編程，對初學者較友善
+- R 語言是 Open Source，它的社群發展蓬勃
+
+## 誰適合上這門課
+
+- 喜歡自己動手做的人
+- 研究生、行銷專員、產品經理、金融分析或任何有資料分析、統計學習需求的從業人員
+
+## 誰不適合上這門課
+
+- 不喜歡自己動手做的人
+- 已經有能力撰寫 R 語言程式的人
+
+## 這門課的目標
+
+- 了解 R 語言的變數型態與資料結構
+- 掌握 R 語言的原生語法，降低套件的依賴程度
+- 可以使用 R 語言進行資料的整理、探索、作圖與報告
+- 對撰寫**程式**有初步認識
+
+## 這門課的涵蓋內容
+
+- R 語言的變數型態與資料結構
+- R 語言的作圖與報告製作
+- R 語言的函數型編程
+- R 語言的常用套件應用
+
+## 課程資源
+
+- [課程專頁](http://yaojenkuo.io/r_programming/)
+- [Facebook 社團](https://www.facebook.com/groups/ntucsietrainR/)
+
+## 關於講師
+
+- [郭耀仁](https://www.facebook.com/yaojen.kuo.1)
+- <http://yaojenkuo.io/>
+- <tony@kyosei.ai>
