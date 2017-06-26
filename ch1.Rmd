@@ -9,11 +9,10 @@ output: slidy_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## 我們會使用三個工具
+## 我們會使用兩個工具
 
 - R
 - RStudio
-- Git
 
 ## 安裝 R(OS X)
 
@@ -57,6 +56,14 @@ knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.app
 ## 第一個函數 `q()`
 
 - 在命令列（Console）輸入 `q()` 可以離開 RStudio
+
+## 補充閱讀
+
+## Git
+
+- Git 版本管理逐漸成為現代程式設計的必備技能
+- 有興趣的同學可以閱讀
+- 系統訓練班亦有 Git 版本管理的假日專題班課程（10 小時）
 
 ## 安裝 Git(OS X)
 
