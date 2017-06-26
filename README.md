@@ -41,6 +41,7 @@
 
 ### 近期上課錄影
 
+- [第 284 期 R 程式設計班（2017 暑假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWG55M8W-eu6J8cs4WdUDK_)
 - [第 282 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWmLz0jYwQ3bb3f6ZOATgBx)
 - [第 278 期 R 程式設計班（2017 寒假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXlcMiPfg4bLt9U-YcRTYvM)
 - [第 279 期 R 程式設計班（2017 寒假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWHNS_KSeUWh4mror0QpDTW)
