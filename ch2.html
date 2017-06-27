@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-03-19" />
+  <meta name="date" content="2017-06-27" />
   <title>單一變數與函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-03-19</p>
+  <p class="date">2017-06-27</p>
 </div>
 <div class="slide section level2">
 <h2>計算機</h2>
@@ -267,6 +267,10 @@ Sys.Date() # 回傳系統日期
 Sys.time() # 回傳系統日期與時間
 q() # 離開 RStudio</code></pre>
 </div>
+<div id="windows--locale" class="slide section level2">
+<h2>Windows 設定 locale</h2>
+<pre><code>Sys.setlocale(category = &quot;LC_ALL&quot;, locale = &quot;English_United States.1252&quot;)</code></pre>
+</div>
 <div class="slide section level2">
 <h2>隨堂練習</h2>
 <p><a href="https://yaojenkuo.github.io/r_programming/ch2_exercise">單一變數與函數 - 隨堂練習</a></p>
@@ -287,7 +291,7 @@ q() # 離開 RStudio</code></pre>
     (function () {
       var script = document.createElement("script");
       script.type = "text/javascript";
-      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>

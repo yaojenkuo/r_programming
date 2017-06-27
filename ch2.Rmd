@@ -203,6 +203,12 @@ Sys.time() # 回傳系統日期與時間
 q() # 離開 RStudio
 ```
 
+## Windows 設定 locale
+
+```
+Sys.setlocale(category = "LC_ALL", locale = "English_United States.1252")
+```
+
 ## 隨堂練習
 
 [單一變數與函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch2_exercise)
