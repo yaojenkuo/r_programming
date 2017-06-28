@@ -96,22 +96,67 @@ iris %>%
   View()
 ```
 
-## 期中作業
+## `join` 系列函數
 
-- 使用 `%>%` 簡化這段程式
+|種類|函數|
+|----|----|
+|內部連結|`inner_join()`|
+|左外部連結|`left_join()`|
+|右外部連結|`right_join()`|
+|全外部連結|`full_join()`|
+
+## `inner_join()`
 
 ```{r}
+library(dplyr)
+
+# 左表格 straw_hat_df
 load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
-this_year <- as.numeric(format(Sys.Date(), '%Y'))
-birth_year <- this_year - straw_hat_df$age
-birth_date_chr <- paste(birth_year, straw_hat_df$birthday, sep = "-")
-straw_hat_df$birth_date <- as.Date(birth_date_chr)
+# 右表格 straw_hat_devil_fruit
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_devil_fruit.RData"))
+
+# 內部連結
+joined_df <- inner_join(straw_hat_df, straw_hat_devil_fruit)
 ```
 
-- 計算 [BMI](https://zh.wikipedia.org/wiki/%E8%BA%AB%E9%AB%98%E9%AB%94%E9%87%8D%E6%8C%87%E6%95%B8) 將 bmi 變數加入 data frame：
+## `left_join()`
 
 ```{r}
-heights <- c(173, 168, 171, 189, 179)
-weights <- c(65.4, 59.2, 63.6, 88.4, 68.7)
-heights_and_weights <- data.frame(heights, weights)
+library(dplyr)
+
+# 左表格 straw_hat_df
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+# 右表格 straw_hat_devil_fruit
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_devil_fruit.RData"))
+
+# 左外部連結
+joined_df <- left_join(straw_hat_df, straw_hat_devil_fruit)
+```
+
+## `right_join()`
+
+```{r}
+library(dplyr)
+
+# 左表格 straw_hat_df
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+# 右表格 straw_hat_devil_fruit
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_devil_fruit.RData"))
+
+# 右外部連結
+joined_df <- right_join(straw_hat_df, straw_hat_devil_fruit)
+```
+
+## `full_join()`
+
+```{r}
+library(dplyr)
+
+# 左表格 straw_hat_df
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+# 右表格 straw_hat_devil_fruit
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_devil_fruit.RData"))
+
+# 全外部連結
+joined_df <- full_join(straw_hat_df, straw_hat_devil_fruit)
 ```
