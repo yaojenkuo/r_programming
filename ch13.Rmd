@@ -101,7 +101,7 @@ marker_NTU
 ## `addMarkers()`（2）
 
 ```{r}
-stores <- read.csv("https://storage.googleapis.com/r_rookies/stores711inTP.csv")
+stores <- read.csv("https://storage.googleapis.com/r_rookies/stores711inTP.csv", fileEncoding = "UTF-8")
 markers_711 <- leaflet(data = stores) %>%
   addTiles() %>%
   addMarkers(~lng, ~lat, popup = ~as.character(popups1))
