@@ -57,7 +57,10 @@ plot(cars$speed, cars$dist, main = "Car speed vs. braking distance", xlab = "Spe
 - `plot(..., type = "l")` 繪製線圖
 
 ```{r}
-plot(cars$speed, cars$dist, type = "l", main = "Car speed vs. braking distance", xlab = "Speed", ylab = "Dist")
+temperature <- round(runif(30) * 10 + 25)
+dates <- as.Date("2017-06-01"):as.Date("2017-06-30")
+dates <- as.Date(dates, origin = "1970-01-01")
+plot(x = dates, y = temperature, type = "l")
 ```
 
 ## 直方圖
@@ -86,15 +89,6 @@ hist(rnorm(n), main = paste("Distribution of", n, "normally distributed variable
 ## 盒鬚圖
 
 - `boxplot()` 繪製盒鬚圖
-
-```{r}
-par(mfrow = c(1, 2))
-boxplot(cars$speed, main = "Distribution of speed variable")
-boxplot(cars$dist, main = "Distribution of dist variable")
-```
-
-## 盒鬚圖（2）
-
 - 使用 `~` 運算子將類別變數納入
 
 ```{r}
@@ -136,7 +130,8 @@ grid()
 
 ```{r}
 tbl_gear <- table(mtcars$gear)
-barplot(tbl_gear, main = "Vehicle counts by gear types", xlab = "Gear", ylab = "Vehicle counts")
+barplot(tbl_gear, main = "Vehicle counts by gear types",
+        xlab = "Gear", ylab = "Vehicle counts")
 ```
 
 ## 長條圖（2）
@@ -145,7 +140,9 @@ barplot(tbl_gear, main = "Vehicle counts by gear types", xlab = "Gear", ylab = "
 
 ```{r}
 vehicle_names <- row.names(mtcars)
-barplot(mtcars$hp, names = vehicle_names, main = "Horse power of each vehicle", xlab = "Horse power", horiz = TRUE, las = 1, cex.names = 0.5)
+barplot(mtcars$hp, names = vehicle_names,
+        main = "Horse power of each vehicle", xlab = "Horse power",
+        horiz = TRUE, las = 1, cex.names = 0.5)
 ```
 
 ## 長條圖（3）
@@ -163,6 +160,33 @@ vehicle_names <- row.names(mtcars)
 x_lim <- c(0, 1.1 * max(mtcars$hp))
 bar_plt <- barplot(mtcars$hp, names = vehicle_names, main = "Horse power of each vehicle", xlab = "Horse power", horiz = TRUE, las = 1, cex.names = 0.5, xlim = x_lim)
 text(x = mtcars$hp, y = bar_plt, label = mtcars$hp, pos = 4, cex = 0.5)
+```
+
+## 氣泡圖
+
+- 首先準備資料 `country`
+
+```{r}
+library(DBI)
+
+con <- dbConnect(RMySQL::MySQL(), 
+                 dbname = "world",
+                 host = "rsqltrain.ced04jhfjfgi.ap-northeast-1.rds.amazonaws.com",
+                 port = 3306,
+                 user = "trainstudent",
+                 password = "csietrain")
+country <- dbReadTable(con, "country")
+dbDisconnect(con)
+```
+
+## 氣泡圖（2）
+
+- 利用 `symbols()` 函數繪畫
+
+```{r}
+symbols(country$GNP, country$LifeExpectancy, circles = sqrt(country$Population / pi),
+        bg = factor(country$Continent), fg = "white",
+        xlab = "Income", ylab = "Life Expectancy")
 ```
 
 ## 將 `ylab` 轉換成水平
