@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-06-28" />
+  <meta name="date" content="2017-07-02" />
   <title>使用 dplyr 套件整理資料</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-06-28</p>
+  <p class="date">2017-07-02</p>
 </div>
 <div class="slide section level2">
 <h2>安裝與載入</h2>
@@ -101,55 +101,77 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="filter" class="slide section level2">
 <h2><code>filter()</code></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(iris, Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">5.8</span>)
-<span class="kw">filter</span>(iris, Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">5.8</span> <span class="op">&amp;</span><span class="st"> </span>Species <span class="op">==</span><span class="st"> &quot;versicolor&quot;</span>)</code></pre></div>
+<ul>
+<li>選出女性船員</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
+<span class="kw">filter</span>(straw_hat_df, gender <span class="op">==</span><span class="st"> &quot;Female&quot;</span>)</code></pre></div>
+</div>
+<div id="filter2" class="slide section level2">
+<h2><code>filter()</code>（2）</h2>
+<ul>
+<li>選出女性船員並且年紀大於等於 30 歲</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
+<span class="kw">filter</span>(straw_hat_df, gender <span class="op">==</span><span class="st"> &quot;Female&quot;</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">30</span>)</code></pre></div>
 </div>
 <div id="select" class="slide section level2">
 <h2><code>select()</code></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(iris, Sepal.Length, Species)
-<span class="kw">select</span>(iris, <span class="op">-</span>Species)</code></pre></div>
+<ul>
+<li>選擇資料框中的變數</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
+<span class="kw">select</span>(straw_hat_df, name, gender)</code></pre></div>
 </div>
 <div id="-" class="slide section level2">
 <h2>使用 <code>%&gt;%</code> 運算子</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(Sepal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">5.8</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Sepal.Length, Species) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">View</span>()</code></pre></div>
+<ul>
+<li>可以操作成像是 SQL 的查詢指令</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 選出女性船員，但只回傳 name 變數</span>
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
+straw_hat_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(gender <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(name)</code></pre></div>
 </div>
 <div id="mutate" class="slide section level2">
 <h2><code>mutate()</code></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">173</span>, <span class="dv">168</span>, <span class="dv">171</span>, <span class="dv">189</span>, <span class="dv">179</span>)
-weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">65.4</span>, <span class="fl">59.2</span>, <span class="fl">63.6</span>, <span class="fl">88.4</span>, <span class="fl">68.7</span>)
-heights_and_weights &lt;-<span class="st"> </span><span class="kw">data.frame</span>(heights, weights)
-
-heights_and_weights <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">heights_in_meter =</span> heights <span class="op">/</span><span class="st"> </span><span class="dv">100</span>,
-         <span class="dt">bmi =</span> weights <span class="op">/</span><span class="st"> </span>((heights <span class="op">/</span><span class="st"> </span><span class="dv">100</span>)<span class="op">^</span><span class="dv">2</span>)
-         ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">View</span>()</code></pre></div>
+<ul>
+<li>新增出生年（<code>birth_year</code>）變數</li>
+<li>利用系統日期減去年紀</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
+straw_hat_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">birth_year =</span> <span class="kw">as.integer</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%Y&quot;</span>)) <span class="op">-</span><span class="st"> </span>age)</code></pre></div>
 </div>
 <div id="arrange" class="slide section level2">
 <h2><code>arrange()</code></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights_and_weights <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">heights_in_meter =</span> heights <span class="op">/</span><span class="st"> </span><span class="dv">100</span>,
-         <span class="dt">bmi =</span> weights <span class="op">/</span><span class="st"> </span>((heights <span class="op">/</span><span class="st"> </span><span class="dv">100</span>)<span class="op">^</span><span class="dv">2</span>)
-         ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(bmi) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">View</span>()</code></pre></div>
+<ul>
+<li>新增出生年（<code>birth_year</code>）變數後以出生年排序</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
+straw_hat_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">birth_year =</span> <span class="kw">as.integer</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%Y&quot;</span>)) <span class="op">-</span><span class="st"> </span>age) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(birth_year)
+  <span class="co"># arrange(desc(birth_year))</span></code></pre></div>
 </div>
 <div id="summarise" class="slide section level2">
 <h2><code>summarise()</code></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(iris, <span class="dt">mean_sepal_len =</span> <span class="kw">mean</span>(Sepal.Length),
-          <span class="dt">sd_sepal_len =</span> <span class="kw">sd</span>(Sepal.Length))</code></pre></div>
+<ul>
+<li>計算聚合變數平均年齡 <code>mean_age</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
+<span class="kw">summarise</span>(straw_hat_df, <span class="dt">mean_age =</span> <span class="kw">mean</span>(age))</code></pre></div>
 </div>
 <div id="group_by" class="slide section level2">
 <h2><code>group_by()</code></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_sepal_len =</span> <span class="kw">mean</span>(Sepal.Length),
-          <span class="dt">sd_sepal_len =</span> <span class="kw">sd</span>(Sepal.Length)
-          ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">View</span>()</code></pre></div>
+<ul>
+<li>依照性別計算平均年齡 <code>mean_age</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
+straw_hat_df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(gender) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(age))</code></pre></div>
 </div>
 <div id="join-" class="slide section level2">
 <h2><code>join</code> 系列函數</h2>

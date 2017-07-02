@@ -32,68 +32,84 @@ library(dplyr)
 
 ## `filter()`
 
+- 選出女性船員
+
 ```{r}
-filter(iris, Sepal.Length > 5.8)
-filter(iris, Sepal.Length > 5.8 & Species == "versicolor")
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+filter(straw_hat_df, gender == "Female")
+```
+
+## `filter()`（2）
+
+- 選出女性船員並且年紀大於等於 30 歲
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+filter(straw_hat_df, gender == "Female" & age >= 30)
 ```
 
 ## `select()`
 
+- 選擇資料框中的變數
+
 ```{r}
-select(iris, Sepal.Length, Species)
-select(iris, -Species)
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+select(straw_hat_df, name, gender)
 ```
 
 ## 使用 `%>%` 運算子
 
+- 可以操作成像是 SQL 的查詢指令
+
 ```{r}
-iris %>%
-  filter(Sepal.Length > 5.8) %>%
-  select(Sepal.Length, Species) %>%
-  View()
+# 選出女性船員，但只回傳 name 變數
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_df %>%
+  filter(gender == "Female") %>%
+  select(name)
 ```
 
 ## `mutate()`
 
-```{r}
-heights <- c(173, 168, 171, 189, 179)
-weights <- c(65.4, 59.2, 63.6, 88.4, 68.7)
-heights_and_weights <- data.frame(heights, weights)
+- 新增出生年（`birth_year`）變數
+- 利用系統日期減去年紀
 
-heights_and_weights %>%
-  mutate(heights_in_meter = heights / 100,
-         bmi = weights / ((heights / 100)^2)
-         ) %>%
-  View()
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_df %>%
+  mutate(birth_year = as.integer(format(Sys.Date(), "%Y")) - age)
 ```
 
 ## `arrange()`
 
+- 新增出生年（`birth_year`）變數後以出生年排序
+
 ```{r}
-heights_and_weights %>%
-  mutate(heights_in_meter = heights / 100,
-         bmi = weights / ((heights / 100)^2)
-         ) %>%
-  arrange(bmi) %>%
-  View()
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_df %>%
+  mutate(birth_year = as.integer(format(Sys.Date(), "%Y")) - age) %>%
+  arrange(birth_year)
+  # arrange(desc(birth_year))
 ```
 
 ## `summarise()`
 
+- 計算聚合變數平均年齡 `mean_age`
+
 ```{r}
-summarise(iris, mean_sepal_len = mean(Sepal.Length),
-          sd_sepal_len = sd(Sepal.Length))
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+summarise(straw_hat_df, mean_age = mean(age))
 ```
 
 ## `group_by()`
 
+- 依照性別計算平均年齡 `mean_age`
+
 ```{r}
-iris %>%
-  group_by(Species) %>%
-  summarise(mean_sepal_len = mean(Sepal.Length),
-          sd_sepal_len = sd(Sepal.Length)
-          ) %>%
-  View()
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+straw_hat_df %>%
+  group_by(gender) %>%
+  summarise(mean_age = mean(age))
 ```
 
 ## `join` 系列函數
