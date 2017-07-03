@@ -67,9 +67,7 @@ library(readxl)
 
 url <- "https://storage.googleapis.com/r_rookies/iris.xlsx"
 download_path <- "~/Downloads/iris.xlsx"
-download.file(url, download_path)
 iris_xlsx_df <- read_excel(download_path)
-head(iris_xlsx_df)
 ```
 
 ## 載入 SAS 資料集

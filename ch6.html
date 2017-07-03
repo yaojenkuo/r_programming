@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-07-02" />
+  <meta name="date" content="2017-07-03" />
   <title>讀取不同的資料格式</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-07-02</p>
+  <p class="date">2017-07-03</p>
 </div>
 <div id="-csv" class="slide section level2">
 <h2>讀取 csv</h2>
@@ -108,9 +108,7 @@ iris_colon_sep_df &lt;-<span class="st"> </span><span class="kw">read.table</spa
 
 url &lt;-<span class="st"> &quot;https://storage.googleapis.com/r_rookies/iris.xlsx&quot;</span>
 download_path &lt;-<span class="st"> &quot;~/Downloads/iris.xlsx&quot;</span>
-<span class="kw">download.file</span>(url, download_path)
-iris_xlsx_df &lt;-<span class="st"> </span><span class="kw">read_excel</span>(download_path)
-<span class="kw">head</span>(iris_xlsx_df)</code></pre></div>
+iris_xlsx_df &lt;-<span class="st"> </span><span class="kw">read_excel</span>(download_path)</code></pre></div>
 </div>
 <div id="-sas-" class="slide section level2">
 <h2>載入 SAS 資料集</h2>
