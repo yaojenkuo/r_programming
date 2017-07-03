@@ -65,7 +65,6 @@ install.packages("readxl")
 ```{r, results='hide'}
 library(readxl)
 
-url <- "https://storage.googleapis.com/r_rookies/iris.xlsx"
 download_path <- "~/Downloads/iris.xlsx"
 iris_xlsx_df <- read_excel(download_path)
 ```
