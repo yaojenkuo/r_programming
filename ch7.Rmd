@@ -100,12 +100,12 @@ View(straw_hat_df)
 
 ## 新增觀測值
 
-- 使用 `rbind()` 函數新增一筆 `princess_vivi` 的觀測值
+- 使用 `rbind()` 函數新增一筆 `jinbe` 的觀測值
 
 ```{r}
 load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
-princess_vivi <- c("Nefeltari Vivi", "Female", "Princess of Alabasta", NA, 18, "02-02", NA)
-straw_hat_df <- rbind(straw_hat_df, princess_vivi)
+jinbe <- c("Jinbe", "Male", "Shichibukai", 400000000, 46, "04-02", 301)
+straw_hat_df <- rbind(straw_hat_df, jinbe)
 ```
 
 ## 刪除觀測值

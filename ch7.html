@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-05-13" />
+  <meta name="date" content="2017-07-04" />
   <title>活用資料框</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-05-13</p>
+  <p class="date">2017-07-04</p>
 </div>
 <div id="-data-frame-" class="slide section level2">
 <h2>建立一個 Data Frame 來練習</h2>
@@ -142,11 +142,11 @@ straw_hat_df<span class="op">$</span>occupation &lt;-<span class="st"> </span><s
 <div class="slide section level2">
 <h2>新增觀測值</h2>
 <ul>
-<li>使用 <code>rbind()</code> 函數新增一筆 <code>princess_vivi</code> 的觀測值</li>
+<li>使用 <code>rbind()</code> 函數新增一筆 <code>jinbe</code> 的觀測值</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
-princess_vivi &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Nefeltari Vivi&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Princess of Alabasta&quot;</span>, <span class="ot">NA</span>, <span class="dv">18</span>, <span class="st">&quot;02-02&quot;</span>, <span class="ot">NA</span>)
-straw_hat_df &lt;-<span class="st"> </span><span class="kw">rbind</span>(straw_hat_df, princess_vivi)</code></pre></div>
+jinbe &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jinbe&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Shichibukai&quot;</span>, <span class="dv">400000000</span>, <span class="dv">46</span>, <span class="st">&quot;04-02&quot;</span>, <span class="dv">301</span>)
+straw_hat_df &lt;-<span class="st"> </span><span class="kw">rbind</span>(straw_hat_df, jinbe)</code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>刪除觀測值</h2>
