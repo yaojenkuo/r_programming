@@ -50,6 +50,17 @@ for (i in month.name) {
 
 ## 迴圈（4）
 
+- 或者我們讓 i 代表索引值
+
+```{r}
+# for 迴圈
+for (i in 1:length(month.name)) {
+  print(month.name[i])
+}
+```
+
+## 迴圈（5）
+
 - 巢狀迴圈（nested loop）是指迴圈包含另一個迴圈
 - 我們利用填滿一個矩陣來展示
 
@@ -64,9 +75,9 @@ for (j in 1:ncol(my_mat)) {
 }
 ```
 
-## 迴圈（5）
+## 迴圈（6）
 
-- 矩陣是 3 * 3，但是向量只有 4 個
+- 矩陣是 3x3，但是向量只有 4 個
 - 沒有填滿的就是 NA
 
 ```{r}
@@ -80,7 +91,21 @@ for (j in 1:ncol(my_mat)){
 }
 ```
 
-## 迴圈（6）
+## 迴圈（7）
+
+- 建立一個 9x9 的矩陣
+- 填入九九乘法表
+
+```
+multiply_mat <- matrix(nrow = 9, ncol = 9)
+for (i in __) {
+  for(j in __) {
+    multiply_mat[__, __] <- __ * __
+  }
+}
+```
+
+## 迴圈（8）
 
 - `while` 迴圈會先檢查條件才執行程式碼
 
@@ -96,53 +121,53 @@ while (i <= length(month.name)) {
 
 - 一如其他的程式語言，R 語言也習慣使用 `if-else` 的語法來進行流程控制：
 
-```{r}
-x <- 2 # 修改 x 看看結果有何不同？
-# 兩個分支的流程控制
-if (x %% 2 == 0) {
-  print("x 是一個偶數！")
+```
+if (條件一) {
+
+    # 程式一
+
+} else if (條件二) {
+
+    # 程式二
+
 } else {
-  print("x 是一個奇數！")
+
+    # 程式三
+
 }
 ```
 
 ## 流程控制（2）
 
-- 多個分支要採用 `if-else if-else` 的語法來進行流程控制：
+- 兩個分支用 `if-else` 的語法來進行流程控制：
 
 ```{r}
-x <- 5 # 修改 x 看看結果有何不同？
-# 三個分支的流程控制
-if (x %% 3 == 0) {
-  print("x 除以 3 的餘數為 0！")
-} else if (x %% 3 == 1) {
-  print("x 除以 3 的餘數為 1！")
+weather <- sample(c("晴天", "下雨"), size = 1)
+weather
+if (weather == "晴天"){
+    print("去戶外跑步")
 } else {
-  print("x 除以 3 的餘數為 2！")
+    print("去健身房")
 }
 ```
 
 ## 流程控制（3）
 
-- 太多分支會降低程式碼的可讀性（readability），這時可以考慮使用 `switch()` 函數
-- 但是 `switch()` 函數處理整數時只接受從 1 開始的回傳數值，所以要處理成字元
+- 多個分支要採用 `if-else if-else` 的語法來進行流程控制：
 
 ```{r}
-x <- 6
-answer <- x %% 3
-switch(as.character(answer),
-  "0" = {
-    print("x 除以 3 的餘數為 0！")
-  },
-  "1" = {
-    print("x 除以 3 的餘數為 1！")
-  },
-  "2" = {print("x 除以 3 的餘數為 2！")
-  }
-)
+weather <- sample(c("晴天", "下雨", "多雲"), size = 1)
+weather
+if (weather == "晴天"){
+    print("去戶外跑步")
+} else if (weather == "多雲"){
+    print("騎腳踏車")
+} else {
+    print("去健身房")
+}
 ```
 
-## 迴圈（5）
+## 迴圈與流程控制
 
 - 在迴圈中加入 `break` 或 `next` 讓你的程式更有彈性
 

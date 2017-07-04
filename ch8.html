@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-04-09" />
+  <meta name="date" content="2017-07-04" />
   <title>迴圈與流程控制</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-04-09</p>
+  <p class="date">2017-07-04</p>
 </div>
 <div class="slide section level2">
 <h2>迴圈</h2>
@@ -101,6 +101,16 @@ month.name[<span class="dv">12</span>]</code></pre></div>
 <div id="4" class="slide section level2">
 <h2>迴圈（4）</h2>
 <ul>
+<li>或者我們讓 i 代表索引值</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># for 迴圈</span>
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(month.name)) {
+  <span class="kw">print</span>(month.name[i])
+}</code></pre></div>
+</div>
+<div id="5" class="slide section level2">
+<h2>迴圈（5）</h2>
+<ul>
 <li>巢狀迴圈（nested loop）是指迴圈包含另一個迴圈</li>
 <li>我們利用填滿一個矩陣來展示</li>
 </ul>
@@ -113,10 +123,10 @@ my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op
   }
 }</code></pre></div>
 </div>
-<div id="5" class="slide section level2">
-<h2>迴圈（5）</h2>
+<div id="6" class="slide section level2">
+<h2>迴圈（6）</h2>
 <ul>
-<li>矩陣是 3 * 3，但是向量只有 4 個</li>
+<li>矩陣是 3x3，但是向量只有 4 個</li>
 <li>沒有填滿的就是 NA</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
@@ -128,8 +138,21 @@ my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class=
   }
 }</code></pre></div>
 </div>
-<div id="6" class="slide section level2">
-<h2>迴圈（6）</h2>
+<div id="7" class="slide section level2">
+<h2>迴圈（7）</h2>
+<ul>
+<li>建立一個 9x9 的矩陣</li>
+<li>填入九九乘法表</li>
+</ul>
+<pre><code>multiply_mat &lt;- matrix(nrow = 9, ncol = 9)
+for (i in __) {
+  for(j in __) {
+    multiply_mat[__, __] &lt;- __ * __
+  }
+}</code></pre>
+</div>
+<div id="8" class="slide section level2">
+<h2>迴圈（8）</h2>
 <ul>
 <li><code>while</code> 迴圈會先檢查條件才執行程式碼</li>
 </ul>
@@ -144,50 +167,50 @@ my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class=
 <ul>
 <li>一如其他的程式語言，R 語言也習慣使用 <code>if-else</code> 的語法來進行流程控制：</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># 修改 x 看看結果有何不同？</span>
-<span class="co"># 兩個分支的流程控制</span>
-<span class="cf">if</span> (x <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
-  <span class="kw">print</span>(<span class="st">&quot;x 是一個偶數！&quot;</span>)
-} <span class="cf">else</span> {
-  <span class="kw">print</span>(<span class="st">&quot;x 是一個奇數！&quot;</span>)
-}</code></pre></div>
+<pre><code>if (條件一) {
+
+    # 程式一
+
+} else if (條件二) {
+
+    # 程式二
+
+} else {
+
+    # 程式三
+
+}</code></pre>
 </div>
 <div id="2" class="slide section level2">
 <h2>流程控制（2）</h2>
 <ul>
-<li>多個分支要採用 <code>if-else if-else</code> 的語法來進行流程控制：</li>
+<li>兩個分支用 <code>if-else</code> 的語法來進行流程控制：</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span> <span class="co"># 修改 x 看看結果有何不同？</span>
-<span class="co"># 三個分支的流程控制</span>
-<span class="cf">if</span> (x <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
-  <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 0！&quot;)</span>
-<span class="st">} else if (x %% 3 == 1) {</span>
-<span class="st">  print(&quot;</span>x 除以 <span class="dv">3</span> 的餘數為 <span class="dv">1</span>！<span class="st">&quot;)</span>
-<span class="st">} else {</span>
-<span class="st">  print(&quot;</span>x 除以 <span class="dv">3</span> 的餘數為 <span class="dv">2</span>！<span class="st">&quot;)</span>
-<span class="st">}</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weather &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;晴天&quot;</span>, <span class="st">&quot;下雨&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>)
+weather
+<span class="cf">if</span> (weather <span class="op">==</span><span class="st"> &quot;晴天&quot;</span>){
+    <span class="kw">print</span>(<span class="st">&quot;去戶外跑步&quot;</span>)
+} <span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="st">&quot;去健身房&quot;</span>)
+}</code></pre></div>
 </div>
 <div id="3" class="slide section level2">
 <h2>流程控制（3）</h2>
 <ul>
-<li>太多分支會降低程式碼的可讀性（readability），這時可以考慮使用 <code>switch()</code> 函數</li>
-<li>但是 <code>switch()</code> 函數處理整數時只接受從 1 開始的回傳數值，所以要處理成字元</li>
+<li>多個分支要採用 <code>if-else if-else</code> 的語法來進行流程控制：</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">6</span>
-answer &lt;-<span class="st"> </span>x <span class="op">%%</span><span class="st"> </span><span class="dv">3</span>
-<span class="cf">switch</span>(<span class="kw">as.character</span>(answer),
-  <span class="st">&quot;0&quot;</span> =<span class="st"> </span>{
-    <span class="kw">print</span>(<span class="st">&quot;x 除以 3 的餘數為 0！&quot;)</span>
-<span class="st">  },</span>
-<span class="st">  &quot;</span><span class="dv">1</span><span class="st">&quot; = {</span>
-<span class="st">    print(&quot;</span>x 除以 <span class="dv">3</span> 的餘數為 <span class="dv">1</span>！<span class="st">&quot;)</span>
-<span class="st">  },</span>
-<span class="st">  &quot;</span><span class="dv">2</span><span class="st">&quot; = {print(&quot;</span>x 除以 <span class="dv">3</span> 的餘數為 <span class="dv">2</span>！<span class="st">&quot;)</span>
-<span class="st">  }</span>
-<span class="st">)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weather &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;晴天&quot;</span>, <span class="st">&quot;下雨&quot;</span>, <span class="st">&quot;多雲&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>)
+weather
+<span class="cf">if</span> (weather <span class="op">==</span><span class="st"> &quot;晴天&quot;</span>){
+    <span class="kw">print</span>(<span class="st">&quot;去戶外跑步&quot;</span>)
+} <span class="cf">else</span> <span class="cf">if</span> (weather <span class="op">==</span><span class="st"> &quot;多雲&quot;</span>){
+    <span class="kw">print</span>(<span class="st">&quot;騎腳踏車&quot;</span>)
+} <span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="st">&quot;去健身房&quot;</span>)
+}</code></pre></div>
 </div>
-<div id="5-1" class="slide section level2">
-<h2>迴圈（5）</h2>
+<div class="slide section level2">
+<h2>迴圈與流程控制</h2>
 <ul>
 <li>在迴圈中加入 <code>break</code> 或 <code>next</code> 讓你的程式更有彈性</li>
 </ul>
@@ -297,7 +320,7 @@ h_w_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(heights,
     (function () {
       var script = document.createElement("script");
       script.type = "text/javascript";
-      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>
