@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-04-09" />
+  <meta name="date" content="2017-07-05" />
   <title>自訂函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-04-09</p>
+  <p class="date">2017-07-05</p>
 </div>
 <div class="slide section level2">
 <h2>為何要自訂函數</h2>
@@ -140,6 +140,12 @@ another_vector &lt;-<span class="st"> </span><span class="dv">1</span><span clas
 <div id="4" class="slide section level2">
 <h2>自訂函數（4）</h2>
 <ul>
+<li>練習實作 <span class="math inline">\(n!\)</span> 階乘函數 <code>my_factorial()</code></li>
+</ul>
+</div>
+<div id="5" class="slide section level2">
+<h2>自訂函數（5）</h2>
+<ul>
 <li>練習把 <code>sort()</code> 函數實作出來（Ascending Exchange Sort）</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 宣告 exchange.sort.asc() 函數</span>
@@ -164,6 +170,19 @@ unsorted_vector &lt;-<span class="st"> </span><span class="kw">round</span>(<spa
 <span class="co"># 對該隨機向量做遞增排序</span>
 <span class="kw">exchange.sort.asc</span>(unsorted_vector)</code></pre></div>
 </div>
+<div id="6" class="slide section level2">
+<h2>自訂函數（6）</h2>
+<ul>
+<li>練習把 <code>sort()</code> 函數衍伸為可以指定 asc 或 desc</li>
+</ul>
+</div>
+<div id="7" class="slide section level2">
+<h2>自訂函數（7）</h2>
+<ul>
+<li>練習把 <code>sd()</code> 函數實作出來：<code>my_sd()</code></li>
+</ul>
+<p><span class="math display">\[s = \sqrt{\frac{1}{N-1}\displaystyle\sum_{i=1}^{N}(\bar{x} - x_i)^2}\]</span></p>
+</div>
 <div class="slide section level2">
 <h2>隨堂練習</h2>
 <p><a href="https://yaojenkuo.github.io/r_programming/ch9_exercise">自訂函數 - 隨堂練習</a></p>
@@ -181,7 +200,7 @@ unsorted_vector &lt;-<span class="st"> </span><span class="kw">round</span>(<spa
     (function () {
       var script = document.createElement("script");
       script.type = "text/javascript";
-      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
       document.getElementsByTagName("head")[0].appendChild(script);
     })();
   </script>
