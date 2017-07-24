@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
     - Factor（因素向量）
     - Matrix（矩陣）
     - Data Frame（資料框）
+    - Array（陣列）
     - List（清單）
   
 ## Vector（向量）
@@ -213,6 +214,16 @@ tail(iris, n = 8)
 names(iris)
 ```
 
+## Array（陣列）
+
+- 擁有三個維度的矩陣
+
+```{r}
+my_vec <- 1:24
+my_arr <- array(my_vec, dim = c(2, 3, 4))
+my_arr
+```
+
 ## List（清單）
 
 - 清單可以包含我們前面介紹的資料結構
@@ -234,6 +245,12 @@ my_list[[1]]
 my_list[[2]][2, 2]
 my_list[[3]]$name
 ```
+
+## List（清單）（2）
+
+- 清單的重要性是什麼？
+    - 彈性的儲存空間
+    - 函數的多重輸出
 
 ## 隨堂練習
 

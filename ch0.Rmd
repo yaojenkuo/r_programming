@@ -13,9 +13,15 @@ output:
 
 ## 為什麼要開這門課
 
-- R 語言與 Python 是資料科學的入門利器
+- R 語言是資料科學的入門利器
 - R 語言是函數型編程，對初學者較友善
 - R 語言是 Open Source，它的社群發展蓬勃
+
+## R 語言獨領風騷
+
+> For R (a domain specific language for data science) to rank in the 6th. Other data-oriented languages appear in the Top 50 rankings, including Matlab (#15), SQL (#23), Julia (#31) and SAS (#37).
+
+[IEEE Spectrum 2017 Top Programming Languages](http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages)
 
 ## 誰適合上這門課
 

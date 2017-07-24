@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-06-03" />
+  <meta name="date" content="2017-07-24" />
   <title>基本資料結構</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-06-03</p>
+  <p class="date">2017-07-24</p>
 </div>
 <div class="slide section level2">
 <h2>資料結構</h2>
@@ -66,6 +66,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Factor（因素向量）</li>
 <li>Matrix（矩陣）</li>
 <li>Data Frame（資料框）</li>
+<li>Array（陣列）</li>
 <li>List（清單）</li>
 </ul></li>
 </ul>
@@ -252,6 +253,15 @@ one_piece_df[one_piece_df<span class="op">$</span>age <span class="op">==</span>
 <span class="kw">tail</span>(iris, <span class="dt">n =</span> <span class="dv">8</span>)
 <span class="kw">names</span>(iris)</code></pre></div>
 </div>
+<div id="array" class="slide section level2">
+<h2>Array（陣列）</h2>
+<ul>
+<li>擁有三個維度的矩陣</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vec &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">24</span>
+my_arr &lt;-<span class="st"> </span><span class="kw">array</span>(my_vec, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))
+my_arr</code></pre></div>
+</div>
 <div id="list" class="slide section level2">
 <h2>List（清單）</h2>
 <ul>
@@ -272,6 +282,16 @@ my_list[<span class="dv">1</span>]
 my_list[[<span class="dv">1</span>]]
 my_list[[<span class="dv">2</span>]][<span class="dv">2</span>, <span class="dv">2</span>]
 my_list[[<span class="dv">3</span>]]<span class="op">$</span>name</code></pre></div>
+</div>
+<div id="list2" class="slide section level2">
+<h2>List（清單）（2）</h2>
+<ul>
+<li>清單的重要性是什麼？
+<ul>
+<li>彈性的儲存空間</li>
+<li>函數的多重輸出</li>
+</ul></li>
+</ul>
 </div>
 <div class="slide section level2">
 <h2>隨堂練習</h2>

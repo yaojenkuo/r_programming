@@ -205,6 +205,8 @@ q() # 離開 RStudio
 
 ## Windows 設定 locale
 
+- 在 console 輸入這段指令可以切換與課程教材相同的 locale
+
 ```
 Sys.setlocale(category = "LC_ALL", locale = "English_United States.1252")
 ```
