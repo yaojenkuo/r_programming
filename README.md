@@ -39,6 +39,10 @@
 - [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)
 - [自訂函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch9_exercise)
 
+### 學習資源
+
+- [InstaCode](http://instacode.live/channel/tony)
+
 ### 近期上課錄影
 
 - [第 286 期 R 程式設計班（2017 暑假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXZV4l1MA9MhmS3CObiuD-a)
