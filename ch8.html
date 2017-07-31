@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-07-05" />
+  <meta name="date" content="2017-07-31" />
   <title>迴圈與流程控制</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-07-05</p>
+  <p class="date">2017-07-31</p>
 </div>
 <div class="slide section level2">
 <h2>迴圈</h2>
@@ -111,23 +111,14 @@ month.name[<span class="dv">12</span>]</code></pre></div>
 <div id="5" class="slide section level2">
 <h2>迴圈（5）</h2>
 <ul>
-<li>巢狀迴圈（nested loop）是指迴圈包含另一個迴圈</li>
-<li>我們利用填滿一個矩陣來展示</li>
+<li>計算 1 加到 100</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)
-my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
-<span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(my_mat)) {
-  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(my_mat)) {
-    my_mat[i, j] &lt;-<span class="st"> </span>my_vector[<span class="dv">1</span>]
-    my_vector &lt;-<span class="st"> </span>my_vector[<span class="op">-</span><span class="dv">1</span>] <span class="co"># 每跑完一次迴圈要丟掉第一個元素</span>
-  }
-}</code></pre></div>
 </div>
 <div id="6" class="slide section level2">
 <h2>迴圈（6）</h2>
 <ul>
+<li>巢狀迴圈（nested loop）是指迴圈包含另一個迴圈</li>
 <li>矩陣是 3x3，但是向量只有 4 個</li>
-<li>沒有填滿的就是 NA</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
 my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
@@ -161,6 +152,31 @@ for (i in __) {
   <span class="kw">print</span>(month.name[i])
   i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 }</code></pre></div>
+</div>
+<div id="for--while-" class="slide section level2">
+<h2><code>for</code> 與 <code>while</code> 的使用時機</h2>
+<ul>
+<li>所有的 <code>for</code> 都可以用 <code>while</code> 改寫</li>
+<li>但是反過來並非如此</li>
+<li>不知道迭代次數的時候用 <code>while</code></li>
+</ul>
+</div>
+<div id="for--while-2" class="slide section level2">
+<h2><code>for</code> 與 <code>while</code> 的使用時機（2）</h2>
+<ul>
+<li>投擲一個公正的銅板，必須出現三次正面才可以停止</li>
+<li>請問總共要投幾次？</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coin_flips &lt;-<span class="st"> </span><span class="kw">c</span>()
+coin &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>) <span class="co"># TRUE 代表正面，FALSE 代表反面</span>
+i &lt;-<span class="st"> </span><span class="dv">1</span>
+
+<span class="cf">while</span> (<span class="kw">sum</span>(coin_flips) <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>){
+  coin_flips[i] &lt;-<span class="st"> </span><span class="kw">sample</span>(coin, <span class="dt">size =</span> <span class="dv">1</span>)
+  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+}
+coin_flips <span class="co"># 投擲紀錄</span>
+<span class="kw">length</span>(coin_flips) <span class="co"># 總共投了幾次</span></code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>流程控制</h2>
@@ -228,33 +244,19 @@ weather
   <span class="kw">print</span>(i)
 }</code></pre></div>
 </div>
-<div id="for--while-" class="slide section level2">
-<h2><code>for</code> 與 <code>while</code> 的使用時機</h2>
-<ul>
-<li>所有的 <code>for</code> 都可以用 <code>while</code> 改寫</li>
-<li>但是反過來並非如此</li>
-<li>不知道迭代次數的時候用 <code>while</code></li>
-</ul>
-</div>
-<div id="for--while-2" class="slide section level2">
-<h2><code>for</code> 與 <code>while</code> 的使用時機（2）</h2>
-<ul>
-<li>投擲一個公正的銅板，必須出現三次正面才可以停止</li>
-<li>請問總共要投幾次？</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coin_flips &lt;-<span class="st"> </span><span class="kw">c</span>()
-coin &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>) <span class="co"># TRUE 代表正面，FALSE 代表反面</span>
-i &lt;-<span class="st"> </span><span class="dv">1</span>
-
-<span class="cf">while</span> (<span class="kw">sum</span>(coin_flips) <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>){
-  coin_flips[i] &lt;-<span class="st"> </span><span class="kw">sample</span>(coin, <span class="dt">size =</span> <span class="dv">1</span>)
-  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-}
-coin_flips <span class="co"># 投擲紀錄</span>
-<span class="kw">length</span>(coin_flips) <span class="co"># 總共投了幾次</span></code></pre></div>
-</div>
 <div class="slide section level2">
-<h2>考題</h2>
+<h2>隨堂練習</h2>
+<ul>
+<li>將這段繪圖的程式碼用迴圈改寫：</li>
+</ul>
+<pre><code>par(mfrow = c(2, 2))
+boxplot(iris$Sepal.Length ~ iris$Species, main = &quot;Sepal length by species&quot;)
+boxplot(iris$Sepal.Width ~ iris$Species, main = &quot;Sepal width by species&quot;)
+boxplot(iris$Petal.Length ~ iris$Species, main = &quot;Petal length by species&quot;)
+boxplot(iris$Petal.Width ~ iris$Species, main = &quot;Petal width by species&quot;)</code></pre>
+</div>
+<div id="2" class="slide section level2">
+<h2>隨堂練習（2）</h2>
 <ul>
 <li>將 1 到 100 印出，但是：
 <ul>
@@ -262,6 +264,18 @@ coin_flips <span class="co"># 投擲紀錄</span>
 <li>碰到 5 的倍數輸出 “五的倍數”</li>
 <li>碰到 3 與 5 的公倍數時輸出 “十五的倍數”</li>
 </ul></li>
+</ul>
+</div>
+<div id="3" class="slide section level2">
+<h2>隨堂練習（3）</h2>
+<ul>
+<li>將 87 因數分解，輸出所有的正因數</li>
+</ul>
+</div>
+<div id="4" class="slide section level2">
+<h2>隨堂練習（4）</h2>
+<ul>
+<li>輸出以 0, 1 起始的前 20 個 <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci 數列</a></li>
 </ul>
 </div>
 <div class="slide section level2">
@@ -315,15 +329,13 @@ h_w_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(heights,
     }
 )</code></pre></div>
 </div>
-<div class="slide section level2">
+<div id="-1" class="slide section level2">
 <h2>隨堂練習</h2>
 <p><a href="https://yaojenkuo.github.io/r_programming/ch8_exercise">迴圈與流程控制 - 隨堂練習</a></p>
 </div>
 <div class="slide section level2">
 <h2>期中作業</h2>
-<p>我們把這個公正的<strong>銅板</strong>改成公正的<strong>骰子</strong>，必須出現三次六點才可以停止，請問總共要投幾次？</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dice &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span>
-<span class="kw">sample</span>(dice, <span class="dt">size =</span> <span class="dv">1</span>)</code></pre></div>
+<p>我們把公正的<strong>銅板</strong>改成公正的<strong>骰子</strong>，必須出現三次六點才可以停止，請問總共要投幾次？投擲的歷史紀錄為何？</p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->

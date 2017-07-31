@@ -61,24 +61,12 @@ for (i in 1:length(month.name)) {
 
 ## 迴圈（5）
 
-- 巢狀迴圈（nested loop）是指迴圈包含另一個迴圈
-- 我們利用填滿一個矩陣來展示
-
-```{r}
-my_mat <- matrix(nrow = 2, ncol = 3)
-my_vector <- 1:6
-for (j in 1:ncol(my_mat)) {
-  for (i in 1:nrow(my_mat)) {
-    my_mat[i, j] <- my_vector[1]
-    my_vector <- my_vector[-1] # 每跑完一次迴圈要丟掉第一個元素
-  }
-}
-```
+- 計算 1 加到 100
 
 ## 迴圈（6）
 
+- 巢狀迴圈（nested loop）是指迴圈包含另一個迴圈
 - 矩陣是 3x3，但是向量只有 4 個
-- 沒有填滿的就是 NA
 
 ```{r}
 my_vector <- 1:4
@@ -115,6 +103,30 @@ while (i <= length(month.name)) {
   print(month.name[i])
   i <- i + 1
 }
+```
+
+## `for` 與 `while` 的使用時機
+
+- 所有的 `for` 都可以用 `while` 改寫
+- 但是反過來並非如此
+- 不知道迭代次數的時候用 `while`
+
+## `for` 與 `while` 的使用時機（2）
+
+- 投擲一個公正的銅板，必須出現三次正面才可以停止
+- 請問總共要投幾次？
+
+```{r}
+coin_flips <- c()
+coin <- c(TRUE, FALSE) # TRUE 代表正面，FALSE 代表反面
+i <- 1
+
+while (sum(coin_flips) < 3){
+  coin_flips[i] <- sample(coin, size = 1)
+  i <- i + 1
+}
+coin_flips # 投擲紀錄
+length(coin_flips) # 總共投了幾次
 ```
 
 ## 流程控制
@@ -187,36 +199,32 @@ for (i in month.name) {
 }
 ```
 
-## `for` 與 `while` 的使用時機
+## 隨堂練習
 
-- 所有的 `for` 都可以用 `while` 改寫
-- 但是反過來並非如此
-- 不知道迭代次數的時候用 `while`
+- 將這段繪圖的程式碼用迴圈改寫：
 
-## `for` 與 `while` 的使用時機（2）
-
-- 投擲一個公正的銅板，必須出現三次正面才可以停止
-- 請問總共要投幾次？
-
-```{r}
-coin_flips <- c()
-coin <- c(TRUE, FALSE) # TRUE 代表正面，FALSE 代表反面
-i <- 1
-
-while (sum(coin_flips) < 3){
-  coin_flips[i] <- sample(coin, size = 1)
-  i <- i + 1
-}
-coin_flips # 投擲紀錄
-length(coin_flips) # 總共投了幾次
+```
+par(mfrow = c(2, 2))
+boxplot(iris$Sepal.Length ~ iris$Species, main = "Sepal length by species")
+boxplot(iris$Sepal.Width ~ iris$Species, main = "Sepal width by species")
+boxplot(iris$Petal.Length ~ iris$Species, main = "Petal length by species")
+boxplot(iris$Petal.Width ~ iris$Species, main = "Petal width by species")
 ```
 
-## 考題
+## 隨堂練習（2）
 
 - 將 1 到 100 印出，但是：
     - 碰到 3 的倍數輸出 "三的倍數"
     - 碰到 5 的倍數輸出 "五的倍數"
     - 碰到 3 與 5 的公倍數時輸出 "十五的倍數"
+    
+## 隨堂練習（3）
+
+- 將 87 因數分解，輸出所有的正因數
+
+## 隨堂練習（4）
+
+- 輸出以 0, 1 起始的前 20 個 [Fibonacci 數列](https://en.wikipedia.org/wiki/Fibonacci_number)
     
 ## 迭代觀念
 
@@ -277,9 +285,4 @@ system.time(
 
 ## 期中作業
 
-我們把這個公正的**銅板**改成公正的**骰子**，必須出現三次六點才可以停止，請問總共要投幾次？
-
-```{r}
-dice <- 1:6
-sample(dice, size = 1)
-```
+我們把公正的**銅板**改成公正的**骰子**，必須出現三次六點才可以停止，請問總共要投幾次？投擲的歷史紀錄為何？
