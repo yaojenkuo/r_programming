@@ -98,6 +98,14 @@ my.sum(another_vector)
 
 ## 自訂函數（5）
 
+- 練習實作判斷輸入是否為質數的函數 `is_prime()`
+
+## 自訂函數（6）
+
+- 練習實作 Fibonacci 數列產生器的函數 `fib_generator()`，使用者需要輸入數列的長度
+
+## 自訂函數（7）
+
 - 練習把 `sort()` 函數實作出來（Ascending Exchange Sort）
 
 ```{r}
@@ -124,11 +132,11 @@ unsorted_vector <- round(runif(10) * 100)
 exchange.sort.asc(unsorted_vector)
 ```
 
-## 自訂函數（6）
+## 自訂函數（8）
 
 - 練習把 `sort()` 函數衍伸為可以指定 asc 或 desc
 
-## 自訂函數（7）
+## 自訂函數（9）
 
 - 練習把 `sd()` 函數實作出來：`my_sd()`
 
