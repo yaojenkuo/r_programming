@@ -176,6 +176,8 @@ squared('Tony')
 
 ## 期中作業
 
-- 練習把 `sd()` 函數實作出來：`my_sd()`
+- 練習把 `sqrt()` 函數實作出來：`my_sqrt()`（**Optional**）
+- 統整你的 `my_length()`、`my_sum()` 與 `my_sqrt()` 函數把 `sd()` 函數實作出來：`my_sd()`
+    - 如果同學沒有實作 `my_sqrt()` 可以直接用 `sqrt()`
 
 $$s = \sqrt{\frac{1}{N-1}\displaystyle\sum_{i=1}^{N}(\bar{x} - x_i)^2}$$
