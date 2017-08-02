@@ -108,9 +108,13 @@ $$平均數 = \frac{總和}{個數}$$
 
 ## 自訂函數（7）
 
-- 練習實作 Fibonacci 數列產生器的函數 `fib_generator()`，使用者需要輸入數列的長度
+- 接續上一個練習，讓使用者輸入兩個數字，`count_primes()` 函數會算出這兩個數字之間有幾個質數（包含輸入的兩個數字）？
 
 ## 自訂函數（8）
+
+- 練習實作 Fibonacci 數列產生器的函數 `fib_generator()`，使用者需要輸入數列的長度
+
+## 自訂函數（9）
 
 - 練習把 `sort()` 函數實作出來（Ascending Exchange Sort）
 
@@ -138,13 +142,40 @@ unsorted_vector <- round(runif(10) * 100)
 exchange.sort.asc(unsorted_vector)
 ```
 
-## 自訂函數（9）
+## 自訂函數（10）
 
 - 練習把 `sort()` 函數衍伸為可以指定 asc 或 desc
+
+## 例外處理
+
+- 當使用者輸入不符合函數的預期時？
+
+```{r error = TRUE}
+squared <- function(x) {
+  return(x**2)
+}
+squared("Tony")
+```
+
+## 例外處理（2）
+
+- 使用 `tryCatch()` 來進行例外處理
+
+```{r}
+squared <- function(x) {
+    tryCatch({
+        return(x**2)
+        },
+        error = function(e) {
+            print("請輸入數值。")
+        }
+    )
+}
+squared('Tony')
+```
 
 ## 期中作業
 
 - 練習把 `sd()` 函數實作出來：`my_sd()`
 
 $$s = \sqrt{\frac{1}{N-1}\displaystyle\sum_{i=1}^{N}(\bar{x} - x_i)^2}$$
-

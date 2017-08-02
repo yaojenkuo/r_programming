@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-08-01" />
+  <meta name="date" content="2017-08-02" />
   <title>自訂函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-08-01</p>
+  <p class="date">2017-08-02</p>
 </div>
 <div class="slide section level2">
 <h2>為何要自訂函數</h2>
@@ -159,11 +159,17 @@ another_vector &lt;-<span class="st"> </span><span class="dv">1</span><span clas
 <div id="7" class="slide section level2">
 <h2>自訂函數（7）</h2>
 <ul>
-<li>練習實作 Fibonacci 數列產生器的函數 <code>fib_generator()</code>，使用者需要輸入數列的長度</li>
+<li>接續上一個練習，讓使用者輸入兩個數字，<code>count_primes()</code> 函數會算出這兩個數字之間有幾個質數（包含輸入的兩個數字）？</li>
 </ul>
 </div>
 <div id="8" class="slide section level2">
 <h2>自訂函數（8）</h2>
+<ul>
+<li>練習實作 Fibonacci 數列產生器的函數 <code>fib_generator()</code>，使用者需要輸入數列的長度</li>
+</ul>
+</div>
+<div id="9" class="slide section level2">
+<h2>自訂函數（9）</h2>
 <ul>
 <li>練習把 <code>sort()</code> 函數實作出來（Ascending Exchange Sort）</li>
 </ul>
@@ -189,11 +195,38 @@ unsorted_vector &lt;-<span class="st"> </span><span class="kw">round</span>(<spa
 <span class="co"># 對該隨機向量做遞增排序</span>
 <span class="kw">exchange.sort.asc</span>(unsorted_vector)</code></pre></div>
 </div>
-<div id="9" class="slide section level2">
-<h2>自訂函數（9）</h2>
+<div id="10" class="slide section level2">
+<h2>自訂函數（10）</h2>
 <ul>
 <li>練習把 <code>sort()</code> 函數衍伸為可以指定 asc 或 desc</li>
 </ul>
+</div>
+<div class="slide section level2">
+<h2>例外處理</h2>
+<ul>
+<li>當使用者輸入不符合函數的預期時？</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">squared &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">return</span>(x<span class="op">**</span><span class="dv">2</span>)
+}
+<span class="kw">squared</span>(<span class="st">&quot;Tony&quot;</span>)</code></pre></div>
+<pre><code>## Error in x^2: non-numeric argument to binary operator</code></pre>
+</div>
+<div id="2" class="slide section level2">
+<h2>例外處理（2）</h2>
+<ul>
+<li>使用 <code>tryCatch()</code> 來進行例外處理</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">squared &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+    <span class="kw">tryCatch</span>({
+        <span class="kw">return</span>(x<span class="op">**</span><span class="dv">2</span>)
+        },
+        <span class="dt">error =</span> <span class="cf">function</span>(e) {
+            <span class="kw">print</span>(<span class="st">&quot;請輸入數值。&quot;</span>)
+        }
+    )
+}
+<span class="kw">squared</span>(<span class="st">'Tony'</span>)</code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>期中作業</h2>
