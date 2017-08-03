@@ -1,0 +1,49 @@
+---
+title: "機器學習簡介"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = FALSE)
+```
+
+## 機器學習的定位
+
+![](https://ingomierswacom.files.wordpress.com/2017/04/ai_ml_dl.jpg?w=676)
+
+Source: [rapidminer](https://rapidminer.com/artificial-intelligence-machine-learning-deep-learning/)
+
+## 定義機器學習
+
+[Arthur Samuel](https://en.wikipedia.org/wiki/Arthur_Samuel)
+
+> The field of study that gives computers the ability to learn without being explicitly programmed.
+
+## 定義機器學習（2）
+
+[Tom Mitchell](http://www.cs.cmu.edu/~tom/)
+
+> A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.
+
+## 定義機器學習（3）
+
+[林軒田](http://www.csie.ntu.edu.tw/~htlin/)
+
+> 我們從小是怎麼樣辨認一棵樹的，是爸爸媽媽告訴我們一百條規則來定義嗎？其實不是的，很大一部分是透過我們自己的觀察很多的樹與不是樹之後，得到並且內化了辨認一棵樹的技巧，機器學習想要做的就是一樣的事情。
+
+## 機器學習的種類
+
+- 監督式學習（Supervised Learning）：具有目標變數的 Labeled data
+    - Gmail 會幫你分類郵件
+    - [Jin Yang's Hot Dog Claasifier](https://youtu.be/ACmydtFDTGs)
+- 非監督式學習（Unsupervised Learning）：沒有目標變數的 Unlabeled data
+    - 將客戶分成不同的 Segments
+    - 降維時所使用的主成份分析
+
+## 機器學習的種類（2）
+
+- 監督式學習（Supervised Learning）
+    - 迴歸問題：目標變數是連續型（數值），像是股價、氣溫、匯率、房價...等
+    - 分類問題：目標變數是離散型（類別），像是垃圾郵件/非垃圾郵件、熱狗/非熱狗...等
