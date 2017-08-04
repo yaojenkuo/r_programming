@@ -26,10 +26,11 @@
 - [使用 %>% 簡化程式](https://yaojenkuo.github.io/r_programming/ch12)
 - [地理資訊的繪圖（Leaflet）](https://yaojenkuo.github.io/r_programming/ch13)
 - [使用 dplyr 套件整理資料](https://yaojenkuo.github.io/r_programming/ch14)
+- [機器學習簡介](https://yaojenkuo.github.io/r_programming/ch19)
 - [迴歸模型（Regression）](https://yaojenkuo.github.io/r_programming/ch15)
-- [分群模型（Clustering）](https://yaojenkuo.github.io/r_programming/ch16)
 - [分類模型（Classification）](https://yaojenkuo.github.io/r_programming/ch17)
-- [參加 Kaggle 競賽](https://yaojenkuo.github.io/r_programming/ch18)
+- [分類模型 - Titanic](https://yaojenkuo.github.io/r_programming/ch20)
+- [分群模型（Clustering）](https://yaojenkuo.github.io/r_programming/ch16)
 
 ### 隨堂練習
 

@@ -19,8 +19,10 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = 
 
 ## 氣溫與冰紅茶銷量
 
-- 平均氣溫與手搖飲料店冰紅茶銷量的關係為何?
-- 通常會先畫一個散佈圖
+- 氣溫與飲料店冰紅茶銷量的關係為何?
+- 先畫一個散佈圖
+
+Data source: [世界第一簡單統計學](http://www.books.com.tw/products/0010695099)
 
 ```{r}
 library(ggplot2)
@@ -29,46 +31,169 @@ temperature <- c(29, 28, 34, 31, 25, 29, 32, 31, 24, 33, 25, 31, 26, 30)
 iced_tea_sales <- c(77, 62, 93, 84, 59, 64, 80, 75, 58, 91, 51, 73, 65, 84)
 iced_tea_df <- data.frame(temperature, iced_tea_sales)
 ggplot(iced_tea_df, aes(x = temperature, y = iced_tea_sales)) +
-  geom_point()
+  geom_point() +
+  ggtitle("Temperature vs. Iced Tea Sales")
 ```
 
 ## 氣溫與冰紅茶銷量（2）
 
-- 這個關係看起來可以用一條直線來描述
-- 選一條最 **fit** 的線出來：
+- 真實的氣溫與冰紅茶銷量的關係：
 
-$$Y = \beta_o + \beta_1X + \epsilon$$
+$$y = f(x)$$
 
-$$res_i = y_i - (\beta_0 + \beta_1x_i)$$
+- 但沒有人知道 $f$ 到底是什麼，我們只能假設氣溫與冰紅茶銷量的關係是：
 
-$$Min. SS_{res} = \sum_{i = 1}^N(res_i) ^ 2$$
+$$\hat{y} = h(x)$$
 
 ## 氣溫與冰紅茶銷量（3）
 
-- 使用 `lm()` 函數
+- 當 $\hat{y}$ 與 $y$ 之間的差異愈小，我們就可以更有自信地說 $h$ 跟 $f$ 愈相似
 
-```{r}
+$$ \text{minimize:} \frac{1}{2m}\sum_{i=1}^{m}(\hat{y_i}-y_i)^2$$
+
+## 氣溫與冰紅茶銷量（4）
+
+- 我們將 $h(x)$ 寫得更仔細一點：
+
+$$h(x) = \theta_0 + \theta_1 x_1$$
+
+## 氣溫與冰紅茶銷量（5）
+
+- 任務：找到一組 $(\theta_0, \theta_1)$ 能讓 $\hat{y}$ 與 $y$ 之間的差異最小
+
+```{r echo=FALSE}
+hypotheses <- data.frame(
+  theta_0 = runif(250, min = -200, max = 200),
+  theta_1 = runif(250, min = -10, max = 10)
+)
+
+ggplot(iced_tea_df, aes(x = temperature, y = iced_tea_sales)) +
+  geom_abline(aes(intercept = theta_0, slope = theta_1), data = hypotheses, alpha = 0.1)+
+  geom_point() +
+  ggtitle("Temperature vs. Iced Tea Sales")
+```
+
+## 氣溫與冰紅茶銷量（6）
+
+- 任務：找到一組 $(\theta_0, \theta_1)$ 能讓 $\hat{y}$ 與 $y$ 之間的差異最小
+
+```{r echo=FALSE}
 temperature <- c(29, 28, 34, 31, 25, 29, 32, 31, 24, 33, 25, 31, 26, 30)
 iced_tea_sales <- c(77, 62, 93, 84, 59, 64, 80, 75, 58, 91, 51, 73, 65, 84)
 iced_tea_df <- data.frame(temperature, iced_tea_sales)
 
 # Modeling
 lm_fit <- lm(formula = iced_tea_sales ~ temperature, data = iced_tea_df)
-summary(lm_fit)
-
-# Predict
-to_be_predicted <- data.frame(temperature = 30)
-predicted <- predict(lm_fit, newdata = to_be_predicted)
-to_be_predicted <- cbind(to_be_predicted, iced_tea_sales = predicted)
+iced_tea_df$predicted <- predict(lm_fit)
 
 # Plotting
 ggplot(iced_tea_df, aes(x = temperature, y = iced_tea_sales)) +
+  geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +  # Plot regression slope
+  geom_segment(aes(xend = temperature, yend = predicted), alpha = .2) +  # alpha to fade lines
   geom_point() +
-  geom_smooth(method = "lm", se = FALSE) + 
-  geom_point(data = to_be_predicted, colour = "red", shape = 17, size = 3)
+  geom_point(aes(y = predicted), shape = 1) +
+  ggtitle("Temperature vs. Iced Tea Sales")
 ```
 
-## 氣溫與冰紅茶銷量（4）
+## 氣溫與冰紅茶銷量（6）
+
+- 透過兩種方式找到 $(\theta_0, \theta_1)$ 完成任務：
+    - Gradient Descent
+    - Normal Equation
+    
+## 氣溫與冰紅茶銷量（7）
+
+- Gradient Descent
+
+> 每組 $(\theta_0, \theta_1)$ 所得的成本函數微分取得斜率，利用這個斜率逐步取得局部最佳解的方法。
+
+## 氣溫與冰紅茶銷量（8）
+
+- 如果只有 $\theta_1$： 
+
+$$\theta_1 := \theta_1 - \alpha \frac{\mathrm \partial}{\mathrm \partial \theta_1} J(\theta_1)$$
+
+```{r echo=FALSE}
+squared <- function(x) {
+  return(x**2)
+}
+curve(squared, from = -3, to = 3, xlab = "theta_1", ylab = "J(theta_1)", lty = 3)
+points(x = 0, y = 0, pch = 16, cex = 2, col = "red")
+points(x = 1, y = 1, pch = 17, cex = 2, col = "green")
+points(x = -2, y = 4, pch = 18, cex = 2, col = "blue")
+title("Gradient Descent with Theta_1")
+```
+
+## 氣溫與冰紅茶銷量（9）
+
+- $\theta_1$ 修正的速度與 $\alpha$ 相關
+    - $\alpha$ 稱為學習速率
+    
+```{r echo=FALSE}
+squared <- function(x) {
+  return(x**2)
+}
+curve(squared, from = -3, to = 3, xlab = "theta_1", ylab = "J(theta_1)", lty = 3)
+
+x_points <- seq(-2.5, 0, 0.25)
+y_points <- squared(x_points)
+points(x = x_points, y = y_points, pch = 16, cex = 1.5, col = "red")
+title("Optimal Gradient Descent")
+```
+
+## 氣溫與冰紅茶銷量（10）
+
+- 如果是 $(\theta_0, \theta_1)$： 
+
+$$\theta_0 := \theta_0 - \alpha \frac{\mathrm \partial}{\mathrm \partial \theta_0} J(\theta)$$
+
+$$\theta_1 := \theta_1 - \alpha \frac{\mathrm \partial}{\mathrm \partial \theta_1} J(\theta)$$
+
+## 氣溫與冰紅茶銷量（11）
+
+- 如果是 $(\theta_0, \theta_1)$：
+
+```{r echo=FALSE}
+library(ggplot2)
+
+xs <- seq(-2, 2, 0.01)
+ys <- seq(-2, 2, 0.01)
+zs <- xs**2 + ys**2
+contour_df <- data.frame(xs, ys, zs)
+ggplot(contour_df, aes(x = xs, y = ys, z = zs)) +
+  geom_density_2d() + 
+  ylim(-3, 3) + 
+  xlim(-3, 3) +
+  xlab("theta_0") +
+  ylab("theta_1") +
+  ggtitle("Gradient Descent with theta_0 and theta_1")
+```
+
+## 氣溫與冰紅茶銷量（12）
+
+- $x_i$ 的個數增加，表示用更多的特徵（features）來建立**假設**：
+
+$$h(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + ... + \theta_n x_n$$
+
+- 假如我們令 $x_0 = 1$，就可以將式子廣義地表示為：
+
+$$h(x) = \begin{bmatrix} \theta_0 & \theta_1 & ... & \theta_n \end{bmatrix} \begin{bmatrix} x_0 \\ x_1 \\.\\.\\.\\ x_n \end{bmatrix} = \theta^{T}x$$
+
+## 氣溫與冰紅茶銷量（13）
+
+- Normal Equation 求解：
+
+$$J(\theta) = \frac{1}{2m}(X\theta - y)^T(X\theta - y)$$
+
+$$J(\theta) = ((X\theta)^T - y^T)(X\theta - y)$$
+$$J(\theta) = (X\theta)^TX\theta - (X\theta)^Ty - y^T(X\theta) + y^Ty$$
+$$J(\theta) = \theta^TX^TX\theta -  2(X\theta)^Ty + y^Ty$$
+
+$$\frac{\mathrm \partial}{\mathrm \partial \theta} J(\theta) = 2X^TX\theta-2X^Ty = 0$$
+
+$$\theta = (X^TX)^{-1}X^Ty$$
+
+## 氣溫與冰紅茶銷量（14）
 
 - 評估迴歸模型的指標：
 
@@ -76,13 +201,50 @@ ggplot(iced_tea_df, aes(x = temperature, y = iced_tea_sales)) +
 
 $$RMSE = \sqrt{\frac{1}{N}\sum_{i=1}^N(y_i - \hat{y}_i) ^ 2}$$
 
-2. R-squared（愈接近 1 愈好）
+2. R-squared（愈接近 1 愈好，複迴歸改為使用 `adj.r.squared`）
+
+## 氣溫與冰紅茶銷量（15）
+
+- 將資料集切割為訓練、測試
 
 ```{r}
-y_hat <- predict(lm_fit, newdata = data.frame(temperature))
+# train_test_split()
+train_test_split <- function(x, train_size = 0.7){
+  n_row <- nrow(x)
+  shuffled_order <- sample(1:n_row)
+  x_shuffled <- x[shuffled_order, ]
+  cut_point <- round(n_row * train_size)
+  train_data <- x_shuffled[1:cut_point, ]
+  test_data <- x_shuffled[(cut_point + 1):n_row,]
+  return(list(
+    train = train_data,
+    test = test_data
+  ))
+}
+```
+
+## 氣溫與冰紅茶銷量（16）
+
+- 使用 `lm()` 函數找出 $h$
+
+```{r results = 'hold'}
+temperature <- c(29, 28, 34, 31, 25, 29, 32, 31, 24, 33, 25, 31, 26, 30)
+iced_tea_sales <- c(77, 62, 93, 84, 59, 64, 80, 75, 58, 91, 51, 73, 65, 84)
+iced_tea_df <- data.frame(temperature, iced_tea_sales)
+
+# Splitting
+iced_tea_train_test <- train_test_split(iced_tea_df)
+train <- iced_tea_train_test$train
+test <- iced_tea_train_test$test
+
+# Modeling
+lm_fit <- lm(formula = iced_tea_sales ~ temperature, data = train)
+
+# Predicting
+y_hat <- predict(lm_fit, newdata = test)
 
 # 計算 RMSE
-res <- iced_tea_df$iced_tea_sales - y_hat
+res <- test$iced_tea_sales - y_hat
 rmse <- sqrt(sum(res^2) / nrow(iced_tea_df))
 rmse
 
@@ -91,31 +253,7 @@ summary_lm_fit <- summary(lm_fit)
 summary_lm_fit$r.squared
 ```
 
-## 店面面積，車站距離與單月銷售量
-
-- 複迴歸改為使用 `adj.r.squared`
-
-```{r}
-store_area <- c(10, 8, 8, 5, 7, 8, 7, 9, 6, 9)
-dist_to_station <- c(80, 0, 200, 200, 300, 230, 40, 0, 330, 180)
-monthly_sales <- c(469, 366, 371, 208, 246, 297, 363, 436, 198, 364)
-bakery_df <- data.frame(store_area, dist_to_station, monthly_sales)
-
-# Modeling
-lm_fit <- lm(monthly_sales ~ ., data = bakery_df)
-
-# Performance
-y_hat <- predict(lm_fit, newdata = bakery_df[ , c("store_area", "dist_to_station")])
-
-# 計算 RMSE
-res <- bakery_df$monthly_sales - y_hat
-rmse <- sqrt(sum(res^2) / nrow(bakery_df))
-rmse
-
-# Adjusted R-squared
-summary_lm_fit <- summary(lm_fit)
-summary_lm_fit$adj.r.squared
-```
+## 補充：如何選擇變數
 
 ## 變數選擇
 

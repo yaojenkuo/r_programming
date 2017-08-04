@@ -1,0 +1,108 @@
+---
+title: "分類模型 - Titanic"
+author: "郭耀仁"
+date: "`r Sys.Date()`"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = FALSE)
+```
+
+## Kaggle 機器學習競賽
+
+- [Kaggle](https://www.kaggle.com/)
+- [Titanic: Machine Learning from Disaster](https://www.kaggle.com/c/titanic)
+
+## Kaggle 機器學習競賽（2）
+
+- 我們要練習的是預測 **test.csv** 資料集中的 **survival** 變數
+- 用來訓練與測試的資料即是 **train.csv** 資料集
+- 資料集的變數：
+
+|變數|描述|
+|---|----|
+|survival|存活與否，	0 = 歿、1 = 存|
+|pclass|社經地位，1 = 高、2 = 中、3 = 低|
+|sex|性別|
+|Age|年齡|
+|sibsp|船上旁系親屬的人數|
+|parch|船上直系親屬的人數|
+|ticket|船票編號|
+|fare|船票價格|
+|cabin|船艙編號|
+|embarked|登船港口，C = Cherbourg、Q = Queenstown、S = Southampton|
+
+## Kaggle 機器學習競賽（3）
+
+- 流程：
+
+|步驟|內容|
+|---|----|
+|第一步|暸解資料外觀與內容|
+|第二步|資料預處理|
+|第三步|分類器|
+|第四步|應用預測資料|
+|第五步|上傳|
+
+## 暸解資料外觀與內容
+
+```{r, results='hold'}
+train_url <- "https://storage.googleapis.com/py_ml_datasets/train.csv"
+train <- read.csv(train_url, stringsAsFactors = FALSE)
+head(train)
+summary(train)
+```
+
+## 資料預處理
+
+- $X$ 不要納入編號（PassengerId, Ticket）、姓名（Name）與遺漏值過多的變數（Cabin）
+- 填補 `Age` 與 `Embarked` 的遺漏值
+
+```{r}
+train$Age[is.na(train$Age)] <- median(train$Age, na.rm = TRUE)
+train$Embarked[train$Embarked == ""] <- "S"
+```
+
+## 分類器
+
+- 決策樹分類器（`rpart` 套件）
+
+```
+install.packages("rpart")
+```
+
+```{r}
+library(rpart)
+
+tree_fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train, method = "class")
+```
+
+## 應用預測資料
+
+```{r, results='hold'}
+test_url <- "https://storage.googleapis.com/py_ml_datasets/test.csv"
+test <- read.csv(test_url, stringsAsFactors = FALSE)
+head(test)
+summary(test)
+```
+
+## 應用預測資料（2）
+
+- 填補 `Age` 與 `Fare` 的遺漏值
+
+```{r}
+test$Age[is.na(test$Age)] <- median(test$Age, na.rm = TRUE)
+test$Fare[is.na(test$Fare)] <- median(test$Fare, na.rm = TRUE)
+
+prediction <- predict(tree_fit, newdata = test[, c("Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked")], type = "class")
+prediction <- as.integer(as.character(prediction))
+```
+
+## 上傳
+
+```{r}
+to_submit <- data.frame(test[, "PassengerId"], prediction)
+names(to_submit) <- c("PassengerId", "Survived")
+head(to_submit, n = 6)
+```

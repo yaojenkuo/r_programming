@@ -22,75 +22,182 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, results = 'hide', message = 
 - 也許是目前最廣泛的機器學習應用
 - 有為數極多的分類演算法
 
-## 切分訓練與測試樣本
+## 羅吉斯迴歸模型
 
-- 檢視資料 <https://www.kaggle.com/c/titanic/data>
-- 使用 70/30 比例分割為訓練/測試樣本
+- 雖然有迴歸兩個字，但其實是個分類器
+- 處理二元分類問題
+    - Hot dog/Not hot dog
+    - 垃圾/普通郵件
+    - 詐欺/普通交易
+
+## 羅吉斯迴歸模型（2）
+
+- 氣溫與飲料店**冰紅茶銷量是否超過 70 杯**的關係為何?
+
+Data source: [世界第一簡單統計學](http://www.books.com.tw/products/0010695099)
+
+```{r echo = FALSE}
+library(ggplot2)
+
+temperature <- c(29, 28, 34, 31, 25, 29, 32, 31, 24, 33, 25, 31, 26, 30)
+iced_tea_sales <- c(77, 62, 93, 84, 59, 64, 80, 75, 58, 91, 51, 73, 65, 84)
+iced_tea_sales_category <- ifelse(iced_tea_sales > 70, 1, 0)
+iced_tea_df <- data.frame(temperature, iced_tea_sales, iced_tea_sales_category)
+ggplot(iced_tea_df, aes(x = temperature, y = iced_tea_sales_category)) +
+  geom_point(aes(color = iced_tea_sales_category), cex = 2) +
+  ggtitle("Temperature vs. Is Iced Tea Sales Over 70?") +
+  theme(legend.position = "none") +
+  geom_hline(yintercept = 0.5, lty = 2, lwd = 1.5) +
+  ylab("")
+```
+
+## 羅吉斯迴歸模型（3）
+
+- 我們為何不沿用迴歸模型來做分類模型？
+    - 輕易受到離群值影響
+    - $h$ 的值域不一定在 0 - 1 之間
+
+## 羅吉斯迴歸模型（4）
+
+- 我們需要將 $h(x) = \theta^{T}x$ 輸出的值域轉換至 $0 \leq h(x) \leq 1$
+- 利用 $g$ 函數，也就是 sigmoid function
+
+$$g(z) = \frac{1}{1+e^{-z}}$$
+$$h(x) = g(\theta^{T}x) = \frac{1}{1 + e^{-\theta^{T}x}}$$
+
+## 羅吉斯迴歸模型（5）
+
+- 接著我們再做一次轉換，決定 $g(z)$ 輸出的機率該如何轉換至 $\hat{y} \in {\{0, 1\}}$
+
+$$ \hat{y} =
+  \begin{cases}
+    1       & \quad \text{if } h(x)\geq 0.5\\
+    0  & \quad \text{otherwise}\\
+  \end{cases}
+$$
+
+## 羅吉斯迴歸模型（6）
+
+- 羅吉斯迴歸模型的成本函數：
+
+$$J(h(x), y) =
+  \begin{cases}
+    -\log(h(x))  & \quad \text{if } y = 1\\
+    -\log(1 - h(x))  & \quad \text{if } y = 0\\
+  \end{cases}
+$$
+
+## 羅吉斯迴歸模型（7）
+
+- 成本函數示意：
+
+```{r echo=FALSE}
+x <- seq(0.01, 1, 0.01)
+y1 <- -log(x)
+y2 <- -log(1 - x)
+par(mfrow = c(1, 2))
+plot(x = x, y = y1, type = 'l', xlab = "h(x)", ylab = "", title = "-log(h(x))")
+plot(x = x, y = y2, type = 'l', xlab = "h(x)", ylab = "", title = "-log(1-h(x))")
+```
+
+## 羅吉斯迴歸模型（8）
+
+- 梯度遞減
+
+$$J(h(x), y) = -y\log(h(x)) - (1-y)\log(1-h(x))$$
+
+$$J(\theta) = -\frac{1}{m}\sum_{i = 1}^{m}[y\log(h(x))+(1-y)\log(1-h(x))]$$
+
+$$\theta_j := \theta_j - \alpha \frac{\mathrm \partial}{\mathrm \partial \theta_j} J(\theta)$$
+
+## 羅吉斯迴歸模型（9）
+
+- 延伸二元分類到多元分類問題：One-vs-all
+
+$$y \in {\{0, 1, 2\}}$$
+$$h^{0}(x) = P(y = 0 \mid x; \theta)$$
+$$h^{1}(x) = P(y = 1 \mid x; \theta)$$
+$$h^{2}(x) = P(y = 2 \mid x; \theta)$$
+$$\text{prediction:}\;\;max(h^{0}(x), h^{1}(x), h^{2}(x))$$
+
+## 羅吉斯迴歸模型（10）
+
+- 將資料集切割為訓練、測試
 
 ```{r}
-url = "https://storage.googleapis.com/2017_ithome_ironman/data/kaggle_titanic_train.csv"
-titanic <- read.csv(url)
-titanic <- titanic[complete.cases(titanic), ]
-titanic$Survived <- factor(titanic$Survived)
-
-# Split
-n <- nrow(titanic)
-set.seed(87)
-shuffled_titanic <- titanic[sample(n), ]
-train_indices <- 1:round(0.7 * n)
-train <- shuffled_titanic[train_indices, ]
-test_indices <- (round(0.7 * n) + 1):n
-test <- shuffled_titanic[test_indices, ]
+# train_test_split()
+train_test_split <- function(x, train_size = 0.7){
+  n_row <- nrow(x)
+  shuffled_order <- sample(1:n_row)
+  x_shuffled <- x[shuffled_order, ]
+  cut_point <- round(n_row * train_size)
+  train_data <- x_shuffled[1:cut_point, ]
+  test_data <- x_shuffled[(cut_point + 1):n_row,]
+  return(list(
+    train = train_data,
+    test = test_data
+  ))
+}
 ```
 
-## 建立分類模型
+## 羅吉斯迴歸模型（11 ）
 
-- 我們使用決策樹分類器
-
-```
-install.packages("rpart")
-```
+- 使用 `glm()` 函數
 
 ```{r}
-library(rpart)
+temperature <- c(29, 28, 34, 31, 25, 29, 32, 31, 24, 33, 25, 31, 26, 30)
+iced_tea_sales <- c(77, 62, 93, 84, 59, 64, 80, 75, 58, 91, 51, 73, 65, 84)
+iced_tea_sales_category <- ifelse(iced_tea_sales > 70, 1, 0)
+iced_tea_df <- data.frame(temperature, iced_tea_sales, iced_tea_sales_category)
+
+# Splitting
+iced_tea_train_test <- train_test_split(iced_tea_df)
+train <- iced_tea_train_test$train
+test <- iced_tea_train_test$test
+
+# Modeling
+logit_fit <- glm(iced_tea_sales_category ~ temperature, data = train, family = "binomial")
+
+# Predicting
+y_hat <- predict(logit_fit, newdata = test, type = "response")
+y_hat <- ifelse(y_hat > 0.5, 1, 0)
 ```
 
-## 建立分類模型（2）
+## 羅吉斯迴歸模型（11 ）
+
+- 使用[混淆矩陣](https://en.wikipedia.org/wiki/Confusion_matrix)來評估分類模型的績效
 
 ```{r}
-tree_fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train, method = "class")
-
-# Predict
-prediction <- predict(tree_fit, test[, c("Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked")], type = "class")
-
-# 計算 accuracy
-confusion_matrix <- table(test$Survived, prediction)
-accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
-accuracy
+conf_mat <- table(y_hat, test$iced_tea_sales_category)
+acc <- sum(diag(conf_mat)) / sum(conf_mat)
+acc
 ```
 
-## 建立分類模型（3）
+## 其他的分類器
 
-- 隨機森林模型是決策樹的加強版
-- 指定 `n-tree = ` 顆決策樹進行投票
+- 羅吉斯迴歸通常用來處理線性可分的資料
 
-```
-install.packages("randomForest")
-```
-
-```{r}
-library(randomForest)
+```{r echo=FALSE}
+partial_iris <- iris[1:100, ]
+ggplot(partial_iris, aes(x = Sepal.Length, y = Petal.Length, col = Species)) +
+  geom_point()
 ```
 
-## 建立分類模型（4）
+## 其他的分類器（2）
 
-```{r}
-set.seed(87)
-forest_fit <- randomForest(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train, ntree = 100)
+- 如果是非線性可分的資料，通常使用其他的分類器
 
-# 計算 accuracy
-prediction <- predict(forest_fit, newdata = test[, c("Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked")])
-confusion_matrix <- table(test$Survived, prediction)
-accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
-accuracy
+```{r echo=FALSE}
+partial_iris <- iris[51:150, ]
+ggplot(partial_iris, aes(x = Sepal.Length, y = Petal.Length, col = Species)) +
+  geom_point()
 ```
+
+## 其他的分類器（3）
+
+- 決策樹分類器（`rpart` 套件）
+- 隨機森林分類器（`randomForest` 套件）
+- KNN 演算法
+- 支援向量機
+- 神經網絡
+- ...etc.
