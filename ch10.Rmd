@@ -146,7 +146,7 @@ library(plotly)
 ## 圖片（2）
 
 - 調整圖片的大小
-- 使用 `knitr` 套件的 `include_graphics()` 函數 `{r out.height = "__px", out.width="__px", echo = FALSE}`
+- 使用 `knitr` 套件的 `include_graphics()` 函數 `{r out.width="__px", echo = FALSE}`
 
 ```
 library(knitr)
@@ -169,7 +169,7 @@ plot(cars)
 plot(cars)
 ```
 
-## 更改字型樣式
+## 更改字型樣式（補充）
 
 - 新增一個 style.css
 - 在 YAML 新增 `css: style.css`
@@ -180,7 +180,7 @@ plot(cars)
 }
 ```
 
-## 更改字型樣式（2）
+## 更改字型樣式（補充）（2）
 
 - [Google Fonts](https://fonts.google.com/)
 - 在 .Rmd 的目錄中建立一個 `style.css`
@@ -192,7 +192,7 @@ body {
 }
 ```
 
-## 更改字型樣式（3）
+## 更改字型樣式（補充）（3）
 
 - 更改 YAML 的設定：
 
@@ -238,6 +238,11 @@ output:
 |Beyond|黃家駒|香港|
 |The Beatles|John Lennon|英國|
 
+## 數學方程式
+
+- 利用 `$y = x^2$` 加入行內數學方程式
+- 利用 `$$y = x^2$$` 加入數學方程式區塊
+
 ## 整合 Shiny
 
 - 為分析報告添加互動性與彈性
@@ -255,8 +260,9 @@ output:
 
 - [整合 Shiny 簡單範例](https://yaojenkuo.shinyapps.io/shiny_doc_demo/)
 
-## 官網資源
+## 延伸閱讀
 
+- <http://markdown.tw/>
 - <http://rmarkdown.rstudio.com/index.html>
 - <https://shiny.rstudio.com/>
-- <http://rmarkdown.rstudio.com/flexdashboard/>
+- <https://en.wikibooks.org/wiki/LaTeX/Mathematics>
