@@ -79,6 +79,15 @@ logi_t
 logi_f
 ```
 
+## 單一變數類型（3）
+
+- 關於文字：
+    - 什麼時候用雙引號？什麼時候用單引號
+
+[Joey Air Quoting](https://youtu.be/0O1z3An8CFc)
+
+[Ross & his misshapen claw](https://youtu.be/w7PHVBb2-UM)
+
 ## 單一變數類型（2）
 
 - 利用邏輯判斷運算子產出邏輯值
