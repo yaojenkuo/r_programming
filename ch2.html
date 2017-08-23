@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-07-24" />
+  <meta name="date" content="2017-08-23" />
   <title>單一變數與函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-07-24</p>
+  <p class="date">2017-08-23</p>
 </div>
 <div class="slide section level2">
 <h2>計算機</h2>
@@ -126,79 +126,12 @@ logi_f</code></pre></div>
 <div id="2" class="slide section level2">
 <h2>單一變數類型（2）</h2>
 <ul>
-<li>R 語言的數值型變數運算時很有彈性</li>
+<li>利用邏輯判斷運算子產出邏輯值</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在命令列依序輸入</span>
-num &lt;-<span class="st"> </span><span class="dv">2</span>
-int &lt;-<span class="st"> </span>2L
-compl &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>3i
-char &lt;-<span class="st"> &quot;Hello&quot;</span> <span class="co"># 用引號告訴 R 語言這是一組字串</span>
-logi_t &lt;-<span class="st"> </span><span class="ot">TRUE</span>
-logi_f &lt;-<span class="st"> </span><span class="ot">FALSE</span>
-<span class="co"># 運算</span>
-num <span class="op">+</span><span class="st"> </span>int
-num <span class="op">+</span><span class="st"> </span>compl
-int <span class="op">+</span><span class="st"> </span>logi_t
-logi_t <span class="op">*</span><span class="st"> </span><span class="dv">5</span></code></pre></div>
-<ul>
-<li>但是字串的運算則不如 Python 或 Ruby 這麼彈性</li>
-</ul>
-<pre><code>char * 5 # Error
-char + &quot; World!&quot; # Error</code></pre>
-</div>
-<div id="3" class="slide section level2">
-<h2>單一變數類型（3）</h2>
-<ul>
-<li>透過 <code>is.___()</code> 函數可以判斷變數類型</li>
-<li>透過 <code>as.___()</code> 函數可以轉換變數類型</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.integer</span>(<span class="ot">TRUE</span>)
-<span class="kw">is.logical</span>(<span class="ot">TRUE</span>)
-<span class="kw">as.numeric</span>(<span class="ot">TRUE</span>)
-<span class="kw">as.integer</span>(<span class="ot">TRUE</span>)
-<span class="kw">as.complex</span>(<span class="ot">TRUE</span>)
-<span class="kw">as.character</span>(<span class="ot">TRUE</span>)</code></pre></div>
-</div>
-<div id="4" class="slide section level2">
-<h2>單一變數類型（4）</h2>
-<ul>
-<li>日期</li>
-<li>預設以西元 1970 年 1 月 1 日為 <code>0</code>，在這一天以後的每天都 <code>+1</code> 來記錄，而這一天以前的每天都 <code>-1</code> 來記錄</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sys_date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
-sys_date <span class="co"># 看起來跟文字一樣</span>
-<span class="kw">class</span>(sys_date) <span class="co"># 是日期的格式</span>
-
-sys_date_char &lt;-<span class="st"> </span><span class="kw">as.character</span>(sys_date) <span class="co"># 創造一個文字類型</span>
-<span class="kw">as.integer</span>(sys_date)
-<span class="kw">as.integer</span>(sys_date_char) <span class="co"># warning</span>
-
-date_of_origin &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>)
-<span class="kw">as.integer</span>(date_of_origin)
-date_of_origin <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-date_of_origin <span class="op">-</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
-</div>
-<div id="5" class="slide section level2">
-<h2>單一變數類型（5）</h2>
-<ul>
-<li>時間</li>
-<li>預設以西元 1970 年 1 月 1 日格林威治標準時間（Greenwich Mean Time，GMT）00 時 00 分 00 秒作為 0，在這個時間點以後的每秒都 <code>+1</code> 來記錄，這個時間點以前的每秒都 <code>-1</code> 來記錄</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time_of_origin &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;1970-01-01 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;GMT&quot;</span>)
-<span class="kw">as.integer</span>(time_of_origin)
-time_of_origin
-time_of_origin <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-time_of_origin <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
-
-time_of_origin_cst &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;1970-01-01 08:00:00&quot;</span>) <span class="co"># tz = CST</span>
-<span class="kw">as.integer</span>(time_of_origin_cst)</code></pre></div>
-</div>
-<div class="slide section level2">
-<h2>邏輯判斷</h2>
 <table>
 <thead>
 <tr class="header">
-<th>判斷運算子</th>
+<th>邏輯判斷運算子</th>
 <th>作用</th>
 </tr>
 </thead>
@@ -246,6 +179,76 @@ time_of_origin_cst &lt;-<span class="st"> </span><span class="kw">as.POSIXct</sp
 <span class="op">!</span><span class="ot">FALSE</span>
 <span class="dv">7</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">8</span>)
 <span class="dv">6</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">8</span>)</code></pre></div>
+</div>
+<div id="3" class="slide section level2">
+<h2>單一變數類型（3）</h2>
+<ul>
+<li>R 語言的數值型變數運算時很有彈性</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 在命令列依序輸入</span>
+num &lt;-<span class="st"> </span><span class="dv">2</span>
+int &lt;-<span class="st"> </span>2L
+compl &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>3i
+char &lt;-<span class="st"> &quot;Hello&quot;</span> <span class="co"># 用引號告訴 R 語言這是一組字串</span>
+logi_t &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+logi_f &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+<span class="co"># 運算</span>
+num <span class="op">+</span><span class="st"> </span>int
+num <span class="op">+</span><span class="st"> </span>compl
+int <span class="op">+</span><span class="st"> </span>logi_t
+logi_t <span class="op">*</span><span class="st"> </span><span class="dv">5</span></code></pre></div>
+<ul>
+<li>但是字串的運算則不如 Python 或 Ruby 這麼彈性</li>
+</ul>
+<pre><code>char * 5 # Error
+char + &quot; World!&quot; # Error</code></pre>
+</div>
+<div id="4" class="slide section level2">
+<h2>單一變數類型（4）</h2>
+<ul>
+<li>透過 <code>is.___()</code> 函數可以判斷變數類型</li>
+<li>透過 <code>as.___()</code> 函數可以轉換變數類型</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.integer</span>(<span class="ot">TRUE</span>)
+<span class="kw">is.logical</span>(<span class="ot">TRUE</span>)
+<span class="kw">as.numeric</span>(<span class="ot">TRUE</span>)
+<span class="kw">as.integer</span>(<span class="ot">TRUE</span>)
+<span class="kw">as.complex</span>(<span class="ot">TRUE</span>)
+<span class="kw">as.character</span>(<span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="5" class="slide section level2">
+<h2>單一變數類型（5）</h2>
+<ul>
+<li>日期</li>
+<li>預設以西元 1970 年 1 月 1 日為 <code>0</code>，在這一天以後的每天都 <code>+1</code> 來記錄，而這一天以前的每天都 <code>-1</code> 來記錄</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sys_date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
+sys_date <span class="co"># 看起來跟文字一樣</span>
+<span class="kw">class</span>(sys_date) <span class="co"># 是日期的格式</span>
+
+sys_date_char &lt;-<span class="st"> </span><span class="kw">as.character</span>(sys_date) <span class="co"># 創造一個文字類型</span>
+<span class="kw">as.integer</span>(sys_date)
+<span class="kw">as.integer</span>(sys_date_char) <span class="co"># warning</span>
+
+date_of_origin &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>)
+<span class="kw">as.integer</span>(date_of_origin)
+date_of_origin <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+date_of_origin <span class="op">-</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+</div>
+<div id="6" class="slide section level2">
+<h2>單一變數類型（6）</h2>
+<ul>
+<li>時間</li>
+<li>預設以西元 1970 年 1 月 1 日格林威治標準時間（Greenwich Mean Time，GMT）00 時 00 分 00 秒作為 0，在這個時間點以後的每秒都 <code>+1</code> 來記錄，這個時間點以前的每秒都 <code>-1</code> 來記錄</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time_of_origin &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;1970-01-01 00:00:00&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;GMT&quot;</span>)
+<span class="kw">as.integer</span>(time_of_origin)
+time_of_origin
+time_of_origin <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+time_of_origin <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+
+time_of_origin_cst &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="st">&quot;1970-01-01 08:00:00&quot;</span>) <span class="co"># tz = CST</span>
+<span class="kw">as.integer</span>(time_of_origin_cst)</code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>函數</h2>
