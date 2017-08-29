@@ -66,7 +66,7 @@ for (i in 1:length(month.name)) {
 ## 迴圈（6）
 
 - 巢狀迴圈（nested loop）是指迴圈包含另一個迴圈
-- 矩陣是 3x3，但是向量只有 4 個
+- 矩陣是 3x4，但是向量只有 4 個
 
 ```{r}
 my_vector <- 1:4
