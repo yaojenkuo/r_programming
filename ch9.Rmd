@@ -25,6 +25,20 @@ function.name <- function(input_1, input_2, params_1, params_2, ...) {
 }
 ```
 
+## 自訂一個函數
+
+- $y = x^2$
+
+```{r}
+# 宣告函數
+squared <- function(x) {
+  return(x^2)
+}
+
+# 呼叫函數
+squared(5)
+```
+
 ## 自訂函數
 
 - 練習建立一個 `circle.calculate()` 函數
@@ -163,21 +177,19 @@ squared("Tony")
 
 ```{r}
 squared <- function(x) {
-    tryCatch({
-        return(x**2)
-        },
-        error = function(e) {
-            print("請輸入數值。")
-        }
-    )
+  tryCatch({
+    return(x**2)
+      },
+      error = function(e) {
+      print("請輸入數值。")
+      }
+  )
 }
 squared('Tony')
 ```
 
 ## 期中作業
 
-- 練習把 `sqrt()` 函數實作出來：`my_sqrt()`（**Optional**）
-- 統整你的 `my_length()`、`my_sum()` 與 `my_sqrt()` 函數把 `sd()` 函數實作出來：`my_sd()`
-    - 如果同學沒有實作 `my_sqrt()` 可以直接用 `sqrt()`
+- 統整你的 `my_length()` 與 `my_sum()` 函數把 `sd()` 函數實作出來：`my_sd()`
 
 $$s = \sqrt{\frac{1}{N-1}\displaystyle\sum_{i=1}^{N}(\bar{x} - x_i)^2}$$

@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-08-02" />
+  <meta name="date" content="2017-08-30" />
   <title>自訂函數</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-08-02</p>
+  <p class="date">2017-08-30</p>
 </div>
 <div class="slide section level2">
 <h2>為何要自訂函數</h2>
@@ -72,6 +72,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <span class="co"># 一些描述</span>
   <span class="kw">return</span>() <span class="co">#把輸出回傳</span>
 }</code></pre></div>
+</div>
+<div class="slide section level2">
+<h2>自訂一個函數</h2>
+<ul>
+<li><span class="math inline">\(y = x^2\)</span></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 宣告函數</span>
+squared &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+  <span class="kw">return</span>(x<span class="op">^</span><span class="dv">2</span>)
+}
+
+<span class="co"># 呼叫函數</span>
+<span class="kw">squared</span>(<span class="dv">5</span>)</code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>自訂函數</h2>
@@ -218,24 +231,20 @@ unsorted_vector &lt;-<span class="st"> </span><span class="kw">round</span>(<spa
 <li>使用 <code>tryCatch()</code> 來進行例外處理</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">squared &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
-    <span class="kw">tryCatch</span>({
-        <span class="kw">return</span>(x<span class="op">**</span><span class="dv">2</span>)
-        },
-        <span class="dt">error =</span> <span class="cf">function</span>(e) {
-            <span class="kw">print</span>(<span class="st">&quot;請輸入數值。&quot;</span>)
-        }
-    )
+  <span class="kw">tryCatch</span>({
+    <span class="kw">return</span>(x<span class="op">**</span><span class="dv">2</span>)
+      },
+      <span class="dt">error =</span> <span class="cf">function</span>(e) {
+      <span class="kw">print</span>(<span class="st">&quot;請輸入數值。&quot;</span>)
+      }
+  )
 }
 <span class="kw">squared</span>(<span class="st">'Tony'</span>)</code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>期中作業</h2>
 <ul>
-<li>練習把 <code>sqrt()</code> 函數實作出來：<code>my_sqrt()</code>（<strong>Optional</strong>）</li>
-<li>統整你的 <code>my_length()</code>、<code>my_sum()</code> 與 <code>my_sqrt()</code> 函數把 <code>sd()</code> 函數實作出來：<code>my_sd()</code>
-<ul>
-<li>如果同學沒有實作 <code>my_sqrt()</code> 可以直接用 <code>sqrt()</code></li>
-</ul></li>
+<li>統整你的 <code>my_length()</code> 與 <code>my_sum()</code> 函數把 <code>sd()</code> 函數實作出來：<code>my_sd()</code></li>
 </ul>
 <p><span class="math display">\[s = \sqrt{\frac{1}{N-1}\displaystyle\sum_{i=1}^{N}(\bar{x} - x_i)^2}\]</span></p>
 </div>
