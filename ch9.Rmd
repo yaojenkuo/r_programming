@@ -190,6 +190,6 @@ squared('Tony')
 
 ## 期中作業
 
-- 統整你的 `my_length()` 與 `my_sum()` 函數把 `sd()` 函數實作出來：`my_sd()`
+- 統整你的 `my_length()`、`my_sum()` 與 `my_mean()` 函數把 `sd()` 函數實作出來：`my_sd()`
 
-$$s = \sqrt{\frac{1}{N-1}\displaystyle\sum_{i=1}^{N}(\bar{x} - x_i)^2}$$
+$$s = \sqrt{\frac{1}{N-1}\displaystyle\sum_{i=1}^{N}(x_i - \bar{x})^2}$$
