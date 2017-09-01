@@ -96,8 +96,8 @@ x <- seq(0.01, 1, 0.01)
 y1 <- -log(x)
 y2 <- -log(1 - x)
 par(mfrow = c(1, 2))
-plot(x = x, y = y1, type = 'l', xlab = "h(x)", ylab = "", title = "-log(h(x))")
-plot(x = x, y = y2, type = 'l', xlab = "h(x)", ylab = "", title = "-log(1-h(x))")
+plot(x = x, y = y1, type = 'l', xlab = "h(x)", ylab = "", main = "-log(h(x))")
+plot(x = x, y = y2, type = 'l', xlab = "h(x)", ylab = "", main = "-log(1-h(x))")
 ```
 
 ## 羅吉斯迴歸模型（8）
