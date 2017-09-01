@@ -9,6 +9,14 @@
 - 50% 出席率
 - 50% 期中作業
 
+|作業編號|章節|作業|
+|-------|---|---|
+|1|單一變數與函數|[作業 1](http://yaojenkuo.io/r_programming/ch2#(15))|
+|2|簡單的繪圖（Base plotting system）|[作業 2](http://yaojenkuo.io/r_programming/ch3#(18))|
+|3|簡單的繪圖（ggplot2）|[作業 3](http://yaojenkuo.io/r_programming/ch5#(29))|
+|4|迴圈與流程控制|[作業 4](http://yaojenkuo.io/r_programming/ch8#(25))|
+|5|自訂函數|[作業 5](http://yaojenkuo.io/r_programming/ch9#(16))|
+
 ### 課程大綱
 
 - [關於這門課](https://yaojenkuo.github.io/r_programming/ch0)
