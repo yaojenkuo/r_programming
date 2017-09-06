@@ -108,18 +108,6 @@ ggplot(economics, aes(x = date, y = unemploy)) +
   geom_line()
 ```
 
-## 線圖（3）
-
-- 練習使用 `ggplot2` 套件附的 `economics` 資料
-- 畫出 `pop` 的線圖
-
-```
-library(ggplot2)
-
-ggplot(___, aes(x = ___, y = ___)) +
-  geom_line()
-```
-
 ## 直方圖
 
 - `ggplot() + geom_histogram()` 繪製直方圖
@@ -232,35 +220,6 @@ ggplot(mtcars, aes(x = row.names(mtcars), y = hp)) +
 
 ## 長條圖（3）
 
-- `geom_bar(aes(fill = drv))` 納入類別變數的顏色
-
-```{r}
-str(mpg)
-ggplot(mpg, aes(x = class)) +
-  geom_bar(aes(fill = drv))
-```
-
-## 長條圖（4）
-
-- 加入 `position = "dodge"` 參數
-
-```{r}
-ggplot(mpg, aes(x = class)) +
-  geom_bar(aes(fill = drv), position = "dodge")
-```
-
-## 長條圖（5）
-
-- 加入 `position = "fill"` 參數
-
-```{r}
-ggplot(mpg, aes(x = class)) +
-  geom_bar(aes(fill = drv), position = "fill") +
-  ylab("Percentage")
-```
-
-## 長條圖（6）
-
 - 練習使用 `ggplot2` 套件附的 `diamonds` 資料
 - 看不同 `cut` 類型的數量
 
@@ -296,10 +255,16 @@ install.packages("plotly")
 
 ```{r}
 library(plotly)
-static_gg <- ggplot(mpg, aes(x = class)) +
-  geom_bar(aes(fill = drv))
+static_gg <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Species)) +
+  geom_point()
 ggplotly(static_gg)
 ```
+
+## 圖形或資料的互動性
+
+- [D3.js](https://d3js.org/)
+- [Plotly](https://plot.ly/)
+- [Shiny](https://shiny.rstudio.com/)
 
 ## 文件
 
