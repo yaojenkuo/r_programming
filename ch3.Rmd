@@ -172,7 +172,7 @@ plot(cars$speed, cars$dist)
 
 ## 散佈圖（2）
 
-- 練習加入標題（`main`）、X 軸標籤與 Y 軸標籤
+- 練習加入標題（`main`）、X 軸標籤（`xlab`）與 Y 軸標籤（`ylab`）
 
 ## 散佈圖（3）
 
@@ -194,6 +194,10 @@ dates <- as.Date("2017-06-01"):as.Date("2017-06-30")
 dates <- as.Date(dates, origin = "1970-01-01")
 plot(x = dates, y = temperature, type = "l")
 ```
+
+## 線圖（2）
+
+- 練習調整 `ylim` 參數
 
 ## 直方圖
 
@@ -260,8 +264,9 @@ barplot(tbl_gear, main = "Vehicle counts by gear types",
 ## 長條圖（2）
 
 - 不只能呈現 count
+- 練習畫出下圖
 
-```{r}
+```{r echo=FALSE}
 vehicle_names <- row.names(mtcars)
 barplot(mtcars$hp, names = vehicle_names,
         main = "Horse power of each vehicle", xlab = "Horse power",
@@ -285,7 +290,7 @@ bar_plt <- barplot(mtcars$hp, names = vehicle_names, main = "Horse power of each
 text(x = mtcars$hp, y = bar_plt, label = mtcars$hp, pos = 4, cex = 0.5)
 ```
 
-## 氣泡圖
+## （Optional）氣泡圖
 
 - 首先準備資料 `country`
 
@@ -302,7 +307,7 @@ country <- dbReadTable(con, "country")
 dbDisconnect(con)
 ```
 
-## 氣泡圖（2）
+## （Optional）氣泡圖（2）
 
 - 利用 `symbols()` 函數繪畫
 
@@ -312,7 +317,7 @@ symbols(country$GNP, country$LifeExpectancy, circles = sqrt(country$Population /
         xlab = "Income", ylab = "Life Expectancy")
 ```
 
-## 將 `ylab` 轉換成水平
+## （Optional）將 `ylab` 轉換成水平
 
 ```{r}
 ?mtext
@@ -320,6 +325,11 @@ plot(cars, ylab = "")
 mtext("Dist", side = 2, las = 1, line = 2)
 #mtext("Dist", side = 2, las = 1, at = max(cars$dist) * 1.2)
 ```
+
+## 如何學習作圖
+
+- 查字典 vs. 讀字典
+- 學習如何搜尋關鍵字
 
 ## 期中作業
 
