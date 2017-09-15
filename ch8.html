@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-08-29" />
+  <meta name="date" content="2017-09-15" />
   <title>迴圈與流程控制</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,12 +55,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-08-29</p>
+  <p class="date">2017-09-15</p>
 </div>
 <div class="slide section level2">
 <h2>迴圈</h2>
 <ul>
-<li>善用迴圈讓你能夠寫出簡短的程式碼
+<li>善用迴圈讓你能夠寫出簡短的程式碼</li>
+<li>R 語言可以使用常見的兩種迴圈
 <ul>
 <li>for 迴圈</li>
 <li>while 迴圈</li>
@@ -70,9 +71,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="2" class="slide section level2">
 <h2>迴圈（2）</h2>
 <ul>
-<li>R 語言有一個內建的向量 <code>month.name</code></li>
+<li>有一個內建的向量 <code>month.name</code></li>
 <li>我想要把它所有的內容一一輸出在命令列</li>
-<li>其實土法煉鋼沒什麼不好：</li>
+<li>土法煉鋼沒什麼不好：</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">month.name[<span class="dv">1</span>]
 month.name[<span class="dv">2</span>]
@@ -91,7 +92,11 @@ month.name[<span class="dv">12</span>]</code></pre></div>
 <h2>迴圈（3）</h2>
 <ul>
 <li>今天運氣好，<code>month.name</code> 只有 12 個元素</li>
+<li>萬一裡面的元素很多怎麼辦？</li>
+<li>用迴圈吧！
+<ul>
 <li><code>for</code> 迴圈長這個樣子：</li>
+</ul></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># for 迴圈</span>
 <span class="cf">for</span> (i <span class="cf">in</span> month.name) {
@@ -111,36 +116,98 @@ month.name[<span class="dv">12</span>]</code></pre></div>
 <div id="5" class="slide section level2">
 <h2>迴圈（5）</h2>
 <ul>
-<li>計算 1 加到 100</li>
+<li>小小高斯：
+<ul>
+<li>計算 <code>1:100</code> 這個向量中的元素總和</li>
+</ul></li>
 </ul>
 </div>
 <div id="6" class="slide section level2">
 <h2>迴圈（6）</h2>
 <ul>
-<li>巢狀迴圈（nested loop）是指迴圈包含另一個迴圈</li>
-<li>矩陣是 3x4，但是向量只有 4 個</li>
+<li>計算 <code>1:100</code> 這個向量中的元素個數</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
-my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
-<span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(my_mat)){
-  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(my_mat)){
-    my_mat[i, j] &lt;-<span class="st"> </span>my_vector[<span class="dv">1</span>]
-    my_vector &lt;-<span class="st"> </span>my_vector[<span class="op">-</span><span class="dv">1</span>] <span class="co"># 每跑完一次迴圈要丟掉第一個元素</span>
+</div>
+<div class="slide section level2">
+<h2>隨堂練習</h2>
+<ul>
+<li>計算 <code>1:100</code> 這個向量中元素的平均數</li>
+</ul>
+</div>
+<div id="2" class="slide section level2">
+<h2>隨堂練習（2）</h2>
+<ul>
+<li>將這段繪圖的程式碼用迴圈改寫：</li>
+</ul>
+<pre><code>par(mfrow = c(2, 2))
+boxplot(iris$Sepal.Length ~ iris$Species, main = &quot;Sepal length by species&quot;)
+boxplot(iris$Sepal.Width ~ iris$Species, main = &quot;Sepal width by species&quot;)
+boxplot(iris$Petal.Length ~ iris$Species, main = &quot;Petal length by species&quot;)
+boxplot(iris$Petal.Width ~ iris$Species, main = &quot;Petal width by species&quot;)</code></pre>
+</div>
+<div id="6-1" class="slide section level2">
+<h2>迴圈（6）</h2>
+<ul>
+<li>巢狀迴圈（nested loop）是指迴圈包含另一個迴圈</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outer_vector =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+inner_vector =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)
+<span class="cf">for</span> (outer_i <span class="cf">in</span> outer_vector) {
+  <span class="cf">for</span> (inner_i <span class="cf">in</span> inner_vector) {
+    <span class="kw">print</span>(outer_i <span class="op">*</span><span class="st"> </span>inner_i)
   }
 }</code></pre></div>
+<pre><code>## [1] 4
+## [1] 5
+## [1] 6
+## [1] 8
+## [1] 10
+## [1] 12
+## [1] 12
+## [1] 15
+## [1] 18</code></pre>
 </div>
-<div id="7" class="slide section level2">
-<h2>迴圈（7）</h2>
+<div id="3" class="slide section level2">
+<h2>隨堂練習（3）</h2>
 <ul>
-<li>建立一個 9x9 的矩陣</li>
-<li>填入九九乘法表</li>
+<li>運用巢狀迴圈做出一個九九乘法表的矩陣</li>
 </ul>
-<pre><code>multiply_mat &lt;- matrix(nrow = 9, ncol = 9)
-for (i in __) {
-  for(j in __) {
-    multiply_mat[__, __] &lt;- __ * __
-  }
-}</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+##  [1,]    1    2    3    4    5    6    7    8    9
+##  [2,]    2    4    6    8   10   12   14   16   18
+##  [3,]    3    6    9   12   15   18   21   24   27
+##  [4,]    4    8   12   16   20   24   28   32   36
+##  [5,]    5   10   15   20   25   30   35   40   45
+##  [6,]    6   12   18   24   30   36   42   48   54
+##  [7,]    7   14   21   28   35   42   49   56   63
+##  [8,]    8   16   24   32   40   48   56   64   72
+##  [9,]    9   18   27   36   45   54   63   72   81</code></pre>
+</div>
+<div id="4" class="slide section level2">
+<h2>隨堂練習（4）</h2>
+<ul>
+<li>裝飾一下這個九九乘法表</li>
+</ul>
+<pre><code>##       [,1]        [,2]         [,3]         [,4]         [,5]        
+##  [1,] &quot;1 X 1 = 1&quot; &quot;1 X 2 = 2&quot;  &quot;1 X 3 = 3&quot;  &quot;1 X 4 = 4&quot;  &quot;1 X 5 = 5&quot; 
+##  [2,] &quot;2 X 1 = 2&quot; &quot;2 X 2 = 4&quot;  &quot;2 X 3 = 6&quot;  &quot;2 X 4 = 8&quot;  &quot;2 X 5 = 10&quot;
+##  [3,] &quot;3 X 1 = 3&quot; &quot;3 X 2 = 6&quot;  &quot;3 X 3 = 9&quot;  &quot;3 X 4 = 12&quot; &quot;3 X 5 = 15&quot;
+##  [4,] &quot;4 X 1 = 4&quot; &quot;4 X 2 = 8&quot;  &quot;4 X 3 = 12&quot; &quot;4 X 4 = 16&quot; &quot;4 X 5 = 20&quot;
+##  [5,] &quot;5 X 1 = 5&quot; &quot;5 X 2 = 10&quot; &quot;5 X 3 = 15&quot; &quot;5 X 4 = 20&quot; &quot;5 X 5 = 25&quot;
+##  [6,] &quot;6 X 1 = 6&quot; &quot;6 X 2 = 12&quot; &quot;6 X 3 = 18&quot; &quot;6 X 4 = 24&quot; &quot;6 X 5 = 30&quot;
+##  [7,] &quot;7 X 1 = 7&quot; &quot;7 X 2 = 14&quot; &quot;7 X 3 = 21&quot; &quot;7 X 4 = 28&quot; &quot;7 X 5 = 35&quot;
+##  [8,] &quot;8 X 1 = 8&quot; &quot;8 X 2 = 16&quot; &quot;8 X 3 = 24&quot; &quot;8 X 4 = 32&quot; &quot;8 X 5 = 40&quot;
+##  [9,] &quot;9 X 1 = 9&quot; &quot;9 X 2 = 18&quot; &quot;9 X 3 = 27&quot; &quot;9 X 4 = 36&quot; &quot;9 X 5 = 45&quot;
+##       [,6]         [,7]         [,8]         [,9]        
+##  [1,] &quot;1 X 6 = 6&quot;  &quot;1 X 7 = 7&quot;  &quot;1 X 8 = 8&quot;  &quot;1 X 9 = 9&quot; 
+##  [2,] &quot;2 X 6 = 12&quot; &quot;2 X 7 = 14&quot; &quot;2 X 8 = 16&quot; &quot;2 X 9 = 18&quot;
+##  [3,] &quot;3 X 6 = 18&quot; &quot;3 X 7 = 21&quot; &quot;3 X 8 = 24&quot; &quot;3 X 9 = 27&quot;
+##  [4,] &quot;4 X 6 = 24&quot; &quot;4 X 7 = 28&quot; &quot;4 X 8 = 32&quot; &quot;4 X 9 = 36&quot;
+##  [5,] &quot;5 X 6 = 30&quot; &quot;5 X 7 = 35&quot; &quot;5 X 8 = 40&quot; &quot;5 X 9 = 45&quot;
+##  [6,] &quot;6 X 6 = 36&quot; &quot;6 X 7 = 42&quot; &quot;6 X 8 = 48&quot; &quot;6 X 9 = 54&quot;
+##  [7,] &quot;7 X 6 = 42&quot; &quot;7 X 7 = 49&quot; &quot;7 X 8 = 56&quot; &quot;7 X 9 = 63&quot;
+##  [8,] &quot;8 X 6 = 48&quot; &quot;8 X 7 = 56&quot; &quot;8 X 8 = 64&quot; &quot;8 X 9 = 72&quot;
+##  [9,] &quot;9 X 6 = 54&quot; &quot;9 X 7 = 63&quot; &quot;9 X 8 = 72&quot; &quot;9 X 9 = 81&quot;</code></pre>
 </div>
 <div id="8" class="slide section level2">
 <h2>迴圈（8）</h2>
@@ -202,28 +269,20 @@ coin_flips <span class="co"># 投擲紀錄</span>
 <ul>
 <li>兩個分支用 <code>if-else</code> 的語法來進行流程控制：</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weather &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;晴天&quot;</span>, <span class="st">&quot;下雨&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>)
-weather
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weather &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;晴天&quot;</span>, <span class="st">&quot;下雨&quot;</span>, <span class="st">&quot;陰天&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>)
 <span class="cf">if</span> (weather <span class="op">==</span><span class="st"> &quot;晴天&quot;</span>){
-    <span class="kw">print</span>(<span class="st">&quot;去戶外跑步&quot;</span>)
+    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;天氣是：&quot;</span>, weather, <span class="st">&quot;，去戶外跑步&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
 } <span class="cf">else</span> {
-    <span class="kw">print</span>(<span class="st">&quot;去健身房&quot;</span>)
+    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;天氣是：&quot;</span>, weather, <span class="st">&quot;，去健身房&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
 }</code></pre></div>
 </div>
-<div id="3" class="slide section level2">
-<h2>流程控制（3）</h2>
+<div id="5" class="slide section level2">
+<h2>隨堂練習（5）</h2>
 <ul>
 <li>多個分支要採用 <code>if-else if-else</code> 的語法來進行流程控制：</li>
+<li>晴天或多雲印“去戶外跑步”，毛毛雨印“去健身房”，否則印“當沙發馬鈴薯”</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weather &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;晴天&quot;</span>, <span class="st">&quot;下雨&quot;</span>, <span class="st">&quot;多雲&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>)
-weather
-<span class="cf">if</span> (weather <span class="op">==</span><span class="st"> &quot;晴天&quot;</span>){
-    <span class="kw">print</span>(<span class="st">&quot;去戶外跑步&quot;</span>)
-} <span class="cf">else</span> <span class="cf">if</span> (weather <span class="op">==</span><span class="st"> &quot;多雲&quot;</span>){
-    <span class="kw">print</span>(<span class="st">&quot;騎腳踏車&quot;</span>)
-} <span class="cf">else</span> {
-    <span class="kw">print</span>(<span class="st">&quot;去健身房&quot;</span>)
-}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weather =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;晴天&quot;</span>, <span class="st">&quot;多雲&quot;</span>, <span class="st">&quot;毛毛雨&quot;</span>, <span class="st">&quot;狂風&quot;</span>, <span class="st">&quot;暴雨&quot;</span>, <span class="st">&quot;下雪&quot;</span>, <span class="st">&quot;打雷閃電&quot;</span>)</code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>迴圈與流程控制</h2>
@@ -244,19 +303,8 @@ weather
   <span class="kw">print</span>(i)
 }</code></pre></div>
 </div>
-<div class="slide section level2">
-<h2>隨堂練習</h2>
-<ul>
-<li>將這段繪圖的程式碼用迴圈改寫：</li>
-</ul>
-<pre><code>par(mfrow = c(2, 2))
-boxplot(iris$Sepal.Length ~ iris$Species, main = &quot;Sepal length by species&quot;)
-boxplot(iris$Sepal.Width ~ iris$Species, main = &quot;Sepal width by species&quot;)
-boxplot(iris$Petal.Length ~ iris$Species, main = &quot;Petal length by species&quot;)
-boxplot(iris$Petal.Width ~ iris$Species, main = &quot;Petal width by species&quot;)</code></pre>
-</div>
-<div id="2" class="slide section level2">
-<h2>隨堂練習（2）</h2>
+<div id="6" class="slide section level2">
+<h2>隨堂練習（6）</h2>
 <ul>
 <li>將 1 到 100 印出，但是：
 <ul>
@@ -266,14 +314,14 @@ boxplot(iris$Petal.Width ~ iris$Species, main = &quot;Petal width by species&quo
 </ul></li>
 </ul>
 </div>
-<div id="3" class="slide section level2">
-<h2>隨堂練習（3）</h2>
+<div id="7" class="slide section level2">
+<h2>隨堂練習（7）</h2>
 <ul>
 <li>將 87 因數分解，輸出所有的正因數</li>
 </ul>
 </div>
-<div id="4" class="slide section level2">
-<h2>隨堂練習（4）</h2>
+<div id="8" class="slide section level2">
+<h2>隨堂練習（8）</h2>
 <ul>
 <li>輸出以 0, 1 起始的前 20 個 <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci 數列</a></li>
 </ul>
@@ -317,8 +365,8 @@ h_w_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(heights,
   h_w_df<span class="op">$</span>bmi &lt;-<span class="st"> </span><span class="kw">mapply</span>(<span class="dt">FUN =</span> bmi_calculator, h_w_df<span class="op">$</span>heights, h_w_df<span class="op">$</span>weights)
 )</code></pre></div>
 </div>
-<div id="3-1" class="slide section level2">
-<h2>迭代觀念（3）</h2>
+<div id="4" class="slide section level2">
+<h2>迭代觀念（4）</h2>
 <ul>
 <li>最後登場的是 <code>for</code> 迴圈：</li>
 </ul>
@@ -329,13 +377,9 @@ h_w_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(heights,
     }
 )</code></pre></div>
 </div>
-<div id="-1" class="slide section level2">
-<h2>隨堂練習</h2>
-<p><a href="https://yaojenkuo.github.io/r_programming/ch8_exercise">迴圈與流程控制 - 隨堂練習</a></p>
-</div>
 <div class="slide section level2">
 <h2>期中作業</h2>
-<p>我們把公正的<strong>銅板</strong>改成公正的<strong>骰子</strong>，必須出現三次六點才可以停止，請問總共要投幾次？投擲的歷史紀錄為何？</p>
+<p>我們把公正的<strong>銅板</strong>改成公正的<strong>骰子</strong>，必須出現三次六點才可以停止 - 請問總共要投幾次？ - 投擲的歷史紀錄為何？</p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
