@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-07-04" />
+  <meta name="date" content="2017-09-16" />
   <title>活用資料框</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-07-04</p>
+  <p class="date">2017-09-16</p>
 </div>
 <div id="-data-frame-" class="slide section level2">
 <h2>建立一個 Data Frame 來練習</h2>
@@ -173,12 +173,7 @@ male_bounty &lt;-<span class="st"> </span><span class="kw">subset</span>(straw_h
 <li>新增一個變數為生日的年月日，格式為 Date</li>
 <li>先算生日的年份，跟原本的月日結合，然後轉換格式</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))
-this_year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">'%Y'</span>))
-birth_year &lt;-<span class="st"> </span>this_year <span class="op">-</span><span class="st"> </span>straw_hat_df<span class="op">$</span>age
-birth_date_chr &lt;-<span class="st"> </span><span class="kw">paste</span>(birth_year, straw_hat_df<span class="op">$</span>birthday, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)
-straw_hat_df<span class="op">$</span>birth_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(birth_date_chr)
-<span class="kw">str</span>(straw_hat_df)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://storage.googleapis.com/r_rookies/straw_hat_df.RData&quot;</span>))</code></pre></div>
 </div>
 <div class="slide section level2">
 <h2>資料轉置：寬表格變長表格</h2>
