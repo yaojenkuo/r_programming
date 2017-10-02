@@ -65,7 +65,7 @@
 ### 推薦學習資源/書籍
 
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-- [輕鬆學習 R 語言 - GitBook](https://www.learn-r-the-easy-way.tw)
+- [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
 - [R in Action](https://www.manning.com/books/r-in-action-second-edition)
 - [Quick-R](http://www.statmethods.net/)
 - [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
