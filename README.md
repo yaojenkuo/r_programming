@@ -54,6 +54,7 @@
 
 ### 近期上課錄影
 
+- [第 290 期 R 語言與資料科學應用（夜間班）]()
 - [第 289 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuU6LtlobgRQEPL9Tq0WUSgW)
 - [第 288 期 R 程式設計班（2017 暑假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuUohqM7lU6phqk_QGpvWWtV)
 - [第 286 期 R 程式設計班（2017 暑假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXZV4l1MA9MhmS3CObiuD-a)
@@ -66,6 +67,7 @@
 
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
 - [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
+- [輕鬆學習 R 語言：基礎篇 - Udemy 數位課程](https://www.udemy.com/learn-r-the-easy-way-1)
 - [R in Action](https://www.manning.com/books/r-in-action-second-edition)
 - [Quick-R](http://www.statmethods.net/)
 - [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
