@@ -48,7 +48,7 @@
 - [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)
 - [自訂函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch9_exercise)
 
-### 程式碼分享
+### 程式碼同步
 
 - [InstaCode](http://instacode.live/channel/tony)
 
