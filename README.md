@@ -23,14 +23,14 @@
 - [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/ch1)
 - [單一變數與函數](https://yaojenkuo.github.io/r_programming/ch2)
 - [基本資料結構](https://yaojenkuo.github.io/r_programming/ch4)
+- [活用資料框](https://yaojenkuo.github.io/r_programming/ch7)
 - [簡單的繪圖（Base plotting system）](https://yaojenkuo.github.io/r_programming/ch3)
 - [簡單的繪圖（ggplot2）](https://yaojenkuo.github.io/r_programming/ch5)
 - [用 RMarkdown 撰寫報告](https://yaojenkuo.github.io/r_programming/ch10)
-- [活用資料框](https://yaojenkuo.github.io/r_programming/ch7)
-- [讀取不同的資料格式](https://yaojenkuo.github.io/r_programming/ch6)
 - [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
 - [使用 apply 函數家族](https://yaojenkuo.github.io/r_programming/ch11)
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
+- [讀取不同的資料格式](https://yaojenkuo.github.io/r_programming/ch6)
 - [使用 %>% 簡化程式](https://yaojenkuo.github.io/r_programming/ch12)
 - [地理資訊的繪圖（Leaflet）](https://yaojenkuo.github.io/r_programming/ch13)
 - [使用 dplyr 套件整理資料](https://yaojenkuo.github.io/r_programming/ch14)
@@ -48,7 +48,7 @@
 - [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)
 - [自訂函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch9_exercise)
 
-### 學習資源
+### 程式碼分享
 
 - [InstaCode](http://instacode.live/channel/tony)
 
@@ -67,7 +67,7 @@
 
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
 - [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
-- [輕鬆學習 R 語言：基礎篇 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1)
+- [輕鬆學習 R 語言：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1)
 - [R in Action](https://www.manning.com/books/r-in-action-second-edition)
 - [Quick-R](http://www.statmethods.net/)
 - [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
