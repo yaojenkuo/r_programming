@@ -25,15 +25,20 @@ output:
 
 # 練習一
 
-## 練習一範例
+## 練習一說明
 
 - 將 outcome-of-care-measures.csv 讀入，並且觀察第 11 個變數的分佈
 
-```{r echo=FALSE}
+```{r}
 library(ggplot2)
 
 outcome <- read.csv("~/Downloads/Assignment3-data/outcome-of-care-measures.csv", stringsAsFactors = FALSE)
 outcome[, 11] <- as.numeric(outcome[, 11])
+```
+
+## 練習一範例
+
+```{r echo=FALSE, warning=FALSE}
 ggplot(outcome, mapping = aes(x = Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack)) +
   geom_histogram(bins = 40, fill = rgb(0.8, 0, 0, 0.5)) +
   theme_minimal() +
@@ -43,13 +48,13 @@ ggplot(outcome, mapping = aes(x = Hospital.30.Day.Death..Mortality..Rates.from.H
 
 # 練習二
 
-## 函數結構
+## 練習二函數結構
 
 `best(state, outcome)`
 
 找出指定州別裡面最好的醫院
 
-## 函數提示
+## 練習二函數提示
 
 - `outcome` 參數可以輸入 "heart attack"、"heart failure" 或 "pneumonia"
 - 如果有兩個以上醫院的 outcome 相同，則依照字母順序排序後回傳
@@ -57,7 +62,7 @@ ggplot(outcome, mapping = aes(x = Hospital.30.Day.Death..Mortality..Rates.from.H
 - 假如輸入無效的 `state` 名稱，使用 `stop()` 函數回傳訊息 invalid state
 - 假如輸入無效的 `outcome` 參數，使用 `stop()` 函數回傳訊息 invalid outcome
 
-## 函數範例
+## 練習二函數範例
 
 ```{r echo=FALSE}
 best <- function(state, outcome) {
@@ -100,6 +105,11 @@ best <- function(state, outcome) {
 best("TX", "heart attack")
 best("TX", "heart failure")
 best("MD", "heart attack")
+```
+
+----
+
+```{r error=TRUE}
 best("MD", "pneumonia")
 best("BB", "heart attack")
 best("NY", "hert attack")
@@ -107,20 +117,20 @@ best("NY", "hert attack")
 
 # 練習三
 
-## 函數結構
+## 練習三函數結構
 
 `rankhospital(state, outcome, num = "best")`
 
 將一個州依照 `outcome` 參數選出最好、最差或特定排名的醫院
 
-## 函數提示
+## 練習三函數提示
 
 - `outcome` 參數可以輸入 "heart attack"、"heart failure" 或 "pneumonia"
 - 如果有兩個以上醫院的 outcome 相同，則依照字母順序排序後回傳
 - 假如輸入無效的 `state` 名稱，使用 `stop()` 函數回傳訊息 invalid state
 - 假如輸入無效的 `outcome` 參數，使用 `stop()` 函數回傳訊息 invalid outcome
 
-## 函數範例
+## 練習三函數範例
 
 ```{r echo = FALSE}
 rankhospital <- function(state, outcome, num = "best") {
@@ -207,26 +217,26 @@ rankhospital("MD", "heart attack", "worst")
 rankhospital("MN", "heart attack", 5000)
 ```
 
-# 練習三
+# 練習四
 
-## 函數結構
+## 練習四函數結構
 
 `rankall(outcome, num = "best")`
 
 將全國的醫院依照 `outcome` 參數選出各州最好、最差或特定排名的醫院
 
-## 函數提示
+## 練習四函數提示
 
 - `outcome` 參數可以輸入 "heart attack"、"heart failure" 或 "pneumonia"
 - 如果有兩個以上醫院的 outcome 相同，則依照字母順序排序後回傳
 - 假如輸入無效的 `outcome` 參數，使用 `stop()` 函數回傳訊息 invalid outcome
 
-## 函數範例
+## 練習四函數範例
 
 ```{r echo = FALSE}
 rankall <- function(outcome, num = "best") {
   outcome_df <- read.csv("~/Downloads/Assignment3-data/outcome-of-care-measures.csv", stringsAsFactors = FALSE)
-  unique_state_names <- unique(outcome_df$State)
+  unique_state_names <- sort(unique(outcome_df$State))
   unique_outcomes <- c("heart attack", "heart failure", "pneumonia")
   cols_to_numeric <- c("Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack", "Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure", "Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia")
   for (char_col in cols_to_numeric) {
@@ -239,9 +249,7 @@ rankall <- function(outcome, num = "best") {
   } else {
     if (outcome == "heart attack") {
       if (num == "best") {
-        best_hospitals <- c()
-        states <- c()
-        result_df <- data.frame(best_hospitals, states)
+        result_df <- data.frame(best_hospitals = c(), states = c())
         for (state in unique_state_names) {
           each_state <- outcome_df[outcome_df$State == state, ]
           each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, each_state$Hospital.Name), ]
@@ -252,12 +260,10 @@ rankall <- function(outcome, num = "best") {
         names(result_df) <- c("hospital", "state")
         return(result_df)
       } else if (num == "worst") {
-        worst_hospitals <- c()
-        states <- c()
-        result_df <- data.frame(worst_hospitals, states)
+        result_df <- data.frame(worst_hospitals = c(), states = c())
         for (state in unique_state_names) {
           each_state <- outcome_df[outcome_df$State == state, ]
-          each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, each_state$Hospital.Name), ]
+          each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, each_state$Hospital.Name, decreasing = TRUE), ]
           worst_in_each_state <- each_state_ordered$Hospital.Name[length(each_state_ordered$Hospital.Name)]
           df_to_bind <- data.frame(worst_hospitals = worst_in_each_state, states = state)
           result_df <- rbind(result_df, df_to_bind)
@@ -265,17 +271,15 @@ rankall <- function(outcome, num = "best") {
         names(result_df) <- c("hospital", "state")
         return(result_df)
       } else if (is.numeric(num)) {
-        best_hospitals <- c()
-        states <- c()
-        result_df <- data.frame(best_hospitals, states)
+        result_df <- data.frame(best_hospitals = c(), states = c())
         for (state in unique_state_names) {
           each_state <- outcome_df[outcome_df$State == state, ]
-          ordered_in_each_state <- each_state$Hospital.Name[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, each_state$Hospital.Name), ]
-          if (num > length(ordered_in_each_state)) {
+          ordered_in_each_state <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack, each_state$Hospital.Name), ]
+          if (num > nrow(ordered_in_each_state)) {
             df_to_bind <- data.frame(best_hospitals = NA, states = state)
             result_df <- rbind(result_df, df_to_bind)
           } else {
-            df_to_bind <- data.frame(best_hospitals = ordered_in_each_state[num], states = state)
+            df_to_bind <- data.frame(best_hospitals = ordered_in_each_state$Hospital.Name[num], states = state)
             result_df <- rbind(result_df, df_to_bind)
           }
         }
@@ -284,9 +288,7 @@ rankall <- function(outcome, num = "best") {
       }
     } else if (outcome == "heart failure") {
       if (num == "best") {
-        best_hospitals <- c()
-        states <- c()
-        result_df <- data.frame(best_hospitals, states)
+        result_df <- data.frame(best_hospitals = c(), states = c())
         for (state in unique_state_names) {
           each_state <- outcome_df[outcome_df$State == state, ]
           each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure, each_state$Hospital.Name), ]
@@ -297,12 +299,10 @@ rankall <- function(outcome, num = "best") {
         names(result_df) <- c("hospital", "state")
         return(result_df)
       } else if (num == "worst") {
-        worst_hospitals <- c()
-        states <- c()
-        result_df <- data.frame(worst_hospitals, states)
+        result_df <- data.frame(worst_hospitals = c(), states = c())
         for (state in unique_state_names) {
           each_state <- outcome_df[outcome_df$State == state, ]
-          each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure, each_state$Hospital.Name), ]
+          each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure, each_state$Hospital.Name, decreasing = TRUE), ]
           worst_in_each_state <- each_state_ordered$Hospital.Name[length(each_state_ordered$Hospital.Name)]
           df_to_bind <- data.frame(worst_hospitals = worst_in_each_state, states = state)
           result_df <- rbind(result_df, df_to_bind)
@@ -310,9 +310,7 @@ rankall <- function(outcome, num = "best") {
         names(result_df) <- c("hospital", "state")
         return(result_df)
       } else if (is.numeric(num)) {
-        best_hospitals <- c()
-        states <- c()
-        result_df <- data.frame(best_hospitals, states)
+        result_df <- data.frame(best_hospitals = c(), states = c())
         for (state in unique_state_names) {
           each_state <- outcome_df[outcome_df$State == state, ]
           ordered_in_each_state <- each_state$Hospital.Name[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure, each_state$Hospital.Name), ]
@@ -329,9 +327,7 @@ rankall <- function(outcome, num = "best") {
       }
     } else if (outcome == "pneumonia") {
       if (num == "best") {
-        best_hospitals <- c()
-        states <- c()
-        result_df <- data.frame(best_hospitals, states)
+        result_df <- data.frame(best_hospitals = c(), states = c())
         for (state in unique_state_names) {
           each_state <- outcome_df[outcome_df$State == state, ]
           each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia, each_state$Hospital.Name), ]
@@ -342,13 +338,11 @@ rankall <- function(outcome, num = "best") {
         names(result_df) <- c("hospital", "state")
         return(result_df)
       } else if (num == "worst") {
-        worst_hospitals <- c()
-        states <- c()
-        result_df <- data.frame(worst_hospitals, states)
+        result_df <- data.frame(worst_hospitals = c(), states = c())
         for (state in unique_state_names) {
           each_state <- outcome_df[outcome_df$State == state, ]
-          each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia, each_state$Hospital.Name), ]
-          worst_in_each_state <- each_state_ordered$Hospital.Name[length(each_state_ordered$Hospital.Name)]
+          each_state_ordered <- each_state[order(each_state$Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia, each_state$Hospital.Name, decreasing = TRUE), ]
+          worst_in_each_state <- each_state_ordered$Hospital.Name[1]
           df_to_bind <- data.frame(worst_hospitals = worst_in_each_state, states = state)
           result_df <- rbind(result_df, df_to_bind)
         }
@@ -380,5 +374,10 @@ rankall <- function(outcome, num = "best") {
 ```{r}
 head(rankall("heart attack", 20), 10)
 tail(rankall("pneumonia", "worst"), 3)
+```
+
+----
+
+```{r}
 tail(rankall("heart failure"), 10)
 ```
