@@ -4,8 +4,6 @@ author: 郭耀仁
 date: "`r Sys.Date()`"
 output: 
   revealjs::revealjs_presentation:
-    self_contained: false
-    reveal_plugins: ["zoom"]
     theme: black
     highlight: zenburn
     center: true
