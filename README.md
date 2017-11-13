@@ -32,6 +32,7 @@
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
 - [讀取不同的資料格式](https://yaojenkuo.github.io/r_programming/ch6)
 - [使用 %>% 簡化程式](https://yaojenkuo.github.io/r_programming/ch12)
+- [實戰（一）Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
 - [地理資訊的繪圖（Leaflet）](https://yaojenkuo.github.io/r_programming/ch13)
 - [使用 dplyr 套件整理資料](https://yaojenkuo.github.io/r_programming/ch14)
 - [機器學習簡介](https://yaojenkuo.github.io/r_programming/ch19)
@@ -65,9 +66,12 @@
 
 ### 推薦學習資源/書籍
 
+- [輕鬆學習 R 語言：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=LEARNR)
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
 - [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
-- [輕鬆學習 R 語言：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1)
+
+---
+
 - [R in Action](https://www.manning.com/books/r-in-action-second-edition)
 - [Quick-R](http://www.statmethods.net/)
 - [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)

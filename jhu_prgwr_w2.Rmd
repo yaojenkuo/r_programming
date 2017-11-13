@@ -1,5 +1,5 @@
 ---
-title: "JHU - Programming with R(Week 2)"
+title: "JHU - Programming with R"
 author: 郭耀仁
 date: "`r Sys.Date()`"
 output: 
@@ -8,6 +8,10 @@ output:
     highlight: zenburn
     center: true
 ---
+
+## 作業來源
+
+[Coursera](https://www.coursera.org/) 的 [Programming with R](https://www.coursera.org/learn/r-programming) 課程第二週作業
 
 ## 作業目的
 
@@ -32,6 +36,8 @@ output:
     - nitrate
 
 # 函數一
+
+## 函數一結構
 
 `pollutantmean(directory, pollutant, id = 1:332)`
 
@@ -87,6 +93,8 @@ pollutantmean(my_dir, "nitrate", 23)
 ```
 
 # 函數二
+
+## 函數二結構
 
 `complete(directory, id = 1:332)`
 
@@ -155,6 +163,8 @@ complete(my_dir, 3)
 ```
 
 # 函數三
+
+## 函數三結構
 
 `corr(directory, threshold = 0)`
 

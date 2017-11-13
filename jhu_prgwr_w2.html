@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="author" content="郭耀仁" />
   <meta name="dcterms.date" content="2017-11-13" />
-  <title>JHU - Programming with R(Week 2)</title>
+  <title>JHU - Programming with R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -493,11 +493,15 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title">JHU - Programming with R(Week 2)</h1>
+    <h1 class="title">JHU - Programming with R</h1>
     <h2 class="author">郭耀仁</h2>
     <h3 class="date">2017-11-13</h3>
 </section>
 
+<section class="slide level2">
+<h2>作業來源</h2>
+<p><a href="https://www.coursera.org/">Coursera</a> 的 <a href="https://www.coursera.org/learn/r-programming">Programming with R</a> 課程第二週作業</p>
+</section>
 <section class="slide level2">
 <h2>作業目的</h2>
 <p>寫出三個函數與提供的資料集互動：</p>
@@ -522,6 +526,10 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section>
 <section><section class="titleslide slide level1"><h1>函數一</h1></section><section class="slide level2">
+<h2>函數一結構</h2>
+<p><code>pollutantmean(directory, pollutant, id = 1:332)</code></p>
+<p>計算不同觀測站特定污染物的平均數值</p>
+</section><section class="slide level2">
 <h2>函數一提示</h2>
 <p>數列中若有遺漏值，記得在 <code>mean()</code> 函數中加入參數 <code>na.rm = TRUE</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
@@ -537,6 +545,10 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <pre><code>## [1] 1.280833</code></pre>
 </section></section>
 <section><section class="titleslide slide level1"><h1>函數二</h1></section><section class="slide level2">
+<h2>函數二結構</h2>
+<p><code>complete(directory, id = 1:332)</code></p>
+<p>計算不同 csv 檔案中的完整觀測值列數</p>
+</section><section class="slide level2">
 <h2>函數二提示</h2>
 <p>使用 <code>complete.cases()</code> 來計算完整的觀測值個數。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logi_vec &lt;-<span class="st"> </span><span class="kw">complete.cases</span>(cars)
@@ -577,6 +589,10 @@ n_completes</code></pre></div>
 ## 1  3  243</code></pre>
 </section></section>
 <section><section class="titleslide slide level1"><h1>函數三</h1></section><section class="slide level2">
+<h2>函數三結構</h2>
+<p><code>corr(directory, threshold = 0)</code></p>
+<p>計算完整觀測值個數大於 <code>threshold</code> 的 csv 檔案中污染物的相關係數</p>
+</section><section class="slide level2">
 <h2>函數三提示</h2>
 <ul>
 <li>使用 <code>cor(x, y, use = &quot;pairwise.complete.obs&quot;)</code> 函數計算相關係數</li>
