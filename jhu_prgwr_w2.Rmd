@@ -1,0 +1,231 @@
+---
+title: "JHU - Programming with R(Week 2)"
+author: 郭耀仁
+date: "`r Sys.Date()`"
+output: 
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_plugins: ["zoom"]
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+## 作業目的
+
+寫出三個函數與提供的資料集互動：
+
+`pollutantmean(directory, pollutant, id = 1:332)`
+
+`complete(directory, id = 1:332)`
+
+`corr(directory, threshold = 0)`
+
+## 資料集
+
+[specdata.zip](https://storage.googleapis.com/jhu_coursera_data/specdata.zip)
+
+## 資料集簡介
+
+- 332 個 .csv 檔案
+- 每個 .csv 檔案都有三個變數：
+    - Date
+    - sulfate
+    - nitrate
+
+# 函數一
+
+`pollutantmean(directory, pollutant, id = 1:332)`
+
+計算不同觀測站特定污染物的平均數值
+
+## 函數一提示
+
+數列中若有遺漏值，記得在 `mean()` 函數中加入參數 `na.rm = TRUE`
+
+```{r}
+mean(c(1, 2, NA), na.rm = TRUE)
+```
+
+## 函數一範例
+
+```{r echo=FALSE}
+pollutantmean <- function(directory, pollutant, id = 1:332) {
+  csv_filenames <- c()
+  for (i in id) {
+    if (nchar(i) == 1) {
+      csv_filename <- paste0("00", i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    } else if (nchar(i) == 2) {
+      csv_filename <- paste0("0", i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    } else {
+      csv_filename <- paste0(i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    }
+  }
+  csv_lst <- list()
+  for (i in 1:length(csv_filenames)) {
+    csv_files_dir <- paste0(directory, "/", csv_filenames[i])
+    csv_lst[[i]] <- read.csv(csv_files_dir, stringsAsFactors = FALSE)
+  }
+  df <- csv_lst[[1]]
+  if (length(csv_lst) != 1) {
+    for (i in 2:length(csv_lst)) {
+      df <- rbind(df, csv_lst[[i]])
+    }
+  }
+  filtered_vector <- df[, pollutant]
+  ans <- mean(filtered_vector, na.rm = TRUE)
+  return(ans)
+}
+```
+
+```{r}
+my_dir <- "~/Downloads/specdata"
+pollutantmean(my_dir, "sulfate", 1:10)
+pollutantmean(my_dir, "nitrate", 70:72)
+pollutantmean(my_dir, "nitrate", 23)
+```
+
+# 函數二
+
+`complete(directory, id = 1:332)`
+
+計算不同 csv 檔案中的完整觀測值列數
+
+## 函數二提示
+
+使用 `complete.cases()` 來計算完整的觀測值個數。
+
+```{r}
+logi_vec <- complete.cases(cars)
+n_completes <- sum(logi_vec)
+n_completes
+
+test_df <- cars
+test_df[1, "dist"] <- NA
+logi_vec <- complete.cases(test_df)
+n_completes <- sum(logi_vec)
+n_completes
+```
+
+## 函數二範例
+
+```{r echo = FALSE}
+complete <- function(directory, id = 1:332) {
+  csv_filenames <- c()
+  for (i in id) {
+    if (nchar(i) == 1) {
+      csv_filename <- paste0("00", i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    } else if (nchar(i) == 2) {
+      csv_filename <- paste0("0", i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    } else {
+      csv_filename <- paste0(i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    }
+  }
+  csv_lst <- list()
+  for (i in 1:length(csv_filenames)) {
+    csv_files_dir <- paste0(directory, "/", csv_filenames[i])
+    csv_lst[[i]] <- read.csv(csv_files_dir, stringsAsFactors = FALSE)
+  }
+  df_id <- id
+  nobs <- c()
+  for (i in 1:length(csv_lst)) {
+    n_complete_cases <- sum(complete.cases(csv_lst[[i]]))
+    nobs <- c(nobs, n_complete_cases)
+  }
+  return_df <- data.frame(id = df_id, nobs = nobs)
+  return(return_df)
+}
+```
+
+```{r}
+my_dir <- "~/Downloads/specdata"
+complete(my_dir, 1)
+complete(my_dir, c(2, 4, 8, 10, 12))
+```
+
+## 函數二範例二
+
+```{r}
+complete(my_dir, 30:25)
+complete(my_dir, 3)
+```
+
+# 函數三
+
+`corr(directory, threshold = 0)`
+
+計算完整觀測值個數大於 `threshold` 的 csv 檔案中污染物的相關係數
+
+## 函數三提示
+
+- 使用 `cor(x, y, use = "pairwise.complete.obs")` 函數計算相關係數
+
+## 函數三範例
+
+```{r echo = FALSE}
+corr <- function(directory, threshold = 0) {
+  csv_filenames <- list.files(directory)
+  csv_directories <- paste0(directory, "/", csv_filenames)
+  csv_filelist <- list()
+  for (i in 1:length(csv_filenames)) {
+    csv_filelist[[i]] <- read.csv(csv_directories[i])
+  }
+  nobs <- c()
+  for (i in 1:length(csv_filelist)) {
+    n_complete_cases <- sum(complete.cases(csv_filelist[[i]]))
+    nobs <- c(nobs, n_complete_cases)
+  }
+  filter_vector <- nobs >= threshold
+  if (sum(filter_vector) == 0) {
+    cor_vector <- c()
+    return(cor_vector)
+  } else {
+    filtered_list <- csv_filelist[filter_vector]
+    cor_vector <- c()
+    for (i in 1:length(filtered_list)) {
+      cor_vector[i] <- cor(filtered_list[[i]]$sulfate, filtered_list[[i]]$nitrate, use = "pairwise.complete.obs")
+    }
+    cor_vector <- cor_vector[!is.na(cor_vector)]
+    return(cor_vector)
+  }
+}
+```
+
+## 函數三範例二
+
+```{r}
+my_dir <- "~/Downloads/specdata"
+cr <- corr(my_dir, 150)
+head(cr)
+summary(cr)
+```
+
+## 函數三範例三
+
+```{r}
+cr <- corr(my_dir, 400)
+head(cr)
+summary(cr)
+```
+
+## 函數三範例四
+
+```{r}
+cr <- corr(my_dir, 5000)
+summary(cr)
+length(cr)
+```
+
+## 函數三範例五
+
+```{r}
+cr <- corr(my_dir)
+summary(cr)
+length(cr)
+```
