@@ -12,10 +12,10 @@
 |作業編號|章節|作業|
 |-------|---|---|
 |1|單一變數與函數|[作業 1](http://yaojenkuo.io/r_programming/ch2#(15))|
-|2|簡單的繪圖（Base plotting system）|[作業 2](http://yaojenkuo.io/r_programming/ch3#(18))|
-|3|簡單的繪圖（ggplot2）|[作業 3](http://yaojenkuo.io/r_programming/ch5#(29))|
-|4|迴圈與流程控制|[作業 4](http://yaojenkuo.io/r_programming/ch8#(25))|
-|5|自訂函數|[作業 5](http://yaojenkuo.io/r_programming/ch9#(16))|
+|2|迴圈與流程控制|[作業 2](http://yaojenkuo.io/r_programming/ch8#(25))|
+|3|自訂函數|[作業 3](http://yaojenkuo.io/r_programming/ch9#(16))|
+|4|簡單的繪圖（Base plotting system）|[作業 4](http://yaojenkuo.io/r_programming/ch3#(18))|
+|5|簡單的繪圖（ggplot2）|[作業 5](http://yaojenkuo.io/r_programming/ch5#(29))|
 
 ### 課程大綱
 
@@ -23,32 +23,16 @@
 - [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/ch1)
 - [單一變數與函數](https://yaojenkuo.github.io/r_programming/ch2)
 - [基本資料結構](https://yaojenkuo.github.io/r_programming/ch4)
-- [活用資料框](https://yaojenkuo.github.io/r_programming/ch7)
-- [簡單的繪圖（Base plotting system）](https://yaojenkuo.github.io/r_programming/ch3)
-- [簡單的繪圖（ggplot2）](https://yaojenkuo.github.io/r_programming/ch5)
-- [用 RMarkdown 撰寫報告](https://yaojenkuo.github.io/r_programming/ch10)
 - [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
-- [使用 apply 函數家族](https://yaojenkuo.github.io/r_programming/ch11)
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
+- [讀取不同的資料格式](https://yaojenkuo.github.io/r_programming/ch6)
+- [活用資料框](https://yaojenkuo.github.io/r_programming/ch7)
+- [解題（一）Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
+- [簡單的繪圖（Base plotting system）](https://yaojenkuo.github.io/r_programming/ch3)
 - [使用 %>% 簡化程式](https://yaojenkuo.github.io/r_programming/ch12)
 - [使用 dplyr 套件整理資料](https://yaojenkuo.github.io/r_programming/ch14)
-- [讀取不同的資料格式](https://yaojenkuo.github.io/r_programming/ch6)
-- [解題（一）Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
+- [簡單的繪圖（ggplot2）](https://yaojenkuo.github.io/r_programming/ch5)
 - [解題（二）Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)
-- [地理資訊的繪圖（Leaflet）](https://yaojenkuo.github.io/r_programming/ch13)
-- [機器學習簡介](https://yaojenkuo.github.io/r_programming/ch19)
-- [迴歸模型（Regression）](https://yaojenkuo.github.io/r_programming/ch15)
-- [分類模型（Classification）](https://yaojenkuo.github.io/r_programming/ch17)
-- [分類模型 - Titanic](https://yaojenkuo.github.io/r_programming/ch20)
-- [分群模型（Clustering）](https://yaojenkuo.github.io/r_programming/ch16)
-
-### 隨堂練習
-
-- [單一變數與函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch2_exercise)
-- [基本資料結構 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch4_exercise)
-- [活用資料框 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch7_exercise)
-- [迴圈與流程控制 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch8_exercise)
-- [自訂函數 - 隨堂練習](https://yaojenkuo.github.io/r_programming/ch9_exercise)
 
 ### 程式碼同步
 
@@ -67,12 +51,9 @@
 
 ### 推薦學習資源/書籍
 
-- [輕鬆學習 R 語言：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=LEARNR)
+- [R 語言輕鬆學習：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=LEARNR)
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
 - [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
-
----
-
 - [R in Action](https://www.manning.com/books/r-in-action-second-edition)
 - [Quick-R](http://www.statmethods.net/)
 - [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
