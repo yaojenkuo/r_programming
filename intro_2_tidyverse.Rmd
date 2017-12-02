@@ -1,0 +1,75 @@
+---
+title: "Tidyverse 簡介"
+author: 郭耀仁
+date: "`r Sys.Date()`"
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# Tidyverse 套件
+
+## Tidyverse 示意
+
+![](images/tidyverse_logo.png)
+
+## Tidyverse 是什麼？
+
+它是由 RStudio 選出的多個資料科學應用套件集合
+
+## Tidyverse 成員
+
+- 視覺化文法的王者 ggplot2
+- 資料處理的利器 dplyr
+- 長寬表格轉換的專家 tidyr
+- 資料載入的 readr
+- 消弭迴圈的加速器 purrr
+- 強化資料框的 tibble
+
+## 我們教 dplyr 與 ggplot2 就好
+
+## 安裝與載入 tidyverse
+
+```
+install.packages("tidyverse")
+```
+
+```{r message=FALSE}
+library(tidyverse)
+```
+
+# pipe 運算子 %>%
+
+## 將今天的年份轉換成數字：正常寫法
+
+```{r}
+# 第一種寫法
+sys_date_chr <- Sys.Date()
+sys_date_yr_chr <- format(Sys.Date(), format = "%Y")
+sys_date_yr_num <- as.numeric(sys_date_yr_chr)
+sys_date_yr_num
+```
+
+## 將今天的年份轉換成數字：簡潔寫法
+
+```{r}
+sys_date_yr_num <- as.numeric(format(Sys.Date(), format = "%Y"))
+sys_date_yr_num
+```
+
+## 各有優缺點
+
+- 第一種寫法很清晰，但是創造出太多最後用不到的變數（佔用記憶體）
+- 第二種寫法很有效率，但是不夠清晰
+
+## 魚與熊掌我都要
+
+```{r}
+sys_date_yr_num <- Sys.Date() %>%
+  format(format = "%Y") %>%
+  as.numeric()
+
+sys_date_yr_num
+```
