@@ -33,7 +33,6 @@
 - [解題（一）Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
 - [簡單的繪圖（Base plotting system）](https://yaojenkuo.github.io/r_programming/ch3)
 - [使用 %>% 簡化程式](https://yaojenkuo.github.io/r_programming/ch12)
-
 - [解題（二）Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)
 
 ### 程式碼同步
