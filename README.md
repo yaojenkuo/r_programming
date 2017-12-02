@@ -23,6 +23,9 @@
 - [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/ch1)
 - [單一變數與函數](https://yaojenkuo.github.io/r_programming/ch2)
 - [基本資料結構](https://yaojenkuo.github.io/r_programming/ch4)
+- [Tidyverse 簡介](https://yaojenkuo.github.io/r_programming/intro_2_tidyverse.html)
+- [使用 dplyr 套件整理資料](https://yaojenkuo.github.io/r_programming/ch14)
+- [簡單的繪圖（ggplot2）](https://yaojenkuo.github.io/r_programming/ch5)
 - [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
 - [讀取不同的資料格式](https://yaojenkuo.github.io/r_programming/ch6)
@@ -30,8 +33,7 @@
 - [解題（一）Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
 - [簡單的繪圖（Base plotting system）](https://yaojenkuo.github.io/r_programming/ch3)
 - [使用 %>% 簡化程式](https://yaojenkuo.github.io/r_programming/ch12)
-- [使用 dplyr 套件整理資料](https://yaojenkuo.github.io/r_programming/ch14)
-- [簡單的繪圖（ggplot2）](https://yaojenkuo.github.io/r_programming/ch5)
+
 - [解題（二）Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)
 
 ### 程式碼同步
