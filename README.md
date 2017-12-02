@@ -40,6 +40,7 @@
 
 ### 近期上課錄影
 
+- [第 291 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuVtAwJWiYse6NQ8o_qUYNro)
 - [第 290 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXsxvEmFsVOApHWtKPcIFHg)
 - [第 289 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuU6LtlobgRQEPL9Tq0WUSgW)
 - [第 288 期 R 程式設計班（2017 暑假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuUohqM7lU6phqk_QGpvWWtV)
