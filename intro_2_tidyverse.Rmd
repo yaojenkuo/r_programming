@@ -47,7 +47,7 @@ library(tidyverse)
 ```{r}
 # 第一種寫法
 sys_date_chr <- Sys.Date()
-sys_date_yr_chr <- format(Sys.Date(), format = "%Y")
+sys_date_yr_chr <- format(sys_date_chr, format = "%Y")
 sys_date_yr_num <- as.numeric(sys_date_yr_chr)
 sys_date_yr_num
 ```

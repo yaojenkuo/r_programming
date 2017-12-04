@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="郭耀仁" />
-  <meta name="dcterms.date" content="2017-12-02" />
+  <meta name="dcterms.date" content="2017-12-04" />
   <title>Tidyverse 簡介</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -495,7 +495,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section>
     <h1 class="title">Tidyverse 簡介</h1>
     <h2 class="author">郭耀仁</h2>
-    <h3 class="date">2017-12-02</h3>
+    <h3 class="date">2017-12-04</h3>
 </section>
 
 <section><section id="tidyverse-" class="titleslide slide level1"><h1>Tidyverse 套件</h1></section><section id="tidyverse-" class="slide level2">
@@ -525,7 +525,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2>將今天的年份轉換成數字：正常寫法</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 第一種寫法</span>
 sys_date_chr &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
-sys_date_yr_chr &lt;-<span class="st"> </span><span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)
+sys_date_yr_chr &lt;-<span class="st"> </span><span class="kw">format</span>(sys_date_chr, <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>)
 sys_date_yr_num &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(sys_date_yr_chr)
 sys_date_yr_num</code></pre></div>
 <pre><code>## [1] 2017</code></pre>
