@@ -1,0 +1,125 @@
+---
+title: "Exploratory Data Analysis: Electric Power Consumption"
+author: 郭耀仁
+date: "`r Sys.Date()`"
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# 案例來源
+
+## Exploratory Data Analysis by Johns Hopkins University on Coursera
+
+<https://www.coursera.org/learn/exploratory-data-analysis>
+
+# 資料
+
+## 下載資料
+
+[Electric power consumption](https://storage.googleapis.com/jhu_coursera_data/household_power_consumption.zip)
+
+## 注意
+
+- 變數分隔符號為 ';'
+- 2,075,259 個觀測值與 9 個變數
+- 只需要使用 2007-02-01 與 2007-02-02 這兩天的資料
+- 遺漏值被記錄為 '?'
+
+## 變數資訊上
+
+- Date: Date in format dd/mm/yyyy
+- Time: time in format hh:mm:ss
+- Global_active_power: household global minute-averaged active power (in kilowatt)
+- Global_reactive_power: household global minute-averaged reactive power (in kilowatt)
+- Voltage: minute-averaged voltage (in volt)
+- Global_intensity: household global minute-averaged current intensity (in ampere)
+
+## 變數資訊下
+
+- Sub_metering_1: energy sub-metering No. 1 (in watt-hour of active energy). It corresponds to the kitchen, containing mainly a dishwasher, an oven and a microwave (hot plates are not electric but gas powered).
+- Sub_metering_2: energy sub-metering No. 2 (in watt-hour of active energy). It corresponds to the laundry room, containing a washing-machine, a tumble-drier, a refrigerator and a light.
+- Sub_metering_3: energy sub-metering No. 3 (in watt-hour of active energy). It corresponds to an electric water-heater and an air-conditioner.
+
+# 練習繪製四個圖形
+
+## 圖形一
+
+```{r echo=FALSE, message=FALSE}
+library(ggplot2)
+
+file_url <- "https://storage.googleapis.com/jhu_coursera_data/household_power_consumption.csv"
+exdata <- read.csv(file_url, stringsAsFactors = FALSE)
+ggplot(exdata, aes(x = Global_active_power)) +
+  geom_histogram(bins = 15, fill = rgb(1, 0, 0, 0.5)) +
+  theme_minimal() +
+  ggtitle("Global Active Power") +
+  xlab("Global Active Power (kilowatts)") +
+  ylab("Frequency")
+```
+
+## 圖形二
+
+```{r echo=FALSE, message=FALSE}
+exdata$Datetime <- paste(exdata$Date, exdata$Time)
+exdata$Datetime <- as.POSIXct(exdata$Datetime)
+ggplot(exdata, aes(x = Datetime, y = Global_active_power)) +
+  geom_line() +
+  ylab("Global Active Power (kilowatts)") +
+  scale_x_datetime(date_labels = "%A") +
+  xlab("") +
+  theme_minimal()
+```
+
+## 圖形三
+
+```{r echo=FALSE, message=FALSE}
+library(tidyr)
+
+long_exdata <- gather(exdata[, c("Datetime", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3")], key = submeter, value = metering, Sub_metering_1, Sub_metering_2, Sub_metering_3)
+ggplot(long_exdata, aes(x = Datetime, y = metering, color = submeter)) +
+  geom_line() +
+  ylab("Energy sub metering") +
+  scale_x_datetime(date_labels = "%A") +
+  xlab("") +
+  theme_minimal()
+```
+
+## 圖形四
+
+```{r echo=FALSE, message=FALSE}
+library(gridExtra)
+
+p1 <- ggplot(exdata, aes(x = Datetime, y = Global_active_power)) +
+  geom_line() +
+  ylab("Global Active Power (kilowatts)") +
+  scale_x_datetime(date_labels = "%A") +
+  xlab("") +
+  theme_minimal()
+
+p2 <- ggplot(long_exdata, aes(x = Datetime, y = metering, color = submeter)) +
+  geom_line() +
+  ylab("Energy sub metering") +
+  scale_x_datetime(date_labels = "%A") +
+  xlab("") +
+  theme_minimal() +
+  theme(legend.position = c(0.8, 0.8))
+
+p3 <- ggplot(exdata, aes(x = Datetime, y = Voltage)) +
+  geom_line() +
+  ylab("Voltage") +
+  scale_x_datetime(date_labels = "%A") +
+  xlab("") +
+  theme_minimal()
+
+p4 <- ggplot(exdata, aes(x = Datetime, y = Global_reactive_power)) +
+  geom_line() +
+  ylab("Global Reactive Power") +
+  scale_x_datetime(date_labels = "%A") +
+  xlab("") +
+  theme_minimal()
+
+grid.arrange(p1, p3, p2, p4, ncol=2)
+```
