@@ -1,0 +1,191 @@
+---
+title: "Exploratory Data Analysis: PM2.5"
+author: 郭耀仁
+date: "`r Sys.Date()`"
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# 案例來源
+
+## Exploratory Data Analysis by Johns Hopkins University on Coursera
+
+<https://www.coursera.org/learn/exploratory-data-analysis>
+
+# 資料
+
+## 下載資料
+
+[PM2.5](https://storage.googleapis.com/jhu_coursera_data/exdata_NEI_data.zip)
+
+## 注意
+
+使用 `readRDS()` 函數載入資料
+
+```{r}
+NEI <- readRDS("~/Downloads/exdata_NEI_data/summarySCC_PM25.rds")
+SCC <- readRDS("~/Downloads/exdata_NEI_data/Source_Classification_Code.rds")
+```
+
+## 資料的前幾列
+
+```{r}
+head(NEI)
+```
+
+## 變數資訊
+
+- fips: A five-digit number (represented as a string) indicating the U.S. county
+- SCC: The name of the source as indicated by a digit string (see source code classification table)
+- Pollutant: A string indicating the pollutant
+- Emissions: Amount of PM2.5 emitted, in tons
+- type: The type of source (point, non-point, on-road, or non-road)
+- year: The year of emissions recorded
+
+# 練習內容
+
+利用 ggplot2 或任意繪圖系統回答下列的問題
+
+## 練習一
+
+Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? Make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.
+
+## 練習一參考解答
+
+```{r echo=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+```{r echo=FALSE}
+ttl_emission <- NEI %>%
+  group_by(year) %>%
+  summarise(sum_emissions = sum(Emissions))
+ggplot(ttl_emission, aes(x = year, y = sum_emissions)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +
+  theme_minimal() +
+  xlab("Year") +
+  ylab("") +
+  ggtitle("Total emissions from PM2.5 decreased in the United States.")
+```
+
+## 練習二
+
+Have total emissions from PM2.5 decreased in the Baltimore City, Maryland(`fips == '24510'`) from 1999 to 2008? Make a plot answering this question.
+
+## 練習二參考解答
+
+```{r echo=FALSE}
+baltimore <- NEI %>%
+  filter(fips == '24510') %>%
+  group_by(year) %>%
+  summarise(sum_emissions = sum(Emissions))
+ggplot(baltimore, aes(x = year, y = sum_emissions)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +
+  theme_minimal() +
+  xlab("Year") +
+  ylab("") +
+  ggtitle("Total emissions from PM2.5 decreased in Baltimore, Maryland.")
+```
+
+## 練習三
+
+Of the four types of sources indicated by the type(point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Make a plot answer this question.
+
+## 練習三參考解答
+
+```{r echo=FALSE}
+baltimore <- NEI %>%
+  filter(fips == '24510') %>%
+  group_by(year, type) %>%
+  summarise(sum_emissions = sum(Emissions))
+ggplot(baltimore, aes(x = year, y = sum_emissions, colour = type)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +
+  theme_minimal() +
+  xlab("Year") +
+  ylab("") +
+  ggtitle("Only POINT type emission increased in Baltimore, Maryland.")
+```
+
+## 練習四
+
+Across the United States, how have emissions from coal combustion-related sources(`SCC$EI.Sector`) changed from 1999–2008?
+
+## 練習四參考解答
+
+```{r echo=FALSE}
+is_coal_sources <- grepl(pattern = 'Coal', SCC$EI.Sector)
+SCC_coal <- SCC[is_coal_sources, ]
+coal_scc <- as.character(SCC_coal$SCC)
+
+coal <- NEI %>%
+  filter(SCC %in% coal_scc) %>%
+  group_by(year) %>%
+  summarise(sum_emissions = sum(Emissions))
+ggplot(coal, aes(x = year, y = sum_emissions)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +
+  theme_minimal() +
+  xlab("Year") +
+  ylab("") +
+  ggtitle("Emissions from coal combustion-related sources decreased from 1999–2008.")
+```
+
+## 練習五
+
+How have emissions from motor vehicle sources(`SCC$EI.Sector`) changed from 1999–2008 in Baltimore City?
+
+## 練習五參考解答
+
+```{r echo=FALSE}
+is_mobile_sources <- grepl(pattern = 'Mobile', SCC$EI.Sector)
+SCC_mobile <- SCC[is_mobile_sources, ]
+mobile_scc <- as.character(SCC_mobile$SCC)
+
+mobile <- NEI %>%
+  filter(fips == '24510') %>%
+  filter(SCC %in% mobile_scc) %>%
+  group_by(year) %>%
+  summarise(sum_emissions = sum(Emissions))
+ggplot(mobile, aes(x = year, y = sum_emissions)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +
+  theme_minimal() +
+  xlab("Year") +
+  ylab("") +
+  ggtitle("Emissions from motor vehicle sources decreased significantly from 1999-2002,\nbut bounced a bit in the next 6 years.")
+```
+
+## 練習六
+
+Compare emissions from motor vehicle sources in Baltimore City with emissions from motor vehicle sources in Los Angeles County, California(`fips == '06037'`). Which city has seen greater changes over time in motor vehicle emissions?
+
+## 練習六參考解答
+
+```{r echo=FALSE}
+mobile_twin_cities <- NEI %>%
+  filter(fips %in% c('24510', '06037')) %>%
+  filter(SCC %in% mobile_scc) %>%
+  group_by(year, fips) %>%
+  summarise(sum_emissions = sum(Emissions))
+
+ggplot(mobile_twin_cities, aes(x = year, y = sum_emissions, colour = fips)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = c(1999, 2002, 2005, 2008)) +
+  theme_minimal() +
+  xlab("Year") +
+  ylab("") +
+  ggtitle("Baltimore's emission from motor sources has seen greater decrease than Los Angelas.")
+```
