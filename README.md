@@ -33,6 +33,7 @@
 - [解題（一）Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
 - [解題（二）Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)
 - [解題（三）EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)
+- [解題（四）EDA: PM2.5](http://yaojenkuo.io/r_programming/jhu_eda_w4)
 
 ### 程式碼同步
 
