@@ -1,0 +1,143 @@
+---
+title: "tidyverse: dplyr"
+author: 郭耀仁
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# dplyr 套件
+
+## 超級受歡迎
+
+- 包含於 tidyverse 之中
+- 類似 SQL 查詢的功能
+- 搭配 `%>%` 運算子做 Chaining
+
+## 常用的 dplyr 函數
+
+|函數|用途|
+|:----|:----|
+|`filter()`|觀測值（列）選擇|
+|`select()`|變數（欄）選擇|
+|`mutate()`|新增變數（欄）|
+|`arrange()`|排序|
+|`summarise()`|聚合|
+|`group_by()`|分組|
+
+## 檢視練習資料
+
+```{r}
+load(url("https://storage.googleapis.com/r_rookies/straw_hat_df.RData"))
+```
+
+```{r eval=FALSE}
+View(straw_hat_df)
+dim(straw_hat_df)
+summary(straw_hat_df)
+```
+
+## `filter()`
+
+- 選出女性船員
+
+```{r message=FALSE}
+library(tidyverse)
+
+straw_hat_df %>%
+  filter(gender == "Female")
+```
+
+## 篩選兩個或更多條件
+
+- 選出女性船員並且年紀大於等於 30 歲
+
+```{r}
+straw_hat_df %>%
+  filter(gender == "Female" & age >= 30)
+```
+
+## `select()`
+
+- 選擇資料框中的變數
+
+```{r}
+straw_hat_df %>%
+  select(name, gender)
+```
+
+## 整合 filter 與 select
+
+```{r}
+# 選出女性船員，但只回傳 name 變數
+straw_hat_df %>%
+  filter(gender == "Female") %>%
+  select(name)
+```
+
+## `mutate()`
+
+- 新增兩年前的年紀
+- 利用 `age` 減去 2
+
+```{r}
+straw_hat_df %>%
+  mutate(age_2yr_ago = age - 2)
+```
+
+## `arrange()`
+
+- 以 `age` 排序
+
+```{r}
+straw_hat_df %>%
+  arrange(age) # 或使用看看 desc(age)
+```
+
+## `summarise()`
+
+- 計算聚合變數平均年齡 `mean_age`
+
+```{r}
+straw_hat_df %>%
+  summarise(mean_age = mean(age))
+```
+
+## `group_by()`
+
+- 依照性別計算平均年齡 `mean_age`
+
+```{r}
+straw_hat_df %>%
+  group_by(gender) %>%
+  summarise(mean_age = mean(age))
+```
+
+# 隨堂練習
+
+## 練習資料集
+
+```{r eval=FALSE}
+install.packages("gapminder")
+```
+
+```{r}
+library(gapminder)
+View(gapminder)
+```
+
+## 篩選出台灣
+
+## 篩選出台灣之後選擇 year、lifeExp、gdpPercap 變數
+
+## 以 year 與 country 排序
+
+## 新增變數 pop_in_thousands 改以千人為單位
+
+## 2007 年全球總人口數為多少？
+
+## 承上，各洲總人口數分別為多少？
+
+## 延續上題，那麼平均 lifeExp、平均 gdpPercap 為何？
