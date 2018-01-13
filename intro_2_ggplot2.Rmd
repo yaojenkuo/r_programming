@@ -1,0 +1,177 @@
+---
+title: "tidyverse: ggplot2"
+author: 郭耀仁
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# ggplot2 套件
+
+## 超級受歡迎
+
+- 包含於 tidyverse 之中
+- 視覺化的文法
+- 將變數指定在 `aes()` 之中
+
+```{r eval=FALSE}
+ggplot(df, aes()) +
+  geom_xxx()
+```
+
+## 基本的統計圖形
+
+- 散佈圖：`geom_point()`
+- 線圖：`geom_line()`
+- 直方圖：`geom_histogram()`
+- 盒鬚圖：`geom_boxplot()`
+- 長條圖：`geom_bar()`
+
+## 繪圖前先（安裝）載入這些套件
+
+```{r eval=FALSE}
+install.packages(c("tidyverse", "gapminder"))
+```
+
+```{r message=FALSE}
+library(tidyverse)
+library(gapminder)
+```
+
+## 散佈圖
+
+```{r}
+gapminder_2007 <- gapminder %>%
+  filter(year == 2007)
+scatter <- ggplot(gapminder_2007, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() +
+  theme_minimal()
+```
+
+---
+
+```{r}
+scatter
+```
+
+## 線圖
+
+```{r}
+north_asia <- gapminder %>%
+  filter(country %in% c("China", "Japan", "Taiwan", "Korea, Rep."))
+line_plot <- ggplot(north_asia, aes(x = year, y = gdpPercap, colour = country)) +
+  geom_line() +
+  theme_minimal()
+```
+
+---
+
+```{r}
+line_plot
+```
+
+## 直方圖
+
+```{r}
+histogram <- ggplot(gapminder_2007, aes(x = gdpPercap)) +
+  geom_histogram(bins = 20) +
+  theme_minimal()
+```
+
+---
+
+```{r}
+histogram
+```
+
+## 盒鬚圖
+
+```{r}
+box_plot <- ggplot(gapminder_2007, aes(x = continent, y = gdpPercap)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+
+---
+
+```{r}
+box_plot
+```
+
+## 長條圖
+
+```{r}
+gdpPercap_2007_na <- gapminder %>%
+  filter(year == 2007 & country %in% c("China", "Japan", "Taiwan", "Korea, Rep."))
+
+bar_plot <- ggplot(gdpPercap_2007_na, aes(x = country, y = gdpPercap)) +
+  geom_bar(stat = "identity") +
+  theme_minimal()
+```
+
+---
+
+```{r}
+bar_plot
+```
+
+# 隨堂練習
+
+## 練習資料集
+
+```{r}
+csv_url <- "https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/hh.csv"
+hh <- read.csv(csv_url, stringsAsFactors = FALSE, fileEncoding = 'utf8')
+```
+
+## 欄位定義
+
+- district: 行政區
+- hh: 戶數
+- disposable_income_in_thousands: 可支配所得（新台幣千元）
+- year: 年份
+
+## 大安區、中正區與信義區的平均每戶可支配所得線圖
+
+```{r echo=FALSE}
+line_df <- hh %>%
+  filter(district %in% c("大安區", "中正區", "信義區")) %>%
+  mutate(avg_income = disposable_income_in_thousands * 1000 / hh)
+
+ggplot(line_df, aes(x = year, y = avg_income, colour = district)) +
+  geom_line() +
+  theme_minimal() +
+  theme(text = element_text(family = 'Heiti TC Light'))
+```
+
+## 所有行政區的每戶可支配所得盒鬚圖
+
+```{r echo=FALSE}
+box_df <- hh %>%
+  mutate(avg_income = disposable_income_in_thousands * 1000 / hh)
+
+ggplot(box_df, aes(x = district, y = avg_income)) +
+  geom_boxplot() +
+  theme_minimal() +
+  theme(text = element_text(family = "Heiti TC Light"))
+```
+
+## 平均每戶可支配所得的最新排名
+
+```{r echo=FALSE}
+bar_df <- hh %>%
+  filter(year == 2016) %>%
+  mutate(avg_income = disposable_income_in_thousands * 1000 / hh) %>%
+  arrange(avg_income)
+
+district_levels <- as.character(bar_df$district)
+bar_df$district <- factor(bar_df$district, levels = district_levels)
+
+ggplot(bar_df, aes(x = district, y = avg_income)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  theme(text = element_text(family = "Heiti TC Light")) +
+  coord_flip()
+```
