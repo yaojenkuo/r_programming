@@ -6,34 +6,32 @@
 
 ### 評分標準
 
-- 50% 出席率
-- 50% 期中作業
+- 60% 出席率
+- 40% 期中作業
 
 |作業編號|章節|作業|
 |-------|---|---|
 |1|單一變數與函數|[作業 1](http://yaojenkuo.io/r_programming/ch2#(15))|
 |2|迴圈與流程控制|[作業 2](http://yaojenkuo.io/r_programming/ch8#(25))|
 |3|自訂函數|[作業 3](http://yaojenkuo.io/r_programming/ch9#(16))|
-|4|簡單的繪圖（Base plotting system）|[作業 4](http://yaojenkuo.io/r_programming/ch3#(18))|
-|5|簡單的繪圖（ggplot2）|[作業 5](http://yaojenkuo.io/r_programming/ch5#(29))|
+|4|簡單的繪圖（ggplot2）|[作業 4](http://yaojenkuo.io/r_programming/ch5#(29))|
 
 ### 課程大綱
 
 - [關於這門課](https://yaojenkuo.github.io/r_programming/ch0)
 - [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/ch1)
-- [單一變數與函數](https://yaojenkuo.github.io/r_programming/ch2)
-- [基本資料結構](https://yaojenkuo.github.io/r_programming/ch4)
 - [Tidyverse 簡介](https://yaojenkuo.github.io/r_programming/intro_2_tidyverse.html)
-- [使用 dplyr 套件整理資料](https://yaojenkuo.github.io/r_programming/ch14)
-- [簡單的繪圖（ggplot2）](https://yaojenkuo.github.io/r_programming/ch5)
+- [Tidyverse: dplyr](https://yaojenkuo.github.io/r_programming/intro_2_dplyr.html)
+- [Tidyverse: ggplot2]()
+- [變數型別](https://yaojenkuo.github.io/r_programming/ch2)
+- [資料結構](https://yaojenkuo.github.io/r_programming/ch4)
 - [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
-- [讀取不同的資料格式](https://yaojenkuo.github.io/r_programming/ch6)
-- [活用資料框](https://yaojenkuo.github.io/r_programming/ch7)
-- [解題（一）Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
-- [解題（二）Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)
-- [解題（三）EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)
-- [解題（四）EDA: PM2.5](http://yaojenkuo.io/r_programming/jhu_eda_w4)
+- [載入資料與網站爬蟲]()
+- [專題：Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
+- [專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)
+- [專題：EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)
+- [專題：EDA: PM2.5](http://yaojenkuo.io/r_programming/jhu_eda_w4)
 
 ### 程式碼同步
 
