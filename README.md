@@ -23,6 +23,8 @@
 - [Tidyverse 簡介](https://yaojenkuo.github.io/r_programming/intro_2_tidyverse.html)
 - [Tidyverse: dplyr](https://yaojenkuo.github.io/r_programming/intro_2_dplyr.html)
 - [Tidyverse: ggplot2](https://yaojenkuo.github.io/r_programming/intro_2_ggplot2.html)
+- [專題：EDA: PM2.5](http://yaojenkuo.io/r_programming/jhu_eda_w4)
+- [專題：EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)
 - [變數型別](https://yaojenkuo.github.io/r_programming/ch2)
 - [資料結構](https://yaojenkuo.github.io/r_programming/ch4)
 - [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
@@ -30,8 +32,6 @@
 - [載入資料與網站爬蟲]()
 - [專題：Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
 - [專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)
-- [專題：EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)
-- [專題：EDA: PM2.5](http://yaojenkuo.io/r_programming/jhu_eda_w4)
 
 ### 程式碼同步
 
