@@ -6,15 +6,16 @@
 
 ### 評分標準
 
-- 60% 出席率
-- 40% 期中作業
+- 50% 出席率
+- 50% 作業
 
-|作業編號|章節|作業|
-|-------|---|---|
-|1|單一變數與函數|[作業 1](http://yaojenkuo.io/r_programming/ch2#(15))|
-|2|迴圈與流程控制|[作業 2](http://yaojenkuo.io/r_programming/ch8#(25))|
-|3|自訂函數|[作業 3](http://yaojenkuo.io/r_programming/ch9#(16))|
-|4|簡單的繪圖（ggplot2）|[作業 4](http://yaojenkuo.io/r_programming/ch5#(29))|
+|作業編號|作業連結|
+|-------|------|
+|作業 1|[ggplot2](http://yaojenkuo.io/r_programming/jhu_eda_w1#/3/4)|
+|作業 2|[變數型別](http://yaojenkuo.io/r_programming/ch2#(15))|
+|作業 3|[自訂函數](http://yaojenkuo.io/r_programming/ch9#(16))|
+|作業 4|[網站爬蟲]()|
+|作業 5|[資料清理]()|
 
 ### 課程大綱
 
@@ -39,6 +40,8 @@
 
 ### 近期上課錄影
 
+- [第 293 期 R 語言與資料科學應用（寒假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWte5L9o1zYKcMxXsxfT6e2)
+- [第 292 期 R 語言與資料科學應用（假日班）]()
 - [第 291 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuVtAwJWiYse6NQ8o_qUYNro)
 - [第 290 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXsxvEmFsVOApHWtKPcIFHg)
 - [第 289 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuU6LtlobgRQEPL9Tq0WUSgW)
