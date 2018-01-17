@@ -175,3 +175,9 @@ ggplot(bar_df, aes(x = district, y = avg_income)) +
   theme(text = element_text(family = "Heiti TC Light")) +
   coord_flip()
 ```
+
+# 延伸閱讀
+
+## 官方文件
+
+http://ggplot2.tidyverse.org/reference/index.html
