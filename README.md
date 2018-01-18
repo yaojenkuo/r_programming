@@ -17,6 +17,8 @@
 |作業 4|[網站爬蟲]()|
 |作業 5|[資料清理]()|
 
+作業請寄至 tony@kyosei.ai，註明班別與姓名。
+
 ### 課程大綱
 
 - [關於這門課](https://yaojenkuo.github.io/r_programming/ch0)
