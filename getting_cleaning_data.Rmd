@@ -1,0 +1,129 @@
+---
+title: "Getting and Cleaning Data"
+author: 郭耀仁
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# 案例來源
+
+## Getting and cleaning data by Johns Hopkins University on Coursera
+
+<https://www.coursera.org/learn/data-cleaning>
+
+# 資料
+
+## 下載資料
+
+[UCI HAR Dataset](https://storage.googleapis.com/jhu_coursera_data/UCI_HAR_Dataset.zip)
+
+## 資料描述
+
+Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data is collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
+
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+## 步驟指引
+
+1. Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement.
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names.
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+## 參考解答
+
+```{r echo=FALSE, message=FALSE}
+# run_analysis.R
+library(dplyr)
+
+## get_files: Getting files into R
+get_files <- function(directory) {
+  file_paths <- c("train/X_train.txt", "train/y_train.txt", "train/subject_train.txt", "test/X_test.txt", "test/y_test.txt", "test/subject_test.txt", "features.txt")
+  file_paths <- paste0(directory, file_paths)
+  df_names <- c("X_train", "y_train", "subject_train", "X_test", "y_test", "subject_test", "features")
+  df_list <- list()
+  for (i in 1:length(file_paths)) {
+    df_list[[i]] <- read.table(file_paths[i], stringsAsFactors = FALSE)
+  }
+  names(df_list) <- df_names
+  return(df_list)
+}
+
+## merge_training_test: Merges the training and the test sets to create one data set
+merge_training_test <- function(df_list) {
+  X <- rbind(df_list$X_train, df_list$X_test)
+  y <- rbind(df_list$y_train, df_list$y_test)
+  subject <- rbind(df_list$subject_train, df_list$subject_test)
+  df <- cbind(y, X)
+  df <- cbind(subject, df)
+  return(df)
+}
+
+## extract_mean_std: Extracts only the measurements on the mean and standard deviation for each measurement
+extract_mean_std <- function(df, df_list) {
+  feature_names <- df_list$features$V2
+  has_mean_std <- feature_names %>%
+    grepl(pattern = "mean()|std()")
+  has_meanFreq <- feature_names %>%
+    grepl(pattern = "meanFreq()")
+  feature_selector <- has_mean_std & !has_meanFreq
+  feature_selector <- c(TRUE, TRUE, feature_selector)
+  mean_std_df <- df[feature_selector]
+  return(mean_std_df)
+}
+
+## recode_activity: Uses descriptive activity names to name the activities in the data set
+recode_activity <- function(mean_std_df) {
+  activities <- c("WALKING", "WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING", "STANDING", "LAYING")
+  for (i in 1:length(activities)) {
+    mean_std_df[, 2][mean_std_df[, 2] == i] <- activities[i]
+  }
+  return(mean_std_df)
+}
+
+## label_variable_names: Appropriately labels the data set with descriptive variable names.
+label_variable_names <- function(mean_std_df, df_list) {
+  feature_names <- df_list$features$V2
+  has_mean_std <- feature_names %>%
+    grepl(pattern = "mean()|std()")
+  has_meanFreq <- feature_names %>%
+    grepl(pattern = "meanFreq()")
+  feature_selector <- has_mean_std & !has_meanFreq
+  variable_names <- c("subject", "activity", feature_names[feature_selector])
+  names(mean_std_df) <- variable_names
+  return(mean_std_df)
+}
+
+## get_summarized_data: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+get_summarized_data <- function(mean_std_df) {
+  tidy_data <- mean_std_df %>%
+    group_by(subject, activity) %>%
+    summarise_all(mean)
+  return(tidy_data)
+}
+```
+
+```{r echo=FALSE}
+unzip("~/Downloads/UCI_HAR_Dataset.zip", exdir = "~/Downloads/")
+df_list <- get_files("~/Downloads/UCI HAR Dataset/")
+df <- merge_training_test(df_list)
+mean_std_df <- extract_mean_std(df, df_list)
+mean_std_df <- recode_activity(mean_std_df)
+mean_std_df <- label_variable_names(mean_std_df, df_list)
+tidy_data <- get_summarized_data(mean_std_df)
+```
+
+```{r}
+dim(tidy_data)
+```
+
+---
+
+```{r}
+head(tidy_data)
+```
+
