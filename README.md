@@ -10,11 +10,11 @@
 
 |作業編號|作業連結|作業分數|
 |-------|------|-------|
-|作業 1|[ggplot2](http://yaojenkuo.io/r_programming/jhu_eda_w1#/3/4)|20|
-|作業 2|[變數型別](http://yaojenkuo.io/r_programming/ch2#(15))|20|
-|作業 3|[自訂函數](http://yaojenkuo.io/r_programming/ch9#(16))|30|
-|作業 4|[網站爬蟲](http://yaojenkuo.io/r_programming/getting_data#/imdb--yahoo-)|50|
-|作業 5|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70|
+|作業 1|[ggplot2](http://yaojenkuo.io/r_programming/jhu_eda_w1#/3/4)|20/190|
+|作業 2|[變數型別](http://yaojenkuo.io/r_programming/ch2#(15))|20/190|
+|作業 3|[自訂函數](http://yaojenkuo.io/r_programming/ch9#(16))|30/190|
+|作業 4|[網站爬蟲](http://yaojenkuo.io/r_programming/getting_data#/imdb--yahoo-)|50/190|
+|作業 5|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70/190|
 
 ### 課程大綱
 
