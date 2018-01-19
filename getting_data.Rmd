@@ -1,0 +1,149 @@
+---
+title: "載入資料與網站爬蟲"
+author: 郭耀仁
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# 載入資料
+
+## csv
+
+- 使用 `read.csv()` 函數
+
+```{r eval=FALSE}
+csv_file_path <- "Your csv file path"
+df <- read.csv(csv_file_path)
+```
+
+## txt
+
+- 使用 `read.table()` 函數
+
+```{r eval=FALSE}
+txt_file_path <- "Your text file path"
+df <- read.table(txt_file_path, sep = "Text file separator", header = TRUE)
+```
+
+## excel
+
+- 使用 `readxl::read_excel()` 函數
+- 僅能讀取本機端的 Excel 試算表
+
+```{r eval=FALSE}
+install.packages("readxl")
+library(readxl)
+
+xlsx_file_path <- "Your excel file path"
+df <- read_excel(xlsx_file_path)
+```
+
+## JSON
+
+- 使用 `jsonlite::fromJSON()` 函數
+
+```{r eval=FALSE}
+install.packages("jsonlite")
+library(jsonlite)
+
+json_file_path <- "Your json file path"
+data_list <- fromJSON(json_file_path)
+```
+
+# 網站爬蟲
+
+## 為什麼需要網站爬蟲？
+
+- 內部資料庫不一定有表格欄位
+- 外部資料庫要價昂貴
+- 資料就像衣櫃中的衣服，永遠少一件？
+- 能自動就不要手動
+
+## 爬蟲程式的核心問題只有兩個
+
+- 獲取網站的回應（request）
+- 解析網站的回應（parser）
+
+## R 語言相對於 Python 的爬蟲程式？
+
+IMHO：在**靜態網頁**佔盡上風！
+
+## 佔盡上風的原因是？
+
+- Python 的 request 與 parser 仰賴不同的模組
+- Python 的 `BeautifulSoup` 對 CSS 選擇器支援有限
+- Python 的 `BeautifulSoup` 不支援 XPath 選擇器
+
+## 在爬蟲之前裝兩個 Chrome 外掛
+
+- [SelectorGadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=zh-TW): 幫助 CSS 選擇
+- [XPath Helper](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?hl=zh-TW): 幫助 XPath 選擇
+
+## CSS 選擇
+
+- 以 [IMDB: La La Land](http://www.imdb.com/title/tt3783958/) 為例
+- 選出評等（Rating）
+
+## XPath 選擇
+
+- 以 [IMDB: La La Land](http://www.imdb.com/title/tt3783958/) 為例
+- 選出評等（Rating）
+
+## `rvest` 套件
+
+- `rvest` to the rescue!
+- 重磅級的解決方案！
+- 一次搞定 request 與 parser！
+
+## 安裝與載入 `rvest`
+
+- 已經包含在 `tidyverse` 套件中
+
+```{r eval=FALSE}
+install.packages("rvest")
+library(rvest)
+```
+
+## `read_html()` 搞定 request
+
+```{r}
+library(rvest)
+
+html_doc <- "http://www.imdb.com/title/tt3783958/" %>%
+  read_html()
+```
+
+## `html_nodes()` 搞定 parser
+
+```{r}
+elem <- html_doc %>%
+  html_nodes(css = "strong span")
+  # html_nodes(xpath = "//strong/span")
+```
+
+## `html_text()` 清理標籤
+
+```{r}
+rating <- elem %>%
+  html_text() %>%
+  as.numeric()
+```
+
+## 隨堂練習
+
+- 擷取 lalaland 主要演員名單
+
+## 延伸閱讀：如何解決需要登入、填寫表單的網站爬蟲？
+
+- [Selenium with Python](http://selenium-python.readthedocs.io/)
+- [RSelenium](https://cran.r-project.org/web/packages/RSelenium/vignettes/RSelenium-basics.html)
+
+# 作業
+
+## IMDB 與 Yahoo! 奇摩股市
+
+- 將大佛普拉斯的 IMDB 資料（評等、主要演員）擷取並以適當資料形態輸出
+- 將 Yahoo! 奇摩股市當日上市與上櫃公司成交價 100 名的資料（股票代號、公司名稱、成交價、上市或上櫃）擷取並以適當資料形態輸出
