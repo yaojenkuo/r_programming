@@ -6,15 +6,17 @@
 
 ### 評分標準
 
-70 分即可獲得證書，作業請寄至 tony@kyosei.ai，註明班別與姓名。
+- 70 分即可獲得證書，作業請寄至 tony@kyosei.ai，註明班別與姓名
+- 作業繳交期限為課程結束後一週內，如遇長假期（春節、連假）則順延
 
 |作業編號|作業連結|作業分數|
 |-------|------|-------|
-|作業 1|[ggplot2](http://yaojenkuo.io/r_programming/jhu_eda_w1#/3/4)|20/190|
-|作業 2|[變數型別](http://yaojenkuo.io/r_programming/ch2#(15))|20/190|
-|作業 3|[自訂函數](http://yaojenkuo.io/r_programming/ch9#(16))|30/190|
-|作業 4|[網站爬蟲](http://yaojenkuo.io/r_programming/getting_data#/imdb--yahoo-)|50/190|
-|作業 5|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70/190|
+|作業 1|[ggplot2](http://yaojenkuo.io/r_programming/jhu_eda_w1#/3/4)|20/260|
+|作業 2|[變數型別](http://yaojenkuo.io/r_programming/ch2#(15))|20/260|
+|作業 3|[自訂函數](http://yaojenkuo.io/r_programming/ch9#(16))|30/260|
+|作業 4|[網站爬蟲](http://yaojenkuo.io/r_programming/getting_data#/imdb--yahoo-)|50/260|
+|作業 5|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70/260|
+|作業 6|[專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)|70/260|
 
 ### 課程大綱
 
@@ -31,7 +33,6 @@
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
 - [載入資料與網站爬蟲](https://yaojenkuo.github.io/r_programming/getting_data.html)
 - [專題：Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
-- [專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)
 
 ### 程式碼同步
 
