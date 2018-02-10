@@ -33,6 +33,7 @@
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
 - [載入資料與網站爬蟲](https://yaojenkuo.github.io/r_programming/getting_data.html)
 - [專題：Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
+- [互動視覺化](http://yaojenkuo.io/r_programming/interactive_viz.html)
 
 ### 程式碼同步
 
