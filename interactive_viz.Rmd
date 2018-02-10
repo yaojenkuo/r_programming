@@ -1,0 +1,184 @@
+---
+title: "互動視覺化"
+author: 郭耀仁
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# 概念
+
+## 讓圖形與資料互動
+
+- 改變圖形中的元素
+- 連結多個圖形
+- 與瀏覽者製造更深的連結
+
+## 常見互動的圖形元素
+
+- 對資料做篩選（filter）
+- 對度量做更動（scaling）
+- 資料提示（annotations）
+
+## 對資料做篩選（filter）
+
+```{r echo=FALSE, message=FALSE}
+library(plotly)
+library(gapminder)
+
+plot_ly(data = gapminder, type = "scatter", x = ~gdpPercap, y = ~lifeExp, color = ~continent, text = ~country, mode = "markers", hoverinfo = "text", frame = ~year)
+```
+
+## 對度量做更動（scaling）
+
+```{r message=FALSE, echo=FALSE}
+plot_ly(data = subset(gapminder, subset = year == 2007), type = "scatter3d", x = ~gdpPercap, y = ~lifeExp, z = ~pop, color = ~continent)
+```
+
+## 資料提示（annotations）
+
+```{r echo=FALSE}
+plot_ly(data = subset(gapminder, subset = year == 2007), type = "scatter", x = ~gdpPercap, y = ~lifeExp, color = ~continent, text = ~country, mode = "markers", hoverinfo = "text")
+```
+
+# 工具
+
+## R 語言使用者
+
+- [`plotly` 套件](https://plot.ly/)
+- [`shiny` 套件](https://shiny.rstudio.com/)
+
+## 網頁工程師（撰寫 JavaScript）
+
+- [`D3.js` 框架](https://d3js.org/)：終極的互動圖形解決方案
+
+# Plotly
+
+---
+
+> Plotly for R is an interactive, browser-based charting library built on the open source javascript graphing library, plotly.js. It works entirely locally, through the HTML widgets framework.
+
+## https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf
+
+## 新手的 Plotly
+
+```{r message=FALSE}
+# install.packages("plotly")
+library(plotly) # Load package
+library(gapminder) # Load data
+library(dplyr)
+
+gapminder_2007 <- gapminder %>%
+  filter(year == 2007)
+p <- plot_ly(data = gapminder_2007, x = ~gdpPercap, y = ~lifeExp) # Save plot as p
+```
+
+---
+
+```{r message=FALSE, warning=FALSE}
+p # Display plot
+```
+
+## 基礎的 `plotly` 函數
+
+- `plot_ly()`
+- `plot_geo()`
+- `layout()`
+- `add_trace()`
+- `style()`
+
+## 可以這樣做函數呼叫： 
+
+```{r eval=FALSE}
+p <- plot_ly(...) %>%
+  add_trace(...) %>%
+  add_layout(...) # Save plot as p
+p # Display plot
+```
+
+## 從 Gallery 著手
+
+https://plot.ly/r/
+
+# Shiny
+
+---
+
+> Shiny is an R package that makes it easy to build interactive web apps straight from R. You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards. You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions.
+
+## 註冊一個 shinyapps 帳號
+
+- 免費帳號可以 host 5 個 Shiny App
+- https://www.shinyapps.io/
+
+## 連結帳號與 RStudio
+
+- Account
+- Tokens
+- show
+- Copy to clipboard
+
+## 基本架構
+
+- Your Shiny App Name
+  - `ui.R`
+  - `server.R`
+
+## `ui.R`
+
+```{r eval=FALSE}
+library(shiny)
+
+shinyUI(
+  fluidPage(
+    titlePanel("My First Shiny App"),
+      sidebarLayout(
+        sidebarPanel(
+          checkboxGroupInput("continents",
+                             "Select continents:",
+                             c("Asia" = "Asia",
+                               "Europe" = "Europe",
+                               "Africa" = "Africa",
+                               "Americas" = "Americas",
+                               "Oceania" = "Oceania"),
+                             selected = c("Asia", "Europe", "Africa", "Americas", "Oceania")
+                             )
+          ),
+        mainPanel(
+          plotOutput("scatterPlot")
+          )
+        )
+    )
+  )
+```
+
+## `server.R`
+
+```{r eval=FALSE}
+library(shiny)
+library(dplyr)
+library(gapminder)
+library(ggplot2)
+
+# Define server logic required to draw a histogram
+shinyServer(function(input, output) {
+  output$scatterPlot <- renderPlot({
+    selected_continents <- input$continents
+    gapminder_plot <- gapminder %>%
+      filter(year == 2007) %>%
+      filter(continent %in% selected_continents)
+    ggplot(gapminder_plot, aes(x = gdpPercap, y = lifeExp, colour = continent, size = pop)) +
+      geom_point()
+  })
+})
+```
+
+## 讓篩選變得更流暢
+
+- 針對 `input$` 變數使用 `reactive()` 函數
+
+## 加入 year 的 slider
+
+## 發佈 Shiny App 並且分享你的連結
