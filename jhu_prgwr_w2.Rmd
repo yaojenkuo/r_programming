@@ -1,7 +1,6 @@
 ---
 title: "JHU - Programming with R"
 author: 郭耀仁
-date: "`r Sys.Date()`"
 output: 
   revealjs::revealjs_presentation:
     theme: black
@@ -168,7 +167,7 @@ complete(my_dir, 3)
 
 `corr(directory, threshold = 0)`
 
-計算完整觀測值個數大於 `threshold` 的 csv 檔案中污染物的相關係數
+計算完整觀測值個數大於等於 `threshold` 的 csv 檔案中污染物的相關係數
 
 ## 函數三提示
 
