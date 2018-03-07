@@ -41,6 +41,7 @@
 - [R 語言輕鬆學習：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=LEARNR)
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
 - [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
+- [Datainpoint](https://medium.com/datainpoint)
 
 ### 進階者學習資源
 
