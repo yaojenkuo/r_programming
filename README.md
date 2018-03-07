@@ -35,9 +35,23 @@
 - [專題：Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
 - [互動視覺化](http://yaojenkuo.io/r_programming/interactive_viz.html)
 
-### 程式碼同步
+### 初心者學習資源
 
-- [InstaCode](http://instacode.live/channel/tony)
+- [認識 R 的美好](https://yaojenkuo.shinyapps.io/eloquentr)
+- [R 語言輕鬆學習：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=LEARNR)
+- [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
+- [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
+
+### 進階者學習資源
+
+- [R in Action](https://www.manning.com/books/r-in-action-second-edition)
+- [Quick-R](http://www.statmethods.net/)
+- [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
+- [The Art of R Programming](https://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843)
+- [Advanced R（Book）](https://www.amazon.com/Advanced-Chapman-Hall-Hadley-Wickham/dp/1466586966)
+- [Advanced R（Website）](http://adv-r.had.co.nz/)
+- [R Graphics Cookbook](http://shop.oreilly.com/product/0636920023135.do)
+- [R for Data Science](http://r4ds.had.co.nz/)
 
 ### 近期上課錄影
 
@@ -52,17 +66,3 @@
 - [第 282 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWmLz0jYwQ3bb3f6ZOATgBx)
 - [第 278 期 R 程式設計班（2017 寒假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXlcMiPfg4bLt9U-YcRTYvM)
 - [第 279 期 R 程式設計班（2017 寒假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWHNS_KSeUWh4mror0QpDTW)
-
-### 推薦學習資源/書籍
-
-- [R 語言輕鬆學習：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=LEARNR)
-- [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-- [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
-- [R in Action](https://www.manning.com/books/r-in-action-second-edition)
-- [Quick-R](http://www.statmethods.net/)
-- [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
-- [The Art of R Programming](https://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843)
-- [Advanced R（Book）](https://www.amazon.com/Advanced-Chapman-Hall-Hadley-Wickham/dp/1466586966)
-- [Advanced R（Website）](http://adv-r.had.co.nz/)
-- [R Graphics Cookbook](http://shop.oreilly.com/product/0636920023135.do)
-- [R for Data Science](http://r4ds.had.co.nz/)
