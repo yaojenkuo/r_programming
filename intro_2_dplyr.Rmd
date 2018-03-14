@@ -134,10 +134,10 @@ View(gapminder)
 
 ## 以 year 與 country 排序
 
-## 新增變數 pop_in_thousands 改以千人為單位
+## 新增變數 pop_in_million 改以百萬人為單位
 
-## 2007 年全球總人口數為多少？
+## 2007 年全球總人口數為多少？以百萬人為單位
 
-## 承上，各洲總人口數分別為多少？
+## 承上，各洲總人口數分別為多少？以百萬人為單位
 
-## 延續上題，那麼平均 lifeExp、平均 gdpPercap 為何？
+## 延續上題，那麼各洲平均 lifeExp、平均 gdpPercap 為何？
