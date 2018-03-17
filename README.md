@@ -37,7 +37,9 @@
 
 ### 初心者學習資源
 
-- [認識 R 的美好](https://yaojenkuo.shinyapps.io/eloquentr)
+- [認識 R 的美好：入門篇](https://yaojenkuo.shinyapps.io/eloquentr-start/)
+- [認識 R 的美好：基礎篇]()
+- [認識 R 的美好：應用篇]()
 - [R 語言輕鬆學習：基礎篇](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=LEARNR)
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
 - [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
@@ -56,6 +58,7 @@
 
 ### 近期上課錄影
 
+- [第 295 期 R 語言與資料科學應用（假日班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWUqdl7bk29AFSUHBoWaid_)
 - [第 293 期 R 語言與資料科學應用（寒假密集下午）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWte5L9o1zYKcMxXsxfT6e2)
 - [第 292 期 R 語言與資料科學應用（假日班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXzmLjv3EWN6jn6ACbHqPCE)
 - [第 291 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuVtAwJWiYse6NQ8o_qUYNro)
