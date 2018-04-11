@@ -39,7 +39,7 @@
 
 - [認識 R 的美好：入門篇](https://yaojenkuo.shinyapps.io/eloquentr-start/)
 - [認識 R 的美好：基礎篇](https://yaojenkuo.shinyapps.io/eloquentr-base/)
-- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=LEARNR)
+- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FREEER)
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
 - [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
 
