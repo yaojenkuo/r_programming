@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="郭耀仁" />
-  <meta name="date" content="2017-07-24" />
+  <meta name="date" content="2018-04-11" />
   <title>基本資料結構</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,10 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 郭耀仁
   </p>
-  <p class="date">2017-07-24</p>
+  <p class="date">2018-04-11</p>
 </div>
 <div class="slide section level2">
-<h2>資料結構</h2>
+<h1>資料結構</h1>
 <ul>
 <li>R 語言有一些基本的資料結構來儲存我們上一章說明的資料類型:
 <ul>
@@ -72,7 +72,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 <div id="vector" class="slide section level2">
-<h2>Vector（向量）</h2>
+<h1>Vector（向量）</h1>
 <ul>
 <li>Vector 可以包含數字、文字或邏輯</li>
 <li>但是 Vector 只能有一種類型</li>
@@ -86,7 +86,7 @@ mixed_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class
 logi_and_num_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>) <span class="co"># 邏輯值背後是儲存為 1 與 0</span></code></pre></div>
 </div>
 <div id="vector2" class="slide section level2">
-<h2>Vector（向量）（2）</h2>
+<h1>Vector（向量）（2）</h1>
 <ul>
 <li>向量中的元素稱為 Scalar</li>
 <li>在 R 語言中我們使用中括號 <code>[]</code> 將指定元素選擇出來</li>
@@ -98,27 +98,27 @@ logi_and_num_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<spa
 <span class="co"># 用`[]`把指定元素選擇出來</span>
 num_vector[<span class="dv">1</span>]
 num_vector[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)]
-num_vector[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]
-num_vector[<span class="op">-</span><span class="dv">1</span>]
+num_vector[<span class="dv">2</span>:<span class="dv">4</span>]
+num_vector[-<span class="dv">1</span>]
 <span class="co"># 練習使用 `length()` 函數</span>
 length_of_num_vector &lt;-<span class="st"> </span><span class="kw">length</span>(num_vector)
 length_of_num_vector
-num_vector[<span class="dv">2</span><span class="op">:</span>length_of_num_vector]</code></pre></div>
+num_vector[<span class="dv">2</span>:length_of_num_vector]</code></pre></div>
 </div>
 <div id="vector3" class="slide section level2">
-<h2>Vector（向量）（3）</h2>
+<h1>Vector（向量）（3）</h1>
 <ul>
 <li>運用邏輯值向量來選擇元素</li>
 <li>當邏輯值向量為 TRUE 的時候該元素會被選出來</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">78</span>, <span class="dv">87</span>) <span class="co"># 數字向量</span>
-logi_selector &lt;-<span class="st"> </span>num_vector <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="co"># 產生邏輯值向量</span>
+logi_selector &lt;-<span class="st"> </span>num_vector &gt;<span class="st"> </span><span class="dv">10</span> <span class="co"># 產生邏輯值向量</span>
 logi_selector
 num_vector[logi_selector]
-num_vector[num_vector <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>] <span class="co"># 熟了就這樣用</span></code></pre></div>
+num_vector[num_vector &gt;<span class="st"> </span><span class="dv">10</span>] <span class="co"># 熟了就這樣用</span></code></pre></div>
 </div>
 <div id="vector4" class="slide section level2">
-<h2>Vector（向量）（4）</h2>
+<h1>Vector（向量）（4）</h1>
 <ul>
 <li>除了用 <code>c()</code>，R 語言還有一些比較進階的函數例如 <code>seq()</code> 與 <code>rep()</code> 可以幫你輕鬆產出向量</li>
 <li><code>seq()</code> 是產出等差的向量，<code>rep()</code> 是產出包含相同元素的向量</li>
@@ -133,7 +133,7 @@ num_vector[num_vector <span class="op">&gt;</span><span class="st"> </span><span
 <span class="kw">rep</span>(<span class="dv">7</span>, <span class="dt">times =</span> <span class="dv">8</span>) <span class="co"># 產生一個有 8 個 7 的向量</span></code></pre></div>
 </div>
 <div id="factor" class="slide section level2">
-<h2>Factor（因素向量）</h2>
+<h1>Factor（因素向量）</h1>
 <ul>
 <li>可以把因素向量視作多了一些資訊的向量</li>
 <li>R 語言預設讀入資料會將非連續型變數以因素向量的格式儲存</li>
@@ -154,10 +154,10 @@ gender_factor
 <span class="co"># 檢查是否有順序之分</span>
 gender_factor[<span class="dv">1</span>] <span class="co"># 這是女性 Female</span>
 gender_factor[<span class="dv">2</span>]<span class="co"># 這是男性 Male</span>
-gender_factor[<span class="dv">1</span>] <span class="op">&gt;</span><span class="st"> </span>gender_factor[<span class="dv">2</span>]</code></pre></div>
+gender_factor[<span class="dv">1</span>] &gt;<span class="st"> </span>gender_factor[<span class="dv">2</span>]</code></pre></div>
 </div>
 <div id="factor2" class="slide section level2">
-<h2>Factor（因素向量）（2）</h2>
+<h1>Factor（因素向量）（2）</h1>
 <ul>
 <li>順序型的因素向量有順序之分</li>
 <li>但是必須要在 <code>factor</code> 函數中多指派 2 個參數，一個是 <code>ordered = TRUE</code>，另一個是 <code>levels =</code></li>
@@ -167,7 +167,7 @@ gender_factor[<span class="dv">1</span>] <span class="op">&gt;</span><span class
 speed_factor &lt;-<span class="st"> </span><span class="kw">factor</span>(speed_vector, <span class="dt">ordered =</span> <span class="ot">TRUE</span>, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Slow&quot;</span>, <span class="st">&quot;Moderate&quot;</span>, <span class="st">&quot;Fast&quot;</span>))
 speed_factor
 <span class="kw">class</span>(speed_factor)
-speed_factor[<span class="dv">1</span>] <span class="op">&lt;</span><span class="st"> </span>speed_factor[<span class="dv">2</span>]</code></pre></div>
+speed_factor[<span class="dv">1</span>] &lt;<span class="st"> </span>speed_factor[<span class="dv">2</span>]</code></pre></div>
 <ul>
 <li>溫度有高低之別</li>
 </ul>
@@ -175,37 +175,37 @@ speed_factor[<span class="dv">1</span>] <span class="op">&lt;</span><span class=
 temperature_factor &lt;-<span class="st"> </span><span class="kw">factor</span>(temperature_vector, <span class="dt">ordered =</span> <span class="ot">TRUE</span>, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Cold&quot;</span>, <span class="st">&quot;Warm&quot;</span>, <span class="st">&quot;Hot&quot;</span>))
 temperature_factor
 <span class="kw">class</span>(temperature_factor)
-temperature_factor[<span class="dv">1</span>] <span class="op">&gt;</span><span class="st"> </span>temperature_factor[<span class="dv">2</span>]</code></pre></div>
+temperature_factor[<span class="dv">1</span>] &gt;<span class="st"> </span>temperature_factor[<span class="dv">2</span>]</code></pre></div>
 </div>
 <div id="matrix" class="slide section level2">
-<h2>Matrix（矩陣）</h2>
+<h1>Matrix（矩陣）</h1>
 <ul>
 <li>一個 m * n 的矩陣指的是有 m 列、n 欄</li>
 <li>使用 <code>matrix()</code> 函數可以將向量轉換為矩陣</li>
 <li>指定兩個參數 <code>nrow =</code> 與 <code>ncol =</code></li>
 <li>預設是以<strong>欄的方向</strong>將元素填入矩陣</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">8</span>
 my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(my_vector, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)
 my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(my_vector, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
 my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(my_vector, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>) <span class="co"># byrow 預設為 FALSE</span></code></pre></div>
 </div>
 <div id="matrix2" class="slide section level2">
-<h2>Matrix（矩陣）（2）</h2>
+<h1>Matrix（矩陣）（2）</h1>
 <ul>
 <li>同樣使用中括號 <code>[ , ]</code> 與邏輯值向量將指定元素選擇出來</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">8</span>
 my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(my_vector, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
 my_matrix[, <span class="dv">3</span>]
 my_matrix[<span class="dv">2</span>, ]
 my_matrix[<span class="dv">2</span>, <span class="dv">3</span>]
-my_matrix[<span class="dv">2</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>]
-larger_than_<span class="dv">4</span> &lt;-<span class="st"> </span>my_matrix <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>
-my_matrix[larger_than_<span class="dv">4</span>]</code></pre></div>
+my_matrix[<span class="dv">2</span>, <span class="dv">2</span>:<span class="dv">4</span>]
+larger_than_4 &lt;-<span class="st"> </span>my_matrix &gt;<span class="st"> </span><span class="dv">4</span>
+my_matrix[larger_than_4]</code></pre></div>
 </div>
 <div id="dataframe" class="slide section level2">
-<h2>Dataframe（資料框）</h2>
+<h1>Dataframe（資料框）</h1>
 <ul>
 <li>資料框是非常重要的資料結構，如果你是 SAS/SPSS/Stata 的使用者，你可以想成是資料集（dataset）。</li>
 <li>一個資料框中可以包含不同資料類別的變數</li>
@@ -219,7 +219,7 @@ one_piece_df
 <span class="kw">View</span>(one_piece_df)</code></pre></div>
 </div>
 <div id="dataframe2" class="slide section level2">
-<h2>Dataframe（資料框）（2）</h2>
+<h1>Dataframe（資料框）（2）</h1>
 <ul>
 <li>使用中括號 <code>[ , ]</code> 與 <code>$</code> 可以很靈活地取出資料框中的元素</li>
 <li>利用邏輯值向量可以很靈活地取出列數</li>
@@ -230,17 +230,17 @@ age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">19<
 one_piece_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, is_female, age)
 one_piece_df[, <span class="dv">3</span>]
 one_piece_df[, <span class="st">&quot;age&quot;</span>]
-one_piece_df<span class="op">$</span>age
+one_piece_df$age
 one_piece_df[<span class="dv">1</span>, ]
 
 <span class="co"># 練習用邏輯值向量</span>
-is_luffy &lt;-<span class="st"> </span>one_piece_df<span class="op">$</span>name <span class="op">==</span><span class="st"> &quot;蒙其D魯夫&quot;</span>
+is_luffy &lt;-<span class="st"> </span>one_piece_df$name ==<span class="st"> &quot;蒙其D魯夫&quot;</span>
 is_luffy
 one_piece_df[is_luffy, ]
-one_piece_df[one_piece_df<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">21</span>, ] <span class="co"># 熟了就寫快一點</span></code></pre></div>
+one_piece_df[one_piece_df$age ==<span class="st"> </span><span class="dv">21</span>, ] <span class="co"># 熟了就寫快一點</span></code></pre></div>
 </div>
 <div id="dataframe3" class="slide section level2">
-<h2>Dataframe（資料框）（3）</h2>
+<h1>Dataframe（資料框）（3）</h1>
 <ul>
 <li>一些常用的 Dataframe 函數，這些函數可以幫助你很快掌握一個資料框</li>
 <li>R 語言有一些內建的資料集，像是 <code>cars</code> ， <code>mtcars</code> 還有 <code>iris</code> … 等</li>
@@ -254,23 +254,23 @@ one_piece_df[one_piece_df<span class="op">$</span>age <span class="op">==</span>
 <span class="kw">names</span>(iris)</code></pre></div>
 </div>
 <div id="array" class="slide section level2">
-<h2>Array（陣列）</h2>
+<h1>Array（陣列）</h1>
 <ul>
 <li>擁有三個維度的矩陣</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vec &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">24</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vec &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">24</span>
 my_arr &lt;-<span class="st"> </span><span class="kw">array</span>(my_vec, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))
 my_arr</code></pre></div>
 </div>
 <div id="list" class="slide section level2">
-<h2>List（清單）</h2>
+<h1>List（清單）</h1>
 <ul>
 <li>清單可以包含我們前面介紹的資料結構</li>
 <li>利用中括號 <code>[]</code> 與雙重中括號 <code>[[]]</code> 來選擇元素</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 建立一個清單 my_list</span>
 char_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;I&quot;</span>, <span class="st">&quot;Love&quot;</span>, <span class="st">&quot;R&quot;</span>)
-my_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>
+my_vector &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">8</span>
 my_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(my_vector, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)
 name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;蒙其D魯夫&quot;</span>, <span class="st">&quot;羅羅亞索隆&quot;</span>, <span class="st">&quot;娜美&quot;</span>, <span class="st">&quot;賓什莫克香吉士&quot;</span>)
 is_female &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
@@ -281,10 +281,10 @@ my_list <span class="co"># 看看長什麼樣子</span>
 my_list[<span class="dv">1</span>]
 my_list[[<span class="dv">1</span>]]
 my_list[[<span class="dv">2</span>]][<span class="dv">2</span>, <span class="dv">2</span>]
-my_list[[<span class="dv">3</span>]]<span class="op">$</span>name</code></pre></div>
+my_list[[<span class="dv">3</span>]]$name</code></pre></div>
 </div>
 <div id="list2" class="slide section level2">
-<h2>List（清單）（2）</h2>
+<h1>List（清單）（2）</h1>
 <ul>
 <li>清單的重要性是什麼？
 <ul>
@@ -294,11 +294,10 @@ my_list[[<span class="dv">3</span>]]<span class="op">$</span>name</code></pre></
 </ul>
 </div>
 <div class="slide section level2">
-<h2>隨堂練習</h2>
+<h1>隨堂練習</h1>
 <ul>
-<li><a href="https://yaojenkuo.github.io/r_programming/ch4_exercise">基本資料結構 - 隨堂練習</a></li>
-<li><a href="https://www.datacamp.com/community/open-courses/r-%E8%AA%9E%E8%A8%80%E5%B0%8E%E8%AB%96#gs.SRpeD9E">R 語言導論</a></li>
-<li><a href="https://www.datacamp.com/courses/free-introduction-to-r">Introduction to R</a></li>
+<li><a href="https://www.datacamp.com/community/open-courses/r-語言導論?tap_a=5644-dce66f&amp;tap_s=194899-1fb421">R 語言導論</a></li>
+<li><a href="https://www.datacamp.com/courses/free-introduction-to-r?tap_a=5644-dce66f&amp;tap_s=194899-1fb421">Introduction to R</a></li>
 </ul>
 </div>
 
