@@ -26,7 +26,7 @@
 - [Tidyverse: dplyr](https://yaojenkuo.github.io/r_programming/intro_2_dplyr.html)
 - [Tidyverse: ggplot2](https://yaojenkuo.github.io/r_programming/intro_2_ggplot2.html)
 - [專題：EDA: PM2.5](http://yaojenkuo.io/r_programming/jhu_eda_w4)
-- [專題：EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)
+<!--- [專題：EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)-->
 - [變數型別](https://yaojenkuo.github.io/r_programming/ch2)
 - [資料結構](https://yaojenkuo.github.io/r_programming/ch4)
 - [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
@@ -37,8 +37,6 @@
 
 ### 初心者學習資源
 
-- [認識 R 的美好：入門篇](https://yaojenkuo.shinyapps.io/eloquentr-start/)
-- [認識 R 的美好：基礎篇](https://yaojenkuo.shinyapps.io/eloquentr-base/)
 - [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FREEER)
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
 - [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
