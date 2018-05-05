@@ -121,9 +121,17 @@ bar_plot
 
 ## 練習資料集
 
-```{r}
-csv_url <- "https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/hh.csv"
-hh <- read.csv(csv_url, stringsAsFactors = FALSE, fileEncoding = 'utf8')
+- [點此下載](https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/hh.xlsx)
+
+```{r eval=FALSE}
+install.packages("readxl")
+library(readxl)
+hh <- read_excel("YOUR_EXCEL_PATH")
+```
+
+```{r echo=FALSE}
+library(readxl)
+hh <- read_excel("~/Downloads/hh.xlsx")
 ```
 
 ## 欄位定義
