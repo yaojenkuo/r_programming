@@ -18,7 +18,17 @@
 |作業 5|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70/260|
 |作業 6|[專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)|70/260|
 
-### 課程大綱
+### 課堂互動工具（每週更新 Event Code）
+
+<https://www.sli.do/>
+
+
+### 課程教科書
+
+- [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
+- [認識 R 的美好 - 網頁版](https://bookdown.org/tonykuoyj/eloquentr/)
+
+### 課程投影片
 
 - [關於這門課](https://yaojenkuo.github.io/r_programming/ch0)
 - [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/ch1)
@@ -37,9 +47,7 @@
 
 ### 初心者學習資源
 
-<!--- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FREEER)-->
-- [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-- [輕鬆學習 R 語言 - 網頁版](http://www.learn-r-the-easy-way.tw)
+- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FORFREE)
 
 ### 進階者學習資源
 
