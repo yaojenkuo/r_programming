@@ -10,6 +10,10 @@ output:
 
 # 載入資料
 
+## 資料
+
+<https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/udemy_courses/data_import.zip>
+
 ## csv
 
 - 使用 `read.csv()` 函數
