@@ -1,0 +1,500 @@
+---
+title: "R 語言與資料科學入門"
+author: "郭耀仁"
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+# 關於講師
+
+## 關於我
+
+- [郭耀仁](https://yaojenkuo.io)
+- [Kyosei.ai](https://kyosei.ai)
+
+---
+
+<a href="http://www.learn-r-the-easy-way.tw/" target="_blank">![](https://storage.googleapis.com/dsc_2017_img/r_book_s.jpg)</a>
+
+---
+
+<a href="https://ithelp.ithome.com.tw/2017ironman/8th_winner" target="_blank">![](https://storage.googleapis.com/dsc_2017_img/ithelp_s.png)</a>
+
+---
+
+- 台大資工系統訓練班（2016 - 現在）
+- 2017 資料科學年會講者
+- 文化大學推廣部（2018）
+- 國立台北商業大學（2017 秋）
+- 玉山商業銀行（2017 夏）
+
+# Could that data BE any tidier?
+
+---
+
+![](https://storage.googleapis.com/dsc_2017_img/chandler_job_s.png)
+
+Google 圖片
+
+---
+
+![](https://storage.googleapis.com/dsc_2017_img/not_sexy_s.png)
+
+Google 圖片
+
+---
+
+> Data Scientist: The Sexiest Job of the 21st Century.
+
+[Harvard Business Review OCT, 2012](https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century)
+
+## 資料科學的範疇
+
+- 資料技術
+- 視覺化
+- 機器學習
+- 高效能運算
+
+## 相關領域
+
+<http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram>
+
+# R 是資料科學的程式語言
+
+---
+
+[The 2017 Top Programming Languages](https://spectrum.ieee.org/computing/software/the-2017-top-programming-languages)
+
+## 在資料科學領域獨領風騷的 R 語言
+
+> For R (a domain specific language for data science) to rank in the 6th. Other data-oriented languages appear in the Top 50 rankings, including Matlab (#15), SQL (#23), Julia (#31) and SAS (#37).
+
+## 關於 R 語言的二三事
+
+- 以 S 語言為基礎
+- 由奧克蘭大學的 Ross Ihaka 與 Robert Gentleman 所創造
+- 高階的直譯式語言
+
+## 有關 R 語言的特性
+
+- 開源
+- 跨平台
+- 彈性大
+
+## 容易建立的開發環境
+
+- 主程式
+    - [CRAN](https://cran.r-project.org/)
+- 整合開發環境
+    - [RStudio](https://www.rstudio.com/products/rstudio/download/)
+    
+## 暸解 R 語言的核心概念
+
+> The way R works is pretty straightforward, you apply functions to objects.
+> Greg Martain
+
+# 深入淺出的體驗
+
+---
+
+## 兩個階段
+
+- 從認識資料開始學習 R 語言
+- 如何使用 R 語言建構選股指標
+
+## 從認識資料開始學習 R 語言
+
+- 開發環境
+- gapminder
+- dplyr
+- T 檢定
+- ggplot2
+
+## 如何使用 R 語言建構選股指標
+
+- 認識資料框
+- 認識清單
+- 載入資料
+- 網站爬蟲
+- 財務自由的世界：財務分析就是一場投資的戰爭
+
+# 開發環境
+
+---
+
+## 安裝 R
+
+- 從 The Comprehensive R Archive Network（[CRAN](https://cran.r-project.org/)）下載安裝檔進行安裝
+
+## 安裝 RStudio
+
+- 從 [RStudio](https://www.rstudio.com/products/rstudio/download3/) 下載安裝檔進行安裝
+
+## 第一次執行 RSudio
+
+```{r, out.width = "680px", echo=FALSE}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch106.png")
+```
+
+## 新增一個 R 程式
+
+```{r, out.width = "680px", echo=FALSE}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch107.png")
+```
+
+## 完整的四個區塊
+
+```{r, out.width = "680px", echo=FALSE}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch108.png")
+```
+
+---
+
+- 來源（Source）：位於左上角，編寫程式的區塊
+- 命令列（Console）：位於左下角，執行程式的區塊
+- 環境與歷史：位於右上角
+- 檔案、圖形、套件、查詢與預覽器：位於右下角
+
+# gapminder
+
+---
+
+## The best stats you've ever seen
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jbkSRLYSojo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+## 安裝與載入 gapminder
+
+```{r eval=FALSE}
+install.packages("gapminder")
+library(gapminder)
+```
+
+## 看看 gapminder 資料
+
+```{r eval=FALSE}
+data("gapminder")
+dim(gapminder)
+summary(gapminder)
+str(gapminder)
+```
+
+# dplyr
+
+## 安裝與載入 dplyr
+
+```{r eval=FALSE}
+install.packages("dplyr")
+library(dplyr)
+```
+
+## 資料整理的文法
+
+```{r eval=FALSE}
+gapminder %>%
+  filter(country == 'Taiwan' |
+         country == 'South Africa') %>%
+  group_by(country) %>%
+  summarise(avg_lifeExp = mean(lifeExp))
+```
+
+# T 檢定
+
+## 函數 `t.test()`
+
+```{r eval=FALSE}
+df_ttest <- gapminder %>%
+  filter(country == 'Taiwan' |
+        country == 'South Africa')
+t.test(data = df_ttest, lifeExp ~ country)
+```
+
+# ggplot2
+
+## 安裝與載入 ggplot2
+
+```{r eval=FALSE}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+```{r echo=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(gapminder)
+```
+
+## 視覺化的文法
+
+```{r}
+gg1 <- gapminder %>%
+  filter(gdpPercap < 50000) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+---
+
+```{r}
+gg1
+```
+
+---
+
+## 加上一些透明度
+
+```{r}
+gg2 <- gapminder %>%
+  filter(gdpPercap < 50000) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, col = continent)) +
+  geom_point(alpha = 0.3)
+```
+
+---
+
+```{r}
+gg2
+```
+
+---
+
+## 加入平滑趨勢線
+
+```{r}
+gg3 <- gapminder %>%
+  filter(gdpPercap < 50000) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, col = continent)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth()
+```
+
+---
+
+```{r}
+gg3
+```
+
+## 區分五個小圖
+
+```{r}
+gg4 <- gapminder %>%
+  filter(gdpPercap < 50000) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, col = continent)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~continent)
+```
+
+---
+
+```{r}
+gg4
+```
+
+# 認識資料框
+
+## 資料框
+
+- 一個資料框中可以包含不同資料類別的變數
+- 使用 `data.frame()` 函數可以建立資料框（向量長度要相同）
+
+## 常用的資料框函數
+
+- `dim()`
+- `summary()`
+- `str()`
+- `names()`
+- `head()`
+- `tail()`
+
+# 認識清單
+
+## 清單
+
+- 清單可以包含任意資料結構
+- 利用雙重中括號 `[[]]` 來選擇元素
+- 利用 `$` 來選擇元素
+
+# 載入資料
+
+## 資料
+
+<https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/udemy_courses/data_import.zip>
+
+## csv
+
+- 使用 `read.csv()` 函數
+
+```{r eval=FALSE}
+csv_file_path <- "Your csv file path"
+df <- read.csv(csv_file_path)
+```
+
+## txt
+
+- 使用 `read.table()` 函數
+
+```{r eval=FALSE}
+txt_file_path <- "Your text file path"
+df <- read.table(txt_file_path, sep = "Text file separator", header = TRUE)
+```
+
+## excel
+
+- 使用 `readxl::read_excel()` 函數
+- 僅能讀取本機端的 Excel 試算表
+
+```{r eval=FALSE}
+install.packages("readxl")
+library(readxl)
+
+xlsx_file_path <- "Your excel file path"
+df <- read_excel(xlsx_file_path)
+```
+
+## JSON
+
+- 使用 `jsonlite::fromJSON()` 函數
+
+```{r eval=FALSE}
+install.packages("jsonlite")
+library(jsonlite)
+
+json_file_path <- "Your json file path"
+data_list <- fromJSON(json_file_path)
+```
+
+# 網站爬蟲
+
+## 為什麼需要網站爬蟲？
+
+- 外部資料庫要價昂貴
+- 能自動就不要手動
+
+## 爬蟲程式的核心問題只有兩個
+
+- 獲取網站的回應（request）
+- 解析網站的回應（parser）
+
+## 在爬蟲之前裝兩個 Chrome 外掛
+
+- [SelectorGadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=zh-TW): 幫助 CSS 選擇
+- [XPath Helper](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?hl=zh-TW): 幫助 XPath 選擇
+
+## CSS 選擇
+
+- 以 [IMDB: La La Land](http://www.imdb.com/title/tt3783958/) 為例
+- 選出評等（Rating）
+
+## XPath 選擇
+
+- 以 [IMDB: La La Land](http://www.imdb.com/title/tt3783958/) 為例
+- 選出評等（Rating）
+
+## `rvest` 套件
+
+- `rvest` to the rescue!
+- 重磅級的解決方案！
+- 一次搞定 request 與 parser！
+
+## 安裝與載入 `rvest`
+
+```{r eval=FALSE}
+install.packages("rvest")
+library(rvest)
+```
+
+## `read_html()` 搞定 request
+
+```{r}
+library(rvest)
+
+html_doc <- "http://www.imdb.com/title/tt3783958/" %>%
+  read_html()
+```
+
+## `html_nodes()` 搞定 parser
+
+```{r}
+elem <- html_doc %>%
+  html_nodes(css = "strong span")
+  # html_nodes(xpath = "//strong/span")
+```
+
+## `html_text()` 清理標籤
+
+```{r}
+rating <- elem %>%
+  html_text() %>%
+  as.numeric()
+```
+
+# 財務自由的世界：財務分析就是一場投資的戰爭
+
+---
+
+## 免責聲明
+
+- 非投資建議：本課程所載資料不應被視為買賣當中所述產品的投資建議或任何形式的推薦意見
+- 風險披露聲明：本課程所提供的資料及分析技巧，只可作為參考用途。學員在投資前，務請運用個人獨立思考作出決策，審慎從事。如因此招致任何損失，概與本課程無涉
+- 本課程提供之分析資料、選股工具僅供參考，不暗示買賣建議，本課程對資訊正確、更新延誤或傳輸中斷不負任何責任，依本課程資訊交易發生損失需自行負責，請謹慎評估風險
+
+---
+
+[博客來連結](http://www.books.com.tw/products/0010562279)
+
+---
+
+## 十一道程序
+
+- 挑建中拚台大（股價）
+- 舊愛還是最美（上市日期與境外公司判定）
+- 不想賠錢就選擇不賠錢（稅後淨利）
+- 穩定壓過一切（營業利益率）
+- 現金是王（自由現金流量）
+- 進步才有看頭（月營收年增率）
+- 別碰丐幫股份有限公司（現金增資）
+- 大碗才吃得飽（市值）
+- 可以殺人，不可以越貨（存貨週轉率）
+- 鯨魚不該游到淺灘（成交均量）
+- 與惡名昭彰的股市名嘴斷捨離
+- 額外判斷
+
+## 搭配 R 語言
+
+- `rvest` 套件、`jsonlite` 套件負責擷取網路上的財報資料
+- 自訂函數與 `%>%` 負責篩選資料
+- `ggplot2` 套件負責繪圖做人為判斷
+
+---
+
+```{r eval=FALSE}
+install.packages(c("rvest", "jsonlite", "ggplot2", "magrittr"))
+library(rvest)
+library(jsonlite)
+library(ggplot2)
+library(magrittr)
+```
+
+---
+
+## 股價前一百名
+
+[Yahoo! 奇摩股市](https://tw.stock.yahoo.com/)
+
+## 上市日期
+
+[Yahoo! 奇摩股市](https://tw.stock.yahoo.com/)
+
+## 境外公司判定
+
+## 稅後淨利
+
+[財報狗](https://statementdog.com)
+
+## 營業利益率
+
+[財報狗](https://statementdog.com)
