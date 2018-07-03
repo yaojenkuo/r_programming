@@ -28,7 +28,7 @@
 ### 課程教科書
 
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=297FREE)
+<!--- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=297FREE)-->
 - [認識 R 的美好 - 網頁版](https://bookdown.org/tonykuoyj/eloquentr/)
 
 ### 課程投影片
@@ -62,6 +62,7 @@
 
 ### 近期上課錄影
 
+- [第 299 期 R 語言與資料科學應用（暑期班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuUdO3kIGUzYn7iS-4TKNb_x)
 - [第 297 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuULcetxePwDdPf8e6RCDgpO)
 - [第 296 期 R 語言與資料科學應用（假日下午班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWqBju13V7RBsc1VBdw16Ak)
 - [第 295 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWUqdl7bk29AFSUHBoWaid_)
