@@ -27,9 +27,10 @@
 
 ### 課程教科書
 
-- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FREER299)
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-- [認識 R 的美好 - 網頁版](https://bookdown.org/tonykuoyj/eloquentr/)
+- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FREER299)
+
+<!--- [認識 R 的美好 - 網頁版](https://bookdown.org/tonykuoyj/eloquentr/)-->
 
 ### 課程投影片
 
