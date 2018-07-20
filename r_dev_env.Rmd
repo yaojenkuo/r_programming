@@ -1,0 +1,146 @@
+---
+title: "建立你的 R 語言開發環境"
+author: "郭耀仁"
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# 使用兩個工具
+
+## 分別是
+
+- R
+- RStudio
+
+## 安裝 R
+
+- OSX 從 The Comprehensive R Archive Network（[CRAN](https://cran.r-project.org/)）下載 .dmg 檔進行安裝
+- Windows 從 The Comprehensive R Archive Network（[CRAN](https://cran.r-project.org/)）下載 .exe 檔進行安裝
+
+## 安裝 RStudio
+
+- OSX 從 [RStudio](https://www.rstudio.com/products/rstudio/download3/) 下載 .pkg 檔來進行安裝
+- Windows 從 [RStudio](https://www.rstudio.com/products/rstudio/download3/) 下載 .exe 檔來進行安裝
+
+# 使用介面
+
+## 第一次執行
+
+```{r, out.width = "680px"}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch106.png")
+```
+
+## 新增一個 R 程式
+
+```{r, out.width = "680px"}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch107.png")
+```
+
+## 完整的四個區塊
+
+- 來源（Source）：位於左上角，編寫程式的區塊
+- 命令列（Console）：位於左下角，執行程式的區塊
+- 環境與歷史：位於右上角
+- 檔案、圖形、套件、查詢與預覽器：位於右下角
+
+```{r, out.width = "680px"}
+knitr::include_graphics("https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/screenshots_ch1/ch108.png")
+```
+
+## 建立變數的符號
+
+- R 語言的使用者習慣使用 `<-` 來建立變數
+- 在 RStudio 中可以按 `Alt 與 -` 來產生 `<-` 符號
+- R 語言是**動態型別語言**，這表示你可以很有彈性地改變變數
+
+## 也可以使用常見的等號
+
+- 你也可以用與其他程式語言相同的 `=` 來建立變數
+- 但是我推薦使用 `<-`
+
+## 使用 `#` 做註解
+
+## 第一個函數 `q()`
+
+- 在命令列（Console）輸入 `q()` 可以離開 RStudio
+
+# 補充閱讀
+
+## Git
+
+- Git 版本管理逐漸成為現代程式設計的必備技能
+- 有興趣的同學可以閱讀
+- 系統訓練班亦有 Git 版本管理的假日專題班課程（10 小時）
+
+## 安裝 Git
+
+- OS X 內建 Git，不需要進行安裝
+- Windows 至 [git](https://git-scm.com/download/win) 下載 .exe 檔來進行安裝
+
+## 申請 GitHub 帳號
+
+- 至 [GitHub](https://github.com/) 申請一個帳戶
+
+## 基本的命令列指令
+
+| 指令          | 說明                     |
+| ------------- |--------------------------|
+| cd            | 切換目錄                 |
+| pwd           | 取得目前所在的位置       |
+| ls            | 列出目前的檔案列表       |
+| mkdir         | 建立新的目錄             |
+| touch         | 建立檔案                 |
+| cp            | 複製檔案                 |
+| mv            | 移動檔案                 |
+| rm            | 刪除檔案                 |
+
+## 設定 Git
+
+- 告訴 Git 你的帳戶與電子信箱
+- 在終端機輸入：
+
+```
+git config --global user.name "YOUR NAME"
+git config --global user.email YOUR EMAIL ADDRESS
+```
+
+## 建立一個遠端 repository
+
+- 至 [GitHub](https://github.com/) 建立一個遠端 repository
+- 將新建的 repository 複製回本機資料夾
+
+```
+cd ~
+git clone "YOUR REPOSITORY URL"
+```
+
+## 將本機新增的檔案推到遠端 repository
+
+- 在本機資料夾新增檔案
+- 存檔後在命令列輸入：
+
+```
+git add .
+git commit -m "first commit"
+git push
+```
+
+- `git commit -m` 後面的訊息可以自訂
+
+## 練習
+
+- 上傳兩個檔案至 GitHub
+    - RStudio 螢幕截圖
+    - hello_world.R
+
+```{r, results = 'hide'}
+# hello_world.R
+print("Hello world!")
+```
