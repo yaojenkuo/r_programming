@@ -6,6 +6,7 @@
 
 ### 評分標準
 
+- 任意選擇作業繳交
 - 70 分即可獲得證書，作業請寄至 tony@kyosei.ai，註明班別與姓名
 - 作業繳交期限為課程結束後一週內，如遇長假期（春節、連假）則順延
 
@@ -14,10 +15,11 @@
 |作業 1|[ggplot2](http://yaojenkuo.io/r_programming/jhu_eda_w1#/3/4)|20|
 |作業 2|[變數型別](http://yaojenkuo.io/r_programming/ch2#(15))|20|
 |作業 3|[R 語言導論](https://www.datacamp.com/community/open-courses/r-%E8%AA%9E%E8%A8%80%E5%B0%8E%E8%AB%96?tap_a=5644-dce66f&tap_s=194899-1fb421)|70|
-|作業 4|[自訂函數](http://yaojenkuo.io/r_programming/ch9#(16))|30|
-|作業 5|[網站爬蟲](http://yaojenkuo.io/r_programming/getting_data#/imdb--yahoo-)|50|
-|作業 6|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70|
-|作業 7|[專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)|70|
+|作業 4|[資料框整理技巧](https://www.datacamp.com/community/open-courses/%E8%B3%87%E6%96%99%E6%A1%86%E6%95%B4%E7%90%86%E6%8A%80%E5%B7%A7?tap_a=5644-dce66f&tap_s=194899-1fb421)|70|
+|作業 5|[自訂函數](http://yaojenkuo.io/r_programming/ch9#(16))|30|
+|作業 6|[網站爬蟲](http://yaojenkuo.io/r_programming/getting_data#/imdb--yahoo-)|50|
+|作業 7|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70|
+|作業 8|[專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)|70|
 
 
 ### 課堂互動工具（每週更新 Event Code）
@@ -28,20 +30,22 @@
 ### 課程教科書
 
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FREER299)
 
+<!--
+- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FREER299)
+-->
 <!--- [認識 R 的美好 - 網頁版](https://bookdown.org/tonykuoyj/eloquentr/)-->
 
 ### 課程投影片
 
 - [關於這門課](https://yaojenkuo.github.io/r_programming/ch0)
 - [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/ch1)
+- [變數型別](https://yaojenkuo.github.io/r_programming/ch2)
+- [資料結構](https://yaojenkuo.github.io/r_programming/ch4)
 - [Tidyverse 簡介](https://yaojenkuo.github.io/r_programming/intro_2_tidyverse.html)
 - [Tidyverse: dplyr](https://yaojenkuo.github.io/r_programming/intro_2_dplyr.html)
 - [Tidyverse: ggplot2](https://yaojenkuo.github.io/r_programming/intro_2_ggplot2.html)
 - [專題：EDA: PM2.5](http://yaojenkuo.io/r_programming/jhu_eda_w4)
-- [變數型別](https://yaojenkuo.github.io/r_programming/ch2)
-- [資料結構](https://yaojenkuo.github.io/r_programming/ch4)
 - [專題：EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)
 - [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
 - [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
