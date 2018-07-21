@@ -26,6 +26,9 @@
 
 <https://www.sli.do/>
 
+### 課程共筆
+
+<https://colab.research.google.com/drive/1_q7r9El4LUfZgbWr4op2rhqrZCRI0tXZ>
 
 ### 課程教科書
 
