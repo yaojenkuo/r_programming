@@ -40,7 +40,7 @@
 
 - [關於這門課](https://yaojenkuo.github.io/r_programming/ch0)
 - [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/r_dev_env)
-- [變數型別](https://yaojenkuo.github.io/r_programming/ch2)
+- [變數型別與常用函數](https://yaojenkuo.github.io/r_programming/variable_types)
 - [資料結構](https://yaojenkuo.github.io/r_programming/ch4)
 - [Tidyverse 簡介](https://yaojenkuo.github.io/r_programming/intro_2_tidyverse.html)
 - [Tidyverse: dplyr](https://yaojenkuo.github.io/r_programming/intro_2_dplyr.html)
