@@ -1,0 +1,163 @@
+---
+title: "變數型別與常用函數"
+author: "郭耀仁"
+output: 
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: zenburn
+    center: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', warning = FALSE)
+```
+
+# 概觀
+
+## 主要變數型別
+
+- 數字（numeric）
+- 文字（character）
+- 邏輯值（logical）
+
+## 計算機
+
+- 計算機是 R 語言的命令列（Console）最基本的應用！
+- R 語言使用單行註解 `#` （pound）
+- 在命令列試著進行加減乘除運算：
+
+```{r}
+# 在命令列依序輸入後觀察產出
+2 + 1
+2 - 1
+2 * 2
+4 / 2
+2 ^ 2 # 次方，亦可以寫作 2**2
+3 %% 2 # 餘數
+5 %/% 2 # 商數
+```
+
+## 使用雙引號或單引號表示文字
+
+```{r}
+ironman <- "Tony Stark"
+captian <- 'Steve Rogers'
+```
+
+## 什麼時候用雙引號？什麼時候用單引號
+
+[Joey Air Quoting](https://youtu.be/0O1z3An8CFc)
+
+## 邏輯判斷運算子
+
+|邏輯判斷運算子|作用|
+|---------|---|
+|`==`|等於|
+|`>`|大於|
+|`<`|小於|
+|`>=`|大於等於|
+|`<=`|小於等於|
+|`!=`|不等於|
+
+## 數值型變數運算時很有彈性
+
+```{r}
+# 在命令列依序輸入
+num <- 2
+char <- "Hello" # 用引號告訴 R 語言這是一組字串
+logi_t <- TRUE
+logi_f <- FALSE
+# 運算
+num + logi_t
+logi_t * 5
+```
+
+## 但是字串的運算則不如 Python 彈性
+
+```
+char * 5 # Error
+char + " World!" # Error
+```
+
+## 判斷與轉換
+
+- 透過 `is.___()` 函數可以判斷變數類型
+- 透過 `as.___()` 函數可以轉換變數類型
+
+# 日期與日期時間
+
+## 日期
+
+- 預設以西元 1970 年 1 月 1 日為 `0`，在這一天以後的每天都 `+1` 來記錄，而這一天以前的每天都 `-1` 來記錄
+
+---
+
+```{r}
+sys_date <- Sys.Date()
+sys_date # 看起來跟文字一樣
+class(sys_date) # 是日期的格式
+
+sys_date_char <- as.character(sys_date) # 創造一個文字類型
+as.integer(sys_date)
+as.integer(sys_date_char) # warning
+
+date_of_origin <- as.Date("1970-01-01")
+as.integer(date_of_origin)
+date_of_origin + 1
+date_of_origin - 1
+```
+
+## 日期時間
+
+- 預設以西元 1970 年 1 月 1 日格林威治標準時間（Greenwich Mean Time，GMT）00 時 00 分 00 秒作為 0，在這個時間點以後的每秒都 `+1` 來記錄，這個時間點以前的每秒都 `-1` 來記錄
+
+---
+
+```{r}
+time_of_origin <- as.POSIXct("1970-01-01 00:00:00", tz = "GMT")
+as.integer(time_of_origin)
+time_of_origin
+time_of_origin + 1
+time_of_origin - 1
+
+time_of_origin_cst <- as.POSIXct("1970-01-01 08:00:00") # tz = CST
+as.integer(time_of_origin_cst)
+```
+
+# 常用函數
+
+---
+
+- R 語言是一種**函數型編程**（functional programming）的程式語言
+
+> Everything that happens is a function call.
+> By [John Chambers](https://en.wikipedia.org/wiki/John_Chambers_(statistician))
+
+---
+
+```
+class() # 回傳變數的類型
+ls() # 目前環境中有哪些變數
+rm() # 移除環境中的變數
+getwd() # 目前的檔案路徑在哪裡
+setwd() # 設定檔案路徑
+Sys.Date() # 回傳系統日期
+Sys.time() # 回傳系統日期與時間
+q() # 離開 RStudio
+```
+
+## Windows 設定 locale
+
+- 在 console 輸入這段指令可以切換與課程教材相同的 locale
+
+```
+Sys.setlocale(category = "LC_ALL", locale = "UTF-8")
+```
+
+## 作業
+
+1. 香港搖滾樂隊 Beyond 於 1983 年成立，我們假設成立日期是 1983-12-31，請將成立日期指派給 `beyond_start`
+2. 請以系統日期計算今年是 Beyond 成立幾週年
+3. 1999 年 9 月 21 日 1 時 47 分 16 秒發生震央位於南投縣集集鎮，芮氏規模 7.3 的地震，請以文字記錄這個時間，並將它指派給 `major_quake_time`
+4. 1999 年 9 月 21 日 1 時 57 分 15 秒發生第一個芮氏規模超過 6 的餘震，請以文字記錄這個時間，並將它指派給 `first_aftershock_time`
+5. 請將前兩題的生成的變數轉換為時間類型，計算間隔多久發生第一個芮氏規模超過 6 的餘震
