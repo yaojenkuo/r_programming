@@ -363,6 +363,25 @@ help(cars) # ?cars</code></pre>
 <li>回傳 R 的相關資訊</li>
 </ul>
 <pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 3.4.4 (2018-03-15)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.6
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.4.4  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
+##  [5] tools_3.4.4     htmltools_0.3.6 yaml_2.1.19     Rcpp_0.12.16   
+##  [9] stringi_1.2.4   rmarkdown_1.9   knitr_1.20      stringr_1.3.1  
+## [13] digest_0.6.15   evaluate_0.11</code></pre>
 </div>
 <div id="getwd" class="section level3">
 <h3>常用函數：<code>getwd()</code></h3>
@@ -370,6 +389,7 @@ help(cars) # ?cars</code></pre>
 <li>回傳目前的工作路徑 Get Working Directory</li>
 </ul>
 <pre class="r"><code>getwd()</code></pre>
+<pre><code>## [1] &quot;/Users/kuoyaojen/r_programming&quot;</code></pre>
 </div>
 <div id="setwd" class="section level3">
 <h3>常用函數：<code>setwd()</code></h3>
@@ -431,6 +451,11 @@ class(my_lucky_number) # numeric
 class(2.4) # numeric
 class(-8.7) # numeric
 class(0) # numeric</code></pre>
+<pre><code>## [1] &quot;numeric&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;numeric&quot;</code></pre>
 </div>
 <div class="section level3">
 <h3>選修的數字型別</h3>
@@ -446,6 +471,11 @@ my_lucky_complex &lt;- 8 + 7i
 class(my_lucky_complex) # complex
 my_lucky_integer
 my_lucky_complex</code></pre>
+<pre><code>## [1] &quot;numeric&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;complex&quot;
+## [1] 87
+## [1] 8+7i</code></pre>
 </div>
 <div class="section level3">
 <h3>數字的運算</h3>
@@ -465,6 +495,14 @@ my_lucky_complex</code></pre>
 8 %/% 6 # 1
 9**1/2 # 4.5 運算優先順序
 27**1/3 # 9 運算優先順序</code></pre>
+<pre><code>## [1] 25
+## [1] 125
+## [1] 3
+## [1] 3
+## [1] 2
+## [1] 1
+## [1] 4.5
+## [1] 9</code></pre>
 </div>
 <div class="section level3">
 <h3>數字運算的練習</h3>
@@ -481,6 +519,8 @@ jeremy_height &lt;- 191/100
 jeremy_weight &lt;- 91
 jeremy_bmi &lt;- jeremy_weight / jeremy_height**2
 jeremy_bmi</code></pre>
+<pre><code>## [1] 24.94449
+## [1] 24.94449</code></pre>
 </div>
 <div class="section level3">
 <h3>文字</h3>
@@ -493,6 +533,10 @@ my_favorite_star &lt;- 'Tom Cruise'
 class(my_favorite_star) # character
 my_favorite_star &lt;- &quot;Tom Cruise&quot;
 class(my_favorite_star) # character</code></pre>
+<pre><code>## [1] &quot;character&quot;
+## [1] &quot;character&quot;
+## [1] &quot;character&quot;
+## [1] &quot;character&quot;</code></pre>
 <ul>
 <li>什麼時候使用單引號或雙引號有差別？</li>
 </ul>
@@ -513,6 +557,7 @@ ross_script &lt;- 'Let\'s put aside the fact that you &quot;accidentally&quot; p
 </ul>
 <pre class="r"><code>my_fav_player &lt;- &quot;Steve Nash&quot;
 sprintf(&quot;我最喜歡的籃球員是 %s&quot;, my_fav_player)</code></pre>
+<pre><code>## [1] &quot;我最喜歡的籃球員是 Steve Nash&quot;</code></pre>
 </div>
 <div class="section level3">
 <h3>邏輯值</h3>
@@ -536,6 +581,9 @@ class(r_is_commercial_licensed) # logical</code></pre>
 <pre class="r"><code>TRUE + TRUE
 FALSE + FALSE
 TRUE + FALSE</code></pre>
+<pre><code>## [1] 2
+## [1] 0
+## [1] 1</code></pre>
 <ul>
 <li>邏輯值應用場景：</li>
 <li>流程控制 <code>if-else if-else</code></li>
@@ -565,6 +613,12 @@ if (CONDITION_1) {
 8 != 7 # TRUE
 !FALSE # TRUE
 !TRUE # FALSE</code></pre>
+<pre><code>## [1] TRUE
+## [1] FALSE
+## [1] FALSE
+## [1] TRUE
+## [1] TRUE
+## [1] FALSE</code></pre>
 <ul>
 <li><strong>連結邏輯判斷</strong>的符號</li>
 <li><code>&amp;</code> 交集（shift + 7）AND</li>
@@ -574,20 +628,30 @@ if (CONDITION_1) {
 has_job &lt;- TRUE
 monthly_income &lt;- 29000
 has_job &amp; monthly_income &gt; 30000 # 婉拒</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 <pre class="r"><code># 銀行申請信用卡的條件：聯集（有工作或月薪超過 3 萬）
 has_job &lt;- TRUE
 monthly_income &lt;- 29000
 has_job | monthly_income &gt; 30000 # 發卡</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code># 交集的判斷
 TRUE &amp; TRUE # TRUE 有工作且月薪超過 3 萬
 TRUE &amp; FALSE # FALSE 有工作但月薪未超過 3 萬
 FALSE &amp; TRUE # FALSE 沒有工作但月薪超過 3 萬
 FALSE &amp; FALSE # FALSE 沒有工作且月薪未超過 3 萬</code></pre>
+<pre><code>## [1] TRUE
+## [1] FALSE
+## [1] FALSE
+## [1] FALSE</code></pre>
 <pre class="r"><code># 聯集的判斷
 TRUE | TRUE # TRUE 有工作且月薪超過 3 萬
 TRUE | FALSE # TRUE 有工作但月薪未超過 3 萬
 FALSE | TRUE # TRUE 沒有工作但月薪超過 3 萬
 FALSE | FALSE # FALSE 沒有工作且月薪未超過 3 萬</code></pre>
+<pre><code>## [1] TRUE
+## [1] TRUE
+## [1] TRUE
+## [1] FALSE</code></pre>
 <ul>
 <li>一個分支的流程控制</li>
 </ul>
@@ -606,6 +670,7 @@ if (has_job) {
 } else {
   print(&quot;婉拒發卡&quot;)
 }</code></pre>
+<pre><code>## [1] &quot;發信用卡&quot;</code></pre>
 <ul>
 <li>三個分支的流程控制</li>
 </ul>
@@ -618,6 +683,7 @@ if (has_job) {
 } else {
   print(&quot;婉拒發卡&quot;)
 }</code></pre>
+<pre><code>## [1] &quot;發額度低的信用卡&quot;</code></pre>
 <ul>
 <li>判斷整數是否為偶數（二元分支）</li>
 </ul>
@@ -629,6 +695,7 @@ if (my_integer %% 2 == 0) {
 }
 # print(&quot;是偶數&quot;)
 # print(&quot;是奇數&quot;)</code></pre>
+<pre><code>## [1] &quot;是奇數&quot;</code></pre>
 <ul>
 <li>print with format: 輸出文字的技巧</li>
 <li><code>sprintf()</code> 函數</li>
@@ -639,6 +706,7 @@ if (my_integer %% 2 == 0) {
 } else {
   sprintf(&quot;%d 是奇數&quot;, my_integer)
 }</code></pre>
+<pre><code>## [1] &quot;9 是奇數&quot;</code></pre>
 <ul>
 <li>判斷整數除以 4 的餘數為多少（四元分支）</li>
 </ul>
@@ -653,6 +721,7 @@ if (mod == 0) {
 } else {
   sprintf(&quot;%d 除以 4 的餘數為 %d&quot;, my_integer, mod)
 }</code></pre>
+<pre><code>## [1] &quot;10 除以 4 的餘數為 2&quot;</code></pre>
 <pre class="r"><code>my_integer &lt;- 15L
 mod &lt;- my_integer %% 4
 if (mod == 0) {
@@ -660,6 +729,7 @@ if (mod == 0) {
 } else {
   sprintf(&quot;%d 除以 4 的餘數為 %d&quot;, my_integer, mod)
 }</code></pre>
+<pre><code>## [1] &quot;15 除以 4 的餘數為 3&quot;</code></pre>
 </div>
 <div class="section level3">
 <h3>型別的判斷</h3>
@@ -677,18 +747,29 @@ is.character(FALSE) # FALSE
 is.logical(FALSE) # TRUE
 is.logical(&quot;TRUE&quot;) # FALSE
 is.logical(0) # FALSE</code></pre>
+<pre><code>## [1] TRUE
+## [1] FALSE
+## [1] FALSE
+## [1] TRUE
+## [1] FALSE
+## [1] FALSE
+## [1] TRUE
+## [1] FALSE
+## [1] FALSE</code></pre>
 <pre class="r"><code>my_lucky_number &lt;- &quot;24&quot;
 if (class(my_lucky_number) == &quot;numeric&quot;) {
   sprintf(&quot;%d 是 %s 型別&quot;, my_lucky_number, class(my_lucky_number))
 } else {
   sprintf(&quot;%s 不是 numeric 型別&quot;, my_lucky_number)
 }</code></pre>
+<pre><code>## [1] &quot;24 不是 numeric 型別&quot;</code></pre>
 <pre class="r"><code>my_lucky_number &lt;- &quot;24&quot;
 if (is.numeric(my_lucky_number)) {
   sprintf(&quot;%d 是 %s 型別&quot;, my_lucky_number, class(my_lucky_number))
 } else {
   sprintf(&quot;%s 不是 numeric 型別&quot;, my_lucky_number)
 }</code></pre>
+<pre><code>## [1] &quot;24 不是 numeric 型別&quot;</code></pre>
 </div>
 <div class="section level3">
 <h3>日期</h3>
@@ -699,6 +780,9 @@ if (is.numeric(my_lucky_number)) {
 sys_date # 乍看之下以為是 character 型別
 class(sys_date)
 class(&quot;2018-08-28&quot;)</code></pre>
+<pre><code>## [1] &quot;2018-08-28&quot;
+## [1] &quot;Date&quot;
+## [1] &quot;character&quot;</code></pre>
 </div>
 </div>
 
