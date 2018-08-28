@@ -25,7 +25,7 @@
 
 ### 課程共筆
 
-<https://yaojenkuo.io/r_programming/rprg_303>
+<https://yaojenkuo.io/r_programming/rprg-303>
 
 ### 課程教科書
 
