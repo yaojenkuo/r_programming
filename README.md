@@ -25,7 +25,7 @@
 
 ### 課程共筆
 
-<https://colab.research.google.com/drive/1_q7r9El4LUfZgbWr4op2rhqrZCRI0tXZ>
+<https://yaojenkuo.io/r_programming/rprg_303>
 
 ### 課程教科書
 
@@ -64,6 +64,7 @@
 
 ### 近期上課錄影
 
+- [第 303 期 R 語言與資料科學應用（暑期班）]()
 - [第 298 期 R 語言與資料科學應用（假日下午班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXCkDZsVkscgvKADwiedIse)
 - [第 299 期 R 語言與資料科學應用（暑期班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuUdO3kIGUzYn7iS-4TKNb_x)
 - [第 297 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuULcetxePwDdPf8e6RCDgpO)
