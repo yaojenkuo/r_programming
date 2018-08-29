@@ -23,9 +23,9 @@
 
 <https://www.sli.do/>
 
-### 課程共筆
+### 課程程式筆記
 
-<https://yaojenkuo.io/r_programming/rprg-303>
+<https://yaojenkuo.io/r_programming/rprg-nb>
 
 ### 課程教科書
 
