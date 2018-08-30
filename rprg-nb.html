@@ -990,7 +990,7 @@ original_datetime &lt;- as.POSIXct(&quot;1970-01-01 08:00:00&quot;)
 as.numeric(original_datetime)
 original_datetime - 1
 original_datetime + 1</code></pre>
-<pre><code>## [1] &quot;2018-08-30 16:13:15 CST&quot;
+<pre><code>## [1] &quot;2018-08-30 17:35:38 CST&quot;
 ## [1] &quot;POSIXct&quot; &quot;POSIXt&quot; 
 ## [1] &quot;1970-01-01 08:00:00 CST&quot;
 ## [1] 0
@@ -1104,8 +1104,8 @@ fizz_buzz(12)</code></pre>
 <li>（選修）矩陣（matrix）</li>
 <li>（選修）陣列（array）</li>
 </ul>
-<div class="section level3">
-<h3>向量</h3>
+<div id="vector" class="section level3">
+<h3>向量（vector）</h3>
 <ul>
 <li>脫離純量（Scalar）走向資料結構的第一站</li>
 <li>最常見產生向量的方式：<code>c()</code></li>
@@ -1285,6 +1285,181 @@ weights[which(bmis &gt; 25)] # bmi &gt; 25 的體重</code></pre>
 ## [35] 159 155 152
 ##  [1] 68 79 77 78 79 72 67 79 68 80 71 66 70 75 74 80 63 76 76 62 67 60 70
 ## [24] 76 73 70 69 77 68 76 71 68 77 80 79 64 70</code></pre>
+</div>
+<div class="section level4">
+<h4>產生數列向量的函數</h4>
+<ul>
+<li><code>seq()</code></li>
+</ul>
+<pre class="r"><code>seq(from = 11, to = 20) # 11:20
+11:20
+seq(from = 11, to = 21, by = 2)
+seq(from = 11, to = 21, length.out = 6)</code></pre>
+<pre><code>##  [1] 11 12 13 14 15 16 17 18 19 20
+##  [1] 11 12 13 14 15 16 17 18 19 20
+## [1] 11 13 15 17 19 21
+## [1] 11 13 15 17 19 21</code></pre>
+</div>
+<div class="section level4">
+<h4>產生向量的其他函數</h4>
+<ul>
+<li><code>rep()</code> 重複元素的向量</li>
+</ul>
+<pre class="r"><code>rep(&quot;Iron Man&quot;, times = 5)
+rep(7, times = 3)</code></pre>
+<pre><code>## [1] &quot;Iron Man&quot; &quot;Iron Man&quot; &quot;Iron Man&quot; &quot;Iron Man&quot; &quot;Iron Man&quot;
+## [1] 7 7 7</code></pre>
+</div>
+<div class="section level4">
+<h4>向量只能容許單一種變數型別</h4>
+<pre class="r"><code>mixed_types &lt;- c(24, &quot;Kobe Bryant&quot;)
+class(mixed_types) # character
+mixed_types &lt;- c(24, TRUE)
+class(mixed_types) # numeric
+mixed_types &lt;- c(24, &quot;Kobe Bryant&quot;, TRUE)
+class(mixed_types) # character</code></pre>
+<pre><code>## [1] &quot;character&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="-element-wise-operations" class="section level4">
+<h4>元素級別運算 element-wise operations</h4>
+<ul>
+<li>每個函數都是針對向量而設計的</li>
+<li><code>toupper()</code> 文字函數將文字變成大寫</li>
+<li><code>abs()</code> 數字函數將數字變成絕對值</li>
+</ul>
+<pre class="r"><code>toupper(&quot;Kobe Bryant&quot;) # KOBE BRYANT
+fav_players &lt;- c(&quot;Steve Nash&quot;, &quot;Paul Pierce&quot;, &quot;Scottie Pippen&quot;, &quot;Kevin Garnett&quot;, &quot;Shaquille O'Neal&quot;)
+toupper(fav_players)
+abs(-87)
+random_numbers &lt;- sample(-100:-1, size = 5)
+random_numbers
+abs(random_numbers)</code></pre>
+<pre><code>## [1] &quot;KOBE BRYANT&quot;
+## [1] &quot;STEVE NASH&quot;       &quot;PAUL PIERCE&quot;      &quot;SCOTTIE PIPPEN&quot;  
+## [4] &quot;KEVIN GARNETT&quot;    &quot;SHAQUILLE O'NEAL&quot;
+## [1] 87
+## [1] -77  -5 -42 -51 -62
+## [1] 77  5 42 51 62</code></pre>
+</div>
+</div>
+<div id="list" class="section level3">
+<h3>清單（list）</h3>
+<ul>
+<li>使用 <code>list()</code> 函數建立</li>
+</ul>
+<pre class="r"><code>fav_players &lt;- c(&quot;Steve Nash&quot;, &quot;Paul Pierce&quot;, &quot;Scottie Pippen&quot;, &quot;Kevin Garnett&quot;, &quot;Shaquille O'Neal&quot;)
+jersey_numbers &lt;- c(13, 34, 33, 21, 34)
+player_list &lt;- list(
+  fav_players,
+  jersey_numbers
+)
+player_list</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;Steve Nash&quot;       &quot;Paul Pierce&quot;      &quot;Scottie Pippen&quot;  
+## [4] &quot;Kevin Garnett&quot;    &quot;Shaquille O'Neal&quot;
+## 
+## [[2]]
+## [1] 13 34 33 21 34</code></pre>
+<div class="section level4">
+<h4>使用雙層中括號取出清單中的元素</h4>
+<pre class="r"><code>player_list[[1]] # players
+player_list[[2]] # jerseys</code></pre>
+<pre><code>## [1] &quot;Steve Nash&quot;       &quot;Paul Pierce&quot;      &quot;Scottie Pippen&quot;  
+## [4] &quot;Kevin Garnett&quot;    &quot;Shaquille O'Neal&quot;
+## [1] 13 34 33 21 34</code></pre>
+</div>
+<div class="section level4">
+<h4>清單多半巢狀</h4>
+<ul>
+<li>像剝洋蔥一樣，一層一層往下選擇</li>
+</ul>
+<pre class="r"><code>player_list[[1]][1] # Steve Nash
+player_list[[2]][1] # 13</code></pre>
+<pre><code>## [1] &quot;Steve Nash&quot;
+## [1] 13</code></pre>
+</div>
+<div class="section level4">
+<h4>清單中元素多為不同長度的資料</h4>
+<pre class="r"><code>rating &lt;- 8.6 # length: 1
+movie_length &lt;- &quot;2h 29min&quot; # length: 1
+genre &lt;- c(&quot;Action&quot;, &quot;Adventure&quot;, &quot;Fantasy&quot;) # length: 3
+cast &lt;- c(&quot;Robert Downey Jr.&quot;, &quot;Chris Hemsworth&quot;, &quot;Mark Ruffalo&quot;, &quot;Chris Evans&quot;, &quot;Scarlett Johansson&quot;) # length: 5
+avengers_movie &lt;- list(
+  rating,
+  movie_length,
+  genre,
+  cast
+)
+avengers_movie</code></pre>
+<pre><code>## [[1]]
+## [1] 8.6
+## 
+## [[2]]
+## [1] &quot;2h 29min&quot;
+## 
+## [[3]]
+## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Fantasy&quot;  
+## 
+## [[4]]
+## [1] &quot;Robert Downey Jr.&quot;  &quot;Chris Hemsworth&quot;    &quot;Mark Ruffalo&quot;      
+## [4] &quot;Chris Evans&quot;        &quot;Scarlett Johansson&quot;</code></pre>
+</div>
+<div class="section level4">
+<h4>清單經常會為元素命名</h4>
+<pre class="r"><code>avengers_movie &lt;- list(
+  movieRating = rating,
+  movieLength = movie_length,
+  movieGenre = genre,
+  movieCast = cast
+)
+avengers_movie</code></pre>
+<pre><code>## $movieRating
+## [1] 8.6
+## 
+## $movieLength
+## [1] &quot;2h 29min&quot;
+## 
+## $movieGenre
+## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Fantasy&quot;  
+## 
+## $movieCast
+## [1] &quot;Robert Downey Jr.&quot;  &quot;Chris Hemsworth&quot;    &quot;Mark Ruffalo&quot;      
+## [4] &quot;Chris Evans&quot;        &quot;Scarlett Johansson&quot;</code></pre>
+</div>
+<div class="section level4">
+<h4>透過名稱選擇清單中的元素</h4>
+<ul>
+<li>LIST[[“ELEMENT_NAME”]]，傳字串</li>
+<li>LIST$ELEMENT_NAME，傳物件</li>
+</ul>
+<pre class="r"><code>avengers_movie[[&quot;movieRating&quot;]] # 8.6
+avengers_movie$movieRating # 8.6</code></pre>
+<pre><code>## [1] 8.6
+## [1] 8.6</code></pre>
+</div>
+<div class="section level4">
+<h4>練習宣告一個清單</h4>
+<pre class="r"><code># 六人行的影集清單
+genre &lt;- &quot;Sitcom&quot;
+starring &lt;- c(&quot;Jennifer Aniston&quot;, &quot;Courteney Cox&quot;, &quot;Lisa Kudrow&quot;, &quot;Matt LeBlanc&quot;, &quot;Matthew Perry&quot;, &quot;David Schwimmer&quot;)
+seasons &lt;- 10
+
+friends_list &lt;- list(
+  genre = genre,
+  starring = starring,
+  seasons = seasons
+)
+friends_list[[&quot;genre&quot;]]
+friends_list[[&quot;starring&quot;]][5] # &quot;Matthew Perry&quot;
+
+friends_list[[&quot;starring&quot;]][friends_list[[&quot;starring&quot;]] == &quot;Matthew Perry&quot;]
+friends_list$starring[friends_list$starring == &quot;Matthew Perry&quot;]</code></pre>
+<pre><code>## [1] &quot;Sitcom&quot;
+## [1] &quot;Matthew Perry&quot;
+## [1] &quot;Matthew Perry&quot;
+## [1] &quot;Matthew Perry&quot;</code></pre>
 </div>
 </div>
 </div>
