@@ -228,10 +228,9 @@ div.tocify {
 <li>相較同類型的商業授權程式語言（Matlab, SAS, SPSS, Stata）：Open source</li>
 <li>相較同類型的開源程式語言（Julia）：社群比較大</li>
 <li>函數型編程</li>
-<li>核心精神</li>
 </ul>
 <blockquote>
-<p>對物件應用函數。</p>
+<p>核心精神： 對物件應用函數。</p>
 </blockquote>
 </div>
 <div id="-r-" class="section level2">
@@ -317,14 +316,19 @@ say_hello()</code></pre>
 ## [1] TRUE
 ## [1] &quot;Hello R!&quot;</code></pre>
 </div>
+<div id="-rm-" class="section level3">
+<h3>使用 <code>rm()</code> 刪除物件</h3>
+<pre class="r"><code>rm(r_is_easy)
+r_is_easy # Error</code></pre>
+</div>
 <div id="-" class="section level3">
 <h3>使用 # 做註解</h3>
 <ul>
 <li>只有單行註解</li>
 </ul>
-<pre class="r"><code># 這是 303 期 R 語言與資料科學應用
-# 這是暑密班下午
-# 教室在 108</code></pre>
+<pre class="r"><code># 這是 R 語言與資料科學應用
+# 這是系統訓練班
+# 教室在台大資工系館</code></pre>
 </div>
 <div id="r-console-" class="section level3">
 <h3>R Console 的快捷鍵</h3>
@@ -347,9 +351,11 @@ say_hello &lt;- function(){
 help(print # 少了一個右邊的小括號 </code></pre>
 <ul>
 <li>排除的方法有兩種：</li>
-<li>一是完成輸入</li>
-<li>二是砍掉重練，按 ESC 然後重新輸入程式</li>
 </ul>
+<ol style="list-style-type: decimal">
+<li>完成輸入</li>
+<li>砍掉重練，按 ESC 然後重新輸入程式</li>
+</ol>
 </div>
 <div id="r-" class="section level3">
 <h3>R 語言的套件</h3>
@@ -395,6 +401,14 @@ help(cars) # ?cars</code></pre>
 ##  [9] stringi_1.2.4   rmarkdown_1.9   knitr_1.20      stringr_1.3.1  
 ## [13] digest_0.6.15   evaluate_0.11</code></pre>
 </div>
+<div id="sys.getlocale" class="section level3">
+<h3>常用函數：<code>Sys.getlocale()</code></h3>
+<ul>
+<li>獲得電腦的語系設定</li>
+</ul>
+<pre class="r"><code>Sys.getlocale()</code></pre>
+<pre><code>## [1] &quot;en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8&quot;</code></pre>
+</div>
 <div id="getwd" class="section level3">
 <h3>常用函數：<code>getwd()</code></h3>
 <ul>
@@ -409,9 +423,10 @@ help(cars) # ?cars</code></pre>
 <li>指定工作路徑 Set Working Directory</li>
 <li><strong>特別注意！</strong>在程式語言的檔案路徑指派，<strong>永遠</strong>使用正向的斜線（/）</li>
 <li>因為反向的斜線（）在程式語言中另有用途：跳脫、Unicode</li>
+<li>檢查電腦的使用者名稱 USERNAME，盡量避免使用中文使用者名稱</li>
 </ul>
-<pre class="r"><code>setwd(&quot;/Users/kuoyaojen/Desktop&quot;) # MacOS 的桌面
-setwd(&quot;C:/Users/kuoyaojen/Desktop&quot;) # Windows 的桌面</code></pre>
+<pre class="r"><code>setwd(&quot;/Users/USERNAME/Desktop&quot;) # MacOS 的桌面
+setwd(&quot;C:/Users/USERNAME/Desktop&quot;) # Windows 的桌面</code></pre>
 </div>
 <div id="q" class="section level3">
 <h3>常用函數：<code>q()</code></h3>
@@ -429,9 +444,9 @@ setwd(&quot;C:/Users/kuoyaojen/Desktop&quot;) # Windows 的桌面</code></pre>
 <li>快速入門</li>
 <li>變數型別（純量）</li>
 <li>流程控制（布林、邏輯值）</li>
+<li>函數</li>
 <li>資料結構（陣列、向量、字典、清單…）</li>
 <li>迭代迴圈（for、while）</li>
-<li>函數</li>
 <li>（選修）類別</li>
 <li>（選修）套件、模組</li>
 </ul>
@@ -441,7 +456,7 @@ setwd(&quot;C:/Users/kuoyaojen/Desktop&quot;) # Windows 的桌面</code></pre>
 <h2>變數型別</h2>
 <ul>
 <li><code>class()</code> 函數可以回答變數的型別為何</li>
-<li>數字</li>
+<li>數值</li>
 <li>浮點數（numeric）</li>
 <li>（選修）整數（integer）</li>
 <li>（選修）複數（complex）</li>
@@ -451,7 +466,7 @@ setwd(&quot;C:/Users/kuoyaojen/Desktop&quot;) # Windows 的桌面</code></pre>
 <li>日期時間（POSIXct）</li>
 </ul>
 <div class="section level3">
-<h3>數字</h3>
+<h3>數值</h3>
 <ul>
 <li>使用 <code>class()</code> 函數查看浮點數的型別</li>
 </ul>
@@ -533,6 +548,41 @@ jeremy_bmi &lt;- jeremy_weight / jeremy_height**2
 jeremy_bmi</code></pre>
 <pre><code>## [1] 24.94449
 ## [1] 24.94449</code></pre>
+</div>
+<div id="-height--weight-" class="section level3">
+<h3>計算任何一個人的身體質量指數，他的身高 height 公分、體重 weight 公斤。</h3>
+<pre class="r"><code># 函數外觀
+FUNCTION_NAME &lt;- function(x, arg_1, arg_2, ...) {
+  # 使用 x, arg_1, arg_2 來產出結果
+  return(結果)
+}</code></pre>
+<pre class="r"><code>get_bmi &lt;- function(height, weight) {
+  height_m &lt;- height * 0.01
+  bmi &lt;- weight / height_m**2
+  return(bmi)
+}
+steveNash_bmi &lt;- get_bmi(191, 82)
+jeremyLin_bmi &lt;- get_bmi(191, 91)
+shaq_bmi &lt;- get_bmi(216, 148)
+steveNash_bmi
+jeremyLin_bmi
+shaq_bmi</code></pre>
+<pre><code>## [1] 22.47745
+## [1] 24.94449
+## [1] 31.72154</code></pre>
+</div>
+<div class="section level3">
+<h3>（選修）運算混合整數與複數</h3>
+<pre class="r"><code>class(8 + 7) # numeric
+class(8L + 7L) # integer
+class(8L + 7) # numeric
+class(7 + 8i + 7L) # complex
+class(7 + 8i + 7) # complex</code></pre>
+<pre><code>## [1] &quot;numeric&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;complex&quot;
+## [1] &quot;complex&quot;</code></pre>
 </div>
 <div class="section level3">
 <h3>文字</h3>
@@ -880,11 +930,11 @@ sys_date + 1
 # sys_date_chr + 1 # Error
 mysteric_number &lt;- as.numeric(sys_date) # 神秘的數字
 sys_date - mysteric_number</code></pre>
-<pre><code>## [1] &quot;2018-08-29&quot;
+<pre><code>## [1] &quot;2018-08-30&quot;
 ## [1] &quot;Date&quot;
-## [1] &quot;2018-08-29&quot;
-## [1] &quot;character&quot;
 ## [1] &quot;2018-08-30&quot;
+## [1] &quot;character&quot;
+## [1] &quot;2018-08-31&quot;
 ## [1] &quot;1970-01-01&quot;</code></pre>
 <pre class="r"><code>original_date &lt;- &quot;1970-01-01&quot; # character
 original_date &lt;- as.Date(original_date) # Date
@@ -919,7 +969,7 @@ sys_year - 1983
 sys_year &lt;- format(sys_date, format = &quot;%Y&quot;) # character
 sys_year &lt;- as.numeric(sys_year) # numeric
 sys_year - 1983</code></pre>
-<pre><code>## [1] &quot;2018-08-29&quot;
+<pre><code>## [1] &quot;2018-08-30&quot;
 ## [1] 35
 ## [1] 35</code></pre>
 </div>
@@ -940,7 +990,7 @@ original_datetime &lt;- as.POSIXct(&quot;1970-01-01 08:00:00&quot;)
 as.numeric(original_datetime)
 original_datetime - 1
 original_datetime + 1</code></pre>
-<pre><code>## [1] &quot;2018-08-29 19:55:51 CST&quot;
+<pre><code>## [1] &quot;2018-08-30 14:52:35 CST&quot;
 ## [1] &quot;POSIXct&quot; &quot;POSIXt&quot; 
 ## [1] &quot;1970-01-01 08:00:00 CST&quot;
 ## [1] 0
@@ -1043,6 +1093,117 @@ fizz_buzz(12)</code></pre>
 ## [1] &quot;10 是 2 的倍數&quot;
 ## [1] &quot;11 既不是 2 的倍數也不是 3 的倍數&quot;
 ## [1] &quot;12 既是 2 的倍數也是 3 的倍數&quot;</code></pre>
+</div>
+</div>
+<div class="section level2">
+<h2>資料結構</h2>
+<ul>
+<li>向量（vector）</li>
+<li>清單（list）</li>
+<li>資料框（data.frame）</li>
+<li>（選修）矩陣（matrix）</li>
+<li>（選修）陣列（array）</li>
+</ul>
+<div class="section level3">
+<h3>向量</h3>
+<ul>
+<li>脫離純量（Scalar）走向資料結構的第一站</li>
+<li>最常見產生向量的方式：<code>c()</code></li>
+</ul>
+<pre class="r"><code>help(c) # ?c
+my_lucky_number &lt;- 24
+my_lucky_numbers &lt;- c(24, 34, 18, 87, 78)
+my_lucky_numbers
+fav_super_heroes &lt;- c(&quot;Ironman&quot;, &quot;Superman&quot;, &quot;Batman&quot;, &quot;Spiderman&quot;, &quot;Wonder Woman&quot;)
+fav_super_heroes</code></pre>
+<pre><code>## [1] 24 34 18 87 78
+## [1] &quot;Ironman&quot;      &quot;Superman&quot;     &quot;Batman&quot;       &quot;Spiderman&quot;   
+## [5] &quot;Wonder Woman&quot;</code></pre>
+</div>
+<div id="-" class="section level3">
+<h3>利用中括號 <code>[]</code> 選擇向量中的元素</h3>
+<ul>
+<li>向量的索引從 1 開始</li>
+<li>選出第一個幸運數字 <code>my_lucky_numbers[1]</code></li>
+<li>選出第一個超級英雄 <code>fav_super_heroes[1]</code></li>
+<li>Indexing（選一個元素）</li>
+</ul>
+<pre class="r"><code>my_lucky_numbers[1] # 24
+fav_super_heroes[1] # &quot;Ironman&quot;</code></pre>
+<pre><code>## [1] 24
+## [1] &quot;Ironman&quot;</code></pre>
+</div>
+<div id="-c-" class="section level3">
+<h3>在中括號裡面加入 <code>c()</code> 選擇多個元素</h3>
+<ul>
+<li>支援多個元素的選取</li>
+<li>Slicing（選多個元素）</li>
+</ul>
+<pre class="r"><code>my_lucky_numbers[c(1, 4)] # 24 87
+marvel_heroes &lt;- fav_super_heroes[c(1, 4)] # Ironman Spiderman
+dc_heroes &lt;- fav_super_heroes[c(2, 3, 5)] # Superman Batman Wonder Woman
+marvel_heroes
+dc_heroes</code></pre>
+<pre><code>## [1] 24 87
+## [1] &quot;Ironman&quot;   &quot;Spiderman&quot;
+## [1] &quot;Superman&quot;     &quot;Batman&quot;       &quot;Wonder Woman&quot;</code></pre>
+</div>
+<div class="section level3">
+<h3>中括號裡面放入負數</h3>
+<ul>
+<li>負面表列</li>
+</ul>
+<pre class="r"><code>my_lucky_numbers[-1] # 34 18 87 78
+my_lucky_numbers[c(-1, -5)] # 34 18 87
+marvel_heroes &lt;- fav_super_heroes[c(1, 4)] # Ironman Spiderman Wonder Woman
+dc_heroes &lt;- fav_super_heroes[c(-1, -4)] # Superman Batman
+marvel_heroes
+dc_heroes</code></pre>
+<pre><code>## [1] 34 18 87 78
+## [1] 34 18 87
+## [1] &quot;Ironman&quot;   &quot;Spiderman&quot;
+## [1] &quot;Superman&quot;     &quot;Batman&quot;       &quot;Wonder Woman&quot;</code></pre>
+</div>
+<div class="section level3">
+<h3>利用長度選擇向量中的最後一個元素</h3>
+<ul>
+<li><code>length()</code> 函數可以回傳向量的長度</li>
+</ul>
+<pre class="r"><code>help(length) # ?length
+length(my_lucky_numbers) # 5
+length(dc_heroes) # 3
+length(marvel_heroes) # 2
+my_lucky_numbers[length(my_lucky_numbers)] # 78
+dc_heroes[length(dc_heroes)] # Wonder Woman
+marvel_heroes[length(marvel_heroes)] # Spiderman</code></pre>
+<pre><code>## [1] 5
+## [1] 3
+## [1] 2
+## [1] 78
+## [1] &quot;Wonder Woman&quot;
+## [1] &quot;Spiderman&quot;</code></pre>
+</div>
+<div class="section level3">
+<h3>使用判斷條件產生邏輯值來選擇元素</h3>
+<ul>
+<li>選出是奇數的幸運數字</li>
+<li>向量是一個運算的基本單位</li>
+</ul>
+<pre class="r"><code>my_lucky_numbers[4] # 87
+my_lucky_numbers[c(-1, -2, -3, -5)] # 87
+my_lucky_numbers[my_lucky_numbers %% 2 != 0] # 87</code></pre>
+<pre><code>## [1] 87
+## [1] 87
+## [1] 87</code></pre>
+<ul>
+<li>選出鋼鐵人</li>
+</ul>
+<pre class="r"><code>fav_super_heroes[1] # Ironman
+fav_super_heroes[c(-2, -3, -4, -5)] # Ironman
+fav_super_heroes[fav_super_heroes == &quot;Ironman&quot;] # Ironman</code></pre>
+<pre><code>## [1] &quot;Ironman&quot;
+## [1] &quot;Ironman&quot;
+## [1] &quot;Ironman&quot;</code></pre>
 </div>
 </div>
 
