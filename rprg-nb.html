@@ -990,7 +990,7 @@ original_datetime &lt;- as.POSIXct(&quot;1970-01-01 08:00:00&quot;)
 as.numeric(original_datetime)
 original_datetime - 1
 original_datetime + 1</code></pre>
-<pre><code>## [1] &quot;2018-08-30 14:52:35 CST&quot;
+<pre><code>## [1] &quot;2018-08-30 16:13:15 CST&quot;
 ## [1] &quot;POSIXct&quot; &quot;POSIXt&quot; 
 ## [1] &quot;1970-01-01 08:00:00 CST&quot;
 ## [1] 0
@@ -1119,9 +1119,8 @@ fav_super_heroes</code></pre>
 <pre><code>## [1] 24 34 18 87 78
 ## [1] &quot;Ironman&quot;      &quot;Superman&quot;     &quot;Batman&quot;       &quot;Spiderman&quot;   
 ## [5] &quot;Wonder Woman&quot;</code></pre>
-</div>
-<div id="-" class="section level3">
-<h3>利用中括號 <code>[]</code> 選擇向量中的元素</h3>
+<div id="-" class="section level4">
+<h4>利用中括號 <code>[]</code> 選擇向量中的元素</h4>
 <ul>
 <li>向量的索引從 1 開始</li>
 <li>選出第一個幸運數字 <code>my_lucky_numbers[1]</code></li>
@@ -1133,8 +1132,8 @@ fav_super_heroes[1] # &quot;Ironman&quot;</code></pre>
 <pre><code>## [1] 24
 ## [1] &quot;Ironman&quot;</code></pre>
 </div>
-<div id="-c-" class="section level3">
-<h3>在中括號裡面加入 <code>c()</code> 選擇多個元素</h3>
+<div id="-c-" class="section level4">
+<h4>在中括號裡面加入 <code>c()</code> 選擇多個元素</h4>
 <ul>
 <li>支援多個元素的選取</li>
 <li>Slicing（選多個元素）</li>
@@ -1148,8 +1147,8 @@ dc_heroes</code></pre>
 ## [1] &quot;Ironman&quot;   &quot;Spiderman&quot;
 ## [1] &quot;Superman&quot;     &quot;Batman&quot;       &quot;Wonder Woman&quot;</code></pre>
 </div>
-<div class="section level3">
-<h3>中括號裡面放入負數</h3>
+<div class="section level4">
+<h4>中括號裡面放入負數</h4>
 <ul>
 <li>負面表列</li>
 </ul>
@@ -1164,8 +1163,8 @@ dc_heroes</code></pre>
 ## [1] &quot;Ironman&quot;   &quot;Spiderman&quot;
 ## [1] &quot;Superman&quot;     &quot;Batman&quot;       &quot;Wonder Woman&quot;</code></pre>
 </div>
-<div class="section level3">
-<h3>利用長度選擇向量中的最後一個元素</h3>
+<div class="section level4">
+<h4>利用長度選擇向量中的最後一個元素</h4>
 <ul>
 <li><code>length()</code> 函數可以回傳向量的長度</li>
 </ul>
@@ -1183,8 +1182,8 @@ marvel_heroes[length(marvel_heroes)] # Spiderman</code></pre>
 ## [1] &quot;Wonder Woman&quot;
 ## [1] &quot;Spiderman&quot;</code></pre>
 </div>
-<div class="section level3">
-<h3>使用判斷條件產生邏輯值來選擇元素</h3>
+<div class="section level4">
+<h4>使用判斷條件產生邏輯值來選擇元素</h4>
 <ul>
 <li>選出是奇數的幸運數字</li>
 <li>向量是一個運算的基本單位</li>
@@ -1204,6 +1203,89 @@ fav_super_heroes[fav_super_heroes == &quot;Ironman&quot;] # Ironman</code></pre>
 <pre><code>## [1] &quot;Ironman&quot;
 ## [1] &quot;Ironman&quot;
 ## [1] &quot;Ironman&quot;</code></pre>
+</div>
+<div class="section level4">
+<h4>練習選擇元素</h4>
+<ul>
+<li>利用 slicing 與判斷條件選出存活的復仇者們</li>
+<li>運用 <code>%in%</code> 運算符號</li>
+</ul>
+<pre class="r"><code>avengers &lt;- c(&quot;Iron Man&quot;, &quot;Thor&quot;, &quot;Hulk&quot;, &quot;Captain America&quot;, &quot;Black Widow&quot;, &quot;War Machine&quot;, &quot;Doctor Strange&quot;, &quot;Spider-Man&quot;, &quot;Black Panther&quot;, &quot;Gamora&quot;)
+# Slicing
+survived_avengers &lt;- avengers[c(-7, -8, -9, -10)]
+depreciated_avengers &lt;- avengers[7:10]
+survived_avengers
+depreciated_avengers
+# 判斷條件
+depreciated &lt;- c(&quot;Doctor Strange&quot;, &quot;Spider-Man&quot;, &quot;Black Panther&quot;, &quot;Gamora&quot;)
+depreciated_avengers &lt;- avengers[avengers %in% depreciated]
+depreciated_avengers
+survived_avengers &lt;- avengers[!(avengers %in% depreciated)]
+survived_avengers</code></pre>
+<pre><code>## [1] &quot;Iron Man&quot;        &quot;Thor&quot;            &quot;Hulk&quot;            &quot;Captain America&quot;
+## [5] &quot;Black Widow&quot;     &quot;War Machine&quot;    
+## [1] &quot;Doctor Strange&quot; &quot;Spider-Man&quot;     &quot;Black Panther&quot;  &quot;Gamora&quot;        
+## [1] &quot;Doctor Strange&quot; &quot;Spider-Man&quot;     &quot;Black Panther&quot;  &quot;Gamora&quot;        
+## [1] &quot;Iron Man&quot;        &quot;Thor&quot;            &quot;Hulk&quot;            &quot;Captain America&quot;
+## [5] &quot;Black Widow&quot;     &quot;War Machine&quot;</code></pre>
+<ul>
+<li>算 BMI 然後把大於 25 的拿出來</li>
+</ul>
+<pre class="r"><code>set.seed(123)
+heights &lt;- sample(150:180, size = 100, replace = TRUE)
+weights &lt;- sample(50:80, size = 100, replace = TRUE)
+bmis &lt;- weights / (heights/100)**2
+bmis[bmis &gt; 25] # bmis &gt; 25
+writeLines(&quot;\n&quot;)
+bmis[bmis &lt;= 25] # bmis &lt;= 25
+writeLines(&quot;\n&quot;)
+bmis[!(bmis &gt; 25)] # bmis &lt;= 25</code></pre>
+<pre><code>##  [1] 27.23922 25.21625 33.77045 28.30600 28.32658 30.75740 27.18163
+##  [8] 34.64760 26.56250 27.35885 29.93759 29.33333 26.02617 25.05931
+## [15] 30.40763 31.64432 25.55885 32.04588 33.33187 25.47666 28.62147
+## [22] 25.96953 27.00513 25.68956 32.44444 26.02617 28.35306 30.07812
+## [29] 29.04866 30.83289 27.05380 29.04866 32.04995 31.25000 31.24876
+## [36] 26.63892 30.29778
+## 
+## 
+##  [1] 19.81768 24.76757 19.97441 21.70513 22.23099 20.07733 24.34381
+##  [8] 21.93635 17.44126 17.23643 19.35021 22.34352 20.17715 20.65754
+## [15] 17.28395 21.10727 19.59646 18.42404 21.63115 21.53491 24.57787
+## [22] 23.93899 23.78121 24.87772 23.62445 19.05197 21.21832 24.03441
+## [29] 23.12467 19.33373 22.83288 23.24380 24.46460 20.47827 24.34961
+## [36] 19.00391 18.71095 20.10916 21.60410 22.49135 24.43519 19.91837
+## [43] 24.84098 23.51020 18.28571 20.47827 21.82995 23.05456 19.25703
+## [50] 23.53304 23.38435 20.41522 19.15709 24.08822 17.90123 21.38594
+## [57] 24.89706 24.45606 20.41522 23.87543 20.47827 20.07733 24.60973
+## 
+## 
+##  [1] 19.81768 24.76757 19.97441 21.70513 22.23099 20.07733 24.34381
+##  [8] 21.93635 17.44126 17.23643 19.35021 22.34352 20.17715 20.65754
+## [15] 17.28395 21.10727 19.59646 18.42404 21.63115 21.53491 24.57787
+## [22] 23.93899 23.78121 24.87772 23.62445 19.05197 21.21832 24.03441
+## [29] 23.12467 19.33373 22.83288 23.24380 24.46460 20.47827 24.34961
+## [36] 19.00391 18.71095 20.10916 21.60410 22.49135 24.43519 19.91837
+## [43] 24.84098 23.51020 18.28571 20.47827 21.82995 23.05456 19.25703
+## [50] 23.53304 23.38435 20.41522 19.15709 24.08822 17.90123 21.38594
+## [57] 24.89706 24.45606 20.41522 23.87543 20.47827 20.07733 24.60973</code></pre>
+<pre class="r"><code>which(bmis &gt; 25) # &gt; 25 的位置
+which(bmis &lt;= 25) # &lt;= 25 的位置
+writeLines(&quot;&quot;)
+heights[which(bmis &gt; 25)] # bmi &gt; 25 的身高
+weights[which(bmis &gt; 25)] # bmi &gt; 25 的體重</code></pre>
+<pre><code>##  [1]  1  4  6  7 14 15 17 18 19 26 30 35 36 37 38 39 40 45 51 56 57 62 63
+## [24] 73 74 75 76 79 80 81 83 85 90 93 95 96 98
+##  [1]   2   3   5   8   9  10  11  12  13  16  20  21  22  23  24  25  27
+## [18]  28  29  31  32  33  34  41  42  43  44  46  47  48  49  50  52  53
+## [35]  54  55  58  59  60  61  64  65  66  67  68  69  70  71  72  77  78
+## [52]  82  84  86  87  88  89  91  92  94  97  99 100
+## 
+##  [1] 158 177 151 166 167 153 157 151 160 171 154 150 164 173 156 159 157
+## [18] 154 151 156 153 152 161 172 150 164 156 160 153 157 162 153 155 160
+## [35] 159 155 152
+##  [1] 68 79 77 78 79 72 67 79 68 80 71 66 70 75 74 80 63 76 76 62 67 60 70
+## [24] 76 73 70 69 77 68 76 71 68 77 80 79 64 70</code></pre>
+</div>
 </div>
 </div>
 
