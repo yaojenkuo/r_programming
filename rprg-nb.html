@@ -930,11 +930,11 @@ sys_date + 1
 # sys_date_chr + 1 # Error
 mysteric_number &lt;- as.numeric(sys_date) # 神秘的數字
 sys_date - mysteric_number</code></pre>
-<pre><code>## [1] &quot;2018-08-30&quot;
+<pre><code>## [1] &quot;2018-08-31&quot;
 ## [1] &quot;Date&quot;
-## [1] &quot;2018-08-30&quot;
-## [1] &quot;character&quot;
 ## [1] &quot;2018-08-31&quot;
+## [1] &quot;character&quot;
+## [1] &quot;2018-09-01&quot;
 ## [1] &quot;1970-01-01&quot;</code></pre>
 <pre class="r"><code>original_date &lt;- &quot;1970-01-01&quot; # character
 original_date &lt;- as.Date(original_date) # Date
@@ -969,7 +969,7 @@ sys_year - 1983
 sys_year &lt;- format(sys_date, format = &quot;%Y&quot;) # character
 sys_year &lt;- as.numeric(sys_year) # numeric
 sys_year - 1983</code></pre>
-<pre><code>## [1] &quot;2018-08-30&quot;
+<pre><code>## [1] &quot;2018-08-31&quot;
 ## [1] 35
 ## [1] 35</code></pre>
 </div>
@@ -990,7 +990,7 @@ original_datetime &lt;- as.POSIXct(&quot;1970-01-01 08:00:00&quot;)
 as.numeric(original_datetime)
 original_datetime - 1
 original_datetime + 1</code></pre>
-<pre><code>## [1] &quot;2018-08-30 17:35:38 CST&quot;
+<pre><code>## [1] &quot;2018-08-31 15:03:00 CST&quot;
 ## [1] &quot;POSIXct&quot; &quot;POSIXt&quot; 
 ## [1] &quot;1970-01-01 08:00:00 CST&quot;
 ## [1] 0
@@ -1101,6 +1101,7 @@ fizz_buzz(12)</code></pre>
 <li>向量（vector）</li>
 <li>清單（list）</li>
 <li>資料框（data.frame）</li>
+<li>（選修）因素向量（factor）</li>
 <li>（選修）矩陣（matrix）</li>
 <li>（選修）陣列（array）</li>
 </ul>
@@ -1460,6 +1461,426 @@ friends_list$starring[friends_list$starring == &quot;Matthew Perry&quot;]</code>
 ## [1] &quot;Matthew Perry&quot;
 ## [1] &quot;Matthew Perry&quot;
 ## [1] &quot;Matthew Perry&quot;</code></pre>
+</div>
+</div>
+<div id="data.frame" class="section level3">
+<h3>資料框（data.frame）</h3>
+<ul>
+<li>類似 Excel 試算表</li>
+<li>它具備了<strong>列索引</strong>與<strong>欄標籤</strong></li>
+<li>用來儲存不同型別、相同長度的資料</li>
+</ul>
+<pre class="r"><code>fav_players &lt;- c(&quot;Steve Nash&quot;, &quot;Paul Pierce&quot;, &quot;Scottie Pippen&quot;, &quot;Kevin Garnett&quot;, &quot;Shaquille O'Neal&quot;) # character
+jersey_numbers &lt;- c(13, 34, 33, 21, 34) # numeric
+has_champion &lt;- c(FALSE, rep(TRUE, times=4))
+players_df &lt;- data.frame(
+  fav_players,
+  jersey_numbers,
+  has_champion
+)
+players_df # 在 console 顯示出 data.frame
+knitr::kable(players_df)</code></pre>
+<pre><code>##        fav_players jersey_numbers has_champion
+## 1       Steve Nash             13        FALSE
+## 2      Paul Pierce             34         TRUE
+## 3   Scottie Pippen             33         TRUE
+## 4    Kevin Garnett             21         TRUE
+## 5 Shaquille O'Neal             34         TRUE</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">fav_players</th>
+<th align="right">jersey_numbers</th>
+<th align="left">has_champion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Steve Nash</td>
+<td align="right">13</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Paul Pierce</td>
+<td align="right">34</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Scottie Pippen</td>
+<td align="right">33</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Kevin Garnett</td>
+<td align="right">21</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Shaquille O’Neal</td>
+<td align="right">34</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+<div id="-data.frame-" class="section level4">
+<h4>常用的 data.frame 函數</h4>
+<ul>
+<li><code>dim()</code> dimension 的縮寫，觀察資料框有幾個列、幾個欄</li>
+<li><code>nrow()</code>、<code>ncol()</code> 把 dimension 分開回傳</li>
+<li><code>head()</code>、<code>tail()</code> 把資料框的前六或後六觀測值回傳</li>
+<li><code>str()</code> structure 的縮寫，回傳複合性資訊</li>
+<li><code>summary()</code> 回傳數值資料的描述性統計</li>
+</ul>
+<pre class="r"><code>phx_suns_0405 &lt;- read.csv(&quot;~/Desktop/phx_0405.csv&quot;)
+
+dim(phx_suns_0405) # 18 x 9 的資料外觀
+nrow(phx_suns_0405) # 18
+ncol(phx_suns_0405) # 9
+View(phx_suns_0405)
+knitr::kable(phx_suns_0405)
+head(phx_suns_0405)
+tail(phx_suns_0405)
+str(phx_suns_0405)
+summary(phx_suns_0405)</code></pre>
+<pre><code>## [1] 18  9
+## [1] 18
+## [1] 9</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">No.</th>
+<th align="left">Player</th>
+<th align="left">Pos</th>
+<th align="left">Ht</th>
+<th align="right">Wt</th>
+<th align="left">Birth.Date</th>
+<th align="left">X</th>
+<th align="left">Exp</th>
+<th align="left">College</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">10</td>
+<td align="left">Leandro Barbosa01</td>
+<td align="left">PG</td>
+<td align="left">6-3</td>
+<td align="right">194</td>
+<td align="left">November 28 1982</td>
+<td align="left">br</td>
+<td align="left">1</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="right">11</td>
+<td align="left">Zarko Cabarkapa01</td>
+<td align="left">PF</td>
+<td align="left">6-11</td>
+<td align="right">235</td>
+<td align="left">May 21 1981</td>
+<td align="left">rs</td>
+<td align="left">1</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="right">45</td>
+<td align="left">Steven Hunter01</td>
+<td align="left">C</td>
+<td align="left">7-0</td>
+<td align="right">220</td>
+<td align="left">October 31 1981</td>
+<td align="left">us</td>
+<td align="left">3</td>
+<td align="left">DePaul University</td>
+</tr>
+<tr class="even">
+<td align="right">21</td>
+<td align="left">Jim Jackson01</td>
+<td align="left">SF</td>
+<td align="left">6-6</td>
+<td align="right">220</td>
+<td align="left">October 14 1970</td>
+<td align="left">us</td>
+<td align="left">12</td>
+<td align="left">Ohio State University</td>
+</tr>
+<tr class="odd">
+<td align="right">23</td>
+<td align="left">Casey Jacobsen01</td>
+<td align="left">SF</td>
+<td align="left">6-6</td>
+<td align="right">215</td>
+<td align="left">March 19 1981</td>
+<td align="left">us</td>
+<td align="left">2</td>
+<td align="left">Stanford University</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Joe Johnson02</td>
+<td align="left">SF</td>
+<td align="left">6-7</td>
+<td align="right">240</td>
+<td align="left">June 29 1981</td>
+<td align="left">us</td>
+<td align="left">3</td>
+<td align="left">University of Arkansas</td>
+</tr>
+<tr class="odd">
+<td align="right">30</td>
+<td align="left">Maciej Lampe01</td>
+<td align="left">C</td>
+<td align="left">6-11</td>
+<td align="right">275</td>
+<td align="left">February 5 1985</td>
+<td align="left">pl</td>
+<td align="left">1</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="right">31</td>
+<td align="left">Shawn Marion01</td>
+<td align="left">PF</td>
+<td align="left">6-7</td>
+<td align="right">220</td>
+<td align="left">May 7 1978</td>
+<td align="left">us</td>
+<td align="left">5</td>
+<td align="left">University of Nevada Las Vegas</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="left">Walter McCarty01</td>
+<td align="left">PF</td>
+<td align="left">6-10</td>
+<td align="right">230</td>
+<td align="left">February 1 1974</td>
+<td align="left">us</td>
+<td align="left">8</td>
+<td align="left">University of Kentucky</td>
+</tr>
+<tr class="even">
+<td align="right">13</td>
+<td align="left">Steve Nash01</td>
+<td align="left">PG</td>
+<td align="left">6-3</td>
+<td align="right">195</td>
+<td align="left">February 7 1974</td>
+<td align="left">za</td>
+<td align="left">8</td>
+<td align="left">Santa Clara University</td>
+</tr>
+<tr class="odd">
+<td align="right">46</td>
+<td align="left">Bo Outlaw01</td>
+<td align="left">PF</td>
+<td align="left">6-8</td>
+<td align="right">210</td>
+<td align="left">April 13 1971</td>
+<td align="left">us</td>
+<td align="left">11</td>
+<td align="left">South Plains College University of Houston</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Smush Parker01</td>
+<td align="left">PG</td>
+<td align="left">6-4</td>
+<td align="right">190</td>
+<td align="left">June 1 1981</td>
+<td align="left">us</td>
+<td align="left">1</td>
+<td align="left">Fordham University</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Quentin Richardson01</td>
+<td align="left">SG</td>
+<td align="left">6-6</td>
+<td align="right">223</td>
+<td align="left">April 13 1980</td>
+<td align="left">us</td>
+<td align="left">4</td>
+<td align="left">DePaul University</td>
+</tr>
+<tr class="even">
+<td align="right">17</td>
+<td align="left">Paul Shirley01</td>
+<td align="left">PF</td>
+<td align="left">6-10</td>
+<td align="right">230</td>
+<td align="left">December 23 1977</td>
+<td align="left">us</td>
+<td align="left">2</td>
+<td align="left">Iowa State University</td>
+</tr>
+<tr class="odd">
+<td align="right">32</td>
+<td align="left">Amar’e Stoudemire01</td>
+<td align="left">C</td>
+<td align="left">6-10</td>
+<td align="right">245</td>
+<td align="left">November 16 1982</td>
+<td align="left">us</td>
+<td align="left">2</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Yuta Tabuse01</td>
+<td align="left">PG</td>
+<td align="left">5-9</td>
+<td align="right">165</td>
+<td align="left">October 5 1980</td>
+<td align="left">jp</td>
+<td align="left">R</td>
+<td align="left">Brigham Young University Hawaii</td>
+</tr>
+<tr class="odd">
+<td align="right">43</td>
+<td align="left">Jake Voskuhl01</td>
+<td align="left">C</td>
+<td align="left">6-11</td>
+<td align="right">245</td>
+<td align="left">November 1 1977</td>
+<td align="left">us</td>
+<td align="left">4</td>
+<td align="left">University of Connecticut</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Jackson Vroman01</td>
+<td align="left">PF</td>
+<td align="left">6-10</td>
+<td align="right">220</td>
+<td align="left">June 6 1981</td>
+<td align="left">us</td>
+<td align="left">R</td>
+<td align="left">Iowa State University</td>
+</tr>
+</tbody>
+</table>
+<pre><code>##   No.                     Player Pos   Ht  Wt       Birth.Date  X Exp
+## 1  10 Leandro Barbosa\\barbole01  PG  6-3 194 November 28 1982 br   1
+## 2  11 Zarko Cabarkapa\\cabarza01  PF 6-11 235      May 21 1981 rs   1
+## 3  45   Steven Hunter\\huntest01   C  7-0 220  October 31 1981 us   3
+## 4  21     Jim Jackson\\jacksji01  SF  6-6 220  October 14 1970 us  12
+## 5  23  Casey Jacobsen\\jacobca01  SF  6-6 215    March 19 1981 us   2
+## 6   2     Joe Johnson\\johnsjo02  SF  6-7 240     June 29 1981 us   3
+##                  College
+## 1                       
+## 2                       
+## 3      DePaul University
+## 4  Ohio State University
+## 5    Stanford University
+## 6 University of Arkansas
+##    No.                        Player Pos   Ht  Wt       Birth.Date  X Exp
+## 13   3 Quentin Richardson\\richaqu01  SG  6-6 223    April 13 1980 us   4
+## 14  17       Paul Shirley\\shirlpa01  PF 6-10 230 December 23 1977 us   2
+## 15  32  Amar'e Stoudemire\\stoudam01   C 6-10 245 November 16 1982 us   2
+## 16   1        Yuta Tabuse\\tabusyu01  PG  5-9 165   October 5 1980 jp   R
+## 17  43       Jake Voskuhl\\voskuja01   C 6-11 245  November 1 1977 us   4
+## 18   4     Jackson Vroman\\vromaja01  PF 6-10 220      June 6 1981 us   R
+##                            College
+## 13               DePaul University
+## 14           Iowa State University
+## 15                                
+## 16 Brigham Young University Hawaii
+## 17       University of Connecticut
+## 18           Iowa State University
+## 'data.frame':    18 obs. of  9 variables:
+##  $ No.       : int  10 11 45 21 23 2 30 31 0 13 ...
+##  $ Player    : Factor w/ 18 levels &quot;Amar'e Stoudemire\\stoudam01&quot;,..: 8 18 15 6 3 7 9 12 16 14 ...
+##  $ Pos       : Factor w/ 5 levels &quot;C&quot;,&quot;PF&quot;,&quot;PG&quot;,..: 3 2 1 4 4 4 1 2 2 3 ...
+##  $ Ht        : Factor w/ 9 levels &quot;5-9&quot;,&quot;6-10&quot;,&quot;6-11&quot;,..: 4 3 9 6 6 7 3 7 2 4 ...
+##  $ Wt        : int  194 235 220 220 215 240 275 220 230 195 ...
+##  $ Birth.Date: Factor w/ 18 levels &quot;April 13 1971&quot;,..: 15 11 17 16 10 8 5 12 4 6 ...
+##  $ X         : Factor w/ 6 levels &quot;br&quot;,&quot;jp&quot;,&quot;pl&quot;,..: 1 4 5 5 5 5 3 5 5 6 ...
+##  $ Exp       : Factor w/ 9 levels &quot;1&quot;,&quot;11&quot;,&quot;12&quot;,..: 1 1 5 3 4 5 1 7 8 8 ...
+##  $ College   : Factor w/ 13 levels &quot;&quot;,&quot;Brigham Young University Hawaii&quot;,..: 1 1 3 6 9 10 1 13 12 7 ...
+##       No.                                Player    Pos          Ht   
+##  Min.   : 0.00   Amar'e Stoudemire\\stoudam01: 1   C :4   6-10   :4  
+##  1st Qu.: 3.25   Bo Outlaw\\outlabo01        : 1   PF:6   6-11   :3  
+##  Median :15.00   Casey Jacobsen\\jacobca01   : 1   PG:4   6-6    :3  
+##  Mean   :18.50   Jackson Vroman\\vromaja01   : 1   SF:3   6-3    :2  
+##  3rd Qu.:30.75   Jake Voskuhl\\voskuja01     : 1   SG:1   6-7    :2  
+##  Max.   :46.00   Jim Jackson\\jacksji01      : 1          5-9    :1  
+##                  (Other)                     :12          (Other):3  
+##        Wt                   Birth.Date  X           Exp   
+##  Min.   :165.0   April 13 1971   : 1   br: 1   1      :4  
+##  1st Qu.:211.2   April 13 1980   : 1   jp: 1   2      :3  
+##  Median :220.0   December 23 1977: 1   pl: 1   3      :2  
+##  Mean   :220.7   February 1 1974 : 1   rs: 1   4      :2  
+##  3rd Qu.:233.8   February 5 1985 : 1   us:13   8      :2  
+##  Max.   :275.0   February 7 1974 : 1   za: 1   R      :2  
+##                  (Other)         :12           (Other):3  
+##                             College 
+##                                 :4  
+##  DePaul University              :2  
+##  Iowa State University          :2  
+##  Brigham Young University Hawaii:1  
+##  Fordham University             :1  
+##  Ohio State University          :1  
+##  (Other)                        :7</code></pre>
+</div>
+<div id="-data.frame" class="section level4">
+<h4>怎麼拆解 data.frame</h4>
+<ul>
+<li>選擇一個資料（scalar）</li>
+</ul>
+<pre class="r"><code>phx_suns_0405[16, &quot;Player&quot;] # Yuta Tabuse
+phx_suns_0405[16, 2] # Yuta Tabuse
+phx_suns_0405[ , &quot;Player&quot;][16] # Yuta Tabuse
+phx_suns_0405$Player[16] # Yuta Tabuse</code></pre>
+<pre><code>## [1] Yuta Tabuse\\tabusyu01
+## 18 Levels: Amar'e Stoudemire\\stoudam01 ... Zarko Cabarkapa\\cabarza01
+## [1] Yuta Tabuse\\tabusyu01
+## 18 Levels: Amar'e Stoudemire\\stoudam01 ... Zarko Cabarkapa\\cabarza01
+## [1] Yuta Tabuse\\tabusyu01
+## 18 Levels: Amar'e Stoudemire\\stoudam01 ... Zarko Cabarkapa\\cabarza01
+## [1] Yuta Tabuse\\tabusyu01
+## 18 Levels: Amar'e Stoudemire\\stoudam01 ... Zarko Cabarkapa\\cabarza01</code></pre>
+<ul>
+<li>選擇一個觀測值（row, observation）</li>
+</ul>
+<pre class="r"><code>phx_suns_0405[16, ] # Yuta Tabuse 的所有資訊
+phx_suns_0405[10, ] # Steve Nash 的所有資訊</code></pre>
+<pre><code>##    No.                 Player Pos  Ht  Wt     Birth.Date  X Exp
+## 16   1 Yuta Tabuse\\tabusyu01  PG 5-9 165 October 5 1980 jp   R
+##                            College
+## 16 Brigham Young University Hawaii
+##    No.               Player Pos  Ht  Wt      Birth.Date  X Exp
+## 10  13 Steve Nash\\nashst01  PG 6-3 195 February 7 1974 za   8
+##                   College
+## 10 Santa Clara University</code></pre>
+<ul>
+<li>選擇一個變數（column, variable）</li>
+</ul>
+<pre class="r"><code>phx_suns_0405[ , &quot;Player&quot;]
+phx_suns_0405$Player</code></pre>
+<pre><code>##  [1] Leandro Barbosa\\barbole01    Zarko Cabarkapa\\cabarza01   
+##  [3] Steven Hunter\\huntest01      Jim Jackson\\jacksji01       
+##  [5] Casey Jacobsen\\jacobca01     Joe Johnson\\johnsjo02       
+##  [7] Maciej Lampe\\lampema01       Shawn Marion\\mariosh01      
+##  [9] Walter McCarty\\mccarwa01     Steve Nash\\nashst01         
+## [11] Bo Outlaw\\outlabo01          Smush Parker\\parkesm01      
+## [13] Quentin Richardson\\richaqu01 Paul Shirley\\shirlpa01      
+## [15] Amar'e Stoudemire\\stoudam01  Yuta Tabuse\\tabusyu01       
+## [17] Jake Voskuhl\\voskuja01       Jackson Vroman\\vromaja01    
+## 18 Levels: Amar'e Stoudemire\\stoudam01 ... Zarko Cabarkapa\\cabarza01
+##  [1] Leandro Barbosa\\barbole01    Zarko Cabarkapa\\cabarza01   
+##  [3] Steven Hunter\\huntest01      Jim Jackson\\jacksji01       
+##  [5] Casey Jacobsen\\jacobca01     Joe Johnson\\johnsjo02       
+##  [7] Maciej Lampe\\lampema01       Shawn Marion\\mariosh01      
+##  [9] Walter McCarty\\mccarwa01     Steve Nash\\nashst01         
+## [11] Bo Outlaw\\outlabo01          Smush Parker\\parkesm01      
+## [13] Quentin Richardson\\richaqu01 Paul Shirley\\shirlpa01      
+## [15] Amar'e Stoudemire\\stoudam01  Yuta Tabuse\\tabusyu01       
+## [17] Jake Voskuhl\\voskuja01       Jackson Vroman\\vromaja01    
+## 18 Levels: Amar'e Stoudemire\\stoudam01 ... Zarko Cabarkapa\\cabarza01</code></pre>
+</div>
+<div id="factor" class="section level4">
+<h4>因素向量（factor）</h4>
 </div>
 </div>
 </div>
