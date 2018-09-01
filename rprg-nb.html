@@ -615,11 +615,32 @@ my_fav_player</code></pre>
 <pre class="r"><code>ross_script &lt;- &quot;Let's put aside the fact that you \&quot;accidentally\&quot; pick up my grand mother's ring.&quot;
 ross_script &lt;- 'Let\'s put aside the fact that you &quot;accidentally&quot; pick up my grand mother\'s ring.'</code></pre>
 <ul>
-<li><code>sprintf()</code> 函數: 實踐 print with format 輸出文字的技巧</li>
+<li><code>sprintf()</code> 函數: 實踐 string print with format 輸出文字的技巧</li>
+<li>format:</li>
+<li><code>%s</code> 文字</li>
+<li><code>%.2f</code> 兩位的浮點數</li>
+<li><code>%d</code> 整數</li>
 </ul>
-<pre class="r"><code>my_fav_player &lt;- &quot;Steve Nash&quot;
-sprintf(&quot;我最喜歡的籃球員是 %s&quot;, my_fav_player)</code></pre>
-<pre><code>## [1] &quot;我最喜歡的籃球員是 Steve Nash&quot;</code></pre>
+<pre class="r"><code>get_bmi &lt;- function(height, weight) {
+  height_m &lt;- height * 0.01
+  bmi &lt;- weight / height_m**2
+  return(bmi)
+}
+
+print_bmi &lt;- function(player_name, player_bmi) {
+  bmi_fmt &lt;- sprintf(&quot;%s 的 BMI 為：%.2f&quot;, player_name, player_bmi)
+  return(bmi_fmt)
+}
+
+steveNash_bmi &lt;- get_bmi(191, 82)
+jeremyLin_bmi &lt;- get_bmi(191, 91)
+shaq_bmi &lt;- get_bmi(216, 148)
+print_bmi(&quot;Steve Nash&quot;, steveNash_bmi)
+print_bmi(&quot;Jeremy Lin&quot;, jeremyLin_bmi)
+print_bmi(&quot;Shaquille O'Neal&quot;, shaq_bmi)</code></pre>
+<pre><code>## [1] &quot;Steve Nash 的 BMI 為：22.48&quot;
+## [1] &quot;Jeremy Lin 的 BMI 為：24.94&quot;
+## [1] &quot;Shaquille O'Neal 的 BMI 為：31.72&quot;</code></pre>
 </div>
 <div class="section level3">
 <h3>邏輯值</h3>
@@ -635,34 +656,9 @@ r_is_awesome &lt;- TRUE
 class(r_is_awesome) # logical
 r_is_commercial_licensed &lt;- FALSE
 class(r_is_commercial_licensed) # logical</code></pre>
+<div class="section level4">
+<h4>產生邏輯判斷的運算符號</h4>
 <ul>
-<li>邏輯值可以當作數值來使用：</li>
-<li><code>TRUE</code>: 1</li>
-<li><code>FALSE</code>: 0</li>
-</ul>
-<pre class="r"><code>TRUE + TRUE
-FALSE + FALSE
-TRUE + FALSE</code></pre>
-<pre><code>## [1] 2
-## [1] 0
-## [1] 1</code></pre>
-<ul>
-<li>邏輯值應用場景：</li>
-<li>流程控制 <code>if-else if-else</code></li>
-<li>資料篩選（資料科學應用）</li>
-</ul>
-<pre class="r"><code># 流程控制
-if (CONDITION_1) {
-  # 在 CONDITION_1 成立的狀態下做什麼事
-} else if (CONDITION_2) {
-  # 在 CONDITION_2 成立的狀態下做什麼事
-} else if (CONDITION_3) {
-  # 在 CONDITION_3 成立的狀態下做什麼事
-} else {
-  # 在 CONDITION_1, CONDITION_2 以及 CONDITION_3 都不成立的狀態下做什麼事
-}</code></pre>
-<ul>
-<li><strong>產生邏輯判斷</strong>的運算符號</li>
 <li>大於 <code>&gt;</code>、大於等於 <code>&gt;=</code></li>
 <li>小於 <code>&lt;</code>、小於等於 <code>&lt;=</code></li>
 <li>等於 <code>==</code>（注意！<code>=</code> 已經保留給賦值這個功能）</li>
@@ -681,6 +677,140 @@ if (CONDITION_1) {
 ## [1] TRUE
 ## [1] TRUE
 ## [1] FALSE</code></pre>
+<ul>
+<li>英文字母大小順序 <code>Z &gt; z &gt; Y &gt; y &gt; X &gt; x... &gt;B &gt; b &gt; A &gt; a</code></li>
+</ul>
+<pre class="r"><code>&quot;Z&quot; &gt; &quot;z&quot; # TRUE
+&quot;z&quot; &gt; &quot;Y&quot; # TRUE
+&quot;Y&quot; &gt; &quot;y&quot; # TRUE
+# ...
+&quot;b&quot; &gt; &quot;A&quot; # TRUE
+&quot;A&quot; &gt; &quot;a&quot; # TRUE</code></pre>
+<pre><code>## [1] TRUE
+## [1] TRUE
+## [1] TRUE
+## [1] TRUE
+## [1] TRUE</code></pre>
+</div>
+<div class="section level4">
+<h4>邏輯值應用場景</h4>
+<ul>
+<li>流程控制 <code>if-else if-else</code></li>
+<li>資料篩選（資料科學應用）</li>
+</ul>
+<pre class="r"><code># 流程控制
+if (CONDITION_1) {
+  # 在 CONDITION_1 成立的狀態下做什麼事
+} else if (CONDITION_2) {
+  # 在 CONDITION_2 成立的狀態下做什麼事
+} else if (CONDITION_3) {
+  # 在 CONDITION_3 成立的狀態下做什麼事
+} else {
+  # 在 CONDITION_1, CONDITION_2 以及 CONDITION_3 都不成立的狀態下做什麼事
+}</code></pre>
+</div>
+<div class="section level4">
+<h4>流程控制</h4>
+<ul>
+<li>假如計算出來的 BMI 超過 30，回傳“過重”</li>
+</ul>
+<pre class="r"><code>shaq_bmi &lt;- get_bmi(216, 150)
+if (shaq_bmi &gt; 30) {
+  print(&quot;過重&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;過重&quot;</code></pre>
+<ul>
+<li>Steve Nash 的 BMI 小於等於 30</li>
+</ul>
+<pre class="r"><code># 沒有輸出
+steve_bmi &lt;- get_bmi(191, 82)
+if (steve_bmi &gt; 30) {
+  print(&quot;過重&quot;)
+}</code></pre>
+<pre class="r"><code># 二元分支
+steve_bmi &lt;- get_bmi(191, 82)
+if (steve_bmi &gt; 30) {
+  print(&quot;過重&quot;)
+} else {
+  print(&quot;沒有過重&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;沒有過重&quot;</code></pre>
+<pre class="r"><code># 三元分支
+steve_bmi &lt;- get_bmi(191, 82)
+if (steve_bmi &gt; 30) {
+  print(&quot;過重&quot;)
+} else if (steve_bmi &lt; 18.5) {
+  print(&quot;過輕&quot;)
+} else {
+  print(&quot;正常&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;正常&quot;</code></pre>
+</div>
+<div class="section level4">
+<h4>函數作用的環境</h4>
+<ul>
+<li>global</li>
+<li>local</li>
+<li>在 global 定義的函數與物件可以在 local 使用</li>
+<li>在 local 定義的函數與物件<strong>不可以</strong>在 global 使用</li>
+</ul>
+<pre class="r"><code># 在 global 宣告的物件可以在 local 使用
+jeremy_height &lt;- 191 # global
+jeremy_weight &lt;- 91 # global
+
+get_jeremy_bmi &lt;- function() {
+  height_m &lt;- jeremy_height * 0.01
+  bmi &lt;- jeremy_weight / height_m**2
+  return(bmi)
+}
+
+get_jeremy_bmi()</code></pre>
+<pre><code>## [1] 24.94449</code></pre>
+<pre class="r"><code># 在 local 宣告的物件不可以在 global 使用
+get_steve_bmi &lt;- function() {
+  steve_height &lt;- 191 # local
+  steve_weight &lt;- 82 # local
+  bmi &lt;- steve_weight / (steve_height/100)**2
+  return(bmi)
+}
+get_steve_bmi()
+steve_height # Error: object 'steve_height' not found
+steve_weight # Error: object 'steve_weight' not found</code></pre>
+</div>
+<div class="section level4">
+<h4>練習：四元分支</h4>
+<pre class="r"><code># 四元分支
+get_bmi_label &lt;- function(height, weight, player_name) {
+  player_bmi &lt;- get_bmi(height, weight) # function in global env
+  if (player_bmi &lt; 18.5) {
+    bmi_label &lt;- &quot;Underweight&quot;
+  } else if (player_bmi &gt; 30) {
+    bmi_label &lt;- &quot;Obese&quot;
+  } else if (player_bmi &gt;= 18.5 &amp; player_bmi &lt; 25) {
+    bmi_label &lt;- &quot;Normal&quot;
+  } else {
+    bmi_label &lt;- &quot;Overweight&quot;
+  }
+  return(sprintf(&quot;%s 的 BMI 範圍是 %s&quot;, player_name, bmi_label))
+}
+get_bmi_label(191, 82, &quot;Steve Nash&quot;)
+## [1] &quot;Steve Nash 的 BMI 範圍是 Normal&quot;
+get_bmi_label(216, 148, &quot;Shaquille O'Neal&quot;)</code></pre>
+<pre><code>## [1] &quot;Steve Nash 的 BMI 範圍是 Normal&quot;
+## [1] &quot;Shaquille O'Neal 的 BMI 範圍是 Obese&quot;</code></pre>
+</div>
+<div class="section level4">
+<h4>邏輯值可以當作數值來使用</h4>
+<ul>
+<li><code>TRUE</code>: 1</li>
+<li><code>FALSE</code>: 0</li>
+</ul>
+<pre class="r"><code>TRUE + TRUE
+FALSE + FALSE
+TRUE + FALSE</code></pre>
+<pre><code>## [1] 2
+## [1] 0
+## [1] 1</code></pre>
 <ul>
 <li><strong>連結邏輯判斷</strong>的符號</li>
 <li><code>&amp;</code> 交集（shift + 7）AND</li>
@@ -714,6 +844,7 @@ FALSE | FALSE # FALSE 沒有工作且月薪未超過 3 萬</code></pre>
 ## [1] TRUE
 ## [1] TRUE
 ## [1] FALSE</code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3>一個分支的流程控制</h3>
@@ -930,11 +1061,11 @@ sys_date + 1
 # sys_date_chr + 1 # Error
 mysteric_number &lt;- as.numeric(sys_date) # 神秘的數字
 sys_date - mysteric_number</code></pre>
-<pre><code>## [1] &quot;2018-08-31&quot;
+<pre><code>## [1] &quot;2018-09-01&quot;
 ## [1] &quot;Date&quot;
-## [1] &quot;2018-08-31&quot;
-## [1] &quot;character&quot;
 ## [1] &quot;2018-09-01&quot;
+## [1] &quot;character&quot;
+## [1] &quot;2018-09-02&quot;
 ## [1] &quot;1970-01-01&quot;</code></pre>
 <pre class="r"><code>original_date &lt;- &quot;1970-01-01&quot; # character
 original_date &lt;- as.Date(original_date) # Date
@@ -969,7 +1100,7 @@ sys_year - 1983
 sys_year &lt;- format(sys_date, format = &quot;%Y&quot;) # character
 sys_year &lt;- as.numeric(sys_year) # numeric
 sys_year - 1983</code></pre>
-<pre><code>## [1] &quot;2018-08-31&quot;
+<pre><code>## [1] &quot;2018-09-01&quot;
 ## [1] 35
 ## [1] 35</code></pre>
 </div>
@@ -990,7 +1121,7 @@ original_datetime &lt;- as.POSIXct(&quot;1970-01-01 08:00:00&quot;)
 as.numeric(original_datetime)
 original_datetime - 1
 original_datetime + 1</code></pre>
-<pre><code>## [1] &quot;2018-08-31 16:18:22 CST&quot;
+<pre><code>## [1] &quot;2018-09-01 21:22:06 CST&quot;
 ## [1] &quot;POSIXct&quot; &quot;POSIXt&quot; 
 ## [1] &quot;1970-01-01 08:00:00 CST&quot;
 ## [1] 0
@@ -1932,7 +2063,7 @@ phx_suns_0405[phx_suns_0405$Pos == &quot;C&quot;, ] # 用條件</code></pre>
 </ul>
 <pre class="r"><code>phx_suns_0405$Pos == &quot;PG&quot; &amp; phx_suns_0405$Pos == &quot;SF&quot;
 phx_suns_0405[phx_suns_0405$Pos == &quot;PG&quot; | phx_suns_0405$Pos == &quot;SF&quot;, ]
-phx_suns_0405[phx_suns_0405$Pos %in% c(&quot;PG&quot;, &quot;SF&quot;), ]</code></pre>
+phx_suns_0405[phx_suns_0405$Pos %in% c(&quot;PG&quot;, &quot;SF&quot;), c(&quot;Pos&quot;, &quot;Player&quot;)]</code></pre>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [12] FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##    No.                     Player Pos  Ht  Wt       Birth.Date  X Exp
@@ -1951,25 +2082,17 @@ phx_suns_0405[phx_suns_0405$Pos %in% c(&quot;PG&quot;, &quot;SF&quot;), ]</code>
 ## 10          Santa Clara University
 ## 12              Fordham University
 ## 16 Brigham Young University Hawaii
-##    No.                     Player Pos  Ht  Wt       Birth.Date  X Exp
-## 1   10 Leandro Barbosa\\barbole01  PG 6-3 194 November 28 1982 br   1
-## 4   21     Jim Jackson\\jacksji01  SF 6-6 220  October 14 1970 us  12
-## 5   23  Casey Jacobsen\\jacobca01  SF 6-6 215    March 19 1981 us   2
-## 6    2     Joe Johnson\\johnsjo02  SF 6-7 240     June 29 1981 us   3
-## 10  13       Steve Nash\\nashst01  PG 6-3 195  February 7 1974 za   8
-## 12   1    Smush Parker\\parkesm01  PG 6-4 190      June 1 1981 us   1
-## 16   1     Yuta Tabuse\\tabusyu01  PG 5-9 165   October 5 1980 jp   R
-##                            College
-## 1                                 
-## 4            Ohio State University
-## 5              Stanford University
-## 6           University of Arkansas
-## 10          Santa Clara University
-## 12              Fordham University
-## 16 Brigham Young University Hawaii</code></pre>
+##    Pos                     Player
+## 1   PG Leandro Barbosa\\barbole01
+## 4   SF     Jim Jackson\\jacksji01
+## 5   SF  Casey Jacobsen\\jacobca01
+## 6   SF     Joe Johnson\\johnsjo02
+## 10  PG       Steve Nash\\nashst01
+## 12  PG    Smush Parker\\parkesm01
+## 16  PG     Yuta Tabuse\\tabusyu01</code></pre>
 </div>
 <div class="section level4">
-<h4>練習</h4>
+<h4>練習使用條件選擇資料</h4>
 <ul>
 <li>將介於 190 磅與 250 磅之間的球員選出來</li>
 <li>將未滿 190 磅與超過 250 磅之間的球員選出來</li>
@@ -2024,9 +2147,172 @@ phx_suns_0405[!(phx_suns_0405$Wt &gt;= 190 &amp; phx_suns_0405$Wt &lt;= 250), ]<
 ## 7                                 
 ## 16 Brigham Young University Hawaii</code></pre>
 </div>
-<div id="factor" class="section level4">
-<h4>因素向量（factor）</h4>
+<div id="-subset-" class="section level4">
+<h4>使用 <code>subset()</code> 函數來選擇</h4>
+<pre class="r"><code>is_center &lt;- phx_suns_0405$Pos == &quot;C&quot;
+is_pg_sf &lt;- phx_suns_0405$Pos %in% c(&quot;PG&quot;, &quot;SF&quot;)
+subset(phx_suns_0405, subset = is_center)
+subset(phx_suns_0405, subset = is_pg_sf, select = c(&quot;Player&quot;, &quot;Pos&quot;))</code></pre>
+<pre><code>##    No.                       Player Pos   Ht  Wt       Birth.Date  X Exp
+## 3   45     Steven Hunter\\huntest01   C  7-0 220  October 31 1981 us   3
+## 7   30      Maciej Lampe\\lampema01   C 6-11 275  February 5 1985 pl   1
+## 15  32 Amar'e Stoudemire\\stoudam01   C 6-10 245 November 16 1982 us   2
+## 17  43      Jake Voskuhl\\voskuja01   C 6-11 245  November 1 1977 us   4
+##                      College
+## 3          DePaul University
+## 7                           
+## 15                          
+## 17 University of Connecticut
+##                        Player Pos
+## 1  Leandro Barbosa\\barbole01  PG
+## 4      Jim Jackson\\jacksji01  SF
+## 5   Casey Jacobsen\\jacobca01  SF
+## 6      Joe Johnson\\johnsjo02  SF
+## 10       Steve Nash\\nashst01  PG
+## 12    Smush Parker\\parkesm01  PG
+## 16     Yuta Tabuse\\tabusyu01  PG</code></pre>
 </div>
+<div id="factor" class="section level4">
+<h4>（選修）因素向量（factor）</h4>
+<ul>
+<li>特殊的字元向量（具有 Levels 的資訊）</li>
+<li>每一個 Level 後面有一個整數對應</li>
+<li>Dummy variable</li>
+</ul>
+<pre class="r"><code>length(phx_suns_0405$Player) # 18
+class(phx_suns_0405$Pos)
+as.numeric(phx_suns_0405$Pos)
+class(as.character(phx_suns_0405$Pos))
+as.numeric(as.character(phx_suns_0405$Pos))</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] 18
+## [1] &quot;factor&quot;
+##  [1] 3 2 1 4 4 4 1 2 2 3 2 3 5 2 1 3 1 2
+## [1] &quot;character&quot;
+##  [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA</code></pre>
+<ul>
+<li>不能夠很簡單地新增文字</li>
+</ul>
+<pre class="r"><code>class(phx_suns_0405$Player)
+new_roster &lt;- c(as.character(phx_suns_0405$Player), &quot;Raja Bell&quot;)
+factor(new_roster)</code></pre>
+<pre><code>## [1] &quot;factor&quot;
+##  [1] Leandro Barbosa\\barbole01    Zarko Cabarkapa\\cabarza01   
+##  [3] Steven Hunter\\huntest01      Jim Jackson\\jacksji01       
+##  [5] Casey Jacobsen\\jacobca01     Joe Johnson\\johnsjo02       
+##  [7] Maciej Lampe\\lampema01       Shawn Marion\\mariosh01      
+##  [9] Walter McCarty\\mccarwa01     Steve Nash\\nashst01         
+## [11] Bo Outlaw\\outlabo01          Smush Parker\\parkesm01      
+## [13] Quentin Richardson\\richaqu01 Paul Shirley\\shirlpa01      
+## [15] Amar'e Stoudemire\\stoudam01  Yuta Tabuse\\tabusyu01       
+## [17] Jake Voskuhl\\voskuja01       Jackson Vroman\\vromaja01    
+## [19] Raja Bell                    
+## 19 Levels: Amar'e Stoudemire\\stoudam01 ... Zarko Cabarkapa\\cabarza01</code></pre>
+<ul>
+<li>Levels 預設用字母順序</li>
+</ul>
+<pre class="r"><code>temperatures &lt;- c(&quot;Cold&quot;, &quot;Cool&quot;, &quot;Warm&quot;, &quot;Hot&quot;)
+class(temperatures)
+temperatures &lt;- factor(temperatures)
+class(temperatures)
+temperatures
+as.integer(temperatures)
+temperatures &lt;- factor(temperatures, levels = c(&quot;Cold&quot;, &quot;Cool&quot;, &quot;Warm&quot;, &quot;Hot&quot;))
+temperatures
+as.integer(temperatures)</code></pre>
+<pre><code>## [1] &quot;character&quot;
+## [1] &quot;factor&quot;
+## [1] Cold Cool Warm Hot 
+## Levels: Cold Cool Hot Warm
+## [1] 1 2 4 3
+## [1] Cold Cool Warm Hot 
+## Levels: Cold Cool Warm Hot
+## [1] 1 2 3 4</code></pre>
+<ul>
+<li>資料框預設將文字讀取為 factor</li>
+<li>增加 <code>stringsAsFactors = FALSE</code> 可以將文字讀取為 character</li>
+</ul>
+<pre class="r"><code>phx_suns_0405 &lt;- read.csv(&quot;~/Desktop/phx_0405.csv&quot;) # C:/Users/user/Desktop/phx_0405.csv
+str(phx_suns_0405)</code></pre>
+<pre><code>## 'data.frame':    18 obs. of  9 variables:
+##  $ No.       : int  10 11 45 21 23 2 30 31 0 13 ...
+##  $ Player    : Factor w/ 18 levels &quot;Amar'e Stoudemire\\stoudam01&quot;,..: 8 18 15 6 3 7 9 12 16 14 ...
+##  $ Pos       : Factor w/ 5 levels &quot;C&quot;,&quot;PF&quot;,&quot;PG&quot;,..: 3 2 1 4 4 4 1 2 2 3 ...
+##  $ Ht        : Factor w/ 9 levels &quot;5-9&quot;,&quot;6-10&quot;,&quot;6-11&quot;,..: 4 3 9 6 6 7 3 7 2 4 ...
+##  $ Wt        : int  194 235 220 220 215 240 275 220 230 195 ...
+##  $ Birth.Date: Factor w/ 18 levels &quot;April 13 1971&quot;,..: 15 11 17 16 10 8 5 12 4 6 ...
+##  $ X         : Factor w/ 6 levels &quot;br&quot;,&quot;jp&quot;,&quot;pl&quot;,..: 1 4 5 5 5 5 3 5 5 6 ...
+##  $ Exp       : Factor w/ 9 levels &quot;1&quot;,&quot;11&quot;,&quot;12&quot;,..: 1 1 5 3 4 5 1 7 8 8 ...
+##  $ College   : Factor w/ 13 levels &quot;&quot;,&quot;Brigham Young University Hawaii&quot;,..: 1 1 3 6 9 10 1 13 12 7 ...</code></pre>
+<pre class="r"><code>phx_suns_0405 &lt;- read.csv(&quot;~/Desktop/phx_0405.csv&quot;, stringsAsFactors = FALSE) # C:/Users/user/Desktop/phx_0405.csv
+str(phx_suns_0405)</code></pre>
+<pre><code>## 'data.frame':    18 obs. of  9 variables:
+##  $ No.       : int  10 11 45 21 23 2 30 31 0 13 ...
+##  $ Player    : chr  &quot;Leandro Barbosa\\barbole01&quot; &quot;Zarko Cabarkapa\\cabarza01&quot; &quot;Steven Hunter\\huntest01&quot; &quot;Jim Jackson\\jacksji01&quot; ...
+##  $ Pos       : chr  &quot;PG&quot; &quot;PF&quot; &quot;C&quot; &quot;SF&quot; ...
+##  $ Ht        : chr  &quot;6-3&quot; &quot;6-11&quot; &quot;7-0&quot; &quot;6-6&quot; ...
+##  $ Wt        : int  194 235 220 220 215 240 275 220 230 195 ...
+##  $ Birth.Date: chr  &quot;November 28 1982&quot; &quot;May 21 1981&quot; &quot;October 31 1981&quot; &quot;October 14 1970&quot; ...
+##  $ X         : chr  &quot;br&quot; &quot;rs&quot; &quot;us&quot; &quot;us&quot; ...
+##  $ Exp       : chr  &quot;1&quot; &quot;1&quot; &quot;3&quot; &quot;12&quot; ...
+##  $ College   : chr  &quot;&quot; &quot;&quot; &quot;DePaul University&quot; &quot;Ohio State University&quot; ...</code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3>（選修）矩陣</h3>
+<pre class="r"><code>my_vec &lt;- 11:18
+my_vec
+my_mat &lt;- matrix(my_vec)
+my_mat
+matrix(my_vec, nrow = 2)
+matrix(my_vec, nrow = 4)
+my_mat &lt;- matrix(my_vec, nrow = 4)</code></pre>
+<pre><code>## [1] 11 12 13 14 15 16 17 18
+##      [,1]
+## [1,]   11
+## [2,]   12
+## [3,]   13
+## [4,]   14
+## [5,]   15
+## [6,]   16
+## [7,]   17
+## [8,]   18
+##      [,1] [,2] [,3] [,4]
+## [1,]   11   13   15   17
+## [2,]   12   14   16   18
+##      [,1] [,2]
+## [1,]   11   15
+## [2,]   12   16
+## [3,]   13   17
+## [4,]   14   18</code></pre>
+<pre class="r"><code>my_mat[3, 2] # 17
+my_mat[, 1]
+my_mat[2, ]
+my_mat[my_mat %% 2 == 0]</code></pre>
+<pre><code>## [1] 17
+## [1] 11 12 13 14
+## [1] 12 16
+## [1] 12 14 16 18</code></pre>
+<ul>
+<li>矩陣的乘法</li>
+</ul>
+<pre class="r"><code>my_mat * my_mat
+#my_mat %*% my_mat # Error
+t(my_mat) %*% my_mat
+my_mat %*% t(my_mat)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]  121  225
+## [2,]  144  256
+## [3,]  169  289
+## [4,]  196  324
+##      [,1] [,2]
+## [1,]  630  830
+## [2,]  830 1094
+##      [,1] [,2] [,3] [,4]
+## [1,]  346  372  398  424
+## [2,]  372  400  428  456
+## [3,]  398  428  458  488
+## [4,]  424  456  488  520</code></pre>
 </div>
 </div>
 
