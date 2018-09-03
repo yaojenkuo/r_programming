@@ -811,72 +811,54 @@ TRUE + FALSE</code></pre>
 <pre><code>## [1] 2
 ## [1] 0
 ## [1] 1</code></pre>
+</div>
+<div class="section level4">
+<h4>連結邏輯判斷的符號</h4>
 <ul>
-<li><strong>連結邏輯判斷</strong>的符號</li>
 <li><code>&amp;</code> 交集（shift + 7）AND</li>
+<li>只有兩個 <code>TRUE</code> 交集，結果才會是 <code>TRUE</code></li>
 <li><code>|</code> 聯集（shift + ）OR</li>
+<li>只有兩個 <code>FALSE</code> 聯集，結果才會是 <code>FALSE</code></li>
 </ul>
-<pre class="r"><code># 銀行申請信用卡的條件：交集（有工作且月薪超過 3 萬）
-has_job &lt;- TRUE
-monthly_income &lt;- 29000
-has_job &amp; monthly_income &gt; 30000 # 婉拒</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code># 銀行申請信用卡的條件：聯集（有工作或月薪超過 3 萬）
-has_job &lt;- TRUE
-monthly_income &lt;- 29000
-has_job | monthly_income &gt; 30000 # 發卡</code></pre>
-<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># 判斷過重與否：BMI &gt; 30 而且 body_fat &gt; 0.25
+shaq_bmi # 32.15021
+shaq_body_fat &lt;- 0.10
+shaq_bmi &gt; 30 # TRUE
+shaq_body_fat &gt; 0.25 # FALSE
+is_shaq_overweight &lt;- (shaq_bmi &gt; 30) &amp; (shaq_body_fat &gt; 0.25)
+is_shaq_overweight # FALSE</code></pre>
+<pre><code>## [1] 32.15021
+## [1] TRUE
+## [1] FALSE
+## [1] FALSE</code></pre>
+<pre class="r"><code># 判斷過重與否：BMI &gt; 30 或者 body_fat &gt; 0.25
+is_shaq_overweight &lt;- (shaq_bmi &gt; 30) | (shaq_body_fat &gt; 0.25)
+is_shaq_overweight # TRUE
+nash_bmi &lt;- get_bmi(191, 82)
+nash_body_fat &lt;- 0.08
+is_nash_overweight &lt;- (nash_bmi &gt; 30) | (nash_body_fat &gt; 0.25)
+is_nash_overweight</code></pre>
+<pre><code>## [1] TRUE
+## [1] FALSE</code></pre>
 <pre class="r"><code># 交集的判斷
-TRUE &amp; TRUE # TRUE 有工作且月薪超過 3 萬
-TRUE &amp; FALSE # FALSE 有工作但月薪未超過 3 萬
-FALSE &amp; TRUE # FALSE 沒有工作但月薪超過 3 萬
-FALSE &amp; FALSE # FALSE 沒有工作且月薪未超過 3 萬</code></pre>
+TRUE &amp; TRUE # TRUE
+TRUE &amp; FALSE # FALSE
+FALSE &amp; TRUE # FALSE
+FALSE &amp; FALSE # FALSE</code></pre>
 <pre><code>## [1] TRUE
 ## [1] FALSE
 ## [1] FALSE
 ## [1] FALSE</code></pre>
 <pre class="r"><code># 聯集的判斷
-TRUE | TRUE # TRUE 有工作且月薪超過 3 萬
-TRUE | FALSE # TRUE 有工作但月薪未超過 3 萬
-FALSE | TRUE # TRUE 沒有工作但月薪超過 3 萬
-FALSE | FALSE # FALSE 沒有工作且月薪未超過 3 萬</code></pre>
+TRUE | TRUE # TRUE
+TRUE | FALSE # TRUE
+FALSE | TRUE # TRUE
+FALSE | FALSE # FALSE</code></pre>
 <pre><code>## [1] TRUE
 ## [1] TRUE
 ## [1] TRUE
 ## [1] FALSE</code></pre>
 </div>
-</div>
-<div class="section level3">
-<h3>一個分支的流程控制</h3>
-<pre class="r"><code># has_job &lt;- TRUE
-has_job &lt;- FALSE
-if (has_job) {
-  print(&quot;我有工作！&quot;)
-}</code></pre>
-</div>
-<div class="section level3">
-<h3>兩個分支的流程控制</h3>
-<pre class="r"><code>has_job &lt;- TRUE
-# has_job &lt;- FALSE
-if (has_job) {
-  print(&quot;發信用卡&quot;)
-} else {
-  print(&quot;婉拒發卡&quot;)
-}</code></pre>
-<pre><code>## [1] &quot;發信用卡&quot;</code></pre>
-</div>
-<div class="section level3">
-<h3>三個分支的流程控制</h3>
-<pre class="r"><code>has_job &lt;- FALSE
-monthly_income &lt;- 32000
-if (has_job) {
-  print(&quot;發額度高的信用卡&quot;)
-} else if (monthly_income &gt; 30000) {
-  print(&quot;發額度低的信用卡&quot;)
-} else {
-  print(&quot;婉拒發卡&quot;)
-}</code></pre>
-<pre><code>## [1] &quot;發額度低的信用卡&quot;</code></pre>
 </div>
 <div class="section level3">
 <h3>判斷整數是否為偶數（二元分支）</h3>
@@ -889,40 +871,6 @@ if (my_integer %% 2 == 0) {
 # print(&quot;是偶數&quot;)
 # print(&quot;是奇數&quot;)</code></pre>
 <pre><code>## [1] &quot;是奇數&quot;</code></pre>
-<ul>
-<li>print with format: 輸出文字的技巧</li>
-<li><code>sprintf()</code> 函數</li>
-</ul>
-<pre class="r"><code>my_integer &lt;- 9L
-if (my_integer %% 2 == 0) {
-  sprintf(&quot;%d 是偶數&quot;, my_integer)
-} else {
-  sprintf(&quot;%d 是奇數&quot;, my_integer)
-}</code></pre>
-<pre><code>## [1] &quot;9 是奇數&quot;</code></pre>
-</div>
-<div id="-4-" class="section level3">
-<h3>判斷整數除以 4 的餘數為多少（四元分支）</h3>
-<pre class="r"><code>my_integer &lt;- 10L
-mod &lt;- my_integer %% 4
-if (mod == 0) {
-  sprintf(&quot;%d 可以被 4 整除&quot;, my_integer)
-} else if (mod == 1) {
-  sprintf(&quot;%d 除以 4 的餘數為 %d&quot;, my_integer, mod)
-} else if (mod == 2) {
-  sprintf(&quot;%d 除以 4 的餘數為 %d&quot;, my_integer, mod)
-} else {
-  sprintf(&quot;%d 除以 4 的餘數為 %d&quot;, my_integer, mod)
-}</code></pre>
-<pre><code>## [1] &quot;10 除以 4 的餘數為 2&quot;</code></pre>
-<pre class="r"><code>my_integer &lt;- 15L
-mod &lt;- my_integer %% 4
-if (mod == 0) {
-  sprintf(&quot;%d 可以被 4 整除&quot;, my_integer)
-} else {
-  sprintf(&quot;%d 除以 4 的餘數為 %d&quot;, my_integer, mod)
-}</code></pre>
-<pre><code>## [1] &quot;15 除以 4 的餘數為 3&quot;</code></pre>
 </div>
 <div class="section level3">
 <h3>流程控制的精神</h3>
@@ -931,17 +879,30 @@ if (mod == 0) {
 <li>Mutually Exclusive, Collectively Exhaustive.</li>
 </ul>
 <pre class="r"><code># fizz-buzz
-my_integer &lt;- 12L # integer
-if (my_integer %% 6 == 0) {
-  sprintf(&quot;%d 既是 2 的倍數也是 3 的倍數&quot;, my_integer)
-} else if (my_integer %% 3 == 0) {
-  sprintf(&quot;%d 是 3 的倍數&quot;, my_integer)
-} else if (my_integer %% 2 == 0) {
-  sprintf(&quot;%d 是 2 的倍數&quot;, my_integer)
-} else {
-  sprintf(&quot;%d 既不是 2 的倍數也不是 3 的倍數&quot;, my_integer)
-}</code></pre>
-<pre><code>## [1] &quot;12 既是 2 的倍數也是 3 的倍數&quot;</code></pre>
+fizz_buzz &lt;- function(x) {
+  # 假如 x 是 3 的倍數: 回傳 fizz
+  # 假如 x 是 5 的倍數: 回傳 buzz
+  # 假如 x 是 15 的倍數: 回傳 fizz buzz
+  # 否則回傳 x
+  if (x %% 15 == 0) {
+    return(&quot;fizz buzz&quot;)
+  } else if (x %% 5 == 0) {
+    return(&quot;buzz&quot;)
+  } else if (x %% 3 == 0) {
+    return(&quot;fizz&quot;)
+  } else {
+    return(x)
+  }
+  # 判斷完之後在這裡！
+}
+fizz_buzz(6) # fizz
+fizz_buzz(25) # buzz
+fizz_buzz(45) # fizz-buzz
+fizz_buzz(46) # 46</code></pre>
+<pre><code>## [1] &quot;fizz&quot;
+## [1] &quot;buzz&quot;
+## [1] &quot;fizz buzz&quot;
+## [1] 46</code></pre>
 </div>
 <div class="section level3">
 <h3>型別的判斷</h3>
@@ -1061,11 +1022,11 @@ sys_date + 1
 # sys_date_chr + 1 # Error
 mysteric_number &lt;- as.numeric(sys_date) # 神秘的數字
 sys_date - mysteric_number</code></pre>
-<pre><code>## [1] &quot;2018-09-01&quot;
+<pre><code>## [1] &quot;2018-09-03&quot;
 ## [1] &quot;Date&quot;
-## [1] &quot;2018-09-01&quot;
+## [1] &quot;2018-09-03&quot;
 ## [1] &quot;character&quot;
-## [1] &quot;2018-09-02&quot;
+## [1] &quot;2018-09-04&quot;
 ## [1] &quot;1970-01-01&quot;</code></pre>
 <pre class="r"><code>original_date &lt;- &quot;1970-01-01&quot; # character
 original_date &lt;- as.Date(original_date) # Date
@@ -1100,7 +1061,7 @@ sys_year - 1983
 sys_year &lt;- format(sys_date, format = &quot;%Y&quot;) # character
 sys_year &lt;- as.numeric(sys_year) # numeric
 sys_year - 1983</code></pre>
-<pre><code>## [1] &quot;2018-09-01&quot;
+<pre><code>## [1] &quot;2018-09-03&quot;
 ## [1] 35
 ## [1] 35</code></pre>
 </div>
@@ -1121,7 +1082,7 @@ original_datetime &lt;- as.POSIXct(&quot;1970-01-01 08:00:00&quot;)
 as.numeric(original_datetime)
 original_datetime - 1
 original_datetime + 1</code></pre>
-<pre><code>## [1] &quot;2018-09-01 21:22:06 CST&quot;
+<pre><code>## [1] &quot;2018-09-03 15:02:29 CST&quot;
 ## [1] &quot;POSIXct&quot; &quot;POSIXt&quot; 
 ## [1] &quot;1970-01-01 08:00:00 CST&quot;
 ## [1] 0
@@ -2172,8 +2133,9 @@ subset(phx_suns_0405, subset = is_pg_sf, select = c(&quot;Player&quot;, &quot;Po
 ## 12    Smush Parker\\parkesm01  PG
 ## 16     Yuta Tabuse\\tabusyu01  PG</code></pre>
 </div>
-<div id="factor" class="section level4">
-<h4>（選修）因素向量（factor）</h4>
+</div>
+<div id="factor" class="section level3">
+<h3>（選修）因素向量（factor）</h3>
 <ul>
 <li>特殊的字元向量（具有 Levels 的資訊）</li>
 <li>每一個 Level 後面有一個整數對應</li>
@@ -2257,7 +2219,6 @@ str(phx_suns_0405)</code></pre>
 ##  $ Exp       : chr  &quot;1&quot; &quot;1&quot; &quot;3&quot; &quot;12&quot; ...
 ##  $ College   : chr  &quot;&quot; &quot;&quot; &quot;DePaul University&quot; &quot;Ohio State University&quot; ...</code></pre>
 </div>
-</div>
 <div class="section level3">
 <h3>（選修）矩陣</h3>
 <pre class="r"><code>my_vec &lt;- 11:18
@@ -2313,6 +2274,153 @@ my_mat %*% t(my_mat)</code></pre>
 ## [2,]  372  400  428  456
 ## [3,]  398  428  458  488
 ## [4,]  424  456  488  520</code></pre>
+</div>
+<div id="array" class="section level3">
+<h3>（選修）陣列（array）</h3>
+<ul>
+<li>陣列是多維的矩陣</li>
+</ul>
+<pre class="r"><code>my_arr &lt;- array(1:24, c(2, 3, 4))
+my_arr
+class(my_arr)</code></pre>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]    7    9   11
+## [2,]    8   10   12
+## 
+## , , 3
+## 
+##      [,1] [,2] [,3]
+## [1,]   13   15   17
+## [2,]   14   16   18
+## 
+## , , 4
+## 
+##      [,1] [,2] [,3]
+## [1,]   19   21   23
+## [2,]   20   22   24
+## 
+## [1] &quot;array&quot;</code></pre>
+<ul>
+<li>選擇元素透過中括號與索引值</li>
+</ul>
+<pre class="r"><code>my_arr[, , 1]
+my_arr[, , 2]
+my_arr[, , 3]
+my_arr[, , 4]
+my_arr[1, 3, 4] # 23</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+##      [,1] [,2] [,3]
+## [1,]    7    9   11
+## [2,]    8   10   12
+##      [,1] [,2] [,3]
+## [1,]   13   15   17
+## [2,]   14   16   18
+##      [,1] [,2] [,3]
+## [1,]   19   21   23
+## [2,]   20   22   24
+## [1] 23</code></pre>
+</div>
+</div>
+<div id="tidyverse-" class="section level2">
+<h2>tidyverse 生態系</h2>
+<p><a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a></p>
+<ul>
+<li>先專注在 dplyr 與 ggplot2 即可！</li>
+</ul>
+<div id="dplyr-" class="section level3">
+<h3>dplyr 套件</h3>
+<ul>
+<li>更新 R &amp; RStudio！</li>
+<li>使用 <code>install.packages(&quot;dplyr&quot;)</code> 安裝</li>
+<li>使用 <code>library(dplyr)</code> 載入</li>
+</ul>
+<pre class="r"><code>install.packages(&quot;dplyr&quot;)
+library(dplyr)</code></pre>
+<div id="dplyr-" class="section level4">
+<h4>dplyr 套件提供的基本函數</h4>
+<ul>
+<li><code>select()</code></li>
+<li><code>filter()</code></li>
+<li><code>arrange()</code></li>
+<li><code>mutate()</code></li>
+<li><code>summarise()</code></li>
+<li><code>group_by()</code></li>
+</ul>
+</div>
+<div id="dplyr-" class="section level4">
+<h4>dplyr 函數支援的神秘運算符號 <code>%&gt;%</code></h4>
+<ul>
+<li>傳統呼叫函數的方式</li>
+</ul>
+<pre class="r"><code># 傳統
+my_vec &lt;- 11:20
+sum(my_vec)</code></pre>
+<pre><code>## [1] 155</code></pre>
+<pre class="r"><code># 傳統
+my_vec &lt;- -5:5
+abs(my_vec)</code></pre>
+<pre><code>##  [1] 5 4 3 2 1 0 1 2 3 4 5</code></pre>
+<ul>
+<li>神秘運算符號 <code>%&gt;%</code> 呼叫函數的方式</li>
+</ul>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code># %&gt;% 
+my_vec &lt;- 11:20
+my_vec %&gt;% 
+  sum()</code></pre>
+<pre><code>## [1] 155</code></pre>
+<pre class="r"><code>library(dplyr)
+# %&gt;% 
+my_vec &lt;- -5:5
+my_vec %&gt;% 
+  abs()</code></pre>
+<pre><code>##  [1] 5 4 3 2 1 0 1 2 3 4 5</code></pre>
+</div>
+<div id="--pipe-" class="section level4">
+<h4>神秘運算符號 <code>%&gt;%</code> 叫做 pipe 運算子</h4>
+<ul>
+<li>RStudio 快捷鍵是 <code>Ctrl(Command) + Shift + m</code></li>
+<li>為什麼要用這個運算子？</li>
+<li>以一個練習為例：</li>
+</ul>
+<pre class="r"><code># MayDay 1997 成立
+# 請用系統日期中的年份去計算 MayDay 成立幾週年？
+ans &lt;- as.numeric(format(Sys.Date(), format = &quot;%Y&quot;)) - 1997
+ans</code></pre>
+<pre><code>## [1] 21</code></pre>
+<ul>
+<li>使用 <code>%&gt;%</code> 來 refactor！</li>
+</ul>
+<pre class="r"><code>library(dplyr)
+
+ans &lt;- Sys.Date() %&gt;% 
+  format(format=&quot;%Y&quot;) %&gt;% 
+  as.numeric() %&gt;% 
+  `-` (1997) # ` 在數字鍵 1 的左邊
+ans</code></pre>
+<pre><code>## [1] 21</code></pre>
+</div>
+</div>
+<div id="ggplot2-" class="section level3">
+<h3>ggplot2 套件</h3>
 </div>
 </div>
 
