@@ -14,18 +14,13 @@
 |-------|------|-------|
 |作業 1|[R 語言導論](https://www.datacamp.com/community/open-courses/r-%E8%AA%9E%E8%A8%80%E5%B0%8E%E8%AB%96?tap_a=5644-dce66f&tap_s=194899-1fb421)|70|
 |作業 2|[資料框整理技巧](https://www.datacamp.com/community/open-courses/%E8%B3%87%E6%96%99%E6%A1%86%E6%95%B4%E7%90%86%E6%8A%80%E5%B7%A7?tap_a=5644-dce66f&tap_s=194899-1fb421)|70|
-|作業 3|[網站爬蟲](http://yaojenkuo.io/r_programming/getting_data#/imdb--yahoo-)|70|
-|作業 4|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70|
-|作業 5|[專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)|70|
+|作業 3|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70|
+|作業 4|[專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)|70|
 
 
-### 課堂互動工具（每週更新 Event Code）
+### 課堂互動工具（Event Code: N130）
 
 <https://www.sli.do/>
-
-### 課程程式筆記
-
-<https://yaojenkuo.io/r_programming/rprg-nb>
 
 ### 課程教科書
 
@@ -33,34 +28,30 @@
 <!--- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FORFREE298) -->
 <!--- [認識 R 的美好 - 網頁版](https://bookdown.org/tonykuoyj/eloquentr/)-->
 
-### 課程投影片
+### 課程投影片（html）
 
-- [關於這門課](https://yaojenkuo.github.io/r_programming/ch0)
-- [建立你的 R 語言開發環境](https://yaojenkuo.github.io/r_programming/r_dev_env)
-- [變數型別與常用函數](https://yaojenkuo.github.io/r_programming/variable_types)
-- [資料結構](https://yaojenkuo.github.io/r_programming/ch4)
-- [Tidyverse 簡介](https://yaojenkuo.github.io/r_programming/intro_2_tidyverse.html)
-- [Tidyverse: dplyr](https://yaojenkuo.github.io/r_programming/intro_2_dplyr.html)
-- [Tidyverse: ggplot2](https://yaojenkuo.github.io/r_programming/intro_2_ggplot2.html)
-- [專題：EDA: PM2.5](http://yaojenkuo.io/r_programming/jhu_eda_w4)
-- [專題：EDA: Electric power consumption](http://yaojenkuo.io/r_programming/jhu_eda_w1)
-- [迴圈與流程控制](https://yaojenkuo.github.io/r_programming/ch8)
-- [自訂函數](https://yaojenkuo.github.io/r_programming/ch9)
-- [載入資料與網站爬蟲](https://yaojenkuo.github.io/r_programming/getting_data.html)
-- [專題：Programming with R](http://yaojenkuo.io/r_programming/jhu_prgwr_w2)
-- [互動視覺化](http://yaojenkuo.io/r_programming/interactive_viz.html)
+- [Getting Started with R](https://yaojenkuo.io/r_programming/getting_started#/)
+- [Variable Types in R](https://yaojenkuo.io/r_programming/var_types#/)
+- [Data Structures in R](https://yaojenkuo.io/r_programming/data_structures#/)
+- [Getting Data with R](https://yaojenkuo.io/r_programming/getting_data#/)
+- [Project: Programming with R](https://yaojenkuo.io/r_programming/proj_prgwr.html)
+- [Exploring Data with R](https://yaojenkuo.io/r_programming/exploring_data#/)
+- [Project: Exploratory Data Analysis](https://yaojenkuo.io/r_programming/proj_edawr.html)
+
+### 課程投影片（pdf）
+
+- [Getting Started with R](https://yaojenkuo.io/r_programming/getting_started.pdf)
+- [Variable Types in R](https://yaojenkuo.io/r_programming/var_types.pdf)
+- [Data Structures in R](https://yaojenkuo.io/r_programming/data_structures.pdf)
+- [Getting Data with R](https://yaojenkuo.io/r_programming/getting_data.pdf)
+- [Project: Programming with R](https://yaojenkuo.io/r_programming/proj_prgwr.pdf)
+- [Exploring Data with R](https://yaojenkuo.io/r_programming/exploring_data.pdf)
+- [Project: Exploratory Data Analysis](https://yaojenkuo.io/r_programming/proj_edawr.pdf)
 
 ### 其他學習資源
 
 - [Datainpoint](https://medium.com/datainpoint)
-- [R in Action](https://www.manning.com/books/r-in-action-second-edition)
-- [Quick-R](http://www.statmethods.net/)
-- [R Cookbook](http://shop.oreilly.com/product/9780596809164.do)
-- [The Art of R Programming](https://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843)
-- [Advanced R（Book）](https://www.amazon.com/Advanced-Chapman-Hall-Hadley-Wickham/dp/1466586966)
-- [Advanced R（Website）](http://adv-r.had.co.nz/)
-- [R Graphics Cookbook](http://shop.oreilly.com/product/0636920023135.do)
-- [R for Data Science](http://r4ds.had.co.nz/)
+- [DataCamp](https://www.datacamp.com?tap_a=5644-dce66f&tap_s=194899-1fb421)
 
 ### 近期上課錄影
 
