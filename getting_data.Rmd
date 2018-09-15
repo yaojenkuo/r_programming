@@ -1,153 +1,224 @@
 ---
-title: "載入資料與網站爬蟲"
-author: 郭耀仁
-output: 
+title: "Getting Data with R"
+author: "Tony Yao-Jen Kuo"
+output:
   revealjs::revealjs_presentation:
-    theme: black
-    highlight: zenburn
-    center: true
+    highlight: pygments
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
 ---
 
-# 載入資料
+# How to get data with R
 
-## 資料
+## Overview
 
-<https://storage.googleapis.com/learn-r-the-easy-way.appspot.com/udemy_courses/data_import.zip>
+>- From files
+>- From web
 
-## csv
+# Getting data from files
 
-- 使用 `read.csv()` 函數
+## Using `read.csv()` for CSV files
 
-```{r eval=FALSE}
-csv_file_path <- "Your csv file path"
-df <- read.csv(csv_file_path)
+- CSV stands for **comma separated values**
+
+```{r}
+file_url <- "https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.csv"
+df <- read.csv(file_url, stringsAsFactors = FALSE) # personal preference...
+dim(df)
 ```
 
-## txt
+## Using `read.table()` for general tabular text files
 
-- 使用 `read.table()` 函數
-
-```{r eval=FALSE}
-txt_file_path <- "Your text file path"
-df <- read.table(txt_file_path, sep = "Text file separator", header = TRUE)
+```{r}
+file_url <- "https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.txt"
+df <- read.table(file_url, header = TRUE, sep = ";")
+dim(df)
 ```
 
-## excel
-
-- 使用 `readxl::read_excel()` 函數
-- 僅能讀取本機端的 Excel 試算表
+## Using `readxl` package for Excel spreadsheets
 
 ```{r eval=FALSE}
 install.packages("readxl")
-library(readxl)
-
-xlsx_file_path <- "Your excel file path"
-df <- read_excel(xlsx_file_path)
 ```
 
-## JSON
+```{r}
+library(readxl)
 
-- 使用 `jsonlite::fromJSON()` 函數
+file_path <- "/Users/kuoyaojen/Downloads/fav_nba_teams.xlsx"
+chicago_bulls <- read_excel(file_path)
+head(chicago_bulls)
+```
+
+## Importing other sheets
+
+```{r eval=FALSE}
+boston_celtics <- read_excel(file_path, sheet = "boston_celtics_2007_2008")
+head(boston_celtics)
+```
+
+## Reading specific cell ranges
+
+```{r eval=FALSE}
+partial_chi <- read_excel(file_path, range = "B8:C13", col_names = FALSE)
+knitr::kable(partial_chi)
+```
+
+## Using `jsonlite` package for JSON files
 
 ```{r eval=FALSE}
 install.packages("jsonlite")
-library(jsonlite)
-
-json_file_path <- "Your json file path"
-data_list <- fromJSON(json_file_path)
 ```
 
-# 網站爬蟲
+```{r}
+library(jsonlite)
 
-## 為什麼需要網站爬蟲？
+file_url <- "https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.json"
+chicago_bulls <- fromJSON(file_url)
+class(chicago_bulls)
+```
 
-- 內部資料庫不一定有表格欄位
-- 外部資料庫要價昂貴
-- 資料就像衣櫃中的衣服，永遠少一件？
-- 能自動就不要手動
+## A quick review
 
-## 爬蟲程式的核心問題只有兩個
+|Source|Format|
+|------|------|
+|CSV|`data.frame`|
+|TXT|`data.frame`|
+|Spreadsheet|`data.frame`|
+|JSON|`list`|
 
-- 獲取網站的回應（request）
-- 解析網站的回應（parser）
+# Getting data from web
 
-## R 語言相對於 Python 的爬蟲程式？
+## `jsonlite` for RESTful APIs
 
-IMHO：在**靜態網頁**佔盡上風！
+```{r}
+library(jsonlite)
 
-## 佔盡上風的原因是？
+web_url <- "https://ecshweb.pchome.com.tw/search/v3.3/all/results?q=macbook&page=1&sort=rnk/dc"
+macbook <- fromJSON(web_url)
+class(macbook)
+names(macbook)
+```
 
-- Python 的 request 與 parser 仰賴不同的模組
-- Python 的 `BeautifulSoup` 對 CSS 選擇器支援有限
-- Python 的 `BeautifulSoup` 不支援 XPath 選擇器
-
-## 在爬蟲之前裝兩個 Chrome 外掛
-
-- [SelectorGadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=zh-TW): 幫助 CSS 選擇
-- [XPath Helper](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?hl=zh-TW): 幫助 XPath 選擇
-
-## CSS 選擇
-
-- 以 [IMDB: La La Land](http://www.imdb.com/title/tt3783958/) 為例
-- 選出評等（Rating）
-
-## XPath 選擇
-
-- 以 [IMDB: La La Land](http://www.imdb.com/title/tt3783958/) 為例
-- 選出評等（Rating）
-
-## `rvest` 套件
-
-- `rvest` to the rescue!
-- 重磅級的解決方案！
-- 一次搞定 request 與 parser！
-
-## 安裝與載入 `rvest`
-
-- 已經包含在 `tidyverse` 套件中
+## `rvest` for HTML documents
 
 ```{r eval=FALSE}
 install.packages("rvest")
-library(rvest)
 ```
 
-## `read_html()` 搞定 request
+## The use of `%>%` operator
+
+- Originated from `magrittr` package
+- Now an important operator for the `tidyverse` eco-system
+- Can be generated with: Ctrl + Shift + m
+
+## How to call a function
 
 ```{r}
 library(rvest)
 
-html_doc <- "http://www.imdb.com/title/tt3783958/" %>%
+# traditional
+sum(1:10)
+
+# using %>%
+1:10 %>% 
+  sum()
+```
+
+## More examples
+
+```{r}
+# traditional
+toupper(paste0(strsplit("Jeremy Lin", split = " ")[[1]][2], "sanity"))
+
+# using %>% 
+"Jeremy Lin" %>% 
+  strsplit(split = " ") %>% 
+  `[[` (1) %>% 
+  `[` (2) %>% 
+  paste0("sanity") %>% 
+  toupper()
+```
+
+## `read_html()` for reading all html contents
+
+```{r}
+library(rvest)
+
+mi_url <- "https://www.imdb.com/title/tt4912910/"
+html_doc <- mi_url %>% 
   read_html()
 ```
 
-## `html_nodes()` 搞定 parser
+## `html_nodes()` to locate elements
 
 ```{r}
-elem <- html_doc %>%
-  html_nodes(css = "strong span")
-  # html_nodes(xpath = "//strong/span")
+html_doc %>% 
+  html_nodes("strong span") # CSS selector
 ```
 
-## `html_text()` 清理標籤
+## `html_text()` to remove tags
 
 ```{r}
-rating <- elem %>%
-  html_text() %>%
+html_doc %>% 
+  html_nodes("strong span") %>% 
+  html_text()
+```
+
+## Data of html document are characters
+
+```{r}
+html_doc %>% 
+  html_nodes("strong span") %>% 
+  html_text() %>% 
   as.numeric()
 ```
 
-## 隨堂練習
+## How to locate elements?
 
-- 擷取 lalaland 主要演員名單
+>- By CSS Selectors
+>- By XPath
 
-## 延伸閱讀：如何解決需要登入、填寫表單的網站爬蟲？
+# The use of Chrome plugins
 
-- [Selenium with Python](http://selenium-python.readthedocs.io/)
-- [RSelenium](http://rpubs.com/johndharrison/RSelenium-Basics)
+## SelectorGadget
 
-# 作業
+A Chrome plugin for CSS selectors:  [SelectorGadget](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb)
 
-## IMDB 與 Yahoo! 奇摩股市
+## How to use SelectorGadget?
 
-- 將大佛普拉斯的 IMDB 資料（評等、主要演員）擷取並以適當資料型態輸出
-- 將 [Yahoo! 奇摩股市](https://tw.stock.yahoo.com/d/i/rank.php?t=pri&e=tse&n=100)當日上市公司成交價 100 名的資料（股票代號、公司名稱、成交價）擷取並以適當資料型態輸出
+## XPath Helper
+
+A Chrome plugin for XPath: [XPath Helper](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl)
+
+## How to use XPath Helper?
+
+## Practices: Getting genre information from IMDB.com
+
+```{r}
+mi_url <- "https://www.imdb.com/title/tt4912910/"
+```
+
+```{r echo=FALSE}
+html_doc %>% 
+  html_nodes(".subtext a") %>% 
+  html_text() %>% 
+  `[` (-4)
+```
+
+## Practices: Getting cast information from IMDB.com
+
+```{r}
+mi_url <- "https://www.imdb.com/title/tt4912910/"
+```
+
+```{r echo=FALSE}
+html_doc %>% 
+  html_nodes(".primary_photo+ td a") %>% 
+  html_text()
+```
+
+## Practices: Getting price ranking from Yahoo! Stock
+
+- Top 100 for TSE: <https://tw.stock.yahoo.com/d/i/rank.php?t=pri&e=tse&n=100>
+- Top 100 for OTC: <https://tw.stock.yahoo.com/d/i/rank.php?t=pri&e=otc&n=100>

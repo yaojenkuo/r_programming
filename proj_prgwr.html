@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Tony Yao-Jen Kuo" />
-  <title>Getting Data with R</title>
+  <title>Project: Programming with R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -486,203 +486,134 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title">Getting Data with R</h1>
+    <h1 class="title">Project: Programming with R</h1>
     <h2 class="author">Tony Yao-Jen Kuo</h2>
 </section>
 
-<section><section id="how-to-get-data-with-r" class="titleslide slide level1"><h1>How to get data with R</h1></section><section id="overview" class="slide level2">
-<h2>Overview</h2>
+<section><section id="project-overview" class="titleslide slide level1"><h1>Project Overview</h1></section><section id="project-source" class="slide level2">
+<h2>Project source</h2>
+<p>Assignment from <a href="https://www.coursera.org/learn/r-programming">Programming with R</a></p>
+</section><section id="write-3-functions-to-interact-with-data" class="slide level2">
+<h2>Write 3 functions to interact with data</h2>
 <ul>
-<li class="fragment">From files</li>
-<li class="fragment">From web</li>
+<li class="fragment"><code>pollutantmean(directory, pollutant, id = 1:332)</code></li>
+</ul>
+<ul>
+<li class="fragment"><code>complete(directory, id = 1:332)</code></li>
+</ul>
+<ul>
+<li class="fragment"><code>corr(directory, threshold = 0)</code></li>
+</ul>
+</section><section id="getting-data" class="slide level2">
+<h2>Getting data</h2>
+<p><a href="https://storage.googleapis.com/jhu_coursera_data/specdata.zip">specdata.zip</a></p>
+</section><section id="how-to-download-unzip-data-with-r" class="slide level2">
+<h2>How to download, unzip data with R?</h2>
+<ul>
+<li><code>download.file()</code> for downloading</li>
+<li><code>unzip()</code> for unzipping</li>
+</ul>
+</section><section id="about-data" class="slide level2">
+<h2>About data</h2>
+<ul>
+<li>332 CSV files after unzipping</li>
+<li>Each CSV file has 4 variables</li>
 </ul>
 </section></section>
-<section><section id="getting-data-from-files" class="titleslide slide level1"><h1>Getting data from files</h1></section><section id="using-read.csv-for-csv-files" class="slide level2">
-<h2>Using <code>read.csv()</code> for CSV files</h2>
+<section><section id="function-1" class="titleslide slide level1"><h1>Function 1</h1></section><section id="try-to-calculate-the-mean-value-of-certain-pollutant-from-different-stations" class="slide level2">
+<h2>Try to calculate the mean value of certain pollutant from different stations</h2>
+<p><code>pollutantmean(directory, pollutant, id = 1:332)</code></p>
+</section><section id="hints-for-function-1" class="slide level2">
+<h2>Hints for function 1</h2>
 <ul>
-<li>CSV stands for <strong>comma separated values</strong></li>
+<li>Set <code>na.rm = TRUE</code> in <code>mean()</code> if there are NAs</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.csv&quot;</span>
-df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(file_url, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="co"># personal preference...</span>
-<span class="kw">dim</span>(df)</code></pre></div>
-<pre><code>## [1] 15  7</code></pre>
-</section><section id="using-read.table-for-general-tabular-text-files" class="slide level2">
-<h2>Using <code>read.table()</code> for general tabular text files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.txt&quot;</span>
-df &lt;-<span class="st"> </span><span class="kw">read.table</span>(file_url, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</code></pre></div>
-<pre><code>## Warning in scan(file = file, what = what, sep = sep, quote = quote, dec =
-## dec, : EOF within quoted string</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(df)</code></pre></div>
-<pre><code>## [1] 15  7</code></pre>
-</section><section id="using-readxl-package-for-excel-spreadsheets" class="slide level2">
-<h2>Using <code>readxl</code> package for Excel spreadsheets</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
-
-file_path &lt;-<span class="st"> &quot;/Users/kuoyaojen/Downloads/fav_nba_teams.xlsx&quot;</span>
-chicago_bulls &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path)
-<span class="kw">head</span>(chicago_bulls)</code></pre></div>
-<pre><code>## # A tibble: 6 x 7
-##     No. Player        Pos   Ht       Wt `Birth Date`      College         
-##   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;           
-## 1     0 Randy Brown   PG    6-2     190 May 22, 1968      University of H…
-## 2    30 Jud Buechler  SF    6-6     220 June 19, 1968     University of A…
-## 3    35 Jason Caffey  PF    6-8     255 June 12, 1973     University of A…
-## 4    53 James Edwards C     7-0     225 November 22, 1955 University of W…
-## 5    54 Jack Haley    C     6-10    240 January 27, 1964  University of C…
-## 6     9 Ron Harper    PG    6-6     185 January 20, 1964  Miami University</code></pre>
-</section><section id="importing-other-sheets" class="slide level2">
-<h2>Importing other sheets</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boston_celtics &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path, <span class="dt">sheet =</span> <span class="st">&quot;boston_celtics_2007_2008&quot;</span>)
-<span class="kw">head</span>(boston_celtics)</code></pre></div>
-</section><section id="reading-specific-cell-ranges" class="slide level2">
-<h2>Reading specific cell ranges</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">partial_chi &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path, <span class="dt">range =</span> <span class="st">&quot;B8:C13&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)
-knitr<span class="op">::</span><span class="kw">kable</span>(partial_chi)</code></pre></div>
-</section><section id="using-jsonlite-package-for-json-files" class="slide level2">
-<h2>Using <code>jsonlite</code> package for JSON files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-
-file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.json&quot;</span>
-chicago_bulls &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(file_url)
-<span class="kw">class</span>(chicago_bulls)</code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
-</section><section id="a-quick-review" class="slide level2">
-<h2>A quick review</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Source</th>
-<th>Format</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>CSV</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="even">
-<td>TXT</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="odd">
-<td>Spreadsheet</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="even">
-<td>JSON</td>
-<td><code>list</code></td>
-</tr>
-</tbody>
-</table>
+</section><section id="sample-outputs" class="slide level2">
+<h2>Sample outputs</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_dir &lt;-<span class="st"> &quot;/Users/kuoyaojen/Downloads/specdata&quot;</span>
+<span class="kw">pollutantmean</span>(my_dir, <span class="st">&quot;sulfate&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+<span class="kw">pollutantmean</span>(my_dir, <span class="st">&quot;nitrate&quot;</span>, <span class="dv">70</span><span class="op">:</span><span class="dv">72</span>)
+<span class="kw">pollutantmean</span>(my_dir, <span class="st">&quot;nitrate&quot;</span>, <span class="dv">23</span>)</code></pre></div>
+<pre><code>## [1] 4.064128
+## [1] 1.706047
+## [1] 1.280833</code></pre>
 </section></section>
-<section><section id="getting-data-from-web" class="titleslide slide level1"><h1>Getting data from web</h1></section><section id="jsonlite-for-restful-apis" class="slide level2">
-<h2><code>jsonlite</code> for RESTful APIs</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-
-web_url &lt;-<span class="st"> &quot;https://ecshweb.pchome.com.tw/search/v3.3/all/results?q=macbook&amp;page=1&amp;sort=rnk/dc&quot;</span>
-macbook &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(web_url)
-<span class="kw">class</span>(macbook)</code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(macbook)</code></pre></div>
-<pre><code>## [1] &quot;QTime&quot;     &quot;totalRows&quot; &quot;totalPage&quot; &quot;range&quot;     &quot;cateName&quot;  &quot;q&quot;        
-## [7] &quot;subq&quot;      &quot;token&quot;     &quot;prods&quot;</code></pre>
-</section><section id="rvest-for-html-documents" class="slide level2">
-<h2><code>rvest</code> for HTML documents</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rvest&quot;</span>)</code></pre></div>
-</section><section id="the-use-of-operator" class="slide level2">
-<h2>The use of <code>%&gt;%</code> operator</h2>
+<section><section id="function-2" class="titleslide slide level1"><h1>Function 2</h1></section><section id="try-to-calculate-how-many-complete-rows-are-in-different-csv-files" class="slide level2">
+<h2>Try to calculate how many complete rows are in different CSV files</h2>
+<p><code>complete(directory, id = 1:332)</code></p>
+</section><section id="hints-for-function-2" class="slide level2">
+<h2>Hints for function 2</h2>
 <ul>
-<li>Originated from <code>magrittr</code> package</li>
-<li>Now an important operator for the <code>tidyverse</code> eco-system</li>
-<li>Can be generated with: Ctrl + Shift + m</li>
+<li>Use <code>complete.cases()</code> to get complete rows from a data frame</li>
 </ul>
-</section><section id="how-to-call-a-function" class="slide level2">
-<h2>How to call a function</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)</code></pre></div>
-<pre><code>## Loading required package: xml2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># traditional</span>
-<span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] 55</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using %&gt;%</span>
-<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">sum</span>()</code></pre></div>
-<pre><code>## [1] 55</code></pre>
-</section><section id="more-examples" class="slide level2">
-<h2>More examples</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># traditional</span>
-<span class="kw">toupper</span>(<span class="kw">paste0</span>(<span class="kw">strsplit</span>(<span class="st">&quot;Jeremy Lin&quot;</span>, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>], <span class="st">&quot;sanity&quot;</span>))</code></pre></div>
-<pre><code>## [1] &quot;LINSANITY&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using %&gt;% </span>
-<span class="st">&quot;Jeremy Lin&quot;</span> <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">strsplit</span>(<span class="dt">split =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  `</span><span class="dt">[[</span><span class="st">`</span> (<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  `</span><span class="dt">[</span><span class="st">`</span> (<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">paste0</span>(<span class="st">&quot;sanity&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">toupper</span>()</code></pre></div>
-<pre><code>## [1] &quot;LINSANITY&quot;</code></pre>
-</section><section id="read_html-for-reading-all-html-contents" class="slide level2">
-<h2><code>read_html()</code> for reading all html contents</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
-
-mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span>
-html_doc &lt;-<span class="st"> </span>mi_url <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">read_html</span>()</code></pre></div>
-</section><section id="html_nodes-to-locate-elements" class="slide level2">
-<h2><code>html_nodes()</code> to locate elements</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="co"># CSS selector</span></code></pre></div>
-<pre><code>## {xml_nodeset (1)}
-## [1] &lt;span&gt;8.1&lt;/span&gt;</code></pre>
-</section><section id="html_text-to-remove-tags" class="slide level2">
-<h2><code>html_text()</code> to remove tags</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_text</span>()</code></pre></div>
-<pre><code>## [1] &quot;8.1&quot;</code></pre>
-</section><section id="data-of-html-document-are-characters" class="slide level2">
-<h2>Data of html document are characters</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">as.numeric</span>()</code></pre></div>
-<pre><code>## [1] 8.1</code></pre>
-</section><section id="how-to-locate-elements" class="slide level2">
-<h2>How to locate elements?</h2>
-<ul>
-<li class="fragment">By CSS Selectors</li>
-<li class="fragment">By XPath</li>
-</ul>
+</section><section id="sample-output-1" class="slide level2">
+<h2>Sample output 1</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_dir &lt;-<span class="st"> &quot;/Users/kuoyaojen/Downloads/specdata&quot;</span>
+<span class="kw">complete</span>(my_dir, <span class="dv">1</span>)
+<span class="kw">complete</span>(my_dir, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>))</code></pre></div>
+<pre><code>##   id nobs
+## 1  1  117
+##   id nobs
+## 1  2 1041
+## 2  4  474
+## 3  8  192
+## 4 10  148
+## 5 12   96</code></pre>
+</section><section id="sample-output-2" class="slide level2">
+<h2>Sample output 2</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">complete</span>(my_dir, <span class="dv">30</span><span class="op">:</span><span class="dv">25</span>)
+<span class="kw">complete</span>(my_dir, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##   id nobs
+## 1 30  932
+## 2 29  711
+## 3 28  475
+## 4 27  338
+## 5 26  586
+## 6 25  463
+##   id nobs
+## 1  3  243</code></pre>
 </section></section>
-<section><section id="the-use-of-chrome-plugins" class="titleslide slide level1"><h1>The use of Chrome plugins</h1></section><section id="selectorgadget" class="slide level2">
-<h2>SelectorGadget</h2>
-<p>A Chrome plugin for CSS selectors: <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb">SelectorGadget</a></p>
-</section><section id="how-to-use-selectorgadget" class="slide level2">
-<h2>How to use SelectorGadget?</h2>
-</section><section id="xpath-helper" class="slide level2">
-<h2>XPath Helper</h2>
-<p>A Chrome plugin for XPath: <a href="https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper</a></p>
-</section><section id="how-to-use-xpath-helper" class="slide level2">
-<h2>How to use XPath Helper?</h2>
-</section><section id="practices-getting-genre-information-from-imdb.com" class="slide level2">
-<h2>Practices: Getting genre information from IMDB.com</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span></code></pre></div>
-<pre><code>## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Thriller&quot;</code></pre>
-</section><section id="practices-getting-cast-information-from-imdb.com" class="slide level2">
-<h2>Practices: Getting cast information from IMDB.com</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span></code></pre></div>
-<pre><code>##  [1] &quot; Tom Cruise\n&quot;        &quot; Henry Cavill\n&quot;      &quot; Ving Rhames\n&quot;      
-##  [4] &quot; Simon Pegg\n&quot;        &quot; Rebecca Ferguson\n&quot;  &quot; Sean Harris\n&quot;      
-##  [7] &quot; Angela Bassett\n&quot;    &quot; Vanessa Kirby\n&quot;     &quot; Michelle Monaghan\n&quot;
-## [10] &quot; Wes Bentley\n&quot;       &quot; Frederick Schmidt\n&quot; &quot; Alec Baldwin\n&quot;     
-## [13] &quot; Liang Yang\n&quot;        &quot; Kristoffer Joner\n&quot;  &quot; Wolf Blitzer\n&quot;</code></pre>
-</section><section id="practices-getting-price-ranking-from-yahoo-stock" class="slide level2">
-<h2>Practices: Getting price ranking from Yahoo! Stock</h2>
+<section><section id="function-3" class="titleslide slide level1"><h1>Function 3</h1></section><section id="try-to-calculate-the-correlation-coefficient-for-csv-files-which-have-complete-observations-over-threshold" class="slide level2">
+<h2>Try to calculate the correlation coefficient for CSV files, which have complete observations over <code>threshold</code></h2>
+<p><code>corr(directory, threshold = 0)</code></p>
+</section><section id="hints-for-function-3" class="slide level2">
+<h2>Hints for function 3</h2>
 <ul>
-<li>Top 100 for TSE: <a href="https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100" class="uri">https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100</a></li>
-<li>Top 100 for OTC: <a href="https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=otc&amp;n=100" class="uri">https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=otc&amp;n=100</a></li>
+<li>Use <code>cor(x, y, use = &quot;pairwise.complete.obs&quot;)</code> function for correlation coefficient</li>
 </ul>
+</section><section id="sample-output-1-1" class="slide level2">
+<h2>Sample output 1</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_dir &lt;-<span class="st"> &quot;/Users/kuoyaojen/Downloads/specdata&quot;</span>
+cr &lt;-<span class="st"> </span><span class="kw">corr</span>(my_dir, <span class="dv">150</span>)
+<span class="kw">head</span>(cr)
+<span class="kw">summary</span>(cr)</code></pre></div>
+<pre><code>## [1] -0.01895754 -0.14051254 -0.04389737 -0.06815956 -0.12350667 -0.07588814
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.21057 -0.05147  0.09333  0.12401  0.26836  0.76313</code></pre>
+</section><section id="sample-output-2-1" class="slide level2">
+<h2>Sample output 2</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cr &lt;-<span class="st"> </span><span class="kw">corr</span>(my_dir, <span class="dv">400</span>)
+<span class="kw">head</span>(cr)
+<span class="kw">summary</span>(cr)</code></pre></div>
+<pre><code>## [1] -0.01895754 -0.04389737 -0.06815956 -0.07588814  0.76312884 -0.15782860
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.17623 -0.03109  0.10021  0.13969  0.26849  0.76313</code></pre>
+</section><section id="sample-output-3" class="slide level2">
+<h2>Sample output 3</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cr &lt;-<span class="st"> </span><span class="kw">corr</span>(my_dir, <span class="dv">5000</span>)
+<span class="kw">summary</span>(cr)
+<span class="kw">length</span>(cr)</code></pre></div>
+<pre><code>## Length  Class   Mode 
+##      0   NULL   NULL 
+## [1] 0</code></pre>
+</section><section id="sample-output-4" class="slide level2">
+<h2>Sample output 4</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cr &lt;-<span class="st"> </span><span class="kw">corr</span>(my_dir)
+<span class="kw">summary</span>(cr)
+<span class="kw">length</span>(cr)</code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -1.00000 -0.05282  0.10718  0.13684  0.27831  1.00000 
+## [1] 323</code></pre>
 </section></section>
     </div>
   </div>

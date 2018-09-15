@@ -1,0 +1,217 @@
+---
+title: "Exploring Data with R"
+author: "Tony Yao-Jen Kuo"
+output:
+  revealjs::revealjs_presentation:
+    highlight: pygments
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(results = "hold", message = FALSE)
+```
+
+# Overview
+
+## Introducing the tidyverse system
+
+- Picked by RStudio
+- `dplyr` for data manipulation
+- `ggplot` for data visualization
+- And more...
+
+## We are gonna talk about 3 packages
+
+- `gapminder` for a data gapminder
+- `dplyr` for grammar of data manipulation
+- `ggplot2` for grammar of graphics
+
+# gapminder
+
+## Getting data
+
+```{r eval=FALSE}
+install.packages("gapminder")
+```
+
+```{r}
+library(gapminder)
+```
+
+## The story of Hans Rosling and Gapminder
+
+<https://youtu.be/jbkSRLYSojo>
+
+# dplyr
+
+## Installing `dplyr`
+
+```{r eval=FALSE}
+install.packages("dplyr")
+```
+
+## Basic functions
+
+>- `filter()`
+>- `select()`
+>- `arrange()`
+>- `mutate()`
+>- `summarise()`
+>- `group_by()`
+
+## `filter()` for subsetting rows
+
+```{r}
+library(dplyr)
+
+gapminder %>% 
+  filter(country == "Taiwan")
+```
+
+## `select()` for extracting columns
+
+```{r}
+gapminder %>%
+  filter(country == "Taiwan") %>% 
+  select(year, gdpPercap, lifeExp)
+```
+
+## `arrange()` for sorting
+
+```{r}
+gapminder %>% 
+  filter(continent == "Asia") %>% 
+  filter(year == 2007) %>% 
+  arrange(gdpPercap)
+```
+
+## `mutate()` for creating new columns
+
+```{r}
+gapminder %>% 
+  filter(country == "Taiwan") %>% 
+  mutate(gdp_million = (gdpPercap * pop / 1000000))
+```
+
+## `summarise()` for...a summary
+
+```{r}
+gapminder %>% 
+  summarise(median(gdpPercap))
+```
+
+## `group_by()` for a grouped summary
+
+```{r}
+gapminder %>% 
+  group_by(continent) %>% 
+  summarise(medianGdpPercap = median(gdpPercap))
+```
+
+## Going further
+
+<https://dplyr.tidyverse.org/>
+
+# ggplot2
+
+## gg stands for...
+
+> The grammar of graphics.
+
+## Installing `ggplot2`
+
+```{r eval=FALSE}
+install.packages("ggplot2")
+```
+
+## Basic concepts
+
+- `ggplot(aes(x = , y = , color = , fill = , ...))` for data mapping
+- `geom_OOO()` for different charts`
+- Using `+` to add different layers
+
+## `geom_point()` for exploring correlations
+
+Making a scatter plot
+
+```{r}
+library(ggplot2)
+
+gapminder %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+## `geom_histogram()` for exploring distributions
+
+```{r}
+gapminder %>% 
+  ggplot(aes(x = gdpPercap)) +
+  geom_histogram(bins = 40)
+```
+
+## `geom_bar()` for exploring row counts
+
+```{r}
+gapminder %>% 
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent)) +
+  geom_bar()
+```
+
+## `geom_bar()` for grouped summary
+
+```{r}
+gapminder %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(medianGdpPercap = median(gdpPercap)) %>% 
+  ggplot(aes(x = continent, y = medianGdpPercap)) +
+  geom_bar(stat = "identity")
+```
+
+## Going further
+
+<https://ggplot2.tidyverse.org/>
+
+# Animated plot for inspirations
+
+## Installing `plotly`
+
+```{r eval=FALSE}
+install.packages("plotly")
+```
+
+## Plotting a gapminder replica
+
+```{r eval=FALSE}
+library(plotly)
+radius <- sqrt((gapminder$pop)/pi)
+
+p <- gapminder %>%
+  plot_ly(
+    x = ~gdpPercap, 
+    y = ~lifeExp, 
+    size = ~pop, 
+    color = ~continent, 
+    frame = ~year, 
+    text = ~country, 
+    hoverinfo = "text",
+    type = 'scatter',
+    mode = 'markers',
+    sizes = c(min(radius), max(radius))
+  ) %>%
+  layout(
+    xaxis = list(
+      type = "log"
+    )
+  )
+```
+
+## The gapminder replica
+
+```{r eval=FALSE}
+p
+```

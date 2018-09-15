@@ -1,0 +1,349 @@
+---
+title: "Variable Types in R"
+author: "Tony Yao-Jen Kuo"
+output:
+  revealjs::revealjs_presentation:
+    highlight: pygments
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(results = "hold")
+```
+
+# An overview
+
+## We are gonna talk about 7 of them
+
+>- numeric
+>- (optional)integer
+>- (optional)complex
+>- character
+>- logical
+>- Date
+>- POSIXct
+
+## Using `class()` to examine variable types
+
+```{r}
+class(87)
+class("Luke Skywalker")
+class(TRUE)
+```
+
+# Numerics
+
+## Using numeric as the primary digit type
+
+```{r}
+my_lucky_number <- 24
+class(my_lucky_number) # numeric
+class(2.4) # numeric
+class(-8.7) # numeric
+class(0) # numeric
+```
+
+## Using L to denote the integer type
+
+```{r}
+my_lucky_integer <- 87L
+class(my_lucky_integer) # integer
+my_lucky_integer
+```
+
+## Using i to denote the imaginary part
+
+```{r}
+my_lucky_complex <- 8 + 7i
+class(my_lucky_complex) # complex
+my_lucky_complex
+```
+
+## Numeric operations
+
+|Operators|Usage|
+|---------|-----|
+|`+`|add|
+|`-`|minus|
+|`*`|multiply|
+|`/`|divide|
+|`**` or `^`|power|
+|`%%`|modulo|
+|`%/%`|quotient|
+
+> - Using `()` to prioritize operations
+
+## Practices: Jeremy Lin's BMI
+
+$$BMI = \frac{weight_{kg}}{height_{m}^2}$$
+
+```{r}
+jeremyLin_height <- 191
+jeremyLin_weight <- 91
+```
+
+## Practices: NBA players' BMIs
+
+```{r}
+steveNash_height <- 191
+steveNash_weight <- 82
+shaq_height <- 216
+shaq_weight <- 148
+jordan_height <- 198
+jordan_weight <- 98
+```
+
+## We need FUNCTION to help us
+
+```{r eval=FALSE}
+MY_FUNCTION <- function(x, y, arg1, arg2, ...) {
+  # using x, y, arg1, arg2 to get output
+  return(OUTPUT)
+}
+```
+
+## `get_bmi()` function
+
+```{r}
+get_bmi <- function(height, weight) {
+  bmi <- weight/(height*0.01)**2
+  return(bmi)
+}
+get_bmi(steveNash_height, steveNash_weight)
+get_bmi(shaq_height, shaq_weight)
+get_bmi(jordan_height, jordan_weight)
+```
+
+# character
+
+## Using '' or "" for characters
+
+```{r}
+mj <- "Michael Jordan"
+class(mj)
+mj <- 'Michael Jordan'
+class(mj)
+```
+
+## When to use '' or ""?
+
+```{r eval=FALSE}
+# Try to assign one of the greatest center in NBA history
+Shaquille O'Neal
+```
+
+## Practices: What did Ross Geller say?
+
+```{r eval=FALSE}
+Let's put aside the fact that you "accidentally" pick up my grand mother's ring.
+```
+
+## Using `sprintf()` for string print with format
+
+```{r}
+jordan_BMI <- get_bmi(jordan_height, jordan_weight)
+sprintf("Michael Jordan's BMI is %s", jordan_BMI)
+```
+
+## Common formats using `sprintf()`
+
+- `%s`: pure text
+- `%f`: float
+- `%e`: scientific notation
+
+```{r eval=FALSE}
+?sprintf # this function is well-documented!
+```
+
+# logical
+
+## Black or White, Head or Tail
+
+```{r eval=FALSE}
+class(TRUE)
+class(FALSE)
+class(True)  # error
+class(False) # error
+class(true)  # error
+class(false) # error
+```
+
+## Logical operators
+
+|Operators|Usage|
+|---------|-----|
+|`>`|larger than|
+|`>=`|larger than or equal to|
+|`<`|smaller than|
+|`<=`|smaller than or equal to|
+|`==`|equal to|
+|`!=`|not equal to|
+|`%in%`|belong to|
+|`!`|not|
+
+## Comparing characters
+
+`"Z" > "z" > "Y" > "y" > "X" > "x" ... > "B" > "b" > "A" > "a"`
+
+## Connecting logicals
+
+- `&` for logical AND
+- `|` for logical OR
+
+## Is Shaq overweight?
+
+- Well, that depends on the definition of overweight
+
+```{r}
+# Overweight: BMI > 30 AND body fat > 25%
+
+# Overweight: BMI > 30 OR body fat > 25%
+
+```
+
+## Using logicals in control statements
+
+```{r eval=FALSE}
+# 1 branch
+if (CONDITION) {
+  # do something when CONDITION equals TRUE
+}
+```
+
+## Using `if-else` for 2 branches
+
+```{r eval=FALSE}
+# 2 branches
+if (CONDITION) {
+  # do something when CONDITION equals TRUE
+} else {
+  # do something when CONDITION equals FALSE
+}
+```
+
+## Using `if-else if-else` for more than 3 branches
+
+```{r eval=FALSE}
+# 3 branches
+if (CONDITION_1) {
+  # do something when CONDITION_1 equals TRUE
+} else if (CONDITION_2) {
+  # do something when CONDITION_2 equals TRUE
+} else {
+  # do something when both CONDITION_1 and CONDITION_2 equals FALSE
+}
+```
+
+## Practices: `get_bmi_label()`
+
+<https://en.wikipedia.org/wiki/Body_mass_index>
+
+```{r eval=FALSE}
+get_bmi_label <- function(player_name, height, weight) {
+  # ...
+}
+get_bmi_label("Jeremy Lin", 191, 91)
+# [1] "Jeremy Lin's BMI label is Normal"
+```
+
+## Practices: `fizz_buzz()`
+
+- if input can be divided by 3, return "fizz"
+- if input can be divided by 5, return "buzz"
+- if input can be divided by 15, return "fizz buzz"
+- otherwise, return input itself
+
+```{r eval=FALSE}
+fizz_buzz <- function(x) {
+  # ...
+}
+fizz_buzz(6)  # [1] "fizz"
+fizz_buzz(10) # [1] "buzz"
+fizz_buzz(30) # [1] "fizz buzz"
+fizz_buzz(31) # [1] 31
+```
+
+# Class judgement and conversion
+
+## Using `is.___()` for judgement
+
+> - `is.numeric()`
+> - `is.character()`
+> - `is.logical()`
+
+## Using `as.___()` for conversion
+
+> - `as.numeric()`
+> - `as.character()`
+> - `as.logical()` 
+
+# Date and Datetime
+
+## Using `Sys.Date()` for current date
+
+```{r}
+Sys.Date()
+```
+
+## Mysterious number
+
+```{r}
+sys_date <- Sys.Date()
+as.numeric(sys_date) # what is this number?
+```
+
+## Date originates from 1970-01-01
+
+```{r}
+sys_date - as.numeric(sys_date)
+```
+
+## Every integer stands for a specific date
+
+```{r}
+original_date <- sys_date - as.numeric(sys_date)
+original_date - 1
+original_date
+original_date + 1
+```
+
+## Practices: The long last of Beatles
+
+The Beatles were an English rock band formed in Liverpool in 1960. Using `Sys.Date()` and tell us for how many years, this band still gets tremendous popularity.
+
+```{r}
+beatles_formed <- 1960
+# ...
+```
+
+## Using `Sys.time()` for current datetime
+
+```{r}
+Sys.time()
+```
+
+## Datetime originates from 1970-01-01 08:00:00
+
+```{r}
+sys_datetime <- Sys.time()
+original_datetime <- sys_datetime - as.numeric(sys_datetime)
+original_datetime
+```
+
+## Every integer stands for a specific second
+
+```{r}
+sys_datetime <- Sys.time()
+original_datetime <- sys_datetime - as.numeric(sys_datetime)
+original_datetime - 1
+original_datetime
+original_datetime + 1
+```
+
+## Using `OlsonNames()` for specific timezones
+
+## Practices: The 921 earthquake
+
+1999-09-21 01:47:16 the Jiji earthquake occured in Nantou, Taiwan with a Richter scale of 7.3. The first major after-shock occured on 1999-09-21 01:57:15. Let us know how long was it between these two shocks.

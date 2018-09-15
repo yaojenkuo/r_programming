@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Tony Yao-Jen Kuo" />
-  <title>Getting Data with R</title>
+  <title>Project: Exploratory Data Analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -486,203 +486,113 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title">Getting Data with R</h1>
+    <h1 class="title">Project: Exploratory Data Analysis</h1>
     <h2 class="author">Tony Yao-Jen Kuo</h2>
 </section>
 
-<section><section id="how-to-get-data-with-r" class="titleslide slide level1"><h1>How to get data with R</h1></section><section id="overview" class="slide level2">
-<h2>Overview</h2>
+<section><section id="project-overview" class="titleslide slide level1"><h1>Project Overview</h1></section><section id="project-source" class="slide level2">
+<h2>Project source</h2>
+<p>Assignment from <a href="https://www.coursera.org/learn/exploratory-data-analysis">Exploratory Data Analysis</a></p>
+</section></section>
+<section><section id="data" class="titleslide slide level1"><h1>Data</h1></section><section id="downloading-data" class="slide level2">
+<h2>Downloading data</h2>
+<p><a href="https://storage.googleapis.com/jhu_coursera_data/exdata_NEI_data.zip">PM2.5</a></p>
+</section><section id="how-to-import" class="slide level2">
+<h2>How to import</h2>
+<p>Using <code>readRDS()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NEI &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;/Users/kuoyaojen/Downloads/exdata_NEI_data/summarySCC_PM25.rds&quot;</span>)
+SCCode &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;/Users/kuoyaojen/Downloads/exdata_NEI_data/Source_Classification_Code.rds&quot;</span>)</code></pre></div>
+</section><section id="the-top-6-rows-of-nei-data" class="slide level2">
+<h2>The top 6 rows of NEI data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(NEI)</code></pre></div>
+<pre><code>##     fips      SCC Pollutant Emissions  type year
+## 4  09001 10100401  PM25-PRI    15.714 POINT 1999
+## 8  09001 10100404  PM25-PRI   234.178 POINT 1999
+## 12 09001 10100501  PM25-PRI     0.128 POINT 1999
+## 16 09001 10200401  PM25-PRI     2.036 POINT 1999
+## 20 09001 10200504  PM25-PRI     0.388 POINT 1999
+## 24 09001 10200602  PM25-PRI     1.490 POINT 1999</code></pre>
+</section><section id="the-top-6-rows-of-sccode-data" class="slide level2">
+<h2>The top 6 rows of SCCode data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(SCCode)</code></pre></div>
+<pre><code>##        SCC Data.Category
+## 1 10100101         Point
+## 2 10100102         Point
+## 3 10100201         Point
+## 4 10100202         Point
+## 5 10100203         Point
+## 6 10100204         Point
+##                                                                   Short.Name
+## 1                   Ext Comb /Electric Gen /Anthracite Coal /Pulverized Coal
+## 2 Ext Comb /Electric Gen /Anthracite Coal /Traveling Grate (Overfeed) Stoker
+## 3       Ext Comb /Electric Gen /Bituminous Coal /Pulverized Coal: Wet Bottom
+## 4       Ext Comb /Electric Gen /Bituminous Coal /Pulverized Coal: Dry Bottom
+## 5                   Ext Comb /Electric Gen /Bituminous Coal /Cyclone Furnace
+## 6                   Ext Comb /Electric Gen /Bituminous Coal /Spreader Stoker
+##                                EI.Sector Option.Group Option.Set
+## 1 Fuel Comb - Electric Generation - Coal                        
+## 2 Fuel Comb - Electric Generation - Coal                        
+## 3 Fuel Comb - Electric Generation - Coal                        
+## 4 Fuel Comb - Electric Generation - Coal                        
+## 5 Fuel Comb - Electric Generation - Coal                        
+## 6 Fuel Comb - Electric Generation - Coal                        
+##                 SCC.Level.One       SCC.Level.Two
+## 1 External Combustion Boilers Electric Generation
+## 2 External Combustion Boilers Electric Generation
+## 3 External Combustion Boilers Electric Generation
+## 4 External Combustion Boilers Electric Generation
+## 5 External Combustion Boilers Electric Generation
+## 6 External Combustion Boilers Electric Generation
+##                 SCC.Level.Three
+## 1               Anthracite Coal
+## 2               Anthracite Coal
+## 3 Bituminous/Subbituminous Coal
+## 4 Bituminous/Subbituminous Coal
+## 5 Bituminous/Subbituminous Coal
+## 6 Bituminous/Subbituminous Coal
+##                                  SCC.Level.Four Map.To Last.Inventory.Year
+## 1                               Pulverized Coal     NA                  NA
+## 2             Traveling Grate (Overfeed) Stoker     NA                  NA
+## 3 Pulverized Coal: Wet Bottom (Bituminous Coal)     NA                  NA
+## 4 Pulverized Coal: Dry Bottom (Bituminous Coal)     NA                  NA
+## 5             Cyclone Furnace (Bituminous Coal)     NA                  NA
+## 6             Spreader Stoker (Bituminous Coal)     NA                  NA
+##   Created_Date Revised_Date Usage.Notes
+## 1                                      
+## 2                                      
+## 3                                      
+## 4                                      
+## 5                                      
+## 6</code></pre>
+</section><section id="variable-information-in-nei-data" class="slide level2">
+<h2>Variable information in NEI data</h2>
 <ul>
-<li class="fragment">From files</li>
-<li class="fragment">From web</li>
+<li>fips: A five-digit number (represented as a string) indicating the U.S. county</li>
+<li>SCC: The name of the source as indicated by a digit string (see source code classification table)</li>
+<li>Pollutant: A string indicating the pollutant</li>
+<li>Emissions: Amount of PM2.5 emitted, in tons</li>
+<li>type: The type of source (point, non-point, on-road, or non-road)</li>
+<li>year: The year of emissions recorded</li>
 </ul>
 </section></section>
-<section><section id="getting-data-from-files" class="titleslide slide level1"><h1>Getting data from files</h1></section><section id="using-read.csv-for-csv-files" class="slide level2">
-<h2>Using <code>read.csv()</code> for CSV files</h2>
-<ul>
-<li>CSV stands for <strong>comma separated values</strong></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.csv&quot;</span>
-df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(file_url, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="co"># personal preference...</span>
-<span class="kw">dim</span>(df)</code></pre></div>
-<pre><code>## [1] 15  7</code></pre>
-</section><section id="using-read.table-for-general-tabular-text-files" class="slide level2">
-<h2>Using <code>read.table()</code> for general tabular text files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.txt&quot;</span>
-df &lt;-<span class="st"> </span><span class="kw">read.table</span>(file_url, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</code></pre></div>
-<pre><code>## Warning in scan(file = file, what = what, sep = sep, quote = quote, dec =
-## dec, : EOF within quoted string</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(df)</code></pre></div>
-<pre><code>## [1] 15  7</code></pre>
-</section><section id="using-readxl-package-for-excel-spreadsheets" class="slide level2">
-<h2>Using <code>readxl</code> package for Excel spreadsheets</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
-
-file_path &lt;-<span class="st"> &quot;/Users/kuoyaojen/Downloads/fav_nba_teams.xlsx&quot;</span>
-chicago_bulls &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path)
-<span class="kw">head</span>(chicago_bulls)</code></pre></div>
-<pre><code>## # A tibble: 6 x 7
-##     No. Player        Pos   Ht       Wt `Birth Date`      College         
-##   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;           
-## 1     0 Randy Brown   PG    6-2     190 May 22, 1968      University of H…
-## 2    30 Jud Buechler  SF    6-6     220 June 19, 1968     University of A…
-## 3    35 Jason Caffey  PF    6-8     255 June 12, 1973     University of A…
-## 4    53 James Edwards C     7-0     225 November 22, 1955 University of W…
-## 5    54 Jack Haley    C     6-10    240 January 27, 1964  University of C…
-## 6     9 Ron Harper    PG    6-6     185 January 20, 1964  Miami University</code></pre>
-</section><section id="importing-other-sheets" class="slide level2">
-<h2>Importing other sheets</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boston_celtics &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path, <span class="dt">sheet =</span> <span class="st">&quot;boston_celtics_2007_2008&quot;</span>)
-<span class="kw">head</span>(boston_celtics)</code></pre></div>
-</section><section id="reading-specific-cell-ranges" class="slide level2">
-<h2>Reading specific cell ranges</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">partial_chi &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path, <span class="dt">range =</span> <span class="st">&quot;B8:C13&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)
-knitr<span class="op">::</span><span class="kw">kable</span>(partial_chi)</code></pre></div>
-</section><section id="using-jsonlite-package-for-json-files" class="slide level2">
-<h2>Using <code>jsonlite</code> package for JSON files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-
-file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.json&quot;</span>
-chicago_bulls &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(file_url)
-<span class="kw">class</span>(chicago_bulls)</code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
-</section><section id="a-quick-review" class="slide level2">
-<h2>A quick review</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Source</th>
-<th>Format</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>CSV</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="even">
-<td>TXT</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="odd">
-<td>Spreadsheet</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="even">
-<td>JSON</td>
-<td><code>list</code></td>
-</tr>
-</tbody>
-</table>
-</section></section>
-<section><section id="getting-data-from-web" class="titleslide slide level1"><h1>Getting data from web</h1></section><section id="jsonlite-for-restful-apis" class="slide level2">
-<h2><code>jsonlite</code> for RESTful APIs</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-
-web_url &lt;-<span class="st"> &quot;https://ecshweb.pchome.com.tw/search/v3.3/all/results?q=macbook&amp;page=1&amp;sort=rnk/dc&quot;</span>
-macbook &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(web_url)
-<span class="kw">class</span>(macbook)</code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(macbook)</code></pre></div>
-<pre><code>## [1] &quot;QTime&quot;     &quot;totalRows&quot; &quot;totalPage&quot; &quot;range&quot;     &quot;cateName&quot;  &quot;q&quot;        
-## [7] &quot;subq&quot;      &quot;token&quot;     &quot;prods&quot;</code></pre>
-</section><section id="rvest-for-html-documents" class="slide level2">
-<h2><code>rvest</code> for HTML documents</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rvest&quot;</span>)</code></pre></div>
-</section><section id="the-use-of-operator" class="slide level2">
-<h2>The use of <code>%&gt;%</code> operator</h2>
-<ul>
-<li>Originated from <code>magrittr</code> package</li>
-<li>Now an important operator for the <code>tidyverse</code> eco-system</li>
-<li>Can be generated with: Ctrl + Shift + m</li>
-</ul>
-</section><section id="how-to-call-a-function" class="slide level2">
-<h2>How to call a function</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)</code></pre></div>
-<pre><code>## Loading required package: xml2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># traditional</span>
-<span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] 55</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using %&gt;%</span>
-<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">sum</span>()</code></pre></div>
-<pre><code>## [1] 55</code></pre>
-</section><section id="more-examples" class="slide level2">
-<h2>More examples</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># traditional</span>
-<span class="kw">toupper</span>(<span class="kw">paste0</span>(<span class="kw">strsplit</span>(<span class="st">&quot;Jeremy Lin&quot;</span>, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>], <span class="st">&quot;sanity&quot;</span>))</code></pre></div>
-<pre><code>## [1] &quot;LINSANITY&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using %&gt;% </span>
-<span class="st">&quot;Jeremy Lin&quot;</span> <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">strsplit</span>(<span class="dt">split =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  `</span><span class="dt">[[</span><span class="st">`</span> (<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  `</span><span class="dt">[</span><span class="st">`</span> (<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">paste0</span>(<span class="st">&quot;sanity&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">toupper</span>()</code></pre></div>
-<pre><code>## [1] &quot;LINSANITY&quot;</code></pre>
-</section><section id="read_html-for-reading-all-html-contents" class="slide level2">
-<h2><code>read_html()</code> for reading all html contents</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
-
-mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span>
-html_doc &lt;-<span class="st"> </span>mi_url <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">read_html</span>()</code></pre></div>
-</section><section id="html_nodes-to-locate-elements" class="slide level2">
-<h2><code>html_nodes()</code> to locate elements</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="co"># CSS selector</span></code></pre></div>
-<pre><code>## {xml_nodeset (1)}
-## [1] &lt;span&gt;8.1&lt;/span&gt;</code></pre>
-</section><section id="html_text-to-remove-tags" class="slide level2">
-<h2><code>html_text()</code> to remove tags</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_text</span>()</code></pre></div>
-<pre><code>## [1] &quot;8.1&quot;</code></pre>
-</section><section id="data-of-html-document-are-characters" class="slide level2">
-<h2>Data of html document are characters</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">as.numeric</span>()</code></pre></div>
-<pre><code>## [1] 8.1</code></pre>
-</section><section id="how-to-locate-elements" class="slide level2">
-<h2>How to locate elements?</h2>
-<ul>
-<li class="fragment">By CSS Selectors</li>
-<li class="fragment">By XPath</li>
-</ul>
-</section></section>
-<section><section id="the-use-of-chrome-plugins" class="titleslide slide level1"><h1>The use of Chrome plugins</h1></section><section id="selectorgadget" class="slide level2">
-<h2>SelectorGadget</h2>
-<p>A Chrome plugin for CSS selectors: <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb">SelectorGadget</a></p>
-</section><section id="how-to-use-selectorgadget" class="slide level2">
-<h2>How to use SelectorGadget?</h2>
-</section><section id="xpath-helper" class="slide level2">
-<h2>XPath Helper</h2>
-<p>A Chrome plugin for XPath: <a href="https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper</a></p>
-</section><section id="how-to-use-xpath-helper" class="slide level2">
-<h2>How to use XPath Helper?</h2>
-</section><section id="practices-getting-genre-information-from-imdb.com" class="slide level2">
-<h2>Practices: Getting genre information from IMDB.com</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span></code></pre></div>
-<pre><code>## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Thriller&quot;</code></pre>
-</section><section id="practices-getting-cast-information-from-imdb.com" class="slide level2">
-<h2>Practices: Getting cast information from IMDB.com</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span></code></pre></div>
-<pre><code>##  [1] &quot; Tom Cruise\n&quot;        &quot; Henry Cavill\n&quot;      &quot; Ving Rhames\n&quot;      
-##  [4] &quot; Simon Pegg\n&quot;        &quot; Rebecca Ferguson\n&quot;  &quot; Sean Harris\n&quot;      
-##  [7] &quot; Angela Bassett\n&quot;    &quot; Vanessa Kirby\n&quot;     &quot; Michelle Monaghan\n&quot;
-## [10] &quot; Wes Bentley\n&quot;       &quot; Frederick Schmidt\n&quot; &quot; Alec Baldwin\n&quot;     
-## [13] &quot; Liang Yang\n&quot;        &quot; Kristoffer Joner\n&quot;  &quot; Wolf Blitzer\n&quot;</code></pre>
-</section><section id="practices-getting-price-ranking-from-yahoo-stock" class="slide level2">
-<h2>Practices: Getting price ranking from Yahoo! Stock</h2>
-<ul>
-<li>Top 100 for TSE: <a href="https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100" class="uri">https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100</a></li>
-<li>Top 100 for OTC: <a href="https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=otc&amp;n=100" class="uri">https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=otc&amp;n=100</a></li>
-</ul>
+<section><section id="using-ggplot2-or-any-other-plotting-system-to-answer-the-following-questions" class="titleslide slide level1"><h1>Using ggplot2 or any other plotting system to answer the following questions</h1></section><section id="question-1" class="slide level2">
+<h2>Question 1</h2>
+<p>Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? Make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.</p>
+</section><section id="question-2" class="slide level2">
+<h2>Question 2</h2>
+<p>Have total emissions from PM2.5 decreased in the Baltimore City, Maryland(<code>fips == '24510'</code>) from 1999 to 2008? Make a plot answering this question.</p>
+</section><section id="question-3" class="slide level2">
+<h2>Question 3</h2>
+<p>Of the four types of sources indicated by the type(point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Make a plot answer this question.</p>
+</section><section id="question-4" class="slide level2">
+<h2>Question 4</h2>
+<p>Across the United States, how have emissions from coal combustion-related sources(<code>SCC$EI.Sector</code>) changed from 1999–2008?</p>
+</section><section id="question-5" class="slide level2">
+<h2>Question 5</h2>
+<p>How have emissions from motor vehicle sources(<code>SCC$EI.Sector</code>) changed from 1999–2008 in Baltimore City?</p>
+</section><section id="question-6" class="slide level2">
+<h2>Question 6</h2>
+<p>Compare emissions from motor vehicle sources in Baltimore City with emissions from motor vehicle sources in Los Angeles County, California(<code>fips == '06037'</code>). Which city has seen greater changes over time in motor vehicle emissions?</p>
 </section></section>
     </div>
   </div>

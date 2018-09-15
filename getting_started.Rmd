@@ -1,0 +1,190 @@
+---
+title: "Getting Started with R"
+author: "Tony Yao-Jen Kuo"
+output: 
+  revealjs::revealjs_presentation:
+    highlight: pygments
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(results = "hold")
+```
+
+# Getting Started
+
+## The characteristics of R
+
+- Comparing to Matlab, SAS, SPSS: Free
+- Comparing to Julia: Larger community
+- Functional Programming
+
+## R in one sentence
+
+> Applying functions to objects.
+
+## R: core of computation
+
+- Download from <https://cran.r-project.org/>
+
+![](https://i.imgur.com/A5OwsnX.png)
+
+## RStudio: the IDE
+
+- Download from <https://www.rstudio.com/products/rstudio/download>
+
+# Interface of RStudio
+
+## Four blocks
+
+- Script
+- Console
+- Environment
+- Multi-functional
+
+## Console tricks
+
+- Using `Ctrl + L` for clearing
+- Using Up and Down arrow checking executed scripts
+
+## Keyboard shortcuts
+
+- Using `Alt + Shift + K` for shortcuts
+
+# Quickstart
+
+## Using `<-` for assignment
+
+- `=` is OKAY, but `<-` is more common
+- Using `Alt + -` to get `<-`
+
+## Using `#` for comments
+
+```{r}
+# Declaring objects
+
+# Declaring function
+
+```
+
+## Assignments in action
+
+```{r}
+# Declaring objects
+my_favorite_star <- "Tom Cruise"
+my_lucky_number <- 24
+r_is_easy <- TRUE
+
+# Declaring function
+say_hello <- function(){
+  return("Hello R!")
+}
+```
+
+## Printing objects or calling function
+
+```{r results='hold'}
+# Printing objects
+my_favorite_star
+my_lucky_number
+r_is_easy
+
+# Calling function
+say_hello()
+```
+
+## Using `rm()` to remove objects
+
+```{r eval=FALSE}
+rm(r_is_easy)
+r_is_easy # Error
+```
+
+## Why is R Console showing `+`?
+
+- The reason is that R is still expecting inputs from us
+
+```{r eval=FALSE}
+my_favorite_player <- "Steve Nash
+
+say_hello <- function(){
+  return("Hello R!")
+
+help(print
+```
+
+## 2 ways to solve it
+
+1. Complete your inputs
+2. ESC
+
+## Install packages
+
+- `install.packages()`
+- Do it once
+
+## Library packages
+
+- `library()`
+- Do it every time
+
+# Useful functions
+
+## Function to query functions or data
+
+```{r eval=FALSE}
+help(print) # ?print
+help(cars) # ?cars
+```
+
+## Function to show relative information
+
+```{r}
+sessionInfo()
+```
+
+## Function to get locale
+
+```{r}
+Sys.getlocale()
+```
+
+## Function to get current working directory
+
+```{r}
+getwd()
+```
+
+## Function to set working directory
+
+- Always use forward slash when declaring path
+- Back slash has other functionalities, such as escape, Unicode...
+- Try not to use non-English username
+
+```{r eval=FALSE}
+setwd("/Users/USERNAME/Desktop") # MacOS desktop
+setwd("C:/Users/USERNAME/Desktop") # Windows desktop
+```
+
+## Function to quit RStudio
+
+- Not saving workspace image is recommended
+
+```{r eval=FALSE}
+q()
+```
+
+## Common learning path for programming
+
+- Installation of compiler or interpreter
+- Choosing a friendly IDE
+- Quickstart
+- Variable types
+  - Functions
+  - Control flows
+- Data structure
+  - Iterations
+- (Optional) Class
+- (Optional) Package development

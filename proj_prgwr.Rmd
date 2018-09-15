@@ -1,0 +1,221 @@
+---
+title: "Project: Programming with R"
+author: "Tony Yao-Jen Kuo"
+output:
+  revealjs::revealjs_presentation:
+    highlight: pygments
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(results = "hold", message = FALSE)
+```
+
+# Project Overview
+
+## Project source
+
+Assignment from [Programming with R](https://www.coursera.org/learn/r-programming)
+
+## Write 3 functions to interact with data
+
+>- `pollutantmean(directory, pollutant, id = 1:332)`
+
+>- `complete(directory, id = 1:332)`
+
+>- `corr(directory, threshold = 0)`
+
+## Getting data
+
+[specdata.zip](https://storage.googleapis.com/jhu_coursera_data/specdata.zip)
+
+## How to download, unzip data with R?
+
+- `download.file()` for downloading
+- `unzip()` for unzipping
+
+## About data
+
+- 332 CSV files after unzipping
+- Each CSV file has 4 variables
+
+# Function 1
+
+## Try to calculate the mean value of certain pollutant from different stations
+
+`pollutantmean(directory, pollutant, id = 1:332)`
+
+## Hints for function 1
+
+- Set `na.rm = TRUE` in `mean()` if there are NAs
+
+## Sample outputs
+
+```{r echo=FALSE}
+pollutantmean <- function(directory, pollutant, id = 1:332) {
+  csv_filenames <- c()
+  for (i in id) {
+    if (nchar(i) == 1) {
+      csv_filename <- paste0("00", i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    } else if (nchar(i) == 2) {
+      csv_filename <- paste0("0", i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    } else {
+      csv_filename <- paste0(i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    }
+  }
+  csv_lst <- list()
+  for (i in 1:length(csv_filenames)) {
+    csv_files_dir <- paste0(directory, "/", csv_filenames[i])
+    csv_lst[[i]] <- read.csv(csv_files_dir, stringsAsFactors = FALSE)
+  }
+  df <- csv_lst[[1]]
+  if (length(csv_lst) != 1) {
+    for (i in 2:length(csv_lst)) {
+      df <- rbind(df, csv_lst[[i]])
+    }
+  }
+  filtered_vector <- df[, pollutant]
+  ans <- mean(filtered_vector, na.rm = TRUE)
+  return(ans)
+}
+```
+
+```{r}
+my_dir <- "/Users/kuoyaojen/Downloads/specdata"
+pollutantmean(my_dir, "sulfate", 1:10)
+pollutantmean(my_dir, "nitrate", 70:72)
+pollutantmean(my_dir, "nitrate", 23)
+```
+
+# Function 2
+
+## Try to calculate how many complete rows are in different CSV files
+
+`complete(directory, id = 1:332)`
+
+## Hints for function 2
+
+- Use `complete.cases()` to get complete rows from a data frame
+
+## Sample output 1
+
+```{r echo = FALSE}
+complete <- function(directory, id = 1:332) {
+  csv_filenames <- c()
+  for (i in id) {
+    if (nchar(i) == 1) {
+      csv_filename <- paste0("00", i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    } else if (nchar(i) == 2) {
+      csv_filename <- paste0("0", i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    } else {
+      csv_filename <- paste0(i, ".csv")
+      csv_filenames <- c(csv_filenames, csv_filename)
+    }
+  }
+  csv_lst <- list()
+  for (i in 1:length(csv_filenames)) {
+    csv_files_dir <- paste0(directory, "/", csv_filenames[i])
+    csv_lst[[i]] <- read.csv(csv_files_dir, stringsAsFactors = FALSE)
+  }
+  df_id <- id
+  nobs <- c()
+  for (i in 1:length(csv_lst)) {
+    n_complete_cases <- sum(complete.cases(csv_lst[[i]]))
+    nobs <- c(nobs, n_complete_cases)
+  }
+  return_df <- data.frame(id = df_id, nobs = nobs)
+  return(return_df)
+}
+```
+
+```{r}
+my_dir <- "/Users/kuoyaojen/Downloads/specdata"
+complete(my_dir, 1)
+complete(my_dir, c(2, 4, 8, 10, 12))
+```
+
+## Sample output 2
+
+```{r}
+complete(my_dir, 30:25)
+complete(my_dir, 3)
+```
+
+# Function 3
+
+## Try to calculate the correlation coefficient for CSV files, which have complete observations over `threshold`
+
+`corr(directory, threshold = 0)`
+
+## Hints for function 3
+
+- Use `cor(x, y, use = "pairwise.complete.obs")` function for correlation coefficient
+
+```{r echo = FALSE}
+corr <- function(directory, threshold = 0) {
+  csv_filenames <- list.files(directory)
+  csv_directories <- paste0(directory, "/", csv_filenames)
+  csv_filelist <- list()
+  for (i in 1:length(csv_filenames)) {
+    csv_filelist[[i]] <- read.csv(csv_directories[i])
+  }
+  nobs <- c()
+  for (i in 1:length(csv_filelist)) {
+    n_complete_cases <- sum(complete.cases(csv_filelist[[i]]))
+    nobs <- c(nobs, n_complete_cases)
+  }
+  filter_vector <- nobs >= threshold
+  if (sum(filter_vector) == 0) {
+    cor_vector <- c()
+    return(cor_vector)
+  } else {
+    filtered_list <- csv_filelist[filter_vector]
+    cor_vector <- c()
+    for (i in 1:length(filtered_list)) {
+      cor_vector[i] <- cor(filtered_list[[i]]$sulfate, filtered_list[[i]]$nitrate, use = "pairwise.complete.obs")
+    }
+    cor_vector <- cor_vector[!is.na(cor_vector)]
+    return(cor_vector)
+  }
+}
+```
+
+## Sample output 1
+
+```{r}
+my_dir <- "/Users/kuoyaojen/Downloads/specdata"
+cr <- corr(my_dir, 150)
+head(cr)
+summary(cr)
+```
+
+## Sample output 2
+
+```{r}
+cr <- corr(my_dir, 400)
+head(cr)
+summary(cr)
+```
+
+## Sample output 3
+
+```{r}
+cr <- corr(my_dir, 5000)
+summary(cr)
+length(cr)
+```
+
+## Sample output 4
+
+```{r}
+cr <- corr(my_dir)
+summary(cr)
+length(cr)
+```

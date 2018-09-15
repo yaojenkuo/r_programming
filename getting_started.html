@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Tony Yao-Jen Kuo" />
-  <title>Getting Data with R</title>
+  <title>Getting Started with R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -486,202 +486,185 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title">Getting Data with R</h1>
+    <h1 class="title">Getting Started with R</h1>
     <h2 class="author">Tony Yao-Jen Kuo</h2>
 </section>
 
-<section><section id="how-to-get-data-with-r" class="titleslide slide level1"><h1>How to get data with R</h1></section><section id="overview" class="slide level2">
-<h2>Overview</h2>
+<section><section id="getting-started" class="titleslide slide level1"><h1>Getting Started</h1></section><section id="the-characteristics-of-r" class="slide level2">
+<h2>The characteristics of R</h2>
 <ul>
-<li class="fragment">From files</li>
-<li class="fragment">From web</li>
+<li>Comparing to Matlab, SAS, SPSS: Free</li>
+<li>Comparing to Julia: Larger community</li>
+<li>Functional Programming</li>
+</ul>
+</section><section id="r-in-one-sentence" class="slide level2">
+<h2>R in one sentence</h2>
+<blockquote>
+<p>Applying functions to objects.</p>
+</blockquote>
+</section><section id="r-core-of-computation" class="slide level2">
+<h2>R: core of computation</h2>
+<ul>
+<li>Download from <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></li>
+</ul>
+<p><img src="data:image/png;base64,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m6uJ17p5Ll6tnUutB+M1zzp1oSautWNvLdaux9oa77FqLl6PTc33Y7xneB6xqfrYbmoREbG+BNDxC1KVXl9q3OuaN1e1Xmcc5oLxWli3j3WsUxvO2a3eXsF4vao+Z7e9Xr2dq9qvzvm6qYlr7Ti3lpuzhnV9jLXztjYYz4fanLa/Sq8+nquqqXNOralTh4iI9SWA1rwAeXOxdi2urbPm6a2HOX2so9drxynr1sXavlhvPddj963S6885iB57fqutsebWgt3WhOO4r2pcNa/2s3eqN5iaD+p6HeOeeOyZqkdExOFIAK1xAfJq4rncRa3umqe3XrVHbs9Brdlx6thT17up9+ylJ7bXPar6pno9aOvCcdxbNa6aV729vfrcXLwWz3u9nnXqUudKzdU9NyIiDlYCaA8XNW8ud1GL12Jtbay3budS/XXm9bhKry8e5+pSap3Vq0nZbb21l/NZq3pz6/GaV1v3ufWyVy/n0/VgGNvH1FwYB+1c1XHKXmp07JmqR0TE4UgAjS5MKb0+79HqrcV1ub742I69vlitsfV27NnNmh2njj113asJ81X9aqom11t375xhj6rz2ONcT925WG/P+DiuieeCoSdlqIn7cnq99jFeT41jU+t2vmqPYKirW4+IiIOVAFrjAhTXVI2tvV7gtK/OeXPa2lAfz1lz61W9au68qbVYW2P7utHrDXtif9rXMhx7c3VM1ep8L4beeL+U3dQiIuJgnfYBFBERERGHKwEUEREREYcqARQRERERhyoBFBERERGHKgEUEREREYcqARQRERERhyoBFBERERGHKgEUEREREYcqARQRERERhyoBFBERERGHKgEUEREREYcqARQRERERhyoBFBERERGHKgEUEREREYcqARQRERERh2qtADpr1ixERERExIFYK4ACAAAAAAyKWgHUu3WKiIiIiNiLBFBEREREHKoEUEREREQcqgRQRERERByqBFBEREREHKoEUEREREQcqgRQRERERByqBFBEREREHKoEUEREREQcqgRQRERERByqBFBEREREHKoEUEREREQcqgRQRERERByqBFBEREREHKoEUEREREQcqgRQRMTCBQsWYAsMn6+Rz9yFLdD+M9at3ucfm6f3uasjARQRsVD/RfrQQw9hg7UXOy/sYPO0/4x1K/9MNl8CKCJin3Kxa75eAPXq8OhLAJ0e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" /></p>
+</section><section id="rstudio-the-ide" class="slide level2">
+<h2>RStudio: the IDE</h2>
+<ul>
+<li>Download from <a href="https://www.rstudio.com/products/rstudio/download" class="uri">https://www.rstudio.com/products/rstudio/download</a></li>
 </ul>
 </section></section>
-<section><section id="getting-data-from-files" class="titleslide slide level1"><h1>Getting data from files</h1></section><section id="using-read.csv-for-csv-files" class="slide level2">
-<h2>Using <code>read.csv()</code> for CSV files</h2>
+<section><section id="interface-of-rstudio" class="titleslide slide level1"><h1>Interface of RStudio</h1></section><section id="four-blocks" class="slide level2">
+<h2>Four blocks</h2>
 <ul>
-<li>CSV stands for <strong>comma separated values</strong></li>
+<li>Script</li>
+<li>Console</li>
+<li>Environment</li>
+<li>Multi-functional</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.csv&quot;</span>
-df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(file_url, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="co"># personal preference...</span>
-<span class="kw">dim</span>(df)</code></pre></div>
-<pre><code>## [1] 15  7</code></pre>
-</section><section id="using-read.table-for-general-tabular-text-files" class="slide level2">
-<h2>Using <code>read.table()</code> for general tabular text files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.txt&quot;</span>
-df &lt;-<span class="st"> </span><span class="kw">read.table</span>(file_url, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</code></pre></div>
-<pre><code>## Warning in scan(file = file, what = what, sep = sep, quote = quote, dec =
-## dec, : EOF within quoted string</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(df)</code></pre></div>
-<pre><code>## [1] 15  7</code></pre>
-</section><section id="using-readxl-package-for-excel-spreadsheets" class="slide level2">
-<h2>Using <code>readxl</code> package for Excel spreadsheets</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
-
-file_path &lt;-<span class="st"> &quot;/Users/kuoyaojen/Downloads/fav_nba_teams.xlsx&quot;</span>
-chicago_bulls &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path)
-<span class="kw">head</span>(chicago_bulls)</code></pre></div>
-<pre><code>## # A tibble: 6 x 7
-##     No. Player        Pos   Ht       Wt `Birth Date`      College         
-##   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;           
-## 1     0 Randy Brown   PG    6-2     190 May 22, 1968      University of H…
-## 2    30 Jud Buechler  SF    6-6     220 June 19, 1968     University of A…
-## 3    35 Jason Caffey  PF    6-8     255 June 12, 1973     University of A…
-## 4    53 James Edwards C     7-0     225 November 22, 1955 University of W…
-## 5    54 Jack Haley    C     6-10    240 January 27, 1964  University of C…
-## 6     9 Ron Harper    PG    6-6     185 January 20, 1964  Miami University</code></pre>
-</section><section id="importing-other-sheets" class="slide level2">
-<h2>Importing other sheets</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boston_celtics &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path, <span class="dt">sheet =</span> <span class="st">&quot;boston_celtics_2007_2008&quot;</span>)
-<span class="kw">head</span>(boston_celtics)</code></pre></div>
-</section><section id="reading-specific-cell-ranges" class="slide level2">
-<h2>Reading specific cell ranges</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">partial_chi &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path, <span class="dt">range =</span> <span class="st">&quot;B8:C13&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)
-knitr<span class="op">::</span><span class="kw">kable</span>(partial_chi)</code></pre></div>
-</section><section id="using-jsonlite-package-for-json-files" class="slide level2">
-<h2>Using <code>jsonlite</code> package for JSON files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-
-file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.json&quot;</span>
-chicago_bulls &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(file_url)
-<span class="kw">class</span>(chicago_bulls)</code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
-</section><section id="a-quick-review" class="slide level2">
-<h2>A quick review</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Source</th>
-<th>Format</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>CSV</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="even">
-<td>TXT</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="odd">
-<td>Spreadsheet</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="even">
-<td>JSON</td>
-<td><code>list</code></td>
-</tr>
-</tbody>
-</table>
-</section></section>
-<section><section id="getting-data-from-web" class="titleslide slide level1"><h1>Getting data from web</h1></section><section id="jsonlite-for-restful-apis" class="slide level2">
-<h2><code>jsonlite</code> for RESTful APIs</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-
-web_url &lt;-<span class="st"> &quot;https://ecshweb.pchome.com.tw/search/v3.3/all/results?q=macbook&amp;page=1&amp;sort=rnk/dc&quot;</span>
-macbook &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(web_url)
-<span class="kw">class</span>(macbook)</code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(macbook)</code></pre></div>
-<pre><code>## [1] &quot;QTime&quot;     &quot;totalRows&quot; &quot;totalPage&quot; &quot;range&quot;     &quot;cateName&quot;  &quot;q&quot;        
-## [7] &quot;subq&quot;      &quot;token&quot;     &quot;prods&quot;</code></pre>
-</section><section id="rvest-for-html-documents" class="slide level2">
-<h2><code>rvest</code> for HTML documents</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rvest&quot;</span>)</code></pre></div>
-</section><section id="the-use-of-operator" class="slide level2">
-<h2>The use of <code>%&gt;%</code> operator</h2>
+</section><section id="console-tricks" class="slide level2">
+<h2>Console tricks</h2>
 <ul>
-<li>Originated from <code>magrittr</code> package</li>
-<li>Now an important operator for the <code>tidyverse</code> eco-system</li>
-<li>Can be generated with: Ctrl + Shift + m</li>
+<li>Using <code>Ctrl + L</code> for clearing</li>
+<li>Using Up and Down arrow checking executed scripts</li>
 </ul>
-</section><section id="how-to-call-a-function" class="slide level2">
-<h2>How to call a function</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)</code></pre></div>
-<pre><code>## Loading required package: xml2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># traditional</span>
-<span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] 55</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using %&gt;%</span>
-<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">sum</span>()</code></pre></div>
-<pre><code>## [1] 55</code></pre>
-</section><section id="more-examples" class="slide level2">
-<h2>More examples</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># traditional</span>
-<span class="kw">toupper</span>(<span class="kw">paste0</span>(<span class="kw">strsplit</span>(<span class="st">&quot;Jeremy Lin&quot;</span>, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>], <span class="st">&quot;sanity&quot;</span>))</code></pre></div>
-<pre><code>## [1] &quot;LINSANITY&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using %&gt;% </span>
-<span class="st">&quot;Jeremy Lin&quot;</span> <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">strsplit</span>(<span class="dt">split =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  `</span><span class="dt">[[</span><span class="st">`</span> (<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  `</span><span class="dt">[</span><span class="st">`</span> (<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">paste0</span>(<span class="st">&quot;sanity&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">toupper</span>()</code></pre></div>
-<pre><code>## [1] &quot;LINSANITY&quot;</code></pre>
-</section><section id="read_html-for-reading-all-html-contents" class="slide level2">
-<h2><code>read_html()</code> for reading all html contents</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
-
-mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span>
-html_doc &lt;-<span class="st"> </span>mi_url <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">read_html</span>()</code></pre></div>
-</section><section id="html_nodes-to-locate-elements" class="slide level2">
-<h2><code>html_nodes()</code> to locate elements</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="co"># CSS selector</span></code></pre></div>
-<pre><code>## {xml_nodeset (1)}
-## [1] &lt;span&gt;8.1&lt;/span&gt;</code></pre>
-</section><section id="html_text-to-remove-tags" class="slide level2">
-<h2><code>html_text()</code> to remove tags</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_text</span>()</code></pre></div>
-<pre><code>## [1] &quot;8.1&quot;</code></pre>
-</section><section id="data-of-html-document-are-characters" class="slide level2">
-<h2>Data of html document are characters</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">as.numeric</span>()</code></pre></div>
-<pre><code>## [1] 8.1</code></pre>
-</section><section id="how-to-locate-elements" class="slide level2">
-<h2>How to locate elements?</h2>
+</section><section id="keyboard-shortcuts" class="slide level2">
+<h2>Keyboard shortcuts</h2>
 <ul>
-<li class="fragment">By CSS Selectors</li>
-<li class="fragment">By XPath</li>
+<li>Using <code>Alt + Shift + K</code> for shortcuts</li>
 </ul>
 </section></section>
-<section><section id="the-use-of-chrome-plugins" class="titleslide slide level1"><h1>The use of Chrome plugins</h1></section><section id="selectorgadget" class="slide level2">
-<h2>SelectorGadget</h2>
-<p>A Chrome plugin for CSS selectors: <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb">SelectorGadget</a></p>
-</section><section id="how-to-use-selectorgadget" class="slide level2">
-<h2>How to use SelectorGadget?</h2>
-</section><section id="xpath-helper" class="slide level2">
-<h2>XPath Helper</h2>
-<p>A Chrome plugin for XPath: <a href="https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper</a></p>
-</section><section id="how-to-use-xpath-helper" class="slide level2">
-<h2>How to use XPath Helper?</h2>
-</section><section id="practices-getting-genre-information-from-imdb.com" class="slide level2">
-<h2>Practices: Getting genre information from IMDB.com</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span></code></pre></div>
-<pre><code>## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Thriller&quot;</code></pre>
-</section><section id="practices-getting-cast-information-from-imdb.com" class="slide level2">
-<h2>Practices: Getting cast information from IMDB.com</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span></code></pre></div>
-<pre><code>##  [1] &quot; Tom Cruise\n&quot;        &quot; Henry Cavill\n&quot;      &quot; Ving Rhames\n&quot;      
-##  [4] &quot; Simon Pegg\n&quot;        &quot; Rebecca Ferguson\n&quot;  &quot; Sean Harris\n&quot;      
-##  [7] &quot; Angela Bassett\n&quot;    &quot; Vanessa Kirby\n&quot;     &quot; Michelle Monaghan\n&quot;
-## [10] &quot; Wes Bentley\n&quot;       &quot; Frederick Schmidt\n&quot; &quot; Alec Baldwin\n&quot;     
-## [13] &quot; Liang Yang\n&quot;        &quot; Kristoffer Joner\n&quot;  &quot; Wolf Blitzer\n&quot;</code></pre>
-</section><section id="practices-getting-price-ranking-from-yahoo-stock" class="slide level2">
-<h2>Practices: Getting price ranking from Yahoo! Stock</h2>
+<section><section id="quickstart" class="titleslide slide level1"><h1>Quickstart</h1></section><section id="using---for-assignment" class="slide level2">
+<h2>Using <code>&lt;-</code> for assignment</h2>
 <ul>
-<li>Top 100 for TSE: <a href="https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100" class="uri">https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100</a></li>
-<li>Top 100 for OTC: <a href="https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=otc&amp;n=100" class="uri">https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=otc&amp;n=100</a></li>
+<li><code>=</code> is OKAY, but <code>&lt;-</code> is more common</li>
+<li>Using <code>Alt + -</code> to get <code>&lt;-</code></li>
+</ul>
+</section><section id="using-for-comments" class="slide level2">
+<h2>Using <code>#</code> for comments</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Declaring objects</span>
+
+<span class="co"># Declaring function</span></code></pre></div>
+</section><section id="assignment-in-action" class="slide level2">
+<h2>Assignment in action</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Declaring objects</span>
+my_favorite_star &lt;-<span class="st"> &quot;Tom Cruise&quot;</span>
+my_lucky_number &lt;-<span class="st"> </span><span class="dv">24</span>
+r_is_easy &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+
+<span class="co"># Declaring function</span>
+say_hello &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  <span class="kw">return</span>(<span class="st">&quot;Hello R!&quot;</span>)
+}</code></pre></div>
+</section><section id="printing-objects-or-calling-function" class="slide level2">
+<h2>Printing objects or calling function</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Printing objects</span>
+my_favorite_star
+my_lucky_number
+r_is_easy
+
+<span class="co"># Calling function</span>
+<span class="kw">say_hello</span>()</code></pre></div>
+<pre><code>## [1] &quot;Tom Cruise&quot;
+## [1] 24
+## [1] TRUE
+## [1] &quot;Hello R!&quot;</code></pre>
+</section><section id="using-rm-to-remove-objects" class="slide level2">
+<h2>Using <code>rm()</code> to remove objects</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(r_is_easy)
+r_is_easy <span class="co"># Error</span></code></pre></div>
+</section><section id="why-is-r-console-showing" class="slide level2">
+<h2>Why is R Console showing <code>+</code>?</h2>
+<ul>
+<li>The reason is that R is still expecting inputs from us</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_favorite_player &lt;-<span class="st"> &quot;Steve Nash</span>
+
+<span class="st">say_hello &lt;- function(){</span>
+<span class="st">  return(&quot;</span>Hello R<span class="op">!</span><span class="st">&quot;)</span>
+
+<span class="st">help(print</span></code></pre></div>
+</section><section id="ways-to-solve-it" class="slide level2">
+<h2>2 ways to solve it</h2>
+<ol type="1">
+<li>Complete your inputs</li>
+<li>ESC</li>
+</ol>
+</section><section id="install-packages" class="slide level2">
+<h2>Install packages</h2>
+<ul>
+<li><code>install.packages()</code></li>
+<li>Do it once</li>
+</ul>
+</section><section id="library-packages" class="slide level2">
+<h2>Library packages</h2>
+<ul>
+<li><code>library()</code></li>
+<li>Do it every time</li>
+</ul>
+</section></section>
+<section><section id="useful-functions" class="titleslide slide level1"><h1>Useful functions</h1></section><section id="function-to-query-functions-or-data" class="slide level2">
+<h2>Function to query functions or data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(print) <span class="co"># ?print</span>
+<span class="kw">help</span>(cars) <span class="co"># ?cars</span></code></pre></div>
+</section><section id="function-to-show-relative-information" class="slide level2">
+<h2>Function to show relative information</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
+<pre><code>## R version 3.4.4 (2018-03-15)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.6
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.4.4  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
+##  [5] tools_3.4.4     htmltools_0.3.6 revealjs_0.9    yaml_2.1.19    
+##  [9] Rcpp_0.12.16    stringi_1.2.4   rmarkdown_1.9   knitr_1.20     
+## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11</code></pre>
+</section><section id="function-to-get-locale" class="slide level2">
+<h2>Function to get locale</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.getlocale</span>()</code></pre></div>
+<pre><code>## [1] &quot;en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8&quot;</code></pre>
+</section><section id="function-to-get-current-working-directory" class="slide level2">
+<h2>Function to get current working directory</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<pre><code>## [1] &quot;/Users/kuoyaojen/rprg_iii&quot;</code></pre>
+</section><section id="function-to-set-working-directory" class="slide level2">
+<h2>Function to set working directory</h2>
+<ul>
+<li>Always use forward slash when declaring path</li>
+<li>Back slash has other functionalities, such as escape, Unicode…</li>
+<li>Try not to use non-English username</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;/Users/USERNAME/Desktop&quot;</span>) <span class="co"># MacOS desktop</span>
+<span class="kw">setwd</span>(<span class="st">&quot;C:/Users/USERNAME/Desktop&quot;</span>) <span class="co"># Windows desktop</span></code></pre></div>
+</section><section id="function-to-quit-rstudio" class="slide level2">
+<h2>Function to quit RStudio</h2>
+<ul>
+<li>Not saving workspace image is recommended</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">q</span>()</code></pre></div>
+</section><section id="common-learning-path-for-programming" class="slide level2">
+<h2>Common learning path for programming</h2>
+<ul>
+<li>Installation of compiler or interpreter</li>
+<li>Choosing a friendly IDE</li>
+<li>Quickstart</li>
+<li>Variable type</li>
+<li>Control flow</li>
+<li>Data structure</li>
+<li>Iteration</li>
+<li>Function</li>
+<li>(Optional) Class</li>
+<li>(Optional) Package</li>
 </ul>
 </section></section>
     </div>

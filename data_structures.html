@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Tony Yao-Jen Kuo" />
-  <title>Getting Data with R</title>
+  <title>Data Structures in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -486,203 +486,514 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 <section>
-    <h1 class="title">Getting Data with R</h1>
+    <h1 class="title">Data Structures in R</h1>
     <h2 class="author">Tony Yao-Jen Kuo</h2>
 </section>
 
-<section><section id="how-to-get-data-with-r" class="titleslide slide level1"><h1>How to get data with R</h1></section><section id="overview" class="slide level2">
-<h2>Overview</h2>
+<section><section id="an-overview" class="titleslide slide level1"><h1>An overview</h1></section><section id="data-structures" class="slide level2">
+<h2>Data structures…</h2>
 <ul>
-<li class="fragment">From files</li>
-<li class="fragment">From web</li>
+<li class="fragment">collects scalars</li>
+<li class="fragment">can be indexing</li>
+<li class="fragment">can be slicing</li>
+<li class="fragment">are iterable</li>
+</ul>
+</section><section id="we-are-gonna-talk-about-6-of-them" class="slide level2">
+<h2>We are gonna talk about 6 of them</h2>
+<ul>
+<li class="fragment">vector</li>
+<li class="fragment">list</li>
+<li class="fragment">(optional)factor</li>
+<li class="fragment">data.frame</li>
+<li class="fragment">(optional)matrix</li>
+<li class="fragment">(optional)array</li>
 </ul>
 </section></section>
-<section><section id="getting-data-from-files" class="titleslide slide level1"><h1>Getting data from files</h1></section><section id="using-read.csv-for-csv-files" class="slide level2">
-<h2>Using <code>read.csv()</code> for CSV files</h2>
+<section><section id="vectors" class="titleslide slide level1"><h1>Vectors</h1></section><section id="characteristics-of-a-vector" class="slide level2">
+<h2>Characteristics of a vector</h2>
 <ul>
-<li>CSV stands for <strong>comma separated values</strong></li>
+<li class="fragment">element-wise operation</li>
+<li class="fragment">uniformed class</li>
+<li class="fragment">supports logical filtering</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.csv&quot;</span>
-df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(file_url, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="co"># personal preference...</span>
-<span class="kw">dim</span>(df)</code></pre></div>
-<pre><code>## [1] 15  7</code></pre>
-</section><section id="using-read.table-for-general-tabular-text-files" class="slide level2">
-<h2>Using <code>read.table()</code> for general tabular text files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.txt&quot;</span>
-df &lt;-<span class="st"> </span><span class="kw">read.table</span>(file_url, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</code></pre></div>
-<pre><code>## Warning in scan(file = file, what = what, sep = sep, quote = quote, dec =
-## dec, : EOF within quoted string</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(df)</code></pre></div>
-<pre><code>## [1] 15  7</code></pre>
-</section><section id="using-readxl-package-for-excel-spreadsheets" class="slide level2">
-<h2>Using <code>readxl</code> package for Excel spreadsheets</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
-
-file_path &lt;-<span class="st"> &quot;/Users/kuoyaojen/Downloads/fav_nba_teams.xlsx&quot;</span>
-chicago_bulls &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path)
-<span class="kw">head</span>(chicago_bulls)</code></pre></div>
-<pre><code>## # A tibble: 6 x 7
-##     No. Player        Pos   Ht       Wt `Birth Date`      College         
-##   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;           
-## 1     0 Randy Brown   PG    6-2     190 May 22, 1968      University of H…
-## 2    30 Jud Buechler  SF    6-6     220 June 19, 1968     University of A…
-## 3    35 Jason Caffey  PF    6-8     255 June 12, 1973     University of A…
-## 4    53 James Edwards C     7-0     225 November 22, 1955 University of W…
-## 5    54 Jack Haley    C     6-10    240 January 27, 1964  University of C…
-## 6     9 Ron Harper    PG    6-6     185 January 20, 1964  Miami University</code></pre>
-</section><section id="importing-other-sheets" class="slide level2">
-<h2>Importing other sheets</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boston_celtics &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path, <span class="dt">sheet =</span> <span class="st">&quot;boston_celtics_2007_2008&quot;</span>)
-<span class="kw">head</span>(boston_celtics)</code></pre></div>
-</section><section id="reading-specific-cell-ranges" class="slide level2">
-<h2>Reading specific cell ranges</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">partial_chi &lt;-<span class="st"> </span><span class="kw">read_excel</span>(file_path, <span class="dt">range =</span> <span class="st">&quot;B8:C13&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>)
-knitr<span class="op">::</span><span class="kw">kable</span>(partial_chi)</code></pre></div>
-</section><section id="using-jsonlite-package-for-json-files" class="slide level2">
-<h2>Using <code>jsonlite</code> package for JSON files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-
-file_url &lt;-<span class="st"> &quot;https://storage.googleapis.com/ds_data_import/chicago_bulls_1995_1996.json&quot;</span>
-chicago_bulls &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(file_url)
-<span class="kw">class</span>(chicago_bulls)</code></pre></div>
+</section><section id="why-is-there-always-a-1-before-printed-scalar" class="slide level2">
+<h2>Why is there always a <code>[1]</code> before printed scalar?</h2>
+</section><section id="using-c-to-create-vectors" class="slide level2">
+<h2>Using c() to create vectors</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jeremy Lin&quot;</span>, <span class="st">&quot;Michael Jordan&quot;</span>, <span class="st">&quot;Shaquille O'Neal&quot;</span>)
+player_heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">191</span>, <span class="dv">198</span>, <span class="dv">216</span>)
+player_weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">91</span>, <span class="dv">98</span>, <span class="dv">148</span>)
+player_names
+player_heights
+player_weights</code></pre></div>
+<pre><code>## [1] &quot;Jeremy Lin&quot;       &quot;Michael Jordan&quot;   &quot;Shaquille O'Neal&quot;
+## [1] 191 198 216
+## [1]  91  98 148</code></pre>
+</section><section id="using-index-indexing-a-value-from-vectors" class="slide level2">
+<h2>Using <code>[INDEX]</code> indexing a value from vectors</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_names[<span class="dv">1</span>]
+player_names[<span class="dv">2</span>]
+player_names[<span class="dv">3</span>]
+player_names[<span class="kw">length</span>(player_names)] <span class="co"># in case we have a long vector</span></code></pre></div>
+<pre><code>## [1] &quot;Jeremy Lin&quot;
+## [1] &quot;Michael Jordan&quot;
+## [1] &quot;Shaquille O'Neal&quot;
+## [1] &quot;Shaquille O'Neal&quot;</code></pre>
+</section><section id="using-cindice-slicing-values-from-vectors" class="slide level2">
+<h2>Using <code>[c(INDICE)]</code> slicing values from vectors</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_names[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]
+player_names[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</code></pre></div>
+<pre><code>## [1] &quot;Michael Jordan&quot;   &quot;Shaquille O'Neal&quot;
+## [1] &quot;Jeremy Lin&quot;       &quot;Shaquille O'Neal&quot;</code></pre>
+</section><section id="what-will-happen-if-we-set-a-negative-index" class="slide level2">
+<h2>What will happen if we set a NEGATIVE index?</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Try it yourself</span></code></pre></div>
+</section><section id="vectors-are-best-known-for-its" class="slide level2">
+<h2>Vectors are best known for its…</h2>
+<ul>
+<li>Element-wise operation</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_heights_m &lt;-<span class="st"> </span>player_heights <span class="op">/</span><span class="st"> </span><span class="dv">100</span>
+player_heights
+player_heights_m</code></pre></div>
+<pre><code>## [1] 191 198 216
+## [1] 1.91 1.98 2.16</code></pre>
+</section><section id="practices-using-vector-operations-for-players-bmis" class="slide level2">
+<h2>Practices: Using vector operations for players’ BMIs</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_bmis &lt;-<span class="st"> </span><span class="co"># ...</span></code></pre></div>
+</section><section id="beware-of-the-types" class="slide level2">
+<h2>Beware of the types</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Name, height, weight, has_ring</span>
+mj &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Michael Jordan&quot;</span>, <span class="dv">198</span>, <span class="dv">98</span>, <span class="ot">TRUE</span>)
+mj
+<span class="kw">class</span>(mj[<span class="dv">1</span>])
+<span class="kw">class</span>(mj[<span class="dv">2</span>])
+<span class="kw">class</span>(mj[<span class="dv">3</span>])
+<span class="kw">class</span>(mj[<span class="dv">4</span>])</code></pre></div>
+<pre><code>## [1] &quot;Michael Jordan&quot; &quot;198&quot;            &quot;98&quot;             &quot;TRUE&quot;          
+## [1] &quot;character&quot;
+## [1] &quot;character&quot;
+## [1] &quot;character&quot;
+## [1] &quot;character&quot;</code></pre>
+</section><section id="how-to-generate-vectors-quickly" class="slide level2">
+<h2>How to generate vectors quickly</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">11</span><span class="op">:</span><span class="dv">21</span>
+<span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">11</span>, <span class="dt">to =</span> <span class="dv">21</span>)
+<span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">11</span>, <span class="dt">to =</span> <span class="dv">21</span>, <span class="dt">by =</span> <span class="dv">2</span>)
+<span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">11</span>, <span class="dt">to =</span> <span class="dv">21</span>, <span class="dt">length.out =</span> <span class="dv">6</span>)
+<span class="kw">rep</span>(<span class="dv">7</span>, <span class="dt">times =</span> <span class="dv">7</span>)</code></pre></div>
+<pre><code>##  [1] 11 12 13 14 15 16 17 18 19 20 21
+##  [1] 11 12 13 14 15 16 17 18 19 20 21
+## [1] 11 13 15 17 19 21
+## [1] 11 13 15 17 19 21
+## [1] 7 7 7 7 7 7 7</code></pre>
+</section><section id="getting-logical-values" class="slide level2">
+<h2>Getting logical values</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">191</span>, <span class="dv">198</span>, <span class="dv">216</span>)
+player_weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">91</span>, <span class="dv">98</span>, <span class="dv">148</span>)
+player_bmis &lt;-<span class="st"> </span>player_weights<span class="op">/</span>(player_heights<span class="op">*</span><span class="fl">0.01</span>)<span class="op">**</span><span class="dv">2</span>
+player_bmis <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE</code></pre>
+</section><section id="logical-filtering" class="slide level2">
+<h2>Logical filtering</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_bmis[player_bmis <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>]</code></pre></div>
+<pre><code>## [1] 31.72154</code></pre>
+</section><section id="practices-finding-odd-numbers-in-random_numbers" class="slide level2">
+<h2>Practices: finding odd numbers in <code>random_numbers</code></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">87</span>)
+random_numbers &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">500</span>, <span class="dt">size =</span> <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</code></pre></div>
+</section><section id="vector-is-iterable" class="slide level2">
+<h2>Vector is iterable</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (ITERATOR <span class="cf">in</span> ITERABLE) {
+  <span class="co"># do something iteratively until ITERATOR hits the end of ITERABLE</span>
+}</code></pre></div>
+</section><section id="iterator-as-values" class="slide level2">
+<h2>Iterator as values</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">191</span>, <span class="dv">198</span>, <span class="dv">216</span>)
+<span class="cf">for</span> (ph <span class="cf">in</span> player_heights) {
+  <span class="kw">print</span>(ph<span class="op">*</span><span class="fl">0.01</span>)
+}</code></pre></div>
+<pre><code>## [1] 1.91
+## [1] 1.98
+## [1] 2.16</code></pre>
+</section><section id="not-just-printing-it-out" class="slide level2">
+<h2>Not just printing it out…</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">191</span>, <span class="dv">198</span>, <span class="dv">216</span>)
+player_heights_m &lt;-<span class="st"> </span><span class="kw">c</span>()
+<span class="cf">for</span> (ph <span class="cf">in</span> player_heights) {
+  player_heights_m &lt;-<span class="st"> </span><span class="kw">c</span>(player_heights_m, ph<span class="op">*</span><span class="fl">0.01</span>)
+}
+player_heights_m</code></pre></div>
+<pre><code>## [1] 1.91 1.98 2.16</code></pre>
+</section><section id="practices-applying-fizz_buzz-on-1100" class="slide level2">
+<h2>Practices: Applying <code>fizz_buzz()</code> on 1:100</h2>
+<ul>
+<li>if input can be divided by 3, return “fizz”</li>
+<li>if input can be divided by 5, return “buzz”</li>
+<li>if input can be divided by 15, return “fizz buzz”</li>
+<li>otherwise, return input itself</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## [1] 1 2 &quot;fizz&quot; 4 &quot;buzz&quot; ... 14 &quot;fizz buzz&quot; 16 ... 99 &quot;buzz&quot;</code></pre></div>
+</section><section id="iterators-as-indice" class="slide level2">
+<h2>Iterators as indice</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jeremy Lin&quot;</span>, <span class="st">&quot;Michael Jordan&quot;</span>, <span class="st">&quot;Shaquille O'Neal&quot;</span>)
+player_heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">191</span>, <span class="dv">198</span>, <span class="dv">216</span>)
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(player_names)) {
+  player_height_m &lt;-<span class="st"> </span>player_heights[i]<span class="op">/</span><span class="dv">100</span>
+  <span class="kw">print</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%s is %s meter tall&quot;</span>, player_names[i], player_height_m))
+}</code></pre></div>
+<pre><code>## [1] &quot;Jeremy Lin is 1.91 meter tall&quot;
+## [1] &quot;Michael Jordan is 1.98 meter tall&quot;
+## [1] &quot;Shaquille O'Neal is 2.16 meter tall&quot;</code></pre>
+</section><section id="practices-is-x-a-prime" class="slide level2">
+<h2>Practices: Is x a prime?</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is_prime</span>(<span class="dv">87</span>) ## FALSE
+<span class="kw">is_prime</span>(<span class="dv">89</span>) ## TRUE
+<span class="kw">is_prime</span>(<span class="dv">91</span>) ## FALSE</code></pre></div>
+</section><section id="practices-how-many-primes-are-there-between-x-and-y" class="slide level2">
+<h2>Practices: How many primes are there between x and y?</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">count_primes</span>(<span class="dv">5</span>, <span class="dv">11</span>) ## 3
+<span class="kw">count_primes</span>(<span class="dv">5</span>, <span class="dv">13</span>) ## 4
+<span class="kw">count_primes</span>(<span class="dv">5</span>, <span class="dv">15</span>) ## 4</code></pre></div>
+</section><section id="iterate-with-another-style" class="slide level2">
+<h2>Iterate with another style</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span> (CONDITION) {
+  <span class="co"># do something iteratively when CONDITION == TRUE</span>
+}</code></pre></div>
+</section><section id="iterators-as-indice-1" class="slide level2">
+<h2>Iterators as indice</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="kw">length</span>(player_names)) {
+  player_height_m &lt;-<span class="st"> </span>player_heights[i]<span class="op">/</span><span class="dv">100</span>
+  <span class="kw">print</span>(<span class="kw">sprintf</span>(<span class="st">&quot;%s is %s meter tall&quot;</span>, player_names[i], player_height_m))
+  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+}</code></pre></div>
+<pre><code>## [1] &quot;Jeremy Lin is 1.91 meter tall&quot;
+## [1] &quot;Michael Jordan is 1.98 meter tall&quot;
+## [1] &quot;Shaquille O'Neal is 2.16 meter tall&quot;</code></pre>
+</section><section id="practices-how-many-times-do-i-have-to-flip-a-coin-to-get-6-heads" class="slide level2">
+<h2>Practices: How many times do I have to flip a coin to get 6 heads?</h2>
+</section><section id="for-is-necessary-condition-for-while" class="slide level2">
+<h2><code>for</code> is necessary condition for <code>while</code></h2>
+</section><section id="practices-fibonacci" class="slide level2">
+<h2>Practices: Fibonacci</h2>
+<ul>
+<li>Try using 2 types of loop to generate a certain fibonacci array.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fibonacci</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>) ## [1] 0, 1, 1, 2, 3
+<span class="kw">fibonacci</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">7</span>) ## [1] 0, 1, 1, 2, 3, 5, 8
+<span class="kw">fibonacci</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">9</span>) ## [1] 0, 1, 1, 2, 3, 5, 8, 13, 21</code></pre></div>
+</section><section id="practices-poker-card-deck" class="slide level2">
+<h2>Practices: Poker card deck</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">suits &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Spade&quot;</span>, <span class="st">&quot;Heart&quot;</span>, <span class="st">&quot;Diamond&quot;</span>, <span class="st">&quot;Clover&quot;</span>)
+ranks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ace&quot;</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">10</span>, <span class="st">&quot;Jack&quot;</span>, <span class="st">&quot;Queen&quot;</span>, <span class="st">&quot;King&quot;</span>)</code></pre></div>
+</section></section>
+<section><section id="lists" class="titleslide slide level1"><h1>Lists</h1></section><section id="characteristics-of-lists" class="slide level2">
+<h2>Characteristics of lists</h2>
+<ul>
+<li class="fragment">Different classes</li>
+<li class="fragment">Supports <code>$</code> selection like attributes</li>
+</ul>
+</section><section id="using-list-to-create-a-list" class="slide level2">
+<h2>Using <code>list()</code> to create a list</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infinity_war &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="st">&quot;Avengers: Infinity War&quot;</span>,
+  <span class="dv">2018</span>,
+  <span class="fl">8.6</span>,
+  <span class="kw">c</span>(<span class="st">&quot;Action&quot;</span>, <span class="st">&quot;Adventure&quot;</span>, <span class="st">&quot;Fantasy&quot;</span>)
+)
+<span class="kw">class</span>(infinity_war)</code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-</section><section id="a-quick-review" class="slide level2">
-<h2>A quick review</h2>
+</section><section id="check-the-apperance-of-a-list" class="slide level2">
+<h2>Check the apperance of a list</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infinity_war</code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Avengers: Infinity War&quot;
+## 
+## [[2]]
+## [1] 2018
+## 
+## [[3]]
+## [1] 8.6
+## 
+## [[4]]
+## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Fantasy&quot;</code></pre>
+</section><section id="using-index-indexing-list" class="slide level2">
+<h2>Using <code>[[INDEX]]</code> indexing list</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(infinity_war)) {
+  <span class="kw">print</span>(infinity_war[[i]])
+}</code></pre></div>
+<pre><code>## [1] &quot;Avengers: Infinity War&quot;
+## [1] 2018
+## [1] 8.6
+## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Fantasy&quot;</code></pre>
+</section><section id="giving-names-to-elements-in-list" class="slide level2">
+<h2>Giving names to elements in list</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infinity_war &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">movieTitle =</span> <span class="st">&quot;Avengers: Infinity War&quot;</span>,
+  <span class="dt">releaseYear =</span> <span class="dv">2018</span>,
+  <span class="dt">rating =</span> <span class="fl">8.6</span>,
+  <span class="dt">genre =</span> <span class="kw">c</span>(<span class="st">&quot;Action&quot;</span>, <span class="st">&quot;Adventure&quot;</span>, <span class="st">&quot;Fantasy&quot;</span>)
+)
+infinity_war</code></pre></div>
+<pre><code>## $movieTitle
+## [1] &quot;Avengers: Infinity War&quot;
+## 
+## $releaseYear
+## [1] 2018
+## 
+## $rating
+## [1] 8.6
+## 
+## $genre
+## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Fantasy&quot;</code></pre>
+</section><section id="using-element-indexing-list" class="slide level2">
+<h2>Using [[“ELEMENT”]] indexing list</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (e <span class="cf">in</span> <span class="kw">names</span>(infinity_war)) {
+  <span class="kw">print</span>(infinity_war[[e]])
+}</code></pre></div>
+<pre><code>## [1] &quot;Avengers: Infinity War&quot;
+## [1] 2018
+## [1] 8.6
+## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Fantasy&quot;</code></pre>
+</section><section id="using-element-indexing-list-1" class="slide level2">
+<h2>Using <code>$ELEMENT</code> indexing list</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">infinity_war<span class="op">$</span>movieTitle
+infinity_war<span class="op">$</span>releaseYear
+infinity_war<span class="op">$</span>rating
+infinity_war<span class="op">$</span>genre</code></pre></div>
+<pre><code>## [1] &quot;Avengers: Infinity War&quot;
+## [1] 2018
+## [1] 8.6
+## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Fantasy&quot;</code></pre>
+</section><section id="every-element-keeps-its-original-class" class="slide level2">
+<h2>Every element keeps its original class</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (e <span class="cf">in</span> <span class="kw">names</span>(infinity_war)) {
+  <span class="kw">print</span>(<span class="kw">class</span>(infinity_war[[e]]))
+}</code></pre></div>
+<pre><code>## [1] &quot;character&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;character&quot;</code></pre>
+</section><section id="practices-getting-favorite-players-last-names-in-upper-cases" class="slide level2">
+<h2>Practices: Getting favorite players’ last names in upper cases</h2>
+<p>Hint: using <code>strsplit()</code> to split players’ name and using <code>toupper()</code> for upper cases.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fav_players &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Steve Nash&quot;</span>, <span class="st">&quot;Paul Pierce&quot;</span>, <span class="st">&quot;Dirk Nowitzki&quot;</span>, <span class="st">&quot;Kevin Garnett&quot;</span>, <span class="st">&quot;Hakeem Olajuwon&quot;</span>)
+<span class="co"># [1] &quot;NASH&quot; &quot;PIERCE&quot; &quot;NOWITZKI&quot; &quot;GARNETT&quot; &quot;OLAJUWON&quot;</span></code></pre></div>
+</section></section>
+<section><section id="optionalfactors" class="titleslide slide level1"><h1>(optional)Factors</h1></section><section id="characteristics-of-factors" class="slide level2">
+<h2>Characteristics of factors</h2>
+<ul>
+<li class="fragment">Acts like a character vector</li>
+<li class="fragment">Unique character is recorded as <strong>Levels</strong></li>
+<li class="fragment">Supports ordinal values and each character is encoded as <strong>integers</strong></li>
+<li class="fragment">Default class of a character column</li>
+</ul>
+</section><section id="using-factor-to-create-a-factor" class="slide level2">
+<h2>Using <code>factor()</code> to create a factor</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_time_fantasy &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Steve Nash&quot;</span>, <span class="st">&quot;Paul Pierce&quot;</span>, <span class="st">&quot;Dirk Nowitzki&quot;</span>, <span class="st">&quot;Kevin Garnett&quot;</span>, <span class="st">&quot;Hakeem Olajuwon&quot;</span>)
+<span class="kw">class</span>(all_time_fantasy)
+all_time_fantasy &lt;-<span class="st"> </span><span class="kw">factor</span>(all_time_fantasy)
+<span class="kw">class</span>(all_time_fantasy)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;
+## [1] &quot;factor&quot;</code></pre>
+</section><section id="unique-character-in-factor-is-recorded-with-levels" class="slide level2">
+<h2>Unique character in factor is recorded with levels</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rgbs &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;green&quot;</span>))
+rgbs</code></pre></div>
+<pre><code>## [1] red   green blue  blue  green green
+## Levels: blue green red</code></pre>
+</section><section id="supports-ordinal-values" class="slide level2">
+<h2>Supports ordinal values</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temperatures &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;freezing&quot;</span>, <span class="st">&quot;cold&quot;</span>, <span class="st">&quot;cool&quot;</span>, <span class="st">&quot;warm&quot;</span>, <span class="st">&quot;hot&quot;</span>),
+                       <span class="dt">ordered =</span> <span class="ot">TRUE</span>)
+temperatures
+temperatures[<span class="dv">1</span>] <span class="op">&gt;</span><span class="st"> </span>temperatures[<span class="dv">3</span>]</code></pre></div>
+<pre><code>## [1] freezing cold     cool     warm     hot     
+## Levels: cold &lt; cool &lt; freezing &lt; hot &lt; warm
+## [1] TRUE</code></pre>
+</section><section id="adjusting-the-order-of-a-factor" class="slide level2">
+<h2>Adjusting the order of a factor</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temperatures &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;freezing&quot;</span>, <span class="st">&quot;cold&quot;</span>, <span class="st">&quot;cool&quot;</span>, <span class="st">&quot;warm&quot;</span>, <span class="st">&quot;hot&quot;</span>),
+                       <span class="dt">ordered =</span> <span class="ot">TRUE</span>,
+                       <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;freezing&quot;</span>, <span class="st">&quot;cold&quot;</span>, <span class="st">&quot;cool&quot;</span>, <span class="st">&quot;warm&quot;</span>, <span class="st">&quot;hot&quot;</span>))
+temperatures</code></pre></div>
+<pre><code>## [1] freezing cold     cool     warm     hot     
+## Levels: freezing &lt; cold &lt; cool &lt; warm &lt; hot</code></pre>
+</section><section id="elements-in-factor-are-encoded-as-integers" class="slide level2">
+<h2>Elements in factor are encoded as integers</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temperatures &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;freezing&quot;</span>, <span class="st">&quot;cold&quot;</span>, <span class="st">&quot;cool&quot;</span>, <span class="st">&quot;warm&quot;</span>, <span class="st">&quot;hot&quot;</span>)
+<span class="kw">as.numeric</span>(temperatures) <span class="co"># Error</span>
+temperatures &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;freezing&quot;</span>, <span class="st">&quot;cold&quot;</span>, <span class="st">&quot;cool&quot;</span>, <span class="st">&quot;warm&quot;</span>, <span class="st">&quot;hot&quot;</span>))
+<span class="kw">as.numeric</span>(temperatures)</code></pre></div>
+</section><section id="factors-sometimes-are-hard-to-handle" class="slide level2">
+<h2>Factors sometimes are hard to handle…</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_time_fantasy &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Steve Nash&quot;</span>, <span class="st">&quot;Paul Pierce&quot;</span>, <span class="st">&quot;Dirk Nowitzki&quot;</span>, <span class="st">&quot;Kevin Garnett&quot;</span>, <span class="st">&quot;Hakeem Olajuwon&quot;</span>))
+all_time_fantasy &lt;-<span class="st"> </span><span class="kw">c</span>(all_time_fantasy, <span class="st">&quot;Ray Allen&quot;</span>)
+all_time_fantasy</code></pre></div>
+<pre><code>## [1] &quot;5&quot;         &quot;4&quot;         &quot;1&quot;         &quot;3&quot;         &quot;2&quot;         &quot;Ray Allen&quot;</code></pre>
+</section></section>
+<section><section id="data-frames" class="titleslide slide level1"><h1>Data Frames</h1></section><section id="characteristics-of-data-frames" class="slide level2">
+<h2>Characteristics of data frames</h2>
+<ul>
+<li class="fragment">Has 2 dimensions <code>m x n</code> as in <code>rows x columns</code></li>
+<li class="fragment">Rows are denoted as observations, while columns are denoted as variables</li>
+<li class="fragment">Each column has its own class</li>
+<li class="fragment">Supports <code>$</code> selection like attributes</li>
+</ul>
+</section><section id="using-data.frame-to-create-a-data-frame" class="slide level2">
+<h2>Using <code>data.frame()</code> to create a data frame</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jeremy Lin&quot;</span>, <span class="st">&quot;Michael Jordan&quot;</span>, <span class="st">&quot;Shaquille O'Neal&quot;</span>)
+player_heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">191</span>, <span class="dv">198</span>, <span class="dv">216</span>)
+player_weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">91</span>, <span class="dv">98</span>, <span class="dv">148</span>)
+has_rings &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)
+player_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(player_names, player_heights, player_weights, has_rings)</code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th>Source</th>
-<th>Format</th>
+<th style="text-align: left;">player_names</th>
+<th style="text-align: right;">player_heights</th>
+<th style="text-align: right;">player_weights</th>
+<th style="text-align: left;">has_rings</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>CSV</td>
-<td><code>data.frame</code></td>
+<td style="text-align: left;">Jeremy Lin</td>
+<td style="text-align: right;">191</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: left;">FALSE</td>
 </tr>
 <tr class="even">
-<td>TXT</td>
-<td><code>data.frame</code></td>
+<td style="text-align: left;">Michael Jordan</td>
+<td style="text-align: right;">198</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: left;">TRUE</td>
 </tr>
 <tr class="odd">
-<td>Spreadsheet</td>
-<td><code>data.frame</code></td>
-</tr>
-<tr class="even">
-<td>JSON</td>
-<td><code>list</code></td>
+<td style="text-align: left;">Shaquille O’Neal</td>
+<td style="text-align: right;">216</td>
+<td style="text-align: right;">148</td>
+<td style="text-align: left;">TRUE</td>
 </tr>
 </tbody>
 </table>
+</section><section id="character-vectors-are-encoded-as-factors-by-default" class="slide level2">
+<h2>Character vectors are encoded as factors by default</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(player_df)</code></pre></div>
+<pre><code>## 'data.frame':    3 obs. of  4 variables:
+##  $ player_names  : Factor w/ 3 levels &quot;Jeremy Lin&quot;,&quot;Michael Jordan&quot;,..: 1 2 3
+##  $ player_heights: num  191 198 216
+##  $ player_weights: num  91 98 148
+##  $ has_rings     : logi  FALSE TRUE TRUE</code></pre>
+</section><section id="using-stringsasfactors-false-for-character-class" class="slide level2">
+<h2>Using <code>stringsAsFactors = FALSE</code> for character class</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(player_names, player_heights, player_weights, has_rings, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+<span class="kw">str</span>(player_df)</code></pre></div>
+<pre><code>## 'data.frame':    3 obs. of  4 variables:
+##  $ player_names  : chr  &quot;Jeremy Lin&quot; &quot;Michael Jordan&quot; &quot;Shaquille O'Neal&quot;
+##  $ player_heights: num  191 198 216
+##  $ player_weights: num  91 98 148
+##  $ has_rings     : logi  FALSE TRUE TRUE</code></pre>
+</section><section id="selecting-column-from-data-frames-as-a-vector" class="slide level2">
+<h2>Selecting column from data frames as a vector</h2>
+<ul>
+<li>Using column names in double quotes</li>
+<li>or column indice</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_df[[<span class="st">&quot;player_names&quot;</span>]]
+player_df[, <span class="st">&quot;player_names&quot;</span>]
+player_df[, <span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] &quot;Jeremy Lin&quot;       &quot;Michael Jordan&quot;   &quot;Shaquille O'Neal&quot;
+## [1] &quot;Jeremy Lin&quot;       &quot;Michael Jordan&quot;   &quot;Shaquille O'Neal&quot;
+## [1] &quot;Jeremy Lin&quot;       &quot;Michael Jordan&quot;   &quot;Shaquille O'Neal&quot;</code></pre>
+</section><section id="or-using-like-attributes" class="slide level2">
+<h2>Or using <code>$</code> like attributes</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_df<span class="op">$</span>player_names</code></pre></div>
+<pre><code>## [1] &quot;Jeremy Lin&quot;       &quot;Michael Jordan&quot;   &quot;Shaquille O'Neal&quot;</code></pre>
+</section><section id="subsetting-observations-from-data-frames" class="slide level2">
+<h2>Subsetting observations from data frames</h2>
+<ul>
+<li>Using row indice</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_df[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), ]</code></pre></div>
+<pre><code>##       player_names player_heights player_weights has_rings
+## 2   Michael Jordan            198             98      TRUE
+## 3 Shaquille O'Neal            216            148      TRUE</code></pre>
+</section><section id="more-commonly-using-a-logical-vector" class="slide level2">
+<h2>More commonly, using a logical vector</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_df[player_df<span class="op">$</span>has_rings, ]  <span class="co"># players with rings</span>
+player_df[<span class="op">!</span>player_df<span class="op">$</span>has_rings, ] <span class="co"># players without rings</span></code></pre></div>
+<pre><code>##       player_names player_heights player_weights has_rings
+## 2   Michael Jordan            198             98      TRUE
+## 3 Shaquille O'Neal            216            148      TRUE
+##   player_names player_heights player_weights has_rings
+## 1   Jeremy Lin            191             91     FALSE</code></pre>
+</section><section id="creating-logical-vectors-using-operators" class="slide level2">
+<h2>Creating logical vectors using operators</h2>
+<ul>
+<li>Remember putting logical vector at the <strong>row</strong> index</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">player_df<span class="op">$</span>player_heights <span class="op">&gt;</span><span class="st"> </span><span class="dv">200</span>
+player_df[player_df<span class="op">$</span>player_heights <span class="op">&gt;</span><span class="st"> </span><span class="dv">200</span>, ]</code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE
+##       player_names player_heights player_weights has_rings
+## 3 Shaquille O'Neal            216            148      TRUE</code></pre>
 </section></section>
-<section><section id="getting-data-from-web" class="titleslide slide level1"><h1>Getting data from web</h1></section><section id="jsonlite-for-restful-apis" class="slide level2">
-<h2><code>jsonlite</code> for RESTful APIs</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-
-web_url &lt;-<span class="st"> &quot;https://ecshweb.pchome.com.tw/search/v3.3/all/results?q=macbook&amp;page=1&amp;sort=rnk/dc&quot;</span>
-macbook &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(web_url)
-<span class="kw">class</span>(macbook)</code></pre></div>
-<pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(macbook)</code></pre></div>
-<pre><code>## [1] &quot;QTime&quot;     &quot;totalRows&quot; &quot;totalPage&quot; &quot;range&quot;     &quot;cateName&quot;  &quot;q&quot;        
-## [7] &quot;subq&quot;      &quot;token&quot;     &quot;prods&quot;</code></pre>
-</section><section id="rvest-for-html-documents" class="slide level2">
-<h2><code>rvest</code> for HTML documents</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rvest&quot;</span>)</code></pre></div>
-</section><section id="the-use-of-operator" class="slide level2">
-<h2>The use of <code>%&gt;%</code> operator</h2>
+<section><section id="optional-matrix" class="titleslide slide level1"><h1>(Optional) Matrix</h1></section><section id="creating-a-matrix-using-matrix" class="slide level2">
+<h2>Creating a matrix using <code>matrix()</code></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)
+<span class="kw">class</span>(my_mat)</code></pre></div>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+</section><section id="matrix-operations" class="slide level2">
+<h2>matrix operations</h2>
 <ul>
-<li>Originated from <code>magrittr</code> package</li>
-<li>Now an important operator for the <code>tidyverse</code> eco-system</li>
-<li>Can be generated with: Ctrl + Shift + m</li>
+<li>Using <code>*</code> for element-wise multiplication</li>
+<li>Using <code>t</code> for transpose</li>
+<li>Using <code>%*%</code> for matrix multiplication</li>
 </ul>
-</section><section id="how-to-call-a-function" class="slide level2">
-<h2>How to call a function</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)</code></pre></div>
-<pre><code>## Loading required package: xml2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># traditional</span>
-<span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] 55</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using %&gt;%</span>
-<span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">sum</span>()</code></pre></div>
-<pre><code>## [1] 55</code></pre>
-</section><section id="more-examples" class="slide level2">
-<h2>More examples</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># traditional</span>
-<span class="kw">toupper</span>(<span class="kw">paste0</span>(<span class="kw">strsplit</span>(<span class="st">&quot;Jeremy Lin&quot;</span>, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>], <span class="st">&quot;sanity&quot;</span>))</code></pre></div>
-<pre><code>## [1] &quot;LINSANITY&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using %&gt;% </span>
-<span class="st">&quot;Jeremy Lin&quot;</span> <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">strsplit</span>(<span class="dt">split =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  `</span><span class="dt">[[</span><span class="st">`</span> (<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  `</span><span class="dt">[</span><span class="st">`</span> (<span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">paste0</span>(<span class="st">&quot;sanity&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">toupper</span>()</code></pre></div>
-<pre><code>## [1] &quot;LINSANITY&quot;</code></pre>
-</section><section id="read_html-for-reading-all-html-contents" class="slide level2">
-<h2><code>read_html()</code> for reading all html contents</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
-
-mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span>
-html_doc &lt;-<span class="st"> </span>mi_url <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">read_html</span>()</code></pre></div>
-</section><section id="html_nodes-to-locate-elements" class="slide level2">
-<h2><code>html_nodes()</code> to locate elements</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="co"># CSS selector</span></code></pre></div>
-<pre><code>## {xml_nodeset (1)}
-## [1] &lt;span&gt;8.1&lt;/span&gt;</code></pre>
-</section><section id="html_text-to-remove-tags" class="slide level2">
-<h2><code>html_text()</code> to remove tags</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_text</span>()</code></pre></div>
-<pre><code>## [1] &quot;8.1&quot;</code></pre>
-</section><section id="data-of-html-document-are-characters" class="slide level2">
-<h2>Data of html document are characters</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html_doc <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;strong span&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">as.numeric</span>()</code></pre></div>
-<pre><code>## [1] 8.1</code></pre>
-</section><section id="how-to-locate-elements" class="slide level2">
-<h2>How to locate elements?</h2>
-<ul>
-<li class="fragment">By CSS Selectors</li>
-<li class="fragment">By XPath</li>
-</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)
+my_mat <span class="op">*</span><span class="st"> </span>my_mat
+<span class="kw">t</span>(my_mat) <span class="op">%*%</span><span class="st"> </span>my_mat</code></pre></div>
+<pre><code>##      [,1]
+## [1,]    1
+## [2,]    4
+## [3,]    9
+## [4,]   16
+##      [,1]
+## [1,]   30</code></pre>
+</section><section id="practices-make-a-9-x-9-multiplication-matrix" class="slide level2">
+<h2>Practices: Make a 9 x 9 multiplication matrix</h2>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+##  [1,]    1    2    3    4    5    6    7    8    9
+##  [2,]    2    4    6    8   10   12   14   16   18
+##  [3,]    3    6    9   12   15   18   21   24   27
+##  [4,]    4    8   12   16   20   24   28   32   36
+##  [5,]    5   10   15   20   25   30   35   40   45
+##  [6,]    6   12   18   24   30   36   42   48   54
+##  [7,]    7   14   21   28   35   42   49   56   63
+##  [8,]    8   16   24   32   40   48   56   64   72
+##  [9,]    9   18   27   36   45   54   63   72   81</code></pre>
 </section></section>
-<section><section id="the-use-of-chrome-plugins" class="titleslide slide level1"><h1>The use of Chrome plugins</h1></section><section id="selectorgadget" class="slide level2">
-<h2>SelectorGadget</h2>
-<p>A Chrome plugin for CSS selectors: <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb">SelectorGadget</a></p>
-</section><section id="how-to-use-selectorgadget" class="slide level2">
-<h2>How to use SelectorGadget?</h2>
-</section><section id="xpath-helper" class="slide level2">
-<h2>XPath Helper</h2>
-<p>A Chrome plugin for XPath: <a href="https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl">XPath Helper</a></p>
-</section><section id="how-to-use-xpath-helper" class="slide level2">
-<h2>How to use XPath Helper?</h2>
-</section><section id="practices-getting-genre-information-from-imdb.com" class="slide level2">
-<h2>Practices: Getting genre information from IMDB.com</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span></code></pre></div>
-<pre><code>## [1] &quot;Action&quot;    &quot;Adventure&quot; &quot;Thriller&quot;</code></pre>
-</section><section id="practices-getting-cast-information-from-imdb.com" class="slide level2">
-<h2>Practices: Getting cast information from IMDB.com</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi_url &lt;-<span class="st"> &quot;https://www.imdb.com/title/tt4912910/&quot;</span></code></pre></div>
-<pre><code>##  [1] &quot; Tom Cruise\n&quot;        &quot; Henry Cavill\n&quot;      &quot; Ving Rhames\n&quot;      
-##  [4] &quot; Simon Pegg\n&quot;        &quot; Rebecca Ferguson\n&quot;  &quot; Sean Harris\n&quot;      
-##  [7] &quot; Angela Bassett\n&quot;    &quot; Vanessa Kirby\n&quot;     &quot; Michelle Monaghan\n&quot;
-## [10] &quot; Wes Bentley\n&quot;       &quot; Frederick Schmidt\n&quot; &quot; Alec Baldwin\n&quot;     
-## [13] &quot; Liang Yang\n&quot;        &quot; Kristoffer Joner\n&quot;  &quot; Wolf Blitzer\n&quot;</code></pre>
-</section><section id="practices-getting-price-ranking-from-yahoo-stock" class="slide level2">
-<h2>Practices: Getting price ranking from Yahoo! Stock</h2>
-<ul>
-<li>Top 100 for TSE: <a href="https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100" class="uri">https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=tse&amp;n=100</a></li>
-<li>Top 100 for OTC: <a href="https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=otc&amp;n=100" class="uri">https://tw.stock.yahoo.com/d/i/rank.php?t=pri&amp;e=otc&amp;n=100</a></li>
-</ul>
+<section><section id="optional-array" class="titleslide slide level1"><h1>(Optional) Array</h1></section><section id="using-array-to-create-an-array" class="slide level2">
+<h2>Using <code>array()</code> to create an array</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_arr &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">24</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))
+my_arr</code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]   13   17   21
+## [2,]   14   18   22
+## [3,]   15   19   23
+## [4,]   16   20   24</code></pre>
 </section></section>
     </div>
   </div>
