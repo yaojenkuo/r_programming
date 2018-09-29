@@ -25,7 +25,7 @@
 ### 課程教科書
 
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-<!--- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FORFREE298) -->
+- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FORFREE304)
 <!--- [認識 R 的美好 - 網頁版](https://bookdown.org/tonykuoyj/eloquentr/)-->
 
 ### 課程投影片（html）
@@ -52,6 +52,9 @@
 
 - [Datainpoint](https://medium.com/datainpoint)
 - [DataCamp](https://www.datacamp.com?tap_a=5644-dce66f&tap_s=194899-1fb421)
+- [Advanced R](http://adv-r.had.co.nz/)
+- [R for Data Science](http://r4ds.had.co.nz/index.html)
+- [The Art of R Programming](https://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843)
 
 ### 近期上課錄影
 
