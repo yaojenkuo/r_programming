@@ -18,15 +18,15 @@
 |作業 4|[專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)|70|
 
 
-### 課堂互動工具（Event Code: N130）
+### 課堂互動工具
 
 <https://www.sli.do/>
 
 ### 課程教科書
 
+- [輕鬆學習 R 語言 - 第二版](https://www.datainpoint.com/r-essentials/)
 - [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-- [輕鬆學習 R 語言 - Udemy](https://www.udemy.com/learn-r-the-easy-way-1/?couponCode=FORFREE304)
-<!--- [認識 R 的美好 - 網頁版](https://bookdown.org/tonykuoyj/eloquentr/)-->
+- [輕鬆學習 R 語言 - 第一版](http://www.learn-r-the-easy-way.tw/)
 
 ### 課程投影片（html）
 
