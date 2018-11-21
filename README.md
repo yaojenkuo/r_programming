@@ -17,6 +17,9 @@
 |作業 3|[資料清理](http://yaojenkuo.io/r_programming/getting_cleaning_data)|70|
 |作業 4|[專題：Simulation & Profiling](http://yaojenkuo.io/r_programming/jhu_prgwr_w4)|70|
 
+### Facebook 社團
+
+<https://www.facebook.com/groups/ntucsietrainR/>
 
 ### 課堂互動工具
 
