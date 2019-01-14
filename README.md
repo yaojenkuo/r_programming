@@ -7,7 +7,7 @@
 ### 評分標準
 
 - 任意選擇作業繳交
-- 70 分即可獲得證書，作業請上傳至[表單](https://goo.gl/forms/nAR6HOY63WmqgqBY2)
+- 70 分即可獲得證書，作業請上傳至[表單](https://goo.gl/forms/LSIbSpy6nfs5ZNex1)
 - 作業繳交期限為課程結束後一週內，如遇長假期（春節、連假）則順延
 
 |作業編號|作業連結|作業分數|
@@ -27,9 +27,7 @@
 
 ### 課程教科書
 
-- [輕鬆學習 R 語言 - 第二版](https://www.datainpoint.com/r-essentials/)
-- [輕鬆學習 R 語言 - 紙本書](http://www.books.com.tw/products/0010763975)
-- [輕鬆學習 R 語言 - 第一版](http://www.learn-r-the-easy-way.tw/)
+- [輕鬆學習 R 語言](https://www.datainpoint.com/r-essentials/)
 
 ### 課程投影片（html）
 
@@ -53,11 +51,12 @@
 
 ### 其他學習資源
 
-- [Datainpoint](https://medium.com/datainpoint)
+- [Datainpoint](https://www.datainpoint.com)
+- [Datainpoint@Medium](https://medium.com/datainpoint)
 - [DataCamp](https://www.datacamp.com?tap_a=5644-dce66f&tap_s=194899-1fb421)
 - [Advanced R](http://adv-r.had.co.nz/)
-- [R for Data Science](http://r4ds.had.co.nz/index.html)
 - [The Art of R Programming](https://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843)
+- [R for Data Science](http://r4ds.had.co.nz/index.html)
 
 ### 近期上課錄影
 
