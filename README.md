@@ -66,6 +66,7 @@
 
 ### 近期上課錄影
 
+- [第 310 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuWhTkC4bL8txz9xlZPD93XM)
 - [第 308 期 R 語言與資料科學應用（寒密班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuXJerOau2Yzcra6QPukcPKf)
 - [第 306 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuVNOPXiHidLd4bn-A30oeAY)
 - [第 304 期 R 語言與資料科學應用（夜間班）](https://www.youtube.com/playlist?list=PLEq7iw5uOtuUduyt364zf5WZUra6Ba-K9)
